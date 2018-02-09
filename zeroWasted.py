@@ -13,42 +13,43 @@ def getPostUrls(pages):
         req = requests.get(page)
         soup = BeautifulSoup(req.content, 'html.parser')
 
-        soup = errorHandling(soup, page)
+        #soup = errorHandling(soup)
         
         # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find the class where there is a link to the blog post url
-        allHtml = soup.find_all(class_="archive-item-link")
+        allHtml = soup.find_all(class_="read_more")
         for x in range(0, len(allHtml)):
             
             # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             # find the link text
-            postUrls.append("https://www.goingzerowaste.com" + allHtml[x]['href'])
+            postUrls.append(allHtml[x]['href'])
     return postUrls
 
+
 # if there is an issue with too many requests this should fix most of it
-def errorHandling(soup, url):
+def errorHandling(soup):
         time.sleep(3)
         # some error handling when you have a bad url becasue of too many requests
 
         # CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find a class on the page
-        getTitle = soup.find_all(class_="entry-title")
+        getTitle = soup.find_all(class_="site-name")
         if len(getTitle) is 0:
             print 'REQ'
             print req.content
             time.sleep(40)
-            req = requests.get(url)
+            req = requests.get(post)
             soup = BeautifulSoup(req.content, 'html.parser')
         return soup
 
     
 def getPostContent(postUrls):
-    content = []
     for post in postUrls:
+        content = []
         req = requests.get(post)
         soup = BeautifulSoup(req.content, 'html.parser')
 
-        soup = errorHandling(soup, post)
+        soup = errorHandling(soup)
     
 
         # get title / CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -63,25 +64,27 @@ def getPostContent(postUrls):
         # get image / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find the class that has image url
         try:
-            getImage = soup.find_all(class_="thumb-image")
-            content.append(getImage[0]['data-image'])
+            getImage = soup.find_all(class_="aligncenter")
+            content.append(getImage[0]['src'])
         except:
             content.append("NULL - image")
 
         # get date / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!!11!!!!!
         # find the class containing the date
+
         try: 
-            getDate = soup.find_all(class_="dt-published")
+            getDate = soup.find_all(class_="entry-date")
             content.append(getDate[0].get_text().strip())
         except:
             content.append("NULL - date")
+            
 
         # writes post URL
         content.append(post.strip())
 
         # write Blog Name / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!
         # literally just write the blog's name
-        content.append("Going Zero Waste")
+        content.append("Zero Wasted")
 
         # getkeywords
         words = title.split(" ")
@@ -93,7 +96,8 @@ def getPostContent(postUrls):
 
         writeContent(content)
 
-   
+
+
 def writeContent(content):
     # possibly chage output.tsv name during testing
     with open('output.tsv', 'a') as f:
@@ -103,11 +107,11 @@ def writeContent(content):
             f.write((itemFiltered.strip()) + '|')
         f.write('\n')
 
-        
+
 def main():
     # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # this is a list 
-    pages = ["https://www.goingzerowaste.com/archives"]
+    pages = ["http://www.zerowasted.net/blog-posts/", "http://www.zerowasted.net/blog-posts/page/2/", "http://www.zerowasted.net/blog-posts/page/3/", "http://www.zerowasted.net/blog-posts/page/4/"]
     postUrls = getPostUrls(pages)
     getPostContent(postUrls)
 

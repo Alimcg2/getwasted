@@ -3,6 +3,7 @@ import csv
 import sys
 import time
 from bs4 import BeautifulSoup
+import string
 
 nonWords = "with, at, from, into, during, including, until, against, among, throughout, the, how, my, or, to, and, a, no, towards, upon, concerning, of, to, in, for, on, by, about, like, through, over, before, between, after, since, without, under, within, along, following, across, behind, beyond, plus, except, but, up, around, down, off, above, near, day".split(", ")
 
@@ -12,7 +13,7 @@ def getPostUrls(pages):
         req = requests.get(page)
         soup = BeautifulSoup(req.content, 'html.parser')
 
-        soup = errorHandling(soup)
+        soup = errorHandling(soup, page)
         
         # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find the class where there is a link to the blog post url
@@ -24,9 +25,8 @@ def getPostUrls(pages):
             postUrls.append("https://www.goingzerowaste.com" + allHtml[x]['href'])
     return postUrls
 
-
 # if there is an issue with too many requests this should fix most of it
-def errorHandling(soup):
+def errorHandling(soup, url):
         time.sleep(3)
         # some error handling when you have a bad url becasue of too many requests
 
@@ -37,7 +37,7 @@ def errorHandling(soup):
             print 'REQ'
             print req.content
             time.sleep(40)
-            req = requests.get(post)
+            req = requests.get(url)
             soup = BeautifulSoup(req.content, 'html.parser')
         return soup
 
@@ -48,33 +48,32 @@ def getPostContent(postUrls):
         req = requests.get(post)
         soup = BeautifulSoup(req.content, 'html.parser')
 
-        soup = errorHandling(soup)
-        
-        print "URL " + post
+        soup = errorHandling(soup, post)
+    
 
         # get title / CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find the class that has the title of the post
-        if len(soup.find_all(class_="entry-title")) > 0:
+        try:
             content.append(soup.find_all(class_="entry-title")[0].get_text().strip())
             title = soup.find_all(class_="entry-title")[0].get_text()
-        else:
+        except:
             content.append("NULL - title")
             title = "NULL - keywords"
 
         # get image / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find the class that has image url
-        getImage = soup.find_all(class_="thumb-image")
-        if soup.find_all(class_="thumb-image"):
+        try:
+            getImage = soup.find_all(class_="thumb-image")
             content.append(getImage[0]['data-image'])
-        else:
+        except:
             content.append("NULL - image")
 
         # get date / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!!11!!!!!
         # find the class containing the date
-        getDate = soup.find_all(class_="dt-published")
-        if len(getDate) > 0:
+        try: 
+            getDate = soup.find_all(class_="dt-published")
             content.append(getDate[0].get_text().strip())
-        else:
+        except:
             content.append("NULL - date")
 
         # writes post URL
@@ -90,23 +89,21 @@ def getPostContent(postUrls):
         for word in words:
             if word.lower() not in nonWords and not word.isdigit():
                 keywords = keywords + " " + word
-                content.append(keywords.strip())
+        content.append(keywords.strip())
 
         writeContent(content)
 
-
-
+   
 def writeContent(content):
     # possibly chage output.tsv name during testing
     with open('output.tsv', 'a') as f:
         for item in content:
-            try:
-                f.write((item.strip()) + '|')
-            except UnicodeIncodeError:
-                f.write("it was not a ascii-encoded unicode string" + '|')
+            printable = set(string.printable)
+            itemFiltered = filter(lambda x: x in printable, item)
+            f.write((itemFiltered.strip()) + '|')
         f.write('\n')
 
-
+        
 def main():
     # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # this is a list 
