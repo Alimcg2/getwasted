@@ -11,6 +11,8 @@ def getPostUrls(pages):
     for page in pages:
         req = requests.get(page)
         soup = BeautifulSoup(req.content, 'html.parser')
+
+        soup = errorHandling(soup)
         
         # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         allHtml = soup.find_all(class_="archive-item-link")
@@ -20,14 +22,10 @@ def getPostUrls(pages):
             postUrls.append("https://www.goingzerowaste.com" + allHtml[x]['href'])
     return postUrls
 
-
-def getPostContent(postUrls):
-    content = []
-    for post in postUrls:
-        req = requests.get(post)
-        soup = BeautifulSoup(req.content, 'html.parser')
-
-        # get title / CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# if there is an issue with too many requests this should fix most of it
+def errorHandling(soup):
+        time.sleep(3)
+        # some error handling when you have a bad url becasue of too many requests
         getTitle = soup.find_all(class_="entry-title")
         if len(getTitle) is 0:
             print 'REQ'
@@ -35,10 +33,20 @@ def getPostContent(postUrls):
             time.sleep(40)
             req = requests.get(post)
             soup = BeautifulSoup(req.content, 'html.parser')
-            
+        return soup
 
-        print "URL " + post
+    
+def getPostContent(postUrls):
+    content = []
+    for post in postUrls:
+        req = requests.get(post)
+        soup = BeautifulSoup(req.content, 'html.parser')
+
+        soup = errorHandling(soup)
         
+        print "URL " + post
+
+        # get title / CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if len(soup.find_all(class_="entry-title")) > 0:
             content.append(soup.find_all(class_="entry-title")[0].get_text().strip())
             title = soup.find_all(class_="entry-title")[0].get_text()
@@ -75,14 +83,16 @@ def getPostContent(postUrls):
                 content.append(keywords.strip())
                 writeContent(content)
 
-        time.sleep(3)
    
                 
 
 def writeContent(content):
     with open('output.tsv', 'a') as f:
         for item in content:
-            f.write(item + '|')
+            try:
+                f.write((item.strip()) + '|')
+            except UnicodeIncodeError:
+                f.write("it was not a ascii-encoded unicode string" + '|')
         f.write('\n')
 
 def main():
