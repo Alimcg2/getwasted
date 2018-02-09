@@ -24,6 +24,7 @@ def getPostUrls(pages):
             postUrls.append("https://www.goingzerowaste.com" + allHtml[x]['href'])
     return postUrls
 
+
 # if there is an issue with too many requests this should fix most of it
 def errorHandling(soup):
         time.sleep(3)
@@ -93,10 +94,10 @@ def getPostContent(postUrls):
 
         writeContent(content)
 
-   
-                
+
 
 def writeContent(content):
+    # possibly chage output.tsv name during testing
     with open('output.tsv', 'a') as f:
         for item in content:
             try:
@@ -105,8 +106,8 @@ def writeContent(content):
                 f.write("it was not a ascii-encoded unicode string" + '|')
         f.write('\n')
 
-def main():
 
+def main():
     # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # this is a list 
     pages = ["https://www.goingzerowaste.com/archives"]
