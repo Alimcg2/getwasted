@@ -58,7 +58,7 @@ def getPostContent(postUrls):
         words = title.split(" ")
         keywords = ""
         for word in words:
-            if word.lower() not in nonWords && !is_number(word):
+            if word.lower() not in nonWords and not word.isdigit():
                 keywords = keywords + " " + word
         content.append(keywords.strip())
         writeContent(content)
