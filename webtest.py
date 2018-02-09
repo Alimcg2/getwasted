@@ -1,5 +1,7 @@
 import requests
 import csv
+import sys
+import time
 from bs4 import BeautifulSoup
 
 nonWords = "with, at, from, into, during, including, until, against, among, throughout, the, how, my, or, to, and, a, no, towards, upon, concerning, of, to, in, for, on, by, about, like, through, over, before, between, after, since, without, under, within, along, following, across, behind, beyond, plus, except, but, up, around, down, off, above, near, day".split(", ")
@@ -24,11 +26,21 @@ def getPostContent(postUrls):
     for post in postUrls:
         req = requests.get(post)
         soup = BeautifulSoup(req.content, 'html.parser')
-        
+
         # get title / CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         getTitle = soup.find_all(class_="entry-title")
+        if len(getTitle) is 0:
+            print 'REQ'
+            print req.content
+            time.sleep(40)
+            req = requests.get(post)
+            soup = BeautifulSoup(req.content, 'html.parser')
+            
+
+        print "URL " + post
+        
         if len(soup.find_all(class_="entry-title")) > 0:
-            content.append(soup.find_all(class_="entry-title")[0].get_text())
+            content.append(soup.find_all(class_="entry-title")[0].get_text().strip())
             title = soup.find_all(class_="entry-title")[0].get_text()
         else:
             content.append("NULL - title")
@@ -44,13 +56,13 @@ def getPostContent(postUrls):
         # get date / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!!11!!!!!
         getDate = soup.find_all(class_="dt-published")
         if len(getDate) > 0:
-            content.append(getDate[0].get_text())
+            content.append(getDate[0].get_text().strip())
         else:
             content.append("NULL - date")
 
         # writes post URL
-        content.append(post)
-    
+        content.append(post.strip())
+
         # write Blog Name / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!
         content.append("Going Zero Waste")
 
@@ -60,15 +72,17 @@ def getPostContent(postUrls):
         for word in words:
             if word.lower() not in nonWords and not word.isdigit():
                 keywords = keywords + " " + word
-        content.append(keywords.strip())
-        writeContent(content)
+                content.append(keywords.strip())
+                writeContent(content)
+
+        time.sleep(3)
+   
                 
 
 def writeContent(content):
-    with open('output', 'a') as f:
+    with open('output.tsv', 'a') as f:
         for item in content:
-            print(item)
-            f.write(item + '\t')
+            f.write(item + '|')
         f.write('\n')
 
 def main():
