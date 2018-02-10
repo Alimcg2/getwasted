@@ -4,6 +4,7 @@ import sys
 import time
 from bs4 import BeautifulSoup
 import string
+import re
 
 nonWords = "with, at, from, into, during, including, until, against, among, throughout, the, how, my, or, to, and, a, no, towards, upon, concerning, of, to, in, for, on, by, about, like, through, over, before, between, after, since, without, under, within, along, following, across, behind, beyond, plus, except, but, up, around, down, off, above, near, day".split(", ")
 
@@ -43,8 +44,8 @@ def errorHandling(soup, url):
 
     
 def getPostContent(postUrls):
-    content = []
     for post in postUrls:
+        content = []
         req = requests.get(post)
         soup = BeautifulSoup(req.content, 'html.parser')
 

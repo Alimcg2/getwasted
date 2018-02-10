@@ -4,6 +4,7 @@ import sys
 import time
 from bs4 import BeautifulSoup
 import string
+import re
 
 nonWords = "with, at, from, into, during, including, until, against, among, throughout, the, how, my, or, to, and, a, no, towards, upon, concerning, of, to, in, for, on, by, about, like, through, over, before, between, after, since, without, under, within, along, following, across, behind, beyond, plus, except, but, up, around, down, off, above, near, day".split(", ")
 
@@ -17,12 +18,11 @@ def getPostUrls(pages):
         
         # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find the class where there is a link to the blog post url
-        allHtml = soup.find_all(class_="archive-item-link")
+        allHtml = soup.find_all(class_="continue-reading")
         for x in range(0, len(allHtml)):
-            
             # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             # find the link text
-            postUrls.append("https://www.goingzerowaste.com" + allHtml[x]['href'])
+            postUrls.append("https://wildminimalist.com" + allHtml[x].find_all("a")[0]['href'])
     return postUrls
 
 # if there is an issue with too many requests this should fix most of it
@@ -32,11 +32,10 @@ def errorHandling(soup, url):
 
         # CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find a class on the page
-        getTitle = soup.find_all(class_="logo")
+        getTitle = soup.find_all(class_="multi-level-nav")
         if len(getTitle) is 0:
             print 'REQ'
-            print getTitle
-            time.sleep(10)
+            time.sleep(40)
             req = requests.get(url)
             soup = BeautifulSoup(req.content, 'html.parser')
         return soup
@@ -50,12 +49,13 @@ def getPostContent(postUrls):
 
         soup = errorHandling(soup, post)
     
-
+            
         # get title / CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find the class that has the title of the post
         try:
-            content.append(soup.find_all(class_="entry-title")[0].get_text().strip())
-            title = soup.find_all(class_="entry-title")[0].get_text().strip()
+            title = soup.find_all(class_="majortitle")[0].get_text().strip()
+            content.append(title)
+            print title
         except:
             content.append("NULL - title")
             title = "NULL - keywords"
@@ -63,15 +63,15 @@ def getPostContent(postUrls):
         # get image / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find the class that has image url
         try:
-            getImage = soup.find_all(class_="thumb-image")
-            content.append(getImage[0]['data-image'])
+            getImage = soup.find_all(class_="article-container")[0].find_all("img")[0]['src']
+            content.append("http:" + getImage)
         except:
             content.append("NULL - image")
 
         # get date / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!!11!!!!!
         # find the class containing the date
         try: 
-            getDate = soup.find_all(class_="dt-published")
+            getDate = soup.find_all(class_="time")
             content.append(getDate[0].get_text().strip())
         except:
             content.append("NULL - date")
@@ -81,10 +81,12 @@ def getPostContent(postUrls):
 
         # write Blog Name / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!
         # literally just write the blog's name
-        content.append("Going Zero Waste")
+        content.append("Wild Minimalist")
 
+        # remove special characters from title
+        words_all = re.sub('[^a-zA-Z0-9 \n\.]', '', title)
         # getkeywords
-        words = title.split(" ")
+        words = words_all.split(" ")
         keywords = ""
         for word in words:
             if word.lower() not in nonWords and not word.isdigit():
@@ -96,7 +98,7 @@ def getPostContent(postUrls):
    
 def writeContent(content):
     # possibly chage output.tsv name during testing
-    with open('output-goingZeroWaste.tsv', 'a') as f:
+    with open('output-wildminimalist.tsv', 'a') as f:
         for item in content:
             printable = set(string.printable)
             itemFiltered = filter(lambda x: x in printable, item)
@@ -106,8 +108,10 @@ def writeContent(content):
         
 def main():
     # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # this is a list 
-    pages = ["https://www.goingzerowaste.com/archives"]
+    # this is a list
+    pages = ["https://wildminimalist.com/blogs/news"]
+    for i in range(2, 5):
+        pages.append("https://wildminimalist.com/blogs/news?page=" + str(i))
     postUrls = getPostUrls(pages)
     getPostContent(postUrls)
 
