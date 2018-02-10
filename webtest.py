@@ -64,7 +64,8 @@ def getPostContent(postUrls):
         # find the class that has image url
         try:
             getImage = soup.find_all(class_="thumb-image")
-            content.append(getImage[0]['data-image'])
+            content.append(getImage[0]['src'])
+            print(getImage)
         except:
             content.append("NULL - image")
 
@@ -83,8 +84,10 @@ def getPostContent(postUrls):
         # literally just write the blog's name
         content.append("Going Zero Waste")
 
+        # remove special characters from title
+        words_all = re.sub('[^a-zA-Z0-9 \n\.]', '', title)
         # getkeywords
-        words = title.split(" ")
+        words = words_all.split(" ")
         keywords = ""
         for word in words:
             if word.lower() not in nonWords and not word.isdigit():
