@@ -32,19 +32,19 @@ def errorHandling(soup, url):
 
         # CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find a class on the page
-        getTitle = soup.find_all(class_="entry-title")
+        getTitle = soup.find_all(class_="logo")
         if len(getTitle) is 0:
             print 'REQ'
-            print req.content
-            time.sleep(40)
+            print getTitle
+            time.sleep(10)
             req = requests.get(url)
             soup = BeautifulSoup(req.content, 'html.parser')
         return soup
 
     
 def getPostContent(postUrls):
-    content = []
     for post in postUrls:
+        content = []
         req = requests.get(post)
         soup = BeautifulSoup(req.content, 'html.parser')
 
@@ -55,7 +55,7 @@ def getPostContent(postUrls):
         # find the class that has the title of the post
         try:
             content.append(soup.find_all(class_="entry-title")[0].get_text().strip())
-            title = soup.find_all(class_="entry-title")[0].get_text()
+            title = soup.find_all(class_="entry-title")[0].get_text().strip()
         except:
             content.append("NULL - title")
             title = "NULL - keywords"
@@ -96,7 +96,7 @@ def getPostContent(postUrls):
    
 def writeContent(content):
     # possibly chage output.tsv name during testing
-    with open('output.tsv', 'a') as f:
+    with open('output-goingZeroWaste.tsv', 'a') as f:
         for item in content:
             printable = set(string.printable)
             itemFiltered = filter(lambda x: x in printable, item)

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+<html class="no-js">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TND5X9L');</script>
+<!-- End Google Tag Manager -->
+<!-- PayPal Tag Manager BEGIN -->
+<script>
+      ;(function(a,t,o,m,s){a[m]=a[m]||[];a[m].push({t:new Date().getTime(),event:'snippetRun'});var f=t.getElementsByTagName(o)[0],e=t.createElement(o),d=m!=='paypalDDL'?'&m='+m:'';e.async=!0;e.src='https://www.paypal.com/tagmanager/pptm.js?id='+s+d;f.parentNode.insertBefore(e,f);})(window,document,'script','paypalDDL','171e5410-bf72-11e7-a160-9b7d307cacd0');
+    </script>
+<!-- PayPal Tag Manager END -->
+<!-- start Mixpanel -->
+<script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+
+mixpanel.init("143da08a0451964aeee51b6ffb6dcf08");</script>
+<script type="text/javascript">
+  mixpanel.track_links("#nav a", "click nav link", {
+  "referrer": document.referrer
+  });
+  </script>
+<!-- end Mixpanel -->
+<!--start Mailchimp Goal Tracking --><script type="text/javascript">
+	var $mcGoal = {'settings':{'uuid':'561ffddfce06f9a4183b638d4','dc':'us8'}};
+	(function() {
+		 var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+		sp.src = ('https:' == document.location.protocol ? 'https://s3.amazonaws.com/downloads.mailchimp.com' : 'http://downloads.mailchimp.com') + '/js/goal.min.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+	})();
+</script>
+<!-- end Mailchimp Goal Tracking -->
+<!-- Start Verification Tags -->
+<meta content="2c2e6b5a5814f77364caebeeeac14640" name="p:domain_verify"/>
+<meta content="lKG-1GEkBhZA-xuR7_tufHDphamteiHyvF-OSajavMI" name="google-site-verification"/>
+<meta content="38566327BE513262679A006427B77675" name="msvalidate.01"/>
+<meta content="czbyeiMAk_MgsJDWlG6KykSBEeFOeHRJTfe3LXR5Vys" name="google-site-verification"/>
+<!-- End Verification Tags -->
+<!-- Start Symmetry 3.0.7 -->
+<meta charset="utf-8"/>
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport">
+<meta content="#3f51b5" name="theme-color"/>
+<title>
+    6 Tips for a Zero Waste Valentine's Day – Wild Minimalist
+  </title>
+<meta content="Okay, hear me out. I think the intent behind Valentine’s Day is good—that is, celebrating the ones you love in small and sometimes grand ways. Inner cynic: “Yea" name="description">
+<link href="https://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day" rel="canonical"/>
+<meta content="Wild Minimalist" property="og:site_name">
+<meta content="6 Tips for a Zero Waste Valentine's Day - Wild Minimalist" property="og:title"/>
+<meta content="Okay, hear me out. I think the intent behind Valentine’s Day is good—that is, celebrating the ones you love in small..." property="og:description"/>
+<meta content="https://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day" property="og:url"/>
+<meta content="article" property="og:type"/>
+<meta content="http://cdn.shopify.com/s/files/1/1721/9289/articles/valentines_large.jpg?v=1517767961" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="6 Tips for a Zero Waste Valentine's Day" name="twitter:title"/>
+<meta content="For many, Valentine's Day has become a high-stakes, trashy, exclusionary monster. In this post, I discuss ways to celebrate loved ones without creating the waste. From sweets to gestures and even sexy" name="twitter:description"/>
+<meta content="https://cdn.shopify.com/s/files/1/1721/9289/articles/valentines_1024x1024.jpg?v=1517767961" property="twitter:image"/>
+<link href="//fonts.googleapis.com/css?family=Karla:400,700|Karla:400,700|Karla:400,700|Karla:400,700|Karla:400,700" rel="stylesheet" type="text/css"/>
+<link href="//cdn.shopify.com/s/files/1/1721/9289/t/7/assets/styles.scss.css?12691683910858058426" media="all" rel="stylesheet" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" type="text/javascript"></script>
+<script src="//cdn.shopify.com/s/assets/themes_support/api.jquery-0ea851da22ae87c0290f4eeb24bc8b513ca182f3eb721d147c009ae0f5ce14f9.js" type="text/javascript"></script>
+<link href="//cdn.shopify.com/s/files/1/1721/9289/t/7/assets/rail.min.css?12691683910858058426" media="all" rel="stylesheet" type="text/css"/>
+<link href="//cdn.shopify.com/s/files/1/1721/9289/t/7/assets/sticky.min.css?12691683910858058426" media="all" rel="stylesheet" type="text/css"/>
+<script src="//cdn.shopify.com/s/files/1/1721/9289/t/7/assets/sticky.min.js?12691683910858058426" type="text/javascript"></script>
+<script>
+  Shopify.money_format = "${{amount}}";
+  window.theme = window.theme || {};
+  theme.money_format = "${{amount}}";
+  theme.productData = {};
+  document.documentElement.className = document.documentElement.className.replace('no-js', '');
+</script>
+<meta content="/17219289/digital_wallets/dialog" id="shopify-digital-wallet" name="shopify-digital-wallet"/>
+<meta content="a7aa18c17424a95c506e53d421a4397b" name="shopify-checkout-api-token"/>
+<meta data-environment="production" data-locale="en_US" data-merchant-id="KSQRB4LBRWQEG" data-redirect-url="" data-shop-id="17219289" id="in-context-paypal-metadata"/>
+<link href="/blogs/news.atom" rel="alternate" title="Feed" type="application/atom+xml"/>
+<style media="all">.additional-checkout-button{border:0 !important;border-radius:5px !important;display:inline-block;margin:0 0 10px;padding:0 24px !important;max-width:100%;min-width:150px !important;line-height:44px !important;text-align:center !important}.additional-checkout-button+.additional-checkout-button{margin-left:10px}.additional-checkout-button:last-child{margin-bottom:0}.additional-checkout-button span{font-size:14px !important}.additional-checkout-button img{display:inline-block !important;height:1.3em !important;margin:0 !important;vertical-align:middle !important;width:auto !important}@media (max-width: 500px){.additional-checkout-button{display:block;margin-left:0 !important;padding:0 10px !important;width:100%}}.additional-checkout-button--apple-pay{background-color:#000 !important;color:#fff !important;display:none;font-family:-apple-system, &#39;Helvetica Neue&#39;, sans-serif !important;min-width:150px !important;white-space:nowrap !important}.additional-checkout-button--apple-pay:hover,.additional-checkout-button--apple-pay:active,.additional-checkout-button--apple-pay:visited{color:#fff !important;text-decoration:none !important}.additional-checkout-button--apple-pay .additional-checkout-button__logo{background:-webkit-named-image(apple-pay-logo-white) center center no-repeat !important;background-size:auto 100% !important;display:inline-block !important;vertical-align:middle !important;width:3em !important;height:1.3em !important}@media (max-width: 500px){.additional-checkout-button--apple-pay{display:none}}.additional-checkout-button--google-pay{background-color:#fff;background-origin:content-box;background-position:center;background-repeat:no-repeat;background-size:contain;border:0;border-radius:4px;-webkit-box-shadow:0 1px 3px 0 #6d6d6d;box-shadow:0 1px 3px 0 #6d6d6d;outline:0;padding:10px 8px;width:240px;height:40px;min-height:40px}.additional-checkout-button--google-pay .short{width:160px}.additional-checkout-button--google-pay:focus{-webkit-box-shadow:0 1px 3px 0 #6d6d6d, inset 0 0 0 1px #a8abb3;box-shadow:0 1px 3px 0 #6d6d6d, inset 0 0 0 1px #a8abb3}.additional-checkout-button--google-pay:hover:enabled{background-color:#f7f7f7}.additional-checkout-button--google-pay:active:enabled{background-color:#e7e8e8}.additional-checkout-button--google-pay .no-shadow{-webkit-box-shadow:inset 0 0 0 1px #dadce0;box-shadow:inset 0 0 0 1px #dadce0}.additional-checkout-button--google-pay .no-shadow:focus{-webkit-box-shadow:inset 0 0 0 1px #a8abb3;box-shadow:inset 0 0 0 1px #a8abb3}.additional-checkout-button--google-pay:disabled::before{content:&#39;&#39;;width:100%;height:100%;display:block;background-color:rgba(255,255,255,0.5)}.additional-checkout-button--paypal-express{background-color:#ffc439 !important}.additional-checkout-button--paypal{vertical-align:top;line-height:0 !important;padding:0 !important}.additional-checkout-button--amazon{background-color:#fad676 !important;position:relative !important}.additional-checkout-button--amazon .additional-checkout-button__logo{-webkit-transform:translateY(4px) !important;transform:translateY(4px) !important}.additional-checkout-button--amazon .alt-payment-list-amazon-button-image{max-height:none !important;opacity:0 !important;position:absolute !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important}.additional-checkout-button-visually-hidden{border:0 !important;clip:rect(0, 0, 0, 0) !important;clip:rect(0 0 0 0) !important;width:1px !important;height:1px !important;margin:-2px !important;overflow:hidden !important;padding:0 !important;position:absolute !important}
+</style>
+<script id="apple-pay-shop-capabilities" type="application/json">{"shopId":17219289,"countryCode":"US","currencyCode":"USD","merchantCapabilities":["supports3DS"],"merchantId":"gid:\/\/shopify\/Shop\/17219289","merchantName":"Wild Minimalist","requiredBillingContactFields":["postalAddress","email"],"requiredShippingContactFields":["postalAddress","email"],"shippingType":"shipping","supportedNetworks":["visa","masterCard","amex","discover"],"total":{"type":"pending","label":"Wild Minimalist","amount":"1.00"}}</script>
+<script>var Shopify = Shopify || {};
+Shopify.shop = "wild-minimalist.myshopify.com";
+Shopify.theme = {"name":"[Dev] Symmetry Upgraded","id":6972375069,"theme_store_id":568,"role":"main"};
+Shopify.theme.handle = "null";
+Shopify.theme.style = {"id":null,"handle":null};
+</script>
+<script>(function() {
+  function asyncLoad() {
+    var urls = ["https:\/\/chimpstatic.com\/mcjs-connected\/js\/users\/561ffddfce06f9a4183b638d4\/9e88fb64b0014afc74e50b952.js?shop=wild-minimalist.myshopify.com","https:\/\/s3.amazonaws.com\/lastsecondcoupon\/js\/quickannouncementbar.js?shop=wild-minimalist.myshopify.com","https:\/\/cdn.refersion.com\/pixel.js?shop=wild-minimalist.myshopify.com\u0026client_id=22384\u0026pk=pub_a2963942b514d747620b\u0026shop=wild-minimalist.myshopify.com","\/\/app.backinstock.org\/widget\/8476_1516753437.js?v=5\u0026shop=wild-minimalist.myshopify.com","https:\/\/lace.shoelace.com\/load\/v2\/8dcf462b388896ac3781aac62ec38189707c165a\/1827925980789954\/31566521ee7b4b3a80fb0adb170791d974668fd30d3e3bd015deb22fbc4bb8c15891764140cffe24a96953d93b7a67b736433aa60c9b48fa24308524f14e2da1?shop=wild-minimalist.myshopify.com","https:\/\/cdn.shopifycloud.com\/messenger_commerce\/assets\/new_message_us?version=1517349578\u0026page_id=241994476248897\u0026color=blue\u0026size=large\u0026position_horizontal=right\u0026position_vertical=bottom\u0026messenger_app_id=1163199097047119\u0026shop=wild-minimalist.myshopify.com"];
+    for (var i = 0; i < urls.length; i++) {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = urls[i];
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+  };
+  if(window.attachEvent) {
+    window.attachEvent('onload', asyncLoad);
+  } else {
+    window.addEventListener('load', asyncLoad, false);
+  }
+})();
+</script>
+<script id="__st">var __st={"a":17219289,"offset":-28800,"reqid":"4afacc3e-3455-495e-bc72-7f04d83abb3f","pageurl":"wildminimalist.com\/blogs\/news\/6-tips-for-a-zero-waste-valentines-day","s":"articles-2642444317","u":"6e9ae883083b","p":"article","rtyp":"article","rid":2642444317};</script>
+<script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
+<script>window.Shopify = window.Shopify || {};
+window.Shopify.Checkout = window.Shopify.Checkout || {};
+window.Shopify.Checkout.apiHost = "wild-minimalist.myshopify.com";
+window.Shopify.Checkout.rememberMeHost = "pay.shopify.com";
+window.Shopify.Checkout.rememberMeAccessToken = "d1phRmZPamR4aU1VRytyN0NKZi9QTVZPQWNoS0tQU2NGM2ZuRU9VdUpBbFVsWURGREhCbWF3d3Q1c2xvRStxRy0tdVhVNjRtaHFhTjdhQmFXcjJWcFR2UT09--168e7ee6252354f971040c3b056c85bd3f695bce";
+window.Shopify.Checkout.sheetStyleSheetUrl = "\/\/cdn.shopify.com\/s\/assets\/shared\/sheet\/main-c38a91ed541a82b485cb4285b3651975cfbf14dd4524647e78a9715f2c79e28b.css";
+</script>
+<script crossorigin="anonymous" defer="defer" integrity="sha256-lZXuHBoXu4VKEE0CUq92N3uYTJwVyrPf+94iXh3985U=" src="//cdn.shopify.com/s/assets/storefront/express_buttons-9595ee1c1a17bb854a104d0252af76377b984c9c15cab3dffbde225e1dfdf395.js"></script>
+<script defer="defer" src="//cdn.shopify.com/s/assets/themes_support/ga_urchin_forms-68ca1924c495cfc55dac65f4853e0c9a395387ffedc8fe58e0f2e677f95d7f23.js"></script>
+<script type="text/javascript">
+        
+      window.ShopifyAnalytics = window.ShopifyAnalytics || {};
+      window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
+      window.ShopifyAnalytics.meta.currency = 'USD';
+      var meta = {"page":{"pageType":"article","resourceType":"article","resourceId":2642444317}};
+      for (var attr in meta) {
+        window.ShopifyAnalytics.meta[attr] = meta[attr];
+      }
+    
+      </script>
+<script type="text/javascript">
+        window.ShopifyAnalytics.merchantGoogleAnalytics = function() {
+          
+        };
+      </script>
+<script class="analytics" type="text/javascript">
+        (window.gaDevIds=window.gaDevIds||[]).push('BwiEti');
+        
+
+        (function () {
+          var customDocumentWrite = function(content) {
+            var jquery = null;
+
+            if (window.jQuery) {
+              jquery = window.jQuery;
+            } else if (window.Checkout && window.Checkout.$) {
+              jquery = window.Checkout.$;
+            }
+
+            if (jquery) {
+              jquery('body').append(content);
+            }
+          };
+
+          var trekkie = window.ShopifyAnalytics.lib = window.trekkie = window.trekkie || [];
+          if (trekkie.integrations) {
+            return;
+          }
+          trekkie.methods = [
+            'identify',
+            'page',
+            'ready',
+            'track',
+            'trackForm',
+            'trackLink'
+          ];
+          trekkie.factory = function(method) {
+            return function() {
+              var args = Array.prototype.slice.call(arguments);
+              args.unshift(method);
+              trekkie.push(args);
+              return trekkie;
+            };
+          };
+          for (var i = 0; i < trekkie.methods.length; i++) {
+            var key = trekkie.methods[i];
+            trekkie[key] = trekkie.factory(key);
+          }
+          trekkie.load = function(config) {
+            trekkie.config = config;
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.onerror = function(e) {
+              (new Image()).src = '//v.shopify.com/internal_errors/track?error=trekkie_load';
+            };
+            script.async = true;
+            script.src = 'https://cdn.shopify.com/s/javascripts/tricorder/trekkie.storefront.min.js?v=2017.09.05.1';
+            var first = document.getElementsByTagName('script')[0];
+            first.parentNode.insertBefore(script, first);
+          };
+          trekkie.load(
+            {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":17219289,"isMerchantRequest":null,"themeId":6972375069,"themeCityHash":8670290461266592318}},"Performance":{"navigationTimingApiMeasurementsEnabled":true,"navigationTimingApiMeasurementsSampleRate":0.1},"Google Analytics":{"trackingId":"UA-53571147-2","domain":"auto","siteSpeedSampleRate":"10","enhancedEcommerce":true,"doubleClick":true,"includeSearch":true},"Facebook Pixel":{"pixelIds":["1827925980789954"],"agent":"plshopify1.2"},"Pinterest Pixel":{"pixelId":"2613282442593"},"Session Attribution":{}}
+          );
+
+          var loaded = false;
+          trekkie.ready(function() {
+            if (loaded) return;
+            loaded = true;
+
+            window.ShopifyAnalytics.lib = window.trekkie;
+            
+      ga('require', 'linker');
+      function addListener(element, type, callback) {
+        if (element.addEventListener) {
+          element.addEventListener(type, callback);
+        }
+        else if (element.attachEvent) {
+          element.attachEvent('on' + type, callback);
+        }
+      }
+      function decorate(event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement;
+        if (target && (target.getAttribute('action') || target.getAttribute('href'))) {
+          ga(function (tracker) {
+            var linkerParam = tracker.get('linkerParam');
+            document.cookie = '_shopify_ga=' + linkerParam + '; ' + 'path=/';
+          });
+        }
+      }
+      addListener(window, 'load', function(){
+        for (var i=0; i < document.forms.length; i++) {
+          var action = document.forms[i].getAttribute('action');
+          if(action && action.indexOf('/cart') >= 0) {
+            addListener(document.forms[i], 'submit', decorate);
+          }
+        }
+        for (var i=0; i < document.links.length; i++) {
+          var href = document.links[i].getAttribute('href');
+          if(href && href.indexOf('/checkout') >= 0) {
+            addListener(document.links[i], 'click', decorate);
+          }
+        }
+      });
+    
+
+            var originalDocumentWrite = document.write;
+            document.write = customDocumentWrite;
+            try { window.ShopifyAnalytics.merchantGoogleAnalytics.call(this); } catch(error) {};
+            document.write = originalDocumentWrite;
+
+            
+        window.ShopifyAnalytics.lib.page(
+          null,
+          {"pageType":"article","resourceType":"article","resourceId":2642444317}
+        );
+      
+            
+          });
+
+          
+      var eventsListenerScript = document.createElement('script');
+      eventsListenerScript.async = true;
+      eventsListenerScript.src = "//cdn.shopify.com/s/assets/shop_events_listener-f2c5800305098f0ebebdfa7d980c9abf56514c46d5305e97a7c476f7c9116163.js";
+      document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
+    
+        })();
+      </script>
+<script data-sections="article-template" defer="defer" id="sections-script" src="//cdn.shopify.com/s/files/1/1721/9289/t/7/compiled_assets/scripts.js?12691683910858058426"></script>
+<link href="//cdn.shopify.com/s/files/1/1721/9289/t/7/compiled_assets/styles.css?12691683910858058426" media="screen" rel="stylesheet"/>
+<!-- Start of Judge.me Core -->
+<link href="https://cdn.judge.me/" rel="dns-prefetch"/>
+<script class="jdgm-settings-script" data-cfasync="false">window.jdgmSettings={"pagination":5,"hide_badge_preview_if_no_reviews":true,"widget_no_review_text":"No reviews yete","verified_badge_placement":"left-of-reviewer-name","widget_location_format":"country_iso_code","all_reviews_include_out_of_store_products":true,"reply_name":"Wild Minimalist","footer":true,"autopublish":false,"review_dates":true,"enable_custom_form":false};</script> <style class="jdgm-settings-style">.jdgm-prev-badge[data-average-rating='0.00']{display:none !important}.jdgm-author-all-initials{display:none !important}.jdgm-author-last-initial{display:none !important}.jdgm-rev-widg__summary-text{visibility:hidden}.jdgm-rev__replier:before{content:'Wild Minimalist'}.jdgm-rev__prod-link-prefix:before{content:'about'}.jdgm-rev__out-of-store-text:before{content:'(out of store)'}
+</style>
+<style class="jdgm-miracle-styles">
+  @-webkit-keyframes jdgm-spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg)}}@keyframes jdgm-spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg)}}@font-face{font-family:'JudgemeStar';src:url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAScAA0AAAAABrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEgAAAABoAAAAcbyQ+3kdERUYAAARgAAAAHgAAACAAMwAGT1MvMgAAAZgAAABGAAAAVi+vS9xjbWFwAAAB8AAAAEAAAAFKwBMjvmdhc3AAAARYAAAACAAAAAj//wADZ2x5ZgAAAkAAAAEJAAABdH33LXtoZWFkAAABMAAAAC0AAAA2BroQKWhoZWEAAAFgAAAAHAAAACQD5QHQaG10eAAAAeAAAAAPAAAAFAYAAABsb2NhAAACMAAAAA4AAAAOAO4AeG1heHAAAAF8AAAAHAAAACAASgAvbmFtZQAAA0wAAADeAAABkorWfVZwb3N0AAAELAAAACkAAABEp3ubLXgBY2BkYADhPPP4OfH8Nl8ZuJkYQODS2fRrCPr/aSYGxq1ALgcDWBoAO60LkwAAAHgBY2BkYGDc+v80gx4TAwgASaAICmABAFB+Arl4AWNgZGBgYGPQYWBiAAIwyQgWc2AAAwAHVQB6eAFjYGRiYJzAwMrAwejDmMbAwOAOpb8ySDK0MDAwMbByMsCBAAMCBKS5pjA4PGB4wMR44P8BBj3GrQymQGFGkBwAjtgK/gAAeAFjYoAAEA1jAwAAZAAHAHgB3crBCcAwDEPRZydkih567CDdf4ZskmLwFBV8xBfCaC4BXkOUmx4sU0h2ngNb9V0vQCxaRKIAevT7fGWuBrEAAAAAAAAAAAA0AHgAugAAeAF9z79Kw1AUx/FzTm7un6QmJtwmQ5Bg1abgEGr/BAqlU6Gju+Cgg1MkQ/sA7Vj7BOnmO/gUvo2Lo14NqIO6/IazfD8HEODtmQCfoANwNsyp2/GJt3WKQrd1NLiYYWx2PBqOsmJMEOznPOTzfSCrhAtbbLdmeFLJV9eKd63WLrZcIcuaEVdssWCKM6pLCfTVOYbz/0pNSMSZKLIZpvh78sAUH6PlMrreTCabP9r+Z/puPZ2ur/RqpQHgh+MIegCnXeM4MRAPjYN//5tj4ZtTjkFqEdmeMShlEJ7tVAly2TAkx6R68Fl4E/aVvn8JqHFQ4JS1434gXKcuL31dDhzs3YbsEOAd/IU88gAAAHgBfY4xTgMxEEVfkk0AgRCioKFxQYd2ZRtpixxgRU2RfhU5q5VWseQ4JdfgAJyBlmNwAM7ABRhZQ0ORwp7nr+eZAa54YwYg9zm3ynPOeFRe8MCrciXOh/KSS76UV5L/iDmrLiS5AeU519wrL3jmSbkS5115yR2fyivJv9kx0ZMZ2RLZw27q87iNQi8EBo5FSPIMw3HqBboi5lKTGAGDp8FKXWP+t9TU01Lj5His1Ba6uM9dTEMwvrFmbf5GC/q2drW3ruXUhhsCiQOjznFlCzYhHUZp4xp76vsvQh89CQAAeAFjYGJABowM6IANLMrEyMTIzMjCXpyRWJBqZshWXJJYBKOMAFHFBucAAAAAAAAB//8AAngBY2BkYGDgA2IJBhBgAvKZGViBJAuYxwAABJsAOgAAeAFjYGBgZACCk535hiD60tn0azAaAEqpB6wAAA==") format("woff");font-weight:normal;font-style:normal}.jdgm-star{font-family:'JudgemeStar';display:inline !important;text-decoration:none !important;padding:0 4px 0 0 !important;margin:0 !important;font-weight:bold;opacity:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.jdgm-star:hover{opacity:1}.jdgm-star:last-of-type{padding:0 !important}.jdgm-star.jdgm--on:before{content:"\e000"}.jdgm-star.jdgm--off:before{content:"\e001"}.jdgm-star.jdgm--half:before{content:"\e002"}.jdgm-widget *{margin:0;line-height:1.4;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-overflow-scrolling:touch}.jdgm-hidden{display:none !important;visibility:hidden !important}.jdgm-temp-hidden{display:none}.jdgm-spinner{width:40px;height:40px;margin:auto;border-radius:50%;border-top:2px solid #eee;border-right:2px solid #eee;border-bottom:2px solid #eee;border-left:2px solid #ccc;-webkit-animation:jdgm-spin 0.8s infinite linear;animation:jdgm-spin 0.8s infinite linear}.jdgm-prev-badge{display:block !important}
+
+</style>
+<script async="" data-cfasync="false" src="https://cdn.judge.me/shopify_v2.js" type="text/javascript"></script>
+<link href="https://cdn.judge.me/shopify_v2.css" media="all" rel="stylesheet" type="text/css"/>
+<!-- End of Judge.me Core -->
+<!-- Hotjar Tracking Code for www.wildmnimalist.com -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:735338,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+</link></meta></meta></meta></head>
+<body class="template-article">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-TND5X9L" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="shopify-section" id="shopify-section-header">
+<div data-section-type="header">
+<div id="pageheader">
+<div class="cf" id="mobile-header">
+<button class="notabutton mobile-nav-toggle"><span></span><span></span><span></span></button>
+<div class="logo">
+<a href="/" title="Wild Minimalist">
+<img alt="" src="//cdn.shopify.com/s/files/1/1721/9289/files/new_web_logo_600x.png?v=1517034433"/>
+</a>
+</div><!-- /#logo -->
+<a class="cart-count " href="/cart">
+<svg fill="#000000" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<title>Cart</title>
+<path d="M0 0h24v24H0z" fill="none"></path>
+<path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"></path>
+</svg> <span class="beside-svg">(0)</span>
+</a>
+</div>
+<div class="logo-area logo-pos- cf">
+<div class="container">
+<div class="logo">
+<a href="/" title="Wild Minimalist">
+<img alt="" src="//cdn.shopify.com/s/files/1/1721/9289/files/new_web_logo_600x.png?v=1517034433"/>
+</a>
+</div><!-- /#logo -->
+</div>
+<div class="util-area">
+<div class="search-box elegant-input">
+<form action="/search" class="search-form" method="get">
+<svg fill="#000000" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<title>Search</title>
+<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+<path d="M0 0h24v24H0z" fill="none"></path>
+</svg>
+<input autocomplete="off" name="q" placeholder="Search" type="text"/>
+<input type="submit" value="→"/>
+<input name="type" type="hidden" value="product,article,page"/>
+</form>
+</div>
+<div class="utils">
+<div class="social-links">
+<ul>
+<li><a class="twitter" href="http://twitter.com/wildminimalist" target="_blank" title="Twitter"><svg height="40px" version="1.1" viewbox="0 0 48 40" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Twitter</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-240.000000, -299.000000)">
+<path d="M288,303.735283 C286.236309,304.538462 284.337383,305.081618 282.345483,305.324305 C284.379644,304.076201 285.940482,302.097147 286.675823,299.739617 C284.771263,300.895269 282.666667,301.736006 280.418384,302.18671 C278.626519,300.224991 276.065504,299 273.231203,299 C267.796443,299 263.387216,303.521488 263.387216,309.097508 C263.387216,309.88913 263.471738,310.657638 263.640782,311.397255 C255.456242,310.975442 248.201444,306.959552 243.341433,300.843265 C242.493397,302.339834 242.008804,304.076201 242.008804,305.925244 C242.008804,309.426869 243.747139,312.518238 246.389857,314.329722 C244.778306,314.280607 243.256911,313.821235 241.9271,313.070061 L241.9271,313.194294 C241.9271,318.08848 245.322064,322.17082 249.8299,323.095341 C249.004402,323.33225 248.133826,323.450704 247.235077,323.450704 C246.601162,323.450704 245.981335,323.390033 245.381229,323.271578 C246.634971,327.28169 250.269414,330.2026 254.580032,330.280607 C251.210424,332.99061 246.961789,334.605634 242.349709,334.605634 C241.555203,334.605634 240.769149,334.559408 240,334.466956 C244.358514,337.327194 249.53689,339 255.095615,339 C273.211481,339 283.114633,323.615385 283.114633,310.270495 C283.114633,309.831347 283.106181,309.392199 283.089276,308.961719 C285.013559,307.537378 286.684275,305.760563 288,303.735283" id="Twitter"></path>
+</g>
+<g id="Credit" transform="translate(-1332.000000, -476.000000)"></g>
+</g>
+</svg></a></li>
+<li><a class="facebook" href="https://www.facebook.com/wildminimalist/" target="_blank" title="Facebook"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Facebook</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-325.000000, -295.000000)">
+<path d="M350.638355,343 L327.649232,343 C326.185673,343 325,341.813592 325,340.350603 L325,297.649211 C325,296.18585 326.185859,295 327.649232,295 L370.350955,295 C371.813955,295 373,296.18585 373,297.649211 L373,340.350603 C373,341.813778 371.813769,343 370.350955,343 L358.119305,343 L358.119305,324.411755 L364.358521,324.411755 L365.292755,317.167586 L358.119305,317.167586 L358.119305,312.542641 C358.119305,310.445287 358.701712,309.01601 361.70929,309.01601 L365.545311,309.014333 L365.545311,302.535091 C364.881886,302.446808 362.604784,302.24957 359.955552,302.24957 C354.424834,302.24957 350.638355,305.625526 350.638355,311.825209 L350.638355,317.167586 L344.383122,317.167586 L344.383122,324.411755 L350.638355,324.411755 L350.638355,343 L350.638355,343 Z" id="Facebook"></path>
+</g>
+<g id="Credit" transform="translate(-1417.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+<li><a class="instagram" href="https://instagram.com/thewildminimalist" target="_blank" title="Instagram"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Instagram</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-642.000000, -295.000000)">
+<path d="M666.000048,295 C659.481991,295 658.664686,295.027628 656.104831,295.144427 C653.550311,295.260939 651.805665,295.666687 650.279088,296.260017 C648.700876,296.873258 647.362454,297.693897 646.028128,299.028128 C644.693897,300.362454 643.873258,301.700876 643.260017,303.279088 C642.666687,304.805665 642.260939,306.550311 642.144427,309.104831 C642.027628,311.664686 642,312.481991 642,319.000048 C642,325.518009 642.027628,326.335314 642.144427,328.895169 C642.260939,331.449689 642.666687,333.194335 643.260017,334.720912 C643.873258,336.299124 644.693897,337.637546 646.028128,338.971872 C647.362454,340.306103 648.700876,341.126742 650.279088,341.740079 C651.805665,342.333313 653.550311,342.739061 656.104831,342.855573 C658.664686,342.972372 659.481991,343 666.000048,343 C672.518009,343 673.335314,342.972372 675.895169,342.855573 C678.449689,342.739061 680.194335,342.333313 681.720912,341.740079 C683.299124,341.126742 684.637546,340.306103 685.971872,338.971872 C687.306103,337.637546 688.126742,336.299124 688.740079,334.720912 C689.333313,333.194335 689.739061,331.449689 689.855573,328.895169 C689.972372,326.335314 690,325.518009 690,319.000048 C690,312.481991 689.972372,311.664686 689.855573,309.104831 C689.739061,306.550311 689.333313,304.805665 688.740079,303.279088 C688.126742,301.700876 687.306103,300.362454 685.971872,299.028128 C684.637546,297.693897 683.299124,296.873258 681.720912,296.260017 C680.194335,295.666687 678.449689,295.260939 675.895169,295.144427 C673.335314,295.027628 672.518009,295 666.000048,295 Z M666.000048,299.324317 C672.40826,299.324317 673.167356,299.348801 675.69806,299.464266 C678.038036,299.570966 679.308818,299.961946 680.154513,300.290621 C681.274771,300.725997 682.074262,301.246066 682.91405,302.08595 C683.753934,302.925738 684.274003,303.725229 684.709379,304.845487 C685.038054,305.691182 685.429034,306.961964 685.535734,309.30194 C685.651199,311.832644 685.675683,312.59174 685.675683,319.000048 C685.675683,325.40826 685.651199,326.167356 685.535734,328.69806 C685.429034,331.038036 685.038054,332.308818 684.709379,333.154513 C684.274003,334.274771 683.753934,335.074262 682.91405,335.91405 C682.074262,336.753934 681.274771,337.274003 680.154513,337.709379 C679.308818,338.038054 678.038036,338.429034 675.69806,338.535734 C673.167737,338.651199 672.408736,338.675683 666.000048,338.675683 C659.591264,338.675683 658.832358,338.651199 656.30194,338.535734 C653.961964,338.429034 652.691182,338.038054 651.845487,337.709379 C650.725229,337.274003 649.925738,336.753934 649.08595,335.91405 C648.246161,335.074262 647.725997,334.274771 647.290621,333.154513 C646.961946,332.308818 646.570966,331.038036 646.464266,328.69806 C646.348801,326.167356 646.324317,325.40826 646.324317,319.000048 C646.324317,312.59174 646.348801,311.832644 646.464266,309.30194 C646.570966,306.961964 646.961946,305.691182 647.290621,304.845487 C647.725997,303.725229 648.246066,302.925738 649.08595,302.08595 C649.925738,301.246066 650.725229,300.725997 651.845487,300.290621 C652.691182,299.961946 653.961964,299.570966 656.30194,299.464266 C658.832644,299.348801 659.59174,299.324317 666.000048,299.324317 Z M666.000048,306.675683 C659.193424,306.675683 653.675683,312.193424 653.675683,319.000048 C653.675683,325.806576 659.193424,331.324317 666.000048,331.324317 C672.806576,331.324317 678.324317,325.806576 678.324317,319.000048 C678.324317,312.193424 672.806576,306.675683 666.000048,306.675683 Z M666.000048,327 C661.581701,327 658,323.418299 658,319.000048 C658,314.581701 661.581701,311 666.000048,311 C670.418299,311 674,314.581701 674,319.000048 C674,323.418299 670.418299,327 666.000048,327 Z M681.691284,306.188768 C681.691284,307.779365 680.401829,309.068724 678.811232,309.068724 C677.22073,309.068724 675.931276,307.779365 675.931276,306.188768 C675.931276,304.598171 677.22073,303.308716 678.811232,303.308716 C680.401829,303.308716 681.691284,304.598171 681.691284,306.188768 Z" id="Instagram"></path>
+</g>
+<g id="Credit" transform="translate(-1734.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+<li><a class="pinterest" href="https://pinterest.com/wildminimalist" target="_blank" title="Pinterest"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Pinterest</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-407.000000, -295.000000)">
+<path d="M431.001411,295 C417.747575,295 407,305.744752 407,319.001411 C407,328.826072 412.910037,337.270594 421.368672,340.982007 C421.300935,339.308344 421.357382,337.293173 421.78356,335.469924 C422.246428,333.522491 424.871229,322.393897 424.871229,322.393897 C424.871229,322.393897 424.106368,320.861351 424.106368,318.59499 C424.106368,315.038808 426.169518,312.38296 428.73505,312.38296 C430.91674,312.38296 431.972306,314.022755 431.972306,315.987123 C431.972306,318.180102 430.572411,321.462515 429.852708,324.502205 C429.251543,327.050803 431.128418,329.125243 433.640325,329.125243 C438.187158,329.125243 441.249427,323.285765 441.249427,316.36532 C441.249427,311.10725 437.707356,307.170048 431.263891,307.170048 C423.985006,307.170048 419.449462,312.59746 419.449462,318.659905 C419.449462,320.754101 420.064738,322.227377 421.029988,323.367613 C421.475922,323.895396 421.535191,324.104251 421.374316,324.708238 C421.261422,325.145705 420.996119,326.21256 420.886047,326.633092 C420.725172,327.239901 420.23408,327.460046 419.686541,327.234256 C416.330746,325.865408 414.769977,322.193509 414.769977,318.064385 C414.769977,311.248368 420.519139,303.069148 431.921503,303.069148 C441.085729,303.069148 447.117128,309.704533 447.117128,316.819721 C447.117128,326.235138 441.884459,333.268478 434.165285,333.268478 C431.577174,333.268478 429.138649,331.868584 428.303228,330.279591 C428.303228,330.279591 426.908979,335.808608 426.615452,336.875463 C426.107426,338.724114 425.111131,340.575587 424.199506,342.014994 C426.358617,342.652849 428.63909,343 431.001411,343 C444.255248,343 455,332.255248 455,319.001411 C455,305.744752 444.255248,295 431.001411,295" id="Pinterest"></path>
+</g>
+<g id="Credit" transform="translate(-1499.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+</ul>
+</div>
+<div class="cart-summary">
+<a class="cart-count " href="/cart">
+              Cart (0)
+            </a>
+</div>
+</div><!-- /.utils -->
+</div><!-- /.util-area -->
+</div><!-- /.logo-area -->
+</div><!-- /#pageheader -->
+<div class="nav-row autoexpand" id="main-nav">
+<div class="mobile-features">
+<form action="/search" class="mobile-search" method="get">
+<i></i>
+<input name="q" placeholder="Search" type="text"/>
+<button class="notabutton" type="submit"><svg fill="#000000" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<title>Search</title>
+<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+<path d="M0 0h24v24H0z" fill="none"></path>
+</svg></button>
+</form>
+</div>
+<div class="multi-level-nav">
+<div class="tier-1">
+<ul data-menu-handle="main-menu">
+<li>
+<a href="/collections/zero-waste-kits">Zero Waste Kits</a>
+</li>
+<li>
+<a href="/collections/market">Market</a>
+</li>
+<li>
+<a href="/collections/kitchen">Kitchen</a>
+</li>
+<li>
+<a href="/collections/cleaning">Cleaning</a>
+</li>
+<li>
+<a href="/collections/dining">Dining</a>
+</li>
+<li>
+<a href="/collections/health-beauty">Health &amp; Beauty</a>
+</li>
+<li>
+<a href="/collections/pets">Pets</a>
+</li>
+<li>
+<a href="/collections/vintage">Vintage</a>
+</li>
+<li>
+<a href="/collections/sale">Sale</a>
+</li>
+<li>
+<a href="/pages/about-us">About Us</a>
+<ul data-menu-handle="about-us">
+<li>
+<a href="/pages/about-us">Our Story</a>
+</li>
+<li class="active">
+<a href="/blogs/news">Zero Waste Blog</a>
+</li>
+<li>
+<a href="/pages/shipping-returns">Shipping &amp; Returns</a>
+</li>
+<li>
+<a href="/pages/contact-us">Get In Touch</a>
+</li>
+</ul>
+</li>
+</ul>
+<div class="mobile-social"><div class="social-links">
+<ul>
+<li><a class="twitter" href="http://twitter.com/wildminimalist" target="_blank" title="Twitter"><svg height="40px" version="1.1" viewbox="0 0 48 40" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Twitter</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-240.000000, -299.000000)">
+<path d="M288,303.735283 C286.236309,304.538462 284.337383,305.081618 282.345483,305.324305 C284.379644,304.076201 285.940482,302.097147 286.675823,299.739617 C284.771263,300.895269 282.666667,301.736006 280.418384,302.18671 C278.626519,300.224991 276.065504,299 273.231203,299 C267.796443,299 263.387216,303.521488 263.387216,309.097508 C263.387216,309.88913 263.471738,310.657638 263.640782,311.397255 C255.456242,310.975442 248.201444,306.959552 243.341433,300.843265 C242.493397,302.339834 242.008804,304.076201 242.008804,305.925244 C242.008804,309.426869 243.747139,312.518238 246.389857,314.329722 C244.778306,314.280607 243.256911,313.821235 241.9271,313.070061 L241.9271,313.194294 C241.9271,318.08848 245.322064,322.17082 249.8299,323.095341 C249.004402,323.33225 248.133826,323.450704 247.235077,323.450704 C246.601162,323.450704 245.981335,323.390033 245.381229,323.271578 C246.634971,327.28169 250.269414,330.2026 254.580032,330.280607 C251.210424,332.99061 246.961789,334.605634 242.349709,334.605634 C241.555203,334.605634 240.769149,334.559408 240,334.466956 C244.358514,337.327194 249.53689,339 255.095615,339 C273.211481,339 283.114633,323.615385 283.114633,310.270495 C283.114633,309.831347 283.106181,309.392199 283.089276,308.961719 C285.013559,307.537378 286.684275,305.760563 288,303.735283" id="Twitter"></path>
+</g>
+<g id="Credit" transform="translate(-1332.000000, -476.000000)"></g>
+</g>
+</svg></a></li>
+<li><a class="facebook" href="https://www.facebook.com/wildminimalist/" target="_blank" title="Facebook"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Facebook</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-325.000000, -295.000000)">
+<path d="M350.638355,343 L327.649232,343 C326.185673,343 325,341.813592 325,340.350603 L325,297.649211 C325,296.18585 326.185859,295 327.649232,295 L370.350955,295 C371.813955,295 373,296.18585 373,297.649211 L373,340.350603 C373,341.813778 371.813769,343 370.350955,343 L358.119305,343 L358.119305,324.411755 L364.358521,324.411755 L365.292755,317.167586 L358.119305,317.167586 L358.119305,312.542641 C358.119305,310.445287 358.701712,309.01601 361.70929,309.01601 L365.545311,309.014333 L365.545311,302.535091 C364.881886,302.446808 362.604784,302.24957 359.955552,302.24957 C354.424834,302.24957 350.638355,305.625526 350.638355,311.825209 L350.638355,317.167586 L344.383122,317.167586 L344.383122,324.411755 L350.638355,324.411755 L350.638355,343 L350.638355,343 Z" id="Facebook"></path>
+</g>
+<g id="Credit" transform="translate(-1417.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+<li><a class="instagram" href="https://instagram.com/thewildminimalist" target="_blank" title="Instagram"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Instagram</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-642.000000, -295.000000)">
+<path d="M666.000048,295 C659.481991,295 658.664686,295.027628 656.104831,295.144427 C653.550311,295.260939 651.805665,295.666687 650.279088,296.260017 C648.700876,296.873258 647.362454,297.693897 646.028128,299.028128 C644.693897,300.362454 643.873258,301.700876 643.260017,303.279088 C642.666687,304.805665 642.260939,306.550311 642.144427,309.104831 C642.027628,311.664686 642,312.481991 642,319.000048 C642,325.518009 642.027628,326.335314 642.144427,328.895169 C642.260939,331.449689 642.666687,333.194335 643.260017,334.720912 C643.873258,336.299124 644.693897,337.637546 646.028128,338.971872 C647.362454,340.306103 648.700876,341.126742 650.279088,341.740079 C651.805665,342.333313 653.550311,342.739061 656.104831,342.855573 C658.664686,342.972372 659.481991,343 666.000048,343 C672.518009,343 673.335314,342.972372 675.895169,342.855573 C678.449689,342.739061 680.194335,342.333313 681.720912,341.740079 C683.299124,341.126742 684.637546,340.306103 685.971872,338.971872 C687.306103,337.637546 688.126742,336.299124 688.740079,334.720912 C689.333313,333.194335 689.739061,331.449689 689.855573,328.895169 C689.972372,326.335314 690,325.518009 690,319.000048 C690,312.481991 689.972372,311.664686 689.855573,309.104831 C689.739061,306.550311 689.333313,304.805665 688.740079,303.279088 C688.126742,301.700876 687.306103,300.362454 685.971872,299.028128 C684.637546,297.693897 683.299124,296.873258 681.720912,296.260017 C680.194335,295.666687 678.449689,295.260939 675.895169,295.144427 C673.335314,295.027628 672.518009,295 666.000048,295 Z M666.000048,299.324317 C672.40826,299.324317 673.167356,299.348801 675.69806,299.464266 C678.038036,299.570966 679.308818,299.961946 680.154513,300.290621 C681.274771,300.725997 682.074262,301.246066 682.91405,302.08595 C683.753934,302.925738 684.274003,303.725229 684.709379,304.845487 C685.038054,305.691182 685.429034,306.961964 685.535734,309.30194 C685.651199,311.832644 685.675683,312.59174 685.675683,319.000048 C685.675683,325.40826 685.651199,326.167356 685.535734,328.69806 C685.429034,331.038036 685.038054,332.308818 684.709379,333.154513 C684.274003,334.274771 683.753934,335.074262 682.91405,335.91405 C682.074262,336.753934 681.274771,337.274003 680.154513,337.709379 C679.308818,338.038054 678.038036,338.429034 675.69806,338.535734 C673.167737,338.651199 672.408736,338.675683 666.000048,338.675683 C659.591264,338.675683 658.832358,338.651199 656.30194,338.535734 C653.961964,338.429034 652.691182,338.038054 651.845487,337.709379 C650.725229,337.274003 649.925738,336.753934 649.08595,335.91405 C648.246161,335.074262 647.725997,334.274771 647.290621,333.154513 C646.961946,332.308818 646.570966,331.038036 646.464266,328.69806 C646.348801,326.167356 646.324317,325.40826 646.324317,319.000048 C646.324317,312.59174 646.348801,311.832644 646.464266,309.30194 C646.570966,306.961964 646.961946,305.691182 647.290621,304.845487 C647.725997,303.725229 648.246066,302.925738 649.08595,302.08595 C649.925738,301.246066 650.725229,300.725997 651.845487,300.290621 C652.691182,299.961946 653.961964,299.570966 656.30194,299.464266 C658.832644,299.348801 659.59174,299.324317 666.000048,299.324317 Z M666.000048,306.675683 C659.193424,306.675683 653.675683,312.193424 653.675683,319.000048 C653.675683,325.806576 659.193424,331.324317 666.000048,331.324317 C672.806576,331.324317 678.324317,325.806576 678.324317,319.000048 C678.324317,312.193424 672.806576,306.675683 666.000048,306.675683 Z M666.000048,327 C661.581701,327 658,323.418299 658,319.000048 C658,314.581701 661.581701,311 666.000048,311 C670.418299,311 674,314.581701 674,319.000048 C674,323.418299 670.418299,327 666.000048,327 Z M681.691284,306.188768 C681.691284,307.779365 680.401829,309.068724 678.811232,309.068724 C677.22073,309.068724 675.931276,307.779365 675.931276,306.188768 C675.931276,304.598171 677.22073,303.308716 678.811232,303.308716 C680.401829,303.308716 681.691284,304.598171 681.691284,306.188768 Z" id="Instagram"></path>
+</g>
+<g id="Credit" transform="translate(-1734.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+<li><a class="pinterest" href="https://pinterest.com/wildminimalist" target="_blank" title="Pinterest"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Pinterest</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-407.000000, -295.000000)">
+<path d="M431.001411,295 C417.747575,295 407,305.744752 407,319.001411 C407,328.826072 412.910037,337.270594 421.368672,340.982007 C421.300935,339.308344 421.357382,337.293173 421.78356,335.469924 C422.246428,333.522491 424.871229,322.393897 424.871229,322.393897 C424.871229,322.393897 424.106368,320.861351 424.106368,318.59499 C424.106368,315.038808 426.169518,312.38296 428.73505,312.38296 C430.91674,312.38296 431.972306,314.022755 431.972306,315.987123 C431.972306,318.180102 430.572411,321.462515 429.852708,324.502205 C429.251543,327.050803 431.128418,329.125243 433.640325,329.125243 C438.187158,329.125243 441.249427,323.285765 441.249427,316.36532 C441.249427,311.10725 437.707356,307.170048 431.263891,307.170048 C423.985006,307.170048 419.449462,312.59746 419.449462,318.659905 C419.449462,320.754101 420.064738,322.227377 421.029988,323.367613 C421.475922,323.895396 421.535191,324.104251 421.374316,324.708238 C421.261422,325.145705 420.996119,326.21256 420.886047,326.633092 C420.725172,327.239901 420.23408,327.460046 419.686541,327.234256 C416.330746,325.865408 414.769977,322.193509 414.769977,318.064385 C414.769977,311.248368 420.519139,303.069148 431.921503,303.069148 C441.085729,303.069148 447.117128,309.704533 447.117128,316.819721 C447.117128,326.235138 441.884459,333.268478 434.165285,333.268478 C431.577174,333.268478 429.138649,331.868584 428.303228,330.279591 C428.303228,330.279591 426.908979,335.808608 426.615452,336.875463 C426.107426,338.724114 425.111131,340.575587 424.199506,342.014994 C426.358617,342.652849 428.63909,343 431.001411,343 C444.255248,343 455,332.255248 455,319.001411 C455,305.744752 444.255248,295 431.001411,295" id="Pinterest"></path>
+</g>
+<g id="Credit" transform="translate(-1499.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+</ul>
+</div></div>
+</div>
+</div>
+<div class="mobile-currency-switcher"></div>
+</div><!-- /#main-nav -->
+</div>
+<style type="text/css">
+  .logo img {
+    width: 300px;
+  }
+</style>
+</div>
+<div id="content">
+<div class="container cf">
+<div class="shopify-section" id="shopify-section-article-template">
+<div class="container">
+<div class="page-header cf">
+<h1 class="majortitle">6 Tips for a Zero Waste Valentine's Day</h1>
+<div class="social-area">
+<div class="sharing social-links">
+<span class="label">Share</span>
+<ul>
+<li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day" target="_blank" title="Share on Facebook"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Facebook</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-325.000000, -295.000000)">
+<path d="M350.638355,343 L327.649232,343 C326.185673,343 325,341.813592 325,340.350603 L325,297.649211 C325,296.18585 326.185859,295 327.649232,295 L370.350955,295 C371.813955,295 373,296.18585 373,297.649211 L373,340.350603 C373,341.813778 371.813769,343 370.350955,343 L358.119305,343 L358.119305,324.411755 L364.358521,324.411755 L365.292755,317.167586 L358.119305,317.167586 L358.119305,312.542641 C358.119305,310.445287 358.701712,309.01601 361.70929,309.01601 L365.545311,309.014333 L365.545311,302.535091 C364.881886,302.446808 362.604784,302.24957 359.955552,302.24957 C354.424834,302.24957 350.638355,305.625526 350.638355,311.825209 L350.638355,317.167586 L344.383122,317.167586 L344.383122,324.411755 L350.638355,324.411755 L350.638355,343 L350.638355,343 Z" id="Facebook"></path>
+</g>
+<g id="Credit" transform="translate(-1417.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+<li class="twitter"><a href="https://twitter.com/intent/tweet?text=Check%20out%206%20Tips%20for%20a%20Zero%20Waste%20Valentine's%20Day: https://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day" target="_blank" title="Share on Twitter"><svg height="40px" version="1.1" viewbox="0 0 48 40" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Twitter</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-240.000000, -299.000000)">
+<path d="M288,303.735283 C286.236309,304.538462 284.337383,305.081618 282.345483,305.324305 C284.379644,304.076201 285.940482,302.097147 286.675823,299.739617 C284.771263,300.895269 282.666667,301.736006 280.418384,302.18671 C278.626519,300.224991 276.065504,299 273.231203,299 C267.796443,299 263.387216,303.521488 263.387216,309.097508 C263.387216,309.88913 263.471738,310.657638 263.640782,311.397255 C255.456242,310.975442 248.201444,306.959552 243.341433,300.843265 C242.493397,302.339834 242.008804,304.076201 242.008804,305.925244 C242.008804,309.426869 243.747139,312.518238 246.389857,314.329722 C244.778306,314.280607 243.256911,313.821235 241.9271,313.070061 L241.9271,313.194294 C241.9271,318.08848 245.322064,322.17082 249.8299,323.095341 C249.004402,323.33225 248.133826,323.450704 247.235077,323.450704 C246.601162,323.450704 245.981335,323.390033 245.381229,323.271578 C246.634971,327.28169 250.269414,330.2026 254.580032,330.280607 C251.210424,332.99061 246.961789,334.605634 242.349709,334.605634 C241.555203,334.605634 240.769149,334.559408 240,334.466956 C244.358514,337.327194 249.53689,339 255.095615,339 C273.211481,339 283.114633,323.615385 283.114633,310.270495 C283.114633,309.831347 283.106181,309.392199 283.089276,308.961719 C285.013559,307.537378 286.684275,305.760563 288,303.735283" id="Twitter"></path>
+</g>
+<g id="Credit" transform="translate(-1332.000000, -476.000000)"></g>
+</g>
+</svg></a></li>
+<li class="pinterest"><a href="//pinterest.com/pin/create/button/?url=https://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day&amp;media=//cdn.shopify.com/s/files/1/1721/9289/articles/valentines.jpg?v=1517767961&amp;description=6%20Tips%20for%20a%20Zero%20Waste%20Valentine's%20Day" target="_blank" title="Pin the main image"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Pinterest</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-407.000000, -295.000000)">
+<path d="M431.001411,295 C417.747575,295 407,305.744752 407,319.001411 C407,328.826072 412.910037,337.270594 421.368672,340.982007 C421.300935,339.308344 421.357382,337.293173 421.78356,335.469924 C422.246428,333.522491 424.871229,322.393897 424.871229,322.393897 C424.871229,322.393897 424.106368,320.861351 424.106368,318.59499 C424.106368,315.038808 426.169518,312.38296 428.73505,312.38296 C430.91674,312.38296 431.972306,314.022755 431.972306,315.987123 C431.972306,318.180102 430.572411,321.462515 429.852708,324.502205 C429.251543,327.050803 431.128418,329.125243 433.640325,329.125243 C438.187158,329.125243 441.249427,323.285765 441.249427,316.36532 C441.249427,311.10725 437.707356,307.170048 431.263891,307.170048 C423.985006,307.170048 419.449462,312.59746 419.449462,318.659905 C419.449462,320.754101 420.064738,322.227377 421.029988,323.367613 C421.475922,323.895396 421.535191,324.104251 421.374316,324.708238 C421.261422,325.145705 420.996119,326.21256 420.886047,326.633092 C420.725172,327.239901 420.23408,327.460046 419.686541,327.234256 C416.330746,325.865408 414.769977,322.193509 414.769977,318.064385 C414.769977,311.248368 420.519139,303.069148 431.921503,303.069148 C441.085729,303.069148 447.117128,309.704533 447.117128,316.819721 C447.117128,326.235138 441.884459,333.268478 434.165285,333.268478 C431.577174,333.268478 429.138649,331.868584 428.303228,330.279591 C428.303228,330.279591 426.908979,335.808608 426.615452,336.875463 C426.107426,338.724114 425.111131,340.575587 424.199506,342.014994 C426.358617,342.652849 428.63909,343 431.001411,343 C444.255248,343 455,332.255248 455,319.001411 C455,305.744752 444.255248,295 431.001411,295" id="Pinterest"></path>
+</g>
+<g id="Credit" transform="translate(-1499.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+<li class="google"><a href="https://plus.google.com/share?url=https://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day" target="_blank" title="Share on Google+"><svg height="42px" version="1.1" viewbox="0 0 66 42" width="66px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>GooglePlus</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-726.000000, -298.000000)">
+<path d="M784.735849,315.257426 L784.735849,307.980198 L779.54717,307.980198 L779.54717,315.257426 L772.075472,315.257426 L772.075472,320.455446 L779.54717,320.455446 L779.54717,327.940594 L784.735849,327.940594 L784.735849,320.455446 L792,320.455446 L792,315.257426 L784.735849,315.257426 L784.735849,315.257426 Z M746.962264,314.841584 L746.962264,323.158416 C746.962264,323.158416 755.015925,323.147604 758.29517,323.147604 C756.519396,328.539198 753.758189,331.475248 746.962264,331.475248 C740.084774,331.475248 734.716981,325.889871 734.716981,319 C734.716981,312.110129 740.084774,306.524752 746.962264,306.524752 C750.598491,306.524752 752.946887,307.805129 755.101019,309.589713 C756.825321,307.862307 756.681283,307.616129 761.068208,303.465822 C757.344189,300.070059 752.394604,298 746.962264,298 C735.385075,298 726,307.40197 726,319 C726,330.597822 735.385075,340 746.962264,340 C764.266925,340 768.496528,324.90495 767.09434,314.841584 L746.962264,314.841584 L746.962264,314.841584 Z" id="GooglePlus"></path>
+</g>
+<g id="Credit" transform="translate(-1818.000000, -475.000000)"></g>
+</g>
+</svg></a></li>
+<li class="email"><a href="mailto:?subject=Check%20out%206%20Tips%20for%20a%20Zero%20Waste%20Valentine's%20Day&amp;body=Check%20out%206%20Tips%20for%20a%20Zero%20Waste%20Valentine's%20Day:%0D%0A%0D%0Ahttps://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day" title="Share using email"><svg fill="#000000" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<title>Email</title>
+<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+<path d="M0 0h24v24H0z" fill="none"></path>
+</svg></a></li>
+</ul>
+</div>
+<a class="rsslink" href="/blogs/news.atom" title="Zero Waste Blog RSS"><i class="icon-rss"></i></a>
+</div>
+</div>
+</div><!-- /.pagetitle -->
+<div class="article">
+<div class="container">
+<div class="article-container" id="article-start">
+<div class="user-content spaced-row lightboximages">
+<p><span style="font-weight: 400;"><img alt="zero waste valentines day" src="//cdn.shopify.com/s/files/1/1721/9289/files/valentines_1024x1024.jpg?v=1517767275"/></span></p>
+<p><span style="font-weight: 400;">Okay, hear me out. I think the intent behind Valentine’s Day is good—that is, celebrating the ones you love in small and sometimes grand ways.</span></p>
+<p><span style="font-weight: 400;">Inner cynic: <em>“Yeah?! What about the overboard consumerism? Not to mention all the disposable trash it creates? How about how it excludes non-coupled people?”</em></span></p>
+<p><span style="font-weight: 400;">You make good points, inner cynic. Valentine’s Day has evolved into a trashy, high pressure, exclusionary monster that has many wanting to lay low until February 15th. But, I think it’s time we take back the holiday from marketers and make it our own once again.</span></p>
+<p><span style="font-weight: 400;">Let’s ignore the pressure to shower your loved ones with lots of </span><i><span style="font-weight: 400;">things</span></i><span style="font-weight: 400;"> and instead focus on the gestures and affirmations that make someone feel truly seen and loved. Or, for the solo men and ladies, make it about having a self care day or friend love day. Love in its many forms should be revered and celebrated.</span></p>
+<p><span style="font-weight: 400;">So, how do you go about making someone feel loved without creating a lot of trash? Here are my 6 zero waste tips for a trash-less VDay:</span></p>
+<ol>
+<li>
+<b>The Treats</b><span>. Instead of buying a heart-shaped box of sweets for your sweetie, how about baking some homemade treats? Cookies, brownies, a cake....you could even make them heart-shaped or dye them pink and red with some natural food coloring if you want to get really festive. Not into baking or don’t have the time? Hit up your local candy store or even the bulk aisle at a grocery store and fill up a glass jar of candy. Tie a reused ribbon around it if you want to get fancy.</span>
+</li>
+<li>
+<b>The Card</b><span>. I was always taught that a handwritten note on a blank piece of paper is better than signing your name on a sappy Hallmark card. It’s up to you how Valentinesy you want to get (ie. cutting out a red, heart-shaped card), but focus on the key reasons you appreciate your loved one. People never tire of hearing what makes them special, especially when it comes from the heart (pun intended).</span>
+</li>
+<li>
+<b>The Meal</b><span>. Instead of blowing a bunch of money on a Valentine’s Day themed meal at a crowded restaurant, make your loved one dinner at home. Light some candles to set the mood. Or better yet, take your meal on-the-go for a zero waste picnic. Get a basket, some cloth napkins, real cutlery, a stainless steel lunchbox, and some metal tumblers or glass cups if they’re not too heavy. I’m a big fan of doing a French style picnic — bread or crackers with cheese, fruit, nuts, olives and maybe even some chocolate. Bring a tiny bottle of wine or kombucha if you want to be fancy.</span>
+</li>
+<li>
+<b>The Flowers</b><span>. I’m a sap for flowers, especially when they’re locally grown and wrapped in butcher paper. Skip the store bought, plastic-wrapped buds and hit up your local flower shop. See what varieties they have that are grown locally and make sure they skip the plastic. You could also buy a small plant if you’d prefer and pot it in a second-hand planter pot or even a cute vintage mug.</span>
+</li>
+<li>
+<b>The Gesture</b><span>. Still looking for other ways to show love? Try putting together a romantic playlist. Or plan a fun activity focused on shared experience—maybe tickets to a concert, booking a romantic weekend away, or treating your boo to day of pampering. You don’t have to go all out with romantic gestures, it’s really the thought that counts.</span>
+</li>
+<li>
+<b>The Sexy Time</b><span>. Sadly, as far as sexy time goes, there are no zero waste options for condoms. Please correct me if I’m wrong on this one, but latex (while biodegradable in itself) is usually mixed with plastic materials that cannot decompose. Lambskin condoms are biodegradable, but they don’t protect against STDS. They also aren’t vegan — yep, a baby lamb had to die (mood kill). If you’re not on birth control, I’d recommend choosing a condom that is made sustainably and ethically like <a href="https://www.sustainnatural.com/">Sustain</a> condoms. Protecting your bod trumps creating waste in this area.</span>
+</li>
+</ol>
+<p><span style="font-weight: 400;">What other tips or traditions do you recommend to show the love on Valentine's Day? </span></p>
+</div>
+<div class="meta">
+<span class="iconmeta time">
+          
+          February 04, 2018
+          
+          
+          <span class="author">by Lily Cameron</span>
+</span>
+<div class="iconmeta meta-share-mob"><div class="sharing social-links">
+<span class="label">Share</span>
+<ul>
+<li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day" target="_blank" title="Share on Facebook"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Facebook</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-325.000000, -295.000000)">
+<path d="M350.638355,343 L327.649232,343 C326.185673,343 325,341.813592 325,340.350603 L325,297.649211 C325,296.18585 326.185859,295 327.649232,295 L370.350955,295 C371.813955,295 373,296.18585 373,297.649211 L373,340.350603 C373,341.813778 371.813769,343 370.350955,343 L358.119305,343 L358.119305,324.411755 L364.358521,324.411755 L365.292755,317.167586 L358.119305,317.167586 L358.119305,312.542641 C358.119305,310.445287 358.701712,309.01601 361.70929,309.01601 L365.545311,309.014333 L365.545311,302.535091 C364.881886,302.446808 362.604784,302.24957 359.955552,302.24957 C354.424834,302.24957 350.638355,305.625526 350.638355,311.825209 L350.638355,317.167586 L344.383122,317.167586 L344.383122,324.411755 L350.638355,324.411755 L350.638355,343 L350.638355,343 Z" id="Facebook"></path>
+</g>
+<g id="Credit" transform="translate(-1417.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+<li class="twitter"><a href="https://twitter.com/intent/tweet?text=Check%20out%206%20Tips%20for%20a%20Zero%20Waste%20Valentine's%20Day: https://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day" target="_blank" title="Share on Twitter"><svg height="40px" version="1.1" viewbox="0 0 48 40" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Twitter</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-240.000000, -299.000000)">
+<path d="M288,303.735283 C286.236309,304.538462 284.337383,305.081618 282.345483,305.324305 C284.379644,304.076201 285.940482,302.097147 286.675823,299.739617 C284.771263,300.895269 282.666667,301.736006 280.418384,302.18671 C278.626519,300.224991 276.065504,299 273.231203,299 C267.796443,299 263.387216,303.521488 263.387216,309.097508 C263.387216,309.88913 263.471738,310.657638 263.640782,311.397255 C255.456242,310.975442 248.201444,306.959552 243.341433,300.843265 C242.493397,302.339834 242.008804,304.076201 242.008804,305.925244 C242.008804,309.426869 243.747139,312.518238 246.389857,314.329722 C244.778306,314.280607 243.256911,313.821235 241.9271,313.070061 L241.9271,313.194294 C241.9271,318.08848 245.322064,322.17082 249.8299,323.095341 C249.004402,323.33225 248.133826,323.450704 247.235077,323.450704 C246.601162,323.450704 245.981335,323.390033 245.381229,323.271578 C246.634971,327.28169 250.269414,330.2026 254.580032,330.280607 C251.210424,332.99061 246.961789,334.605634 242.349709,334.605634 C241.555203,334.605634 240.769149,334.559408 240,334.466956 C244.358514,337.327194 249.53689,339 255.095615,339 C273.211481,339 283.114633,323.615385 283.114633,310.270495 C283.114633,309.831347 283.106181,309.392199 283.089276,308.961719 C285.013559,307.537378 286.684275,305.760563 288,303.735283" id="Twitter"></path>
+</g>
+<g id="Credit" transform="translate(-1332.000000, -476.000000)"></g>
+</g>
+</svg></a></li>
+<li class="pinterest"><a href="//pinterest.com/pin/create/button/?url=https://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day&amp;media=//cdn.shopify.com/s/files/1/1721/9289/articles/valentines.jpg?v=1517767961&amp;description=6%20Tips%20for%20a%20Zero%20Waste%20Valentine's%20Day" target="_blank" title="Pin the main image"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Pinterest</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-407.000000, -295.000000)">
+<path d="M431.001411,295 C417.747575,295 407,305.744752 407,319.001411 C407,328.826072 412.910037,337.270594 421.368672,340.982007 C421.300935,339.308344 421.357382,337.293173 421.78356,335.469924 C422.246428,333.522491 424.871229,322.393897 424.871229,322.393897 C424.871229,322.393897 424.106368,320.861351 424.106368,318.59499 C424.106368,315.038808 426.169518,312.38296 428.73505,312.38296 C430.91674,312.38296 431.972306,314.022755 431.972306,315.987123 C431.972306,318.180102 430.572411,321.462515 429.852708,324.502205 C429.251543,327.050803 431.128418,329.125243 433.640325,329.125243 C438.187158,329.125243 441.249427,323.285765 441.249427,316.36532 C441.249427,311.10725 437.707356,307.170048 431.263891,307.170048 C423.985006,307.170048 419.449462,312.59746 419.449462,318.659905 C419.449462,320.754101 420.064738,322.227377 421.029988,323.367613 C421.475922,323.895396 421.535191,324.104251 421.374316,324.708238 C421.261422,325.145705 420.996119,326.21256 420.886047,326.633092 C420.725172,327.239901 420.23408,327.460046 419.686541,327.234256 C416.330746,325.865408 414.769977,322.193509 414.769977,318.064385 C414.769977,311.248368 420.519139,303.069148 431.921503,303.069148 C441.085729,303.069148 447.117128,309.704533 447.117128,316.819721 C447.117128,326.235138 441.884459,333.268478 434.165285,333.268478 C431.577174,333.268478 429.138649,331.868584 428.303228,330.279591 C428.303228,330.279591 426.908979,335.808608 426.615452,336.875463 C426.107426,338.724114 425.111131,340.575587 424.199506,342.014994 C426.358617,342.652849 428.63909,343 431.001411,343 C444.255248,343 455,332.255248 455,319.001411 C455,305.744752 444.255248,295 431.001411,295" id="Pinterest"></path>
+</g>
+<g id="Credit" transform="translate(-1499.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+<li class="google"><a href="https://plus.google.com/share?url=https://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day" target="_blank" title="Share on Google+"><svg height="42px" version="1.1" viewbox="0 0 66 42" width="66px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>GooglePlus</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-726.000000, -298.000000)">
+<path d="M784.735849,315.257426 L784.735849,307.980198 L779.54717,307.980198 L779.54717,315.257426 L772.075472,315.257426 L772.075472,320.455446 L779.54717,320.455446 L779.54717,327.940594 L784.735849,327.940594 L784.735849,320.455446 L792,320.455446 L792,315.257426 L784.735849,315.257426 L784.735849,315.257426 Z M746.962264,314.841584 L746.962264,323.158416 C746.962264,323.158416 755.015925,323.147604 758.29517,323.147604 C756.519396,328.539198 753.758189,331.475248 746.962264,331.475248 C740.084774,331.475248 734.716981,325.889871 734.716981,319 C734.716981,312.110129 740.084774,306.524752 746.962264,306.524752 C750.598491,306.524752 752.946887,307.805129 755.101019,309.589713 C756.825321,307.862307 756.681283,307.616129 761.068208,303.465822 C757.344189,300.070059 752.394604,298 746.962264,298 C735.385075,298 726,307.40197 726,319 C726,330.597822 735.385075,340 746.962264,340 C764.266925,340 768.496528,324.90495 767.09434,314.841584 L746.962264,314.841584 L746.962264,314.841584 Z" id="GooglePlus"></path>
+</g>
+<g id="Credit" transform="translate(-1818.000000, -475.000000)"></g>
+</g>
+</svg></a></li>
+<li class="email"><a href="mailto:?subject=Check%20out%206%20Tips%20for%20a%20Zero%20Waste%20Valentine's%20Day&amp;body=Check%20out%206%20Tips%20for%20a%20Zero%20Waste%20Valentine's%20Day:%0D%0A%0D%0Ahttps://wildminimalist.com/blogs/news/6-tips-for-a-zero-waste-valentines-day" title="Share using email"><svg fill="#000000" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<title>Email</title>
+<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+<path d="M0 0h24v24H0z" fill="none"></path>
+</svg></a></li>
+</ul>
+</div></div>
+</div>
+<div class="pagination-row pagination-row-tabular">
+<div class="inner">
+<span class="prev">
+<a href="/blogs/news/zero-waste-period-making-the-switch-to-a-menstrual-cup"><i class="icon-arrow3-left"></i> <span>Older Post</span></a>
+</span>
+<span class="back"><a href="/blogs/news" title="">Back to Zero Waste Blog</a></span>
+<span class="next">
+</span>
+</div>
+</div>
+<div class="desktop-only">
+<!-- SHOPIFY COMMENT CODE - REMOVE COMMENT TO ENABLE -->
+<div class="container cf form" id="template">
+<form accept-charset="UTF-8" action="/blogs/news/6-tips-for-a-zero-waste-valentines-day/comments#comment_form" class="comment-form" id="comment_form" method="post"><input name="form_type" type="hidden" value="new_comment"/><input name="utf8" type="hidden" value="✓"/>
+<h4 id="add-comment-title">Leave a comment</h4>
+<div class="large_form">
+<label for="comment_author">Name</label>
+<input id="comment_author" name="comment[author]" size="40" type="text" value=""/>
+</div>
+<div class="large_form">
+<label for="comment_email">Email</label>
+<input id="comment_email" name="comment[email]" size="40" type="text" value=""/>
+</div>
+<div class="large_form">
+<label for="comment_body">Comment</label>
+<textarea cols="40" id="comment_body" name="comment[body]" rows="5"></textarea>
+</div>
+<div class="action_bottom">
+<input class="btn" id="comment-submit" type="submit" value="Post comment"/>
+</div>
+</form>
+</div> <!-- /.form -->
+</div>
+</div><!-- /.article-container -->
+<div class="sidebar-container ui rail right internal">
+<div class="ui sticky">
+<h2>Featured Products</h2>
+<div id="linkcious_ads"></div>
+</div>
+</div><!-- /.sidebar-container -->
+<div class="mobile-only">
+<!-- SHOPIFY COMMENT CODE - REMOVE COMMENT TO ENABLE -->
+<div class="container cf form" id="template">
+<form accept-charset="UTF-8" action="/blogs/news/6-tips-for-a-zero-waste-valentines-day/comments#comment_form" class="comment-form" id="comment_form" method="post"><input name="form_type" type="hidden" value="new_comment"/><input name="utf8" type="hidden" value="✓"/>
+<h4 id="add-comment-title">Leave a comment</h4>
+<div class="large_form">
+<label for="comment_author">Name</label>
+<input id="comment_author" name="comment[author]" size="40" type="text" value=""/>
+</div>
+<div class="large_form">
+<label for="comment_email">Email</label>
+<input id="comment_email" name="comment[email]" size="40" type="text" value=""/>
+</div>
+<div class="large_form">
+<label for="comment_body">Comment</label>
+<textarea cols="40" id="comment_body" name="comment[body]" rows="5"></textarea>
+</div>
+<div class="action_bottom">
+<input class="btn" id="comment-submit" type="submit" value="Post comment"/>
+</div>
+</form>
+</div> <!-- /.form -->
+</div>
+</div><!-- /.container -->
+</div><!-- /.article -->
+</div>
+</div><!-- /.container -->
+</div><!-- /#content -->
+<div id="pagefooter">
+<div class="shopify-section" id="shopify-section-cross-page-promos">
+<div class="cross-page-promos">
+<div class="container cf">
+<div class="flexible-layout layout-all-quarters">
+<div class="column-quarter align-center block-id-1478526632862">
+<a href="/pages/contact-us">
+<div class="icon-with-caption">
+<div class="icon-with-caption__icon">
+<svg height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+<path d="M0 0h24v24H0z" fill="none"></path>
+</svg>
+</div>
+<h6 class="icon-with-caption__text align-center">Contact Us</h6>
+</div>
+</a>
+</div>
+<div class="column-quarter align-center block-id-1478526645605">
+<a href="/pages/shipping-returns">
+<div class="icon-with-caption">
+<div class="icon-with-caption__icon">
+<svg height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h24v24H0z" fill="none"></path>
+<path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
+</svg>
+</div>
+<h6 class="icon-with-caption__text align-center">Shipping &amp; Returns</h6>
+</div>
+</a>
+</div>
+<div class="column-quarter align-center block-id-1478527611164">
+<a href="/blogs/news">
+<div class="icon-with-caption">
+<div class="icon-with-caption__icon">
+<svg height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h24v24H0z" fill="none"></path>
+<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+</svg>
+</div>
+<h6 class="icon-with-caption__text align-center">Zero Waste Blog</h6>
+</div>
+</a>
+</div>
+<div class="column-quarter align-center block-id-1486014991476">
+<a href="/pages/about-us">
+<div class="icon-with-caption">
+<div class="icon-with-caption__icon">
+<svg fill="#000000" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h24v24H0z" fill="none"></path>
+<path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+</svg>
+</div>
+<h6 class="icon-with-caption__text align-center">About Us</h6>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<style type="text/css">
+</style>
+</div>
+<div class="shopify-section" id="shopify-section-footer">
+<div class="lower cf">
+<div class="social-links">
+<ul>
+<li><a class="twitter" href="http://twitter.com/wildminimalist" target="_blank" title="Twitter"><svg height="40px" version="1.1" viewbox="0 0 48 40" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Twitter</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-240.000000, -299.000000)">
+<path d="M288,303.735283 C286.236309,304.538462 284.337383,305.081618 282.345483,305.324305 C284.379644,304.076201 285.940482,302.097147 286.675823,299.739617 C284.771263,300.895269 282.666667,301.736006 280.418384,302.18671 C278.626519,300.224991 276.065504,299 273.231203,299 C267.796443,299 263.387216,303.521488 263.387216,309.097508 C263.387216,309.88913 263.471738,310.657638 263.640782,311.397255 C255.456242,310.975442 248.201444,306.959552 243.341433,300.843265 C242.493397,302.339834 242.008804,304.076201 242.008804,305.925244 C242.008804,309.426869 243.747139,312.518238 246.389857,314.329722 C244.778306,314.280607 243.256911,313.821235 241.9271,313.070061 L241.9271,313.194294 C241.9271,318.08848 245.322064,322.17082 249.8299,323.095341 C249.004402,323.33225 248.133826,323.450704 247.235077,323.450704 C246.601162,323.450704 245.981335,323.390033 245.381229,323.271578 C246.634971,327.28169 250.269414,330.2026 254.580032,330.280607 C251.210424,332.99061 246.961789,334.605634 242.349709,334.605634 C241.555203,334.605634 240.769149,334.559408 240,334.466956 C244.358514,337.327194 249.53689,339 255.095615,339 C273.211481,339 283.114633,323.615385 283.114633,310.270495 C283.114633,309.831347 283.106181,309.392199 283.089276,308.961719 C285.013559,307.537378 286.684275,305.760563 288,303.735283" id="Twitter"></path>
+</g>
+<g id="Credit" transform="translate(-1332.000000, -476.000000)"></g>
+</g>
+</svg></a></li>
+<li><a class="facebook" href="https://www.facebook.com/wildminimalist/" target="_blank" title="Facebook"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Facebook</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-325.000000, -295.000000)">
+<path d="M350.638355,343 L327.649232,343 C326.185673,343 325,341.813592 325,340.350603 L325,297.649211 C325,296.18585 326.185859,295 327.649232,295 L370.350955,295 C371.813955,295 373,296.18585 373,297.649211 L373,340.350603 C373,341.813778 371.813769,343 370.350955,343 L358.119305,343 L358.119305,324.411755 L364.358521,324.411755 L365.292755,317.167586 L358.119305,317.167586 L358.119305,312.542641 C358.119305,310.445287 358.701712,309.01601 361.70929,309.01601 L365.545311,309.014333 L365.545311,302.535091 C364.881886,302.446808 362.604784,302.24957 359.955552,302.24957 C354.424834,302.24957 350.638355,305.625526 350.638355,311.825209 L350.638355,317.167586 L344.383122,317.167586 L344.383122,324.411755 L350.638355,324.411755 L350.638355,343 L350.638355,343 Z" id="Facebook"></path>
+</g>
+<g id="Credit" transform="translate(-1417.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+<li><a class="instagram" href="https://instagram.com/thewildminimalist" target="_blank" title="Instagram"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Instagram</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-642.000000, -295.000000)">
+<path d="M666.000048,295 C659.481991,295 658.664686,295.027628 656.104831,295.144427 C653.550311,295.260939 651.805665,295.666687 650.279088,296.260017 C648.700876,296.873258 647.362454,297.693897 646.028128,299.028128 C644.693897,300.362454 643.873258,301.700876 643.260017,303.279088 C642.666687,304.805665 642.260939,306.550311 642.144427,309.104831 C642.027628,311.664686 642,312.481991 642,319.000048 C642,325.518009 642.027628,326.335314 642.144427,328.895169 C642.260939,331.449689 642.666687,333.194335 643.260017,334.720912 C643.873258,336.299124 644.693897,337.637546 646.028128,338.971872 C647.362454,340.306103 648.700876,341.126742 650.279088,341.740079 C651.805665,342.333313 653.550311,342.739061 656.104831,342.855573 C658.664686,342.972372 659.481991,343 666.000048,343 C672.518009,343 673.335314,342.972372 675.895169,342.855573 C678.449689,342.739061 680.194335,342.333313 681.720912,341.740079 C683.299124,341.126742 684.637546,340.306103 685.971872,338.971872 C687.306103,337.637546 688.126742,336.299124 688.740079,334.720912 C689.333313,333.194335 689.739061,331.449689 689.855573,328.895169 C689.972372,326.335314 690,325.518009 690,319.000048 C690,312.481991 689.972372,311.664686 689.855573,309.104831 C689.739061,306.550311 689.333313,304.805665 688.740079,303.279088 C688.126742,301.700876 687.306103,300.362454 685.971872,299.028128 C684.637546,297.693897 683.299124,296.873258 681.720912,296.260017 C680.194335,295.666687 678.449689,295.260939 675.895169,295.144427 C673.335314,295.027628 672.518009,295 666.000048,295 Z M666.000048,299.324317 C672.40826,299.324317 673.167356,299.348801 675.69806,299.464266 C678.038036,299.570966 679.308818,299.961946 680.154513,300.290621 C681.274771,300.725997 682.074262,301.246066 682.91405,302.08595 C683.753934,302.925738 684.274003,303.725229 684.709379,304.845487 C685.038054,305.691182 685.429034,306.961964 685.535734,309.30194 C685.651199,311.832644 685.675683,312.59174 685.675683,319.000048 C685.675683,325.40826 685.651199,326.167356 685.535734,328.69806 C685.429034,331.038036 685.038054,332.308818 684.709379,333.154513 C684.274003,334.274771 683.753934,335.074262 682.91405,335.91405 C682.074262,336.753934 681.274771,337.274003 680.154513,337.709379 C679.308818,338.038054 678.038036,338.429034 675.69806,338.535734 C673.167737,338.651199 672.408736,338.675683 666.000048,338.675683 C659.591264,338.675683 658.832358,338.651199 656.30194,338.535734 C653.961964,338.429034 652.691182,338.038054 651.845487,337.709379 C650.725229,337.274003 649.925738,336.753934 649.08595,335.91405 C648.246161,335.074262 647.725997,334.274771 647.290621,333.154513 C646.961946,332.308818 646.570966,331.038036 646.464266,328.69806 C646.348801,326.167356 646.324317,325.40826 646.324317,319.000048 C646.324317,312.59174 646.348801,311.832644 646.464266,309.30194 C646.570966,306.961964 646.961946,305.691182 647.290621,304.845487 C647.725997,303.725229 648.246066,302.925738 649.08595,302.08595 C649.925738,301.246066 650.725229,300.725997 651.845487,300.290621 C652.691182,299.961946 653.961964,299.570966 656.30194,299.464266 C658.832644,299.348801 659.59174,299.324317 666.000048,299.324317 Z M666.000048,306.675683 C659.193424,306.675683 653.675683,312.193424 653.675683,319.000048 C653.675683,325.806576 659.193424,331.324317 666.000048,331.324317 C672.806576,331.324317 678.324317,325.806576 678.324317,319.000048 C678.324317,312.193424 672.806576,306.675683 666.000048,306.675683 Z M666.000048,327 C661.581701,327 658,323.418299 658,319.000048 C658,314.581701 661.581701,311 666.000048,311 C670.418299,311 674,314.581701 674,319.000048 C674,323.418299 670.418299,327 666.000048,327 Z M681.691284,306.188768 C681.691284,307.779365 680.401829,309.068724 678.811232,309.068724 C677.22073,309.068724 675.931276,307.779365 675.931276,306.188768 C675.931276,304.598171 677.22073,303.308716 678.811232,303.308716 C680.401829,303.308716 681.691284,304.598171 681.691284,306.188768 Z" id="Instagram"></path>
+</g>
+<g id="Credit" transform="translate(-1734.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+<li><a class="pinterest" href="https://pinterest.com/wildminimalist" target="_blank" title="Pinterest"><svg height="48px" version="1.1" viewbox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Pinterest</title>
+<defs></defs>
+<g fill="none" fill-rule="evenodd" id="Icons" stroke="none" stroke-width="1">
+<g fill="#000000" id="Black" transform="translate(-407.000000, -295.000000)">
+<path d="M431.001411,295 C417.747575,295 407,305.744752 407,319.001411 C407,328.826072 412.910037,337.270594 421.368672,340.982007 C421.300935,339.308344 421.357382,337.293173 421.78356,335.469924 C422.246428,333.522491 424.871229,322.393897 424.871229,322.393897 C424.871229,322.393897 424.106368,320.861351 424.106368,318.59499 C424.106368,315.038808 426.169518,312.38296 428.73505,312.38296 C430.91674,312.38296 431.972306,314.022755 431.972306,315.987123 C431.972306,318.180102 430.572411,321.462515 429.852708,324.502205 C429.251543,327.050803 431.128418,329.125243 433.640325,329.125243 C438.187158,329.125243 441.249427,323.285765 441.249427,316.36532 C441.249427,311.10725 437.707356,307.170048 431.263891,307.170048 C423.985006,307.170048 419.449462,312.59746 419.449462,318.659905 C419.449462,320.754101 420.064738,322.227377 421.029988,323.367613 C421.475922,323.895396 421.535191,324.104251 421.374316,324.708238 C421.261422,325.145705 420.996119,326.21256 420.886047,326.633092 C420.725172,327.239901 420.23408,327.460046 419.686541,327.234256 C416.330746,325.865408 414.769977,322.193509 414.769977,318.064385 C414.769977,311.248368 420.519139,303.069148 431.921503,303.069148 C441.085729,303.069148 447.117128,309.704533 447.117128,316.819721 C447.117128,326.235138 441.884459,333.268478 434.165285,333.268478 C431.577174,333.268478 429.138649,331.868584 428.303228,330.279591 C428.303228,330.279591 426.908979,335.808608 426.615452,336.875463 C426.107426,338.724114 425.111131,340.575587 424.199506,342.014994 C426.358617,342.652849 428.63909,343 431.001411,343 C444.255248,343 455,332.255248 455,319.001411 C455,305.744752 444.255248,295 431.001411,295" id="Pinterest"></path>
+</g>
+<g id="Credit" transform="translate(-1499.000000, -472.000000)"></g>
+</g>
+</svg></a></li>
+</ul>
+</div>
+<div class="copyright">
+<span class="copy">© 2018 <a href="/" title="">Wild Minimalist</a></span>
+</div><!-- /.copyright -->
+<div class="payment-methods">
+<img src="//cdn.shopify.com/s/assets/global/payment_types/creditcards_american_express-54be4e6bfc1dbd42f93af603e102fde2356dfe2372a7dd851074964337533296.svg">
+<img src="//cdn.shopify.com/s/assets/global/payment_types/creditcards_apple_pay-d460161363710d3569a32e30d86970452cbc865913615b792b184c8d448108dc.svg"/>
+<img src="//cdn.shopify.com/s/assets/global/payment_types/creditcards_diners_club-d07838507a213e5e52ef4272d3ccfe3da294642628264cd0934baf6878ceb197.svg"/>
+<img src="//cdn.shopify.com/s/assets/global/payment_types/creditcards_discover-96a6318d3deeede785ba12114a8d00bd23731f9f16e14ddcd0bdfd5e1d846307.svg"/>
+<img src="//cdn.shopify.com/s/assets/global/payment_types/creditcards_jcb-8f8079695e74d5688707997b208994c4d8078baa58b866ed47852cf9674d9332.svg"/>
+<img src="//cdn.shopify.com/s/assets/global/payment_types/creditcards_master-94df290d56a3c6424296953282e18e46895ba94bdef368640eb52f8349915610.svg"/>
+<img src="//cdn.shopify.com/s/assets/global/payment_types/creditcards_paypal-dd71910a20fd73f78b4eed60e89331d4f4ceb38d55ef42e1e9935d78070ba3e2.svg"/>
+<img src="//cdn.shopify.com/s/assets/global/payment_types/creditcards_shopify_pay-a1570f15d54d97b58241fbd29a91480cd71c6d6a7ae02c4dac18e46e45a18086.svg"/>
+<img src="//cdn.shopify.com/s/assets/global/payment_types/creditcards_visa-e9f829d15f5ec3b1953ba8b9bc59b448ddb1ec9235ae70c7936178744cb31489.svg"/>
+</img></div>
+</div>
+</div>
+</div><!-- /#pagefooter -->
+<script src="//cdn.shopify.com/s/files/1/1721/9289/t/7/assets/vendor.js?12691683910858058426" type="text/javascript"></script>
+<script src="//cdn.shopify.com/s/files/1/1721/9289/t/7/assets/theme.js?12691683910858058426" type="text/javascript"></script>
+<script data-dojo-config="usePlainJson: true, isDebug: false" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" type="text/javascript"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us8.list-manage.com","uuid":"561ffddfce06f9a4183b638d4","lid":"e43b9475af"}) })</script>
+<!-- Google Code for Remarketing Tag -->
+<script type="text/javascript">
+var google_tag_params = {
+ecomm_prodid: 'shopify_US__',
+ecomm_pagetype: 'article',
+ecomm_totalvalue: 
+};
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 860945660;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script src="//www.googleadservices.com/pagead/conversion.js" type="text/javascript">
+</script>
+<noscript>
+<div style="display:inline;">
+<img alt="" height="1" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/860945660/?guid=ON&amp;script=0" style="border-style:none;" width="1"/>
+</div>
+</noscript>
+<script id="back-in-stock-helper">
+  var _BISConfig = _BISConfig || {};
+
+
+</script>
+</body>
+</html>
+
+^CTraceback (most recent call last):
+  File "wildminimalist.py", line 121, in <module>
+    main()
+  File "wildminimalist.py", line 119, in main
+    getPostContent(postUrls)
+  File "wildminimalist.py", line 50, in getPostContent
+    soup = errorHandling(soup, post)
+  File "wildminimalist.py", line 30, in errorHandling
+    time.sleep(3)
+KeyboardInterrupt
