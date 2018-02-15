@@ -4,6 +4,7 @@ import sys
 import time
 from bs4 import BeautifulSoup
 import string
+import re
 
 nonWords = "with, at, from, into, during, including, until, against, among, throughout, the, how, my, or, to, and, a, no, towards, upon, concerning, of, to, in, for, on, by, about, like, through, over, before, between, after, since, without, under, within, along, following, across, behind, beyond, plus, except, but, up, around, down, off, above, near, day".split(", ")
 
@@ -13,79 +14,77 @@ def getPostUrls(pages):
         req = requests.get(page)
         soup = BeautifulSoup(req.content, 'html.parser')
 
-        soup = errorHandling(soup, page)
+        soup = errorHandling(soup, req, page)
         
         # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find the class where there is a link to the blog post url
-        allHtml = soup.find_all(class_="archive-item-link")
+        allHtml = soup.find_all(class_="grid__image")
         for x in range(0, len(allHtml)):
-            
             # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             # find the link text
-            postUrls.append("https://www.goingzerowaste.com" + allHtml[x]['href'])
+            postUrls.append("https://packagefreeshop.com" + allHtml[x]['href'])
     return postUrls
 
 # if there is an issue with too many requests this should fix most of it
-def errorHandling(soup, url):
+def errorHandling(soup, req, post):
         time.sleep(3)
         # some error handling when you have a bad url becasue of too many requests
 
         # CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find a class on the page
-        getTitle = soup.find_all(class_="entry-title")
+        getTitle = soup.find_all(class_="shopify-section")
         if len(getTitle) is 0:
-            print 'REQ'
-            print req.content
+            print('REQ')
+            print(req.content)
             time.sleep(40)
-            req = requests.get(url)
+            req = requests.get(post)
             soup = BeautifulSoup(req.content, 'html.parser')
         return soup
 
     
 def getPostContent(postUrls):
-    content = []
     for post in postUrls:
+        content = []
         req = requests.get(post)
         soup = BeautifulSoup(req.content, 'html.parser')
 
-        soup = errorHandling(soup, post)
-    
+        soup = errorHandling(soup, req, post)
+        
+        # print("URL " + post)
 
         # get title / CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        # find the class that has the title of the post
+        # find the class that has the name of the item
         try:
-            content.append(soup.find_all(class_="entry-title")[0].get_text().strip())
-            title = soup.find_all(class_="entry-title")[0].get_text()
+            content.append(soup.find_all(class_="h2")[0].get_text().strip())
+            title = soup.find_all(class_="h2")[0].get_text()
         except:
             content.append("NULL - title")
             title = "NULL - keywords"
 
+        # find the class that has the price of the item
+        try:
+            getPrice = soup.select("#ProductPrice-product")
+            content.append(getPrice[0].get_text())
+        except:
+            content.append("NULL - price")
+
         # get image / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find the class that has image url
         try:
-            getImage = soup.find_all(class_="thumb-image")
-            content.append(getImage[0]['src'])
+            getImage = soup.find_all(class_="ProductImg-product")
+            content.append('https:' + getImage[0]['src'])
         except:
             content.append("NULL - image")
-
-        # get date / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!!11!!!!!
-        # find the class containing the date
-        try: 
-            getDate = soup.find_all(class_="dt-published")
-            content.append(getDate[0].get_text().strip())
-        except:
-            content.append("NULL - date")
 
         # writes post URL
         content.append(post.strip())
 
         # write Blog Name / CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!
         # literally just write the blog's name
-        content.append("Going Zero Waste")
+        content.append("Package Free")
 
-        # remove special characters from title
-        words_all = re.sub('[^a-zA-Z0-9 \n\.]', '', title)
         # getkeywords
+        words_all = re.sub('[^a-zA-Z0-9 \n\.]', '', title.lower())
         words = words_all.split(" ")
         keywords = ""
         for word in words:
@@ -96,24 +95,28 @@ def getPostContent(postUrls):
         writeContent(content)
 
    
+                
+
 def writeContent(content):
-    # possibly chage output.tsv name during testing
-    with open('output.tsv', 'a') as f:
+    with open('packagefree_output.tsv', 'a') as f:
         for item in content:
-            printable = set(string.printable)
-            itemFiltered = filter(lambda x: x in printable, item)
-            f.write((itemFiltered.strip()) + '|')
+            try:
+                f.write((item.strip()) + '|')
+            except UnicodeEncodeError:
+                f.write("it was not a ascii-encoded unicode string" + '|')
         f.write('\n')
 
-        
 def main():
+
     # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # this is a list 
-    pages = ["https://www.goingzerowaste.com/archives"]
+    pages = ["https://packagefreeshop.com/collections/all", 
+    "https://packagefreeshop.com/collections/all/page/2",
+    "https://packagefreeshop.com/collections/all/page/3"]
     postUrls = getPostUrls(pages)
     getPostContent(postUrls)
 
 main()
-    
 
+# product name, price, image, link, store name, keywords 
 
