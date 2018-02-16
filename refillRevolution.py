@@ -33,7 +33,7 @@ def errorHandling(soup, req, post):
 
         # CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # find a class on the page
-        getTitle = soup.find_all(class_="shopify-section")
+        getTitle = soup.find_all(class_="nav")
         if len(getTitle) is 0:
             print('REQ')
             print(req.content)
@@ -58,7 +58,6 @@ def getPostContent(postUrls):
         try:
             content.append(soup.find_all(class_="productitem-title")[0].get_text().strip())
             title = soup.find_all(class_="productitem-title")[0].get_text()
-            print(title)
         except:
             content.append("NULL - title")
             title = "NULL - keywords"
@@ -112,11 +111,11 @@ def main():
 
     # CHANGE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # this is a list 
-    pages = ["https://www.therefillrevolution.com/bulk-refills/", "https://www.therefillrevolution.com/raw-materials/", "https://www.therefillrevolution.com/products/", "https://www.therefillrevolution.com/household/", "https://www.therefillrevolution.com/essential-oils/", "https://www.therefillrevolution.com/containers/", "https://www.therefillrevolution.com/clothingaccessories/", "https://www.therefillrevolution.com/pet/", "https://www.therefillrevolution.com/mindful-lifestyle/", "https://www.therefillrevolution.com/vintagegoods/"]
+    pages = ["https://www.therefillrevolution.com/bulk-refills/", "https://www.therefillrevolution.com/raw-materials/", "https://www.therefillrevolution.com/products/", "https://www.therefillrevolution.com/products/?offset=66", "https://www.therefillrevolution.com/household/", "https://www.therefillrevolution.com/household/?offset=73", "https://www.therefillrevolution.com/household/?offset=111", "https://www.therefillrevolution.com/essential-oils/", "https://www.therefillrevolution.com/containers/", "https://www.therefillrevolution.com/clothingaccessories/", "https://www.therefillrevolution.com/pet/", "https://www.therefillrevolution.com/mindful-lifestyle/", "https://www.therefillrevolution.com/vintagegoods/"]
+
     postUrls = getPostUrls(pages)
     getPostContent(postUrls)
 
 main()
 
-# product name, price, image, link, store name, keywords 
 
