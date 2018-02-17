@@ -29,8 +29,7 @@ export default class App extends Component<Props> {
         console.log();
         super(props);
 
-        this.state = {
-        };
+        this.state = { blogs: [] };
     }
 
     componentDidMount() {
@@ -40,7 +39,6 @@ export default class App extends Component<Props> {
             snapshot.forEach((child) => {
                 blogs.push(child.val())
             });
-            console.log(blogs)
             this.setState({ 'blogs': blogs });
         });
     }
@@ -52,18 +50,23 @@ export default class App extends Component<Props> {
     }
 
     render() {
+        console.log(this.state.blogs)
+        var blogItems = this.state.blogs.map((blog) => {
+            return (<Text key={blog["Name"]}>{blog["Name"]}</Text>);
+        });
         return (
                 <View style={styles.container}>
-                {/* <Text style={styles.welcome}>{this.dataSource}</Text> */}
+                    {blogItems}
                 </View>
         )
     }
-    _renderItem(item) {
 
-        return (
-                <ListItem item={item}/>
-        );
-    }
+    // _renderItem(item) {
+
+    //     return (
+    //             <ListItem item={item}/>
+    //     );
+    // }
 }
 const styles = require('./styles.js');
 
