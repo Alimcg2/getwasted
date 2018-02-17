@@ -29,8 +29,7 @@ export default class App extends Component<Props> {
         console.log();
         super(props);
 
-        this.state = {
-        };
+        this.state = { blogs: [] };
     }
 
     componentDidMount() {
@@ -40,7 +39,6 @@ export default class App extends Component<Props> {
             snapshot.forEach((child) => {
                 blogs.push(child.val())
             });
-            console.log(blogs)
             this.setState({ 'blogs': blogs });
         });
     }
@@ -52,11 +50,14 @@ export default class App extends Component<Props> {
     }
 
     render() {
-        console.log(this.state.blogs);
+
+        console.log(this.state.blogs)
+        var blogItems = this.state.blogs.map((blog) => {
+            return (<Text key={blog["Name"]}>{blog["Name"]}</Text>);
+        });
         return (
                 <View style={styles.container}>
-                <Text style={styles.welcome}>Testing</Text> 
-                <Text style={styles.welcome}>{}</Text> 
+                    {blogItems}
                 </View>
         )
     }
