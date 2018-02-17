@@ -28,47 +28,49 @@ export default class App extends Component<Props> {
     constructor(props) {
         console.log();
         super(props);
-        this.itemsRef = firebaseApp.database().ref();
+        this.itemsRef = firebaseApp.database().ref("getwasteduw");
 
         this.state = {
         };
-      }
+    }
     
     listenForItems(itemsRef) {
-        itemsRef.on("value", (snap) => {
+        itemsRef.on('value', (snapshot) => {
 
             // get children as an array
             var items = [];
-            snap.forEach((child) => {
+            snapshot.forEach(child => {
                 items.push({
-                    title: child.val().title,
-                    _key: child.key
+                    title: child.key,
                 });
+                console.log(child)
             });
-            console.log("turd");
-            
+            console.log(snapshot.length);
 
             this.setState({
-                dataSource: this.state.dataSource.cloneWithRows(items)
+                //dataSource: this.state.dataSource.cloneWithRows(items)
             });
 
         });
     }
+    
 
+    
     componentDidMount() {
         this.listenForItems(this.itemsRef);
     }
-    
 
-
-    
     render() {
-        return(
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-            TEST
-        </Text>
-      </View>
+        return (
+                <View style={styles.container}>
+                <Text style={styles.welcome}>{this.dataSource}</Text>
+                </View>
+        )
+    }
+    _renderItem(item) {
+
+        return (
+                <ListItem item={item}/>
         );
     }
 }
