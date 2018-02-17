@@ -28,42 +28,33 @@ export default class App extends Component<Props> {
     constructor(props) {
         console.log();
         super(props);
-        this.itemsRef = firebaseApp.database().ref("getwasteduw");
 
         this.state = {
         };
     }
-    
-    listenForItems(itemsRef) {
-        itemsRef.on('value', (snapshot) => {
 
-            // get children as an array
-            var items = [];
-            snapshot.forEach(child => {
-                items.push({
-                    title: child.key,
-                });
-                console.log(child)
+    componentDidMount() {
+        this.blogsRef = firebaseApp.database().ref('Blogs');
+        this.blogsRef.on('value', (snapshot) => {
+            var blogs = [];
+            snapshot.forEach((child) => {
+                blogs.push(child.val())
             });
-            console.log(snapshot.length);
-
-            this.setState({
-                //dataSource: this.state.dataSource.cloneWithRows(items)
-            });
-
+            console.log(blogs)
+            this.setState({ 'blogs': blogs });
         });
     }
     
-
-    
-    componentDidMount() {
-        this.listenForItems(this.itemsRef);
+    componentWillUnmount() {
+        if (this.blogsRef) {
+            this.blogsRef.off();
+        }
     }
 
     render() {
         return (
                 <View style={styles.container}>
-                <Text style={styles.welcome}>{this.dataSource}</Text>
+                {/* <Text style={styles.welcome}>{this.dataSource}</Text> */}
                 </View>
         )
     }
