@@ -52,17 +52,13 @@ export default class App extends Component<Props> {
     }
 
     render() {
+        console.log(this.state.blogs);
         return (
                 <View style={styles.container}>
-                {/* <Text style={styles.welcome}>{this.dataSource}</Text> */}
+                <Text style={styles.welcome}>Testing</Text> 
+                <Text style={styles.welcome}>{}</Text> 
                 </View>
         )
-    }
-    _renderItem(item) {
-
-        return (
-                <ListItem item={item}/>
-        );
     }
 }
 const styles = require('./styles.js');
