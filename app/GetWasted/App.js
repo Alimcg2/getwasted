@@ -14,7 +14,6 @@ import {
 } from 'react-native';
 const signUp = require('./signUp');
 
-
 // Initialize Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyCbxZ-OoW54x_xZxyoXNXA9WzoHfTTRwcQ",
@@ -37,12 +36,10 @@ export default class App extends Component<Props> {
         
     }
 
-
-
     render() {
-            <div>
-        {this.props.children}
-      </div>
+            <View>
+            your wish component.... <signUp/>
+            </View>
     }
 }
 
