@@ -27,12 +27,15 @@ const styles = require('./styles.js');
 
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class signUp extends Component<Props> {
     constructor(props) {
         super(props);
         // creates user info placeholders
         this.state = {
-            
+            email:{value: null, valid: false},
+            name:{value: null, valid: false},
+            password:{value: null, valid: false},
+            errorMessage: ''
         };
         
     }
