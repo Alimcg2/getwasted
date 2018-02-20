@@ -5,7 +5,6 @@
  */
 
 import * as firebase from 'firebase';
-import {Button, Dialog, DialogActions, DialogContent, Spinner} from 'react-mdl';
 import React, { Component } from 'react';
 import {
     Platform,
@@ -13,7 +12,7 @@ import {
     Text,
     View
 } from 'react-native';
-import signUp from './signUp.js'
+const signUp = require('./signUp');
 
 
 // Initialize Firebase

@@ -51,7 +51,7 @@ const options = {
   stylesheet: formStyles,
 };
 
-export default class signUp extends Component {
+class signUp extends Component {
   handleSubmit = () => {
     const value = this._form.getValue();
     console.log('value: ', value);
@@ -82,3 +82,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
 });
+
+module.exports = signUp;
