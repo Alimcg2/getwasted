@@ -12,7 +12,7 @@ import {
     Text,
     View
 } from 'react-native';
-const signUp = require('./signUp');
+var SignUp  = require('./signUp');
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -37,9 +37,11 @@ export default class App extends Component<Props> {
     }
 
     render() {
-            <View>
-            your wish component.... <signUp/>
-            </View>
+        return(
+                <View>
+                <SignUp/>
+                </View>
+        );
     }
 }
 
