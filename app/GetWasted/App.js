@@ -13,6 +13,7 @@ import {
     Text,
     View
 } from 'react-native';
+import signUp from './signUp.js'
 
 
 // Initialize Firebase
