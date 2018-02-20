@@ -10,7 +10,8 @@
     "firebase": "^4.10.0",
     "react": "16.2.0",
     "react-native": "0.53.0",
-    "tcomb": "^3.2.24"
+    "tcomb": "^3.2.24",
+    "tcomb-form-native": "^0.6.11"
   },
   "devDependencies": {
     "babel-jest": "22.2.2",
