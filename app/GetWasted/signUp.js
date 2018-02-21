@@ -1,9 +1,8 @@
 /*
 TODO:
-   1. We aren't currently doing anything with the username, I'm not sure how to add it to firebase and connect it with a user
-   2. Error handling when a user tries to login but firebase throws an error doesn't do anything right now. We need to display a message saying why it failed see error["message"].
-   3. Definitely need to add our own style, fonts, colors, etc. 
-   4. Error handling when one of the fields is blank should work but doesn't...
+   1. Error handling when a user tries to login but firebase throws an error doesn't do anything right now. We need to display a message saying why it failed see error["message"].
+   2. Definitely need to add our own style, fonts, colors, etc. 
+   3. Error handling when one of the fields is blank should work but doesn't...
 */
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
@@ -76,17 +75,24 @@ export default class signUp extends Component {
     handleSubmit = () => {
         const value = this._form.getValue();
         console.log('value: ', value); // logging things for now, take out eventually
-        
+     
         firebaseApp.auth().createUserWithEmailAndPassword(value["email"], value["password"])
             .then((user) => {
                 console.log("it worked"); // logging things for now, take out eventually
-                // LOGIN AND GO TO HOME PAGE
+                // this pushes their name to the database with their uid
+                firebaseApp.database().ref("Users").child(firebaseApp.auth().
+                                                          currentUser.uid).set({
+                    name: value["username"]
+                    });
+                 // TODO: LOGIN AND GO TO HOME PAGE
             })
             .catch((error) => {
                 const { code, message } = error;
                 console.log(error); // logging things for now, take out eventually
-                // NEED TO PRINT OUT THE ERROR CODE ON THE PAGE
+                // TODO:  NEED TO PRINT OUT THE ERROR CODE ON THE PAGE
             });
+        
+      
     }
     
     render() {
