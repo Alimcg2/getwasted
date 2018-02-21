@@ -5,18 +5,24 @@ const constants = {
     actionColor: '#24CE84'
 };
 
+
+
 var styles = StyleSheet.create({
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        padding: 100,
-        margin: 10,
+    submit: {
+        color: "black",
+        borderColor: "red",
+        backgroundColor: "#000000",
     },
-    container: {   
+    welcome: {
+        fontSize: 40,
+        textAlign: 'center',
+        padding: 80,
+    },
+    container: {
         justifyContent: 'center',
-        marginTop: 50,
+        marginTop: 100,
         padding: 20,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#FFFFFF',
     },
     blogName: {
         textAlign: 'center',
@@ -24,6 +30,10 @@ var styles = StyleSheet.create({
     },
 })
 
-module.exports = styles
+module.exports = styles;
 module.exports.constants = constants;
                                
+
+
+
+
