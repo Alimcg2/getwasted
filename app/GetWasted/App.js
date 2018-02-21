@@ -14,14 +14,6 @@ import {
 } from 'react-native';
 var SignUp  = require('./signUp');
 
-// Initialize Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyCbxZ-OoW54x_xZxyoXNXA9WzoHfTTRwcQ",
-    authDomain: "getwasteduw.firebaseapp.com",
-    databaseURL: "https://getwasteduw.firebaseio.com",
-    storageBucket: "getwasteduw.appspot.com",
-};
-const firebaseApp = firebase.initializeApp(firebaseConfig);
 const styles = require('./styles.js');
 
 

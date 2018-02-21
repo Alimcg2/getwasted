@@ -1,86 +1,112 @@
+/*
+TODO:
+   1. We aren't currently doing anything with the username, I'm not sure how to add it to firebase and connect it with a user
+   2. Error handling when a user tries to login but firebase throws an error doesn't do anything right now. We need to display a message saying why it failed see error["message"].
+   3. Definitely need to add our own style, fonts, colors, etc. 
+   4. Error handling when one of the fields is blank should work but doesn't...
+*/
+import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, Button, Text} from 'react-native';
 
 import t from 'tcomb-form-native'; // 0.6.9
 
+
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyCbxZ-OoW54x_xZxyoXNXA9WzoHfTTRwcQ",
+    authDomain: "getwasteduw.firebaseapp.com",
+    databaseURL: "https://getwasteduw.firebaseio.com",
+    storageBucket: "getwasteduw.appspot.com",
+};
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+// creates the form
 const Form = t.form.Form;
 
+// creates the user input
 const User = t.struct({
-  email: t.String,
-  username: t.maybe(t.String),
-  password: t.String,
-  terms: t.Boolean
+    email: t.String,
+    username: t.String,
+    password: t.String,
+    terms: t.Boolean
 });
 
+// this is the styling for the login form, we might be able to put this into the
+// stylesheet but its a little weird because its using tcomb
 const formStyles = {
-  ...Form.stylesheet,
-  formGroup: {
-    normal: {
-      marginBottom: 10
+    ...Form.stylesheet,
+    formGroup: {
+        normal: {
+            marginBottom: 10
+        },
     },
-  },
-  controlLabel: {
-    normal: {
-      color: 'blue',
-      fontSize: 18,
-      marginBottom: 7,
-      fontWeight: '600'
-    },
-    // the style applied when a validation error occours
-    error: {
-      color: 'red',
-      fontSize: 18,
-      marginBottom: 7,
-      fontWeight: '600'
+    controlLabel: {
+        normal: {
+            color: 'black',
+            fontSize: 18,
+            marginBottom: 7,
+            fontWeight: '600'
+        },
+        // the style applied when a validation error occours
+        error: {
+            color: 'red',
+            fontSize: 18,
+            marginBottom: 7,
+            fontWeight: '600'
+        }
     }
-  }
 }
 
+// these are the options for the login form
 const options = {
-  fields: {
-    email: {
-      error: 'Without an email address how are you going to reset your password when you forget it?'
+    fields: {
+        email: {},
+        password: {},
+        terms: {
+            label: 'Agree to Terms',
+        },
     },
-    password: {
-      error: 'Choose something you use on a dozen other sites or something you won\'t remember'
-    },
-    terms: {
-      label: 'Agree to Terms',
-    },
-  },
-  stylesheet: formStyles,
+    stylesheet: formStyles,
 };
 
+
 export default class signUp extends Component {
-  handleSubmit = () => {
-    const value = this._form.getValue();
-    console.log('value: ', value);
-  }
-  
-  render() {
-    return (
-      <View style={styles.container}>
-        <Form 
-          ref={c => this._form = c}
-          type={User} 
-          options={options}
-        />
-        <Button
-          title="Sign Up!"
-          onPress={this.handleSubmit}
-        />
-      </View>
-    );
-  }
+    // when the user presses submit this method will be called
+    handleSubmit = () => {
+        const value = this._form.getValue();
+        console.log('value: ', value); // logging things for now, take out eventually
+        
+        firebaseApp.auth().createUserWithEmailAndPassword(value["email"], value["password"])
+            .then((user) => {
+                console.log("it worked"); // logging things for now, take out eventually
+                // LOGIN AND GO TO HOME PAGE
+            })
+            .catch((error) => {
+                const { code, message } = error;
+                console.log(error); // logging things for now, take out eventually
+                // NEED TO PRINT OUT THE ERROR CODE ON THE PAGE
+            });
+    }
+    
+    render() {
+        return (
+                <View style={styles.container}>
+                <Form 
+            ref={c => this._form = c}
+            type={User} 
+            options={options}
+                />
+                <Button
+            title="Sign Up!"
+            onPress={this.handleSubmit}
+                />
+                </View>
+                
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
-    backgroundColor: '#ffffff',
-  },
-});
+const styles = require('./styles.js');
 
 module.exports = signUp;

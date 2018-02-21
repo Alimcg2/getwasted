@@ -12,9 +12,11 @@ var styles = StyleSheet.create({
         padding: 100,
         margin: 10,
     },
-    container: {
-        backgroundColor: '#f2f2f2',
-        flex: 1,
+    container: {   
+        justifyContent: 'center',
+        marginTop: 50,
+        padding: 20,
+        backgroundColor: '#ffffff',
     },
     blogName: {
         textAlign: 'center',
