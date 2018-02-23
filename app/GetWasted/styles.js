@@ -10,11 +10,14 @@ const constants = {
 var styles = StyleSheet.create({
     welcome: {
         fontSize: 40,
+        paddingBottom: 30,
         textAlign: 'center',
     },
     container: {
         justifyContent: 'center',
         padding: 20,
+        paddingTop: 100,
+        paddingBottom: 250,
         backgroundColor: '#FFFFFF',
     },
     blogName: {
