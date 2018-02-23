@@ -12,28 +12,27 @@ import {
     Text,
     View
 } from 'react-native';
-var SignUp  = require('./signUp');
+
 
 const styles = require('./styles.js');
 
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class homePage extends Component<Props> {
     constructor(props) {
         super(props);
-        // creates user info placeholders
-        this.state = {
-            
-        };
-        
+        console.log("we're here");
+
     }
 
     render() {
         return(
-                <View>
-                 <SignUp />
+                <View style={styles.container}>
+                <Text style={styles.welcome}>Hello</Text>
                 </View>
         );
     }
 }
 
+
+module.exports = homePage;
