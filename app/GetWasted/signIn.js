@@ -1,8 +1,10 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
 import { View, StyleSheet, Button, Text, Image } from 'react-native';
-
 import t from 'tcomb-form-native'; // 0.6.9
+import {
+  StackNavigator,
+} from 'react-navigation';
 const styles = require('./styles.js');
 
 // creates the form
@@ -14,7 +16,6 @@ const User = t.struct({
     password: t.String
 });
 
-const remote = 'https://s15.postimg.org/tw2qkvmcb/400px.png';
 
 // this is the styling for the sign in form, we might be able to put this into the
 // stylesheet but its a little weird because its using tcomb
@@ -54,7 +55,13 @@ const options = {
 };
 
 
-class signIn extends Component {
+
+
+export default class signIn extends Component {
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
     // when the user presses submit this method will be called
     handleSubmit = () => {
         const value = this._form.getValue();
@@ -80,11 +87,10 @@ class signIn extends Component {
     }
 
     render() {
-        const resizeMode = 'center';
+        const handleSubmit = this.handleSubmit;
+        const { navigate }  = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Image source={{ uri: remote }} />
-
                 <Text style={styles.welcome}>Get Wasted</Text>
 
                 <Form ref={c => this._form = c}

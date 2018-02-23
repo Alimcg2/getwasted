@@ -55,10 +55,29 @@ const options = {
 };
 
 
+// var signUp  = require('./signUp');
+// var signIn  = require('./signIn');
+
+import signUp from './signUp';
+import signIn from './signIn';
+
+import {
+  StackNavigator,
+} from 'react-navigation';
+
+const Stacks = StackNavigator({
+  signUp: { screen: signUp },
+  signIn: { screen: signIn },
+  
+});
+
 export default class landing extends Component { 
 
     render() {
-    const resizeMode = 'center';
+        const sup = this.signUp;
+        const sin = this.signIn;
+        const { navigate }  = this.props.navigation;
+        const resizeMode = 'center';
 
         return (
 
@@ -69,13 +88,19 @@ export default class landing extends Component {
                 
                 <Button style={styles.submit}
             title="Sign Up!"
-            onPress={this.handleSubmit}
-                />
+            onPress={
+                function() {
+                    navigate('signUp', {});
+                }
+            }/>
 
                 <Button style={styles.submit}
-            title="Already have an account? Login!!"
-            onPress={this.handleSubmit}
-                />
+            title="Login!"
+            onPress={
+                function() {
+                    navigate('signIn', {});
+                }
+            }/>
 
                 </View>
                 

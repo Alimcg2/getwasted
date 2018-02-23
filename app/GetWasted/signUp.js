@@ -7,12 +7,12 @@ TODO:
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
 import { View, StyleSheet, Button, Text, Image } from 'react-native';
-
 import t from 'tcomb-form-native'; // 0.6.9
 import {
   StackNavigator,
 } from 'react-navigation';
 
+const styles = require('./styles.js');
 
 // creates the form
 const Form = t.form.Form;
@@ -24,9 +24,6 @@ const User = t.struct({
     password: t.String
 });
 
-const remote = 'https://s15.postimg.org/tw2qkvmcb/400px.png';
-var HomePage  = require('./homePage');
-const styles = require('./styles.js');
 
 // this is the styling for the login form, we might be able to put this into the
 // stylesheet but its a little weird because its using tcomb
@@ -69,7 +66,6 @@ const options = {
 export default class signUp extends Component {
     constructor(props) {
         super(props);
-        this.state = {isSignedUp: false};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 

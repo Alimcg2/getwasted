@@ -18,6 +18,7 @@ import {
 
 
 import signUp from './signUp';
+import signIn from './signIn';
 import landing from './landing';
 const styles = require('./styles.js');
 
@@ -36,7 +37,8 @@ import {
 
 const Stacks = StackNavigator({
   landing: { screen: landing },
-  signUp: { screen: signUp },
+    signUp: { screen: signUp },
+    signIn: { screen: signIn },
 });
 
 
