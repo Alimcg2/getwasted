@@ -8,19 +8,12 @@ const constants = {
 
 
 var styles = StyleSheet.create({
-    submit: {
-        color: "black",
-        borderColor: "red",
-        backgroundColor: "#000000",
-    },
     welcome: {
         fontSize: 40,
         textAlign: 'center',
-        padding: 80,
     },
     container: {
         justifyContent: 'center',
-        marginTop: 100,
         padding: 20,
         backgroundColor: '#FFFFFF',
     },
