@@ -12,7 +12,7 @@ import {
     Text,
     View
 } from 'react-native';
-var SignUp  = require('./signUp');
+var Landing  = require('./landing');
 
 const styles = require('./styles.js');
 
@@ -31,7 +31,7 @@ export default class App extends Component<Props> {
     render() {
         return(
                 <View>
-                <SignUp/>
+                <Landing/>
                 </View>
         );
     }
