@@ -9,6 +9,9 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Button, Text, Image} from 'react-native';
 
 import t from 'tcomb-form-native'; // 0.6.9
+import {
+  StackNavigator,
+} from 'react-navigation';
 
 
 // Initialize Firebase
@@ -30,8 +33,8 @@ const User = t.struct({
     password: t.String
 });
 
-    const remote = 'https://s15.postimg.org/tw2qkvmcb/400px.png';
-
+const remote = 'https://s15.postimg.org/tw2qkvmcb/400px.png';
+var HomePage  = require('./homePage');
 const styles = require('./styles.js');
 
 // this is the styling for the login form, we might be able to put this into the
@@ -73,8 +76,14 @@ const options = {
 
 
 export default class signUp extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {isSignedUp: false};
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
     // when the user presses submit this method will be called
-    handleSubmit = () => {
+    handleSubmit() {
         const value = this._form.getValue();
         console.log('value: ', value); // logging things for now, take out eventually
      
@@ -85,44 +94,36 @@ export default class signUp extends Component {
                 firebaseApp.database().ref("Users").child(firebaseApp.auth().
                                                           currentUser.uid).set({
                     name: value["username"]
-                    });
-                 // TODO: LOGIN AND GO TO HOME PAGE
+                                                          });
+
+                
+                // TODO: need to set some sort of state listener where when this changes it calls render?
+                // TODO: LOGIN AND GO TO HOME PAGE
             })
             .catch((error) => {
                 const { code, message } = error;
                 console.log(error); // logging things for now, take out eventually
                 // TODO:  NEED TO PRINT OUT THE ERROR CODE ON THE PAGE
             });
-        
-      
     }
 
     render() {
-    const resizeMode = 'center';
-
+        const handleSubmit = this.handleSubmit;
+        const { navigate }  = this.props.navigation;
         return (
 
-                <View style={styles.container}>
-                
-                <Image
+           <View style={styles.container}>
+                          <Text style={styles.welcome}>Get Wasted</Text>
+            
+                          <Form ref={c => this._form = c} type={User} options={options} />
+                <Button style={styles.submit} title="Sign Up!" onPress={
+                    function() {
+                        handleSubmit();
+                        navigate('homePage', {});
+                    }
+                }/>
 
-            source={{ uri: remote }}
-                />
-                
-                <Text style={styles.welcome}>Get Wasted</Text>
-                
-                <Form 
-            ref={c => this._form = c}
-            type={User} 
-            options={options}
-                />
-                
-                <Button style={styles.submit}
-            title="Sign Up!"
-            onPress={this.handleSubmit}
-                />
-
-                </View>
+            </View>
                 
         );
     }
