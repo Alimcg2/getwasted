@@ -13,6 +13,10 @@ import {
     View
 } from 'react-native';
 
+import {
+  StackNavigator,
+} from 'react-navigation';
+
 
 const styles = require('./styles.js');
 

@@ -9,7 +9,9 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Button, Text, Image} from 'react-native';
 
 import t from 'tcomb-form-native'; // 0.6.9
-import renderIf from './renderIf';
+import {
+  StackNavigator,
+} from 'react-navigation';
 
 
 // Initialize Firebase
@@ -77,11 +79,11 @@ export default class signUp extends Component {
     constructor(props) {
         super(props);
         this.state = {isSignedUp: false};
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+
     // when the user presses submit this method will be called
-    handleSubmit = () => {
+    handleSubmit() {
         const value = this._form.getValue();
         console.log('value: ', value); // logging things for now, take out eventually
      
@@ -94,8 +96,7 @@ export default class signUp extends Component {
                     name: value["username"]
                                                           });
 
-                this.state.isSignedUp = true;
-                console.log(this.state.isSignedUp);
+                
                 // TODO: need to set some sort of state listener where when this changes it calls render?
                 // TODO: LOGIN AND GO TO HOME PAGE
             })
@@ -104,30 +105,23 @@ export default class signUp extends Component {
                 console.log(error); // logging things for now, take out eventually
                 // TODO:  NEED TO PRINT OUT THE ERROR CODE ON THE PAGE
             });
-        
-      
     }
 
     render() {
-
+        const handleSubmit = this.handleSubmit;
+        const { navigate }  = this.props.navigation;
         return (
 
            <View style={styles.container}>
-                {renderIf(!this.state.isSignedUp,
                           <Text style={styles.welcome}>Get Wasted</Text>
-                         )}
             
-                {renderIf(!this.state.isSignedUp,
                           <Form ref={c => this._form = c} type={User} options={options} />
-                         )}
-            
-                {renderIf(!this.state.isSignedUp,
-                          <Button style={styles.submit} title="Sign Up!" onPress={this.handleSubmit} />
-                         )}
-            
-                {renderIf(this.state.isSignedUp,
-                         <HomePage />
-                         )}
+                <Button style={styles.submit} title="Sign Up!" onPress={
+                    function() {
+                        handleSubmit();
+                        navigate('homePage', {});
+                    }
+                }/>
 
             </View>
                 
