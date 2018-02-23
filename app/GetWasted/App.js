@@ -18,7 +18,7 @@ import {
 
 
 import signUp from './signUp';
-import homePage from './homePage';
+import landing from './landing';
 const styles = require('./styles.js');
 
 // Initialize Firebase
@@ -30,31 +30,13 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-// export default class App extends Component<Props> {
-//     constructor(props) {
-//         super(props);
-//         // creates user info placeholders
-//         this.state = {
-            
-//         };
-        
-//     }
-
-//     render() {
-//         return(
-//                 <View>
-//                  <SignUp />
-//                 </View>
-//         );
-//     }
-// }
 import {
   StackNavigator,
 } from 'react-navigation';
 
 const Stacks = StackNavigator({
+  landing: { screen: landing },
   signUp: { screen: signUp },
-  homePage: { screen: homePage },
 });
 
 
