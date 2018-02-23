@@ -6,27 +6,33 @@ TODO:
 */
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Text, Image } from 'react-native';
+import { View, StyleSheet, Button, Text, Image} from 'react-native';
 
 import t from 'tcomb-form-native'; // 0.6.9
-import {
-  StackNavigator,
-} from 'react-navigation';
 
+
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyCbxZ-OoW54x_xZxyoXNXA9WzoHfTTRwcQ",
+    authDomain: "getwasteduw.firebaseapp.com",
+    databaseURL: "https://getwasteduw.firebaseio.com",
+    storageBucket: "getwasteduw.appspot.com",
+};
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 // creates the form
 const Form = t.form.Form;
 
-// creates the user input
+/* creates the user input
 const User = t.struct({
     email: t.String,
     username: t.String,
     password: t.String
-});
+});  */
 
-const remote = 'https://s15.postimg.org/tw2qkvmcb/400px.png';
-var HomePage  = require('./homePage');
-const styles = require('./styles.js');
+    const remote = 'https://s15.postimg.org/tw2qkvmcb/400px.png';
+
+const styles = require('./landingStyles.js');
 
 // this is the styling for the login form, we might be able to put this into the
 // stylesheet but its a little weird because its using tcomb
@@ -66,57 +72,59 @@ const options = {
 };
 
 
-export default class signUp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {isSignedUp: false};
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
+export default class landing extends Component { /*
     // when the user presses submit this method will be called
-    handleSubmit() {
+    handleSubmit = () => {
         const value = this._form.getValue();
         console.log('value: ', value); // logging things for now, take out eventually
-
-        firebase.auth().createUserWithEmailAndPassword(value["email"], value["password"])
+     
+        firebaseApp.auth().createUserWithEmailAndPassword(value["email"], value["password"])
             .then((user) => {
                 console.log("it worked"); // logging things for now, take out eventually
-
-                // store display name
-                var profilePromise = user.updateProfile({
-                    displayName: value["username"]
-                });
-                return profilePromise;
-
-                // TODO: LOGIN AND GO TO HOME PAGE
+                // this pushes their name to the database with their uid
+                firebaseApp.database().ref("Users").child(firebaseApp.auth().
+                                                          currentUser.uid).set({
+                    name: value["username"]
+                    });
+                 // TODO: LOGIN AND GO TO HOME PAGE
             })
             .catch((error) => {
                 const { code, message } = error;
                 console.log(error); // logging things for now, take out eventually
                 // TODO:  NEED TO PRINT OUT THE ERROR CODE ON THE PAGE
-            });
-    }
+            }); 
+        
+      
+    } */
 
     render() {
-        const handleSubmit = this.handleSubmit;
-        const { navigate }  = this.props.navigation;
+    const resizeMode = 'center';
+
         return (
 
-           <View style={styles.container}>
-                          <Text style={styles.welcome}>Get Wasted</Text>
-            
-                          <Form ref={c => this._form = c} type={User} options={options} />
-                <Button style={styles.submit} title="Sign Up!" onPress={
-                    function() {
-                        handleSubmit();
-                        navigate('homePage', {});
-                    }
-                }/>
+                <View style={styles.container}>
+                
+                <Image
 
-            </View>
+            source={{ uri: remote }}
+                />
+                
+                <Text style={styles.welcome}>Welcome to Get Wasted</Text>
+                
+                <Button style={styles.submit}
+            title="Sign Up!"
+            onPress={this.handleSubmit}
+                />
+
+                <Button style={styles.submit}
+            title="Already have an account? Login!!"
+            onPress={this.handleSubmit}
+                />
+
+                </View>
                 
         );
     }
 }
 
-module.exports = signUp;
+module.exports = landing;
