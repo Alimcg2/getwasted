@@ -20,6 +20,7 @@ import {
 import signUp from './signUp';
 import signIn from './signIn';
 import landing from './landing';
+import goalPage from './goalPage';
 const styles = require('./styles.js');
 
 // Initialize Firebase
@@ -36,9 +37,10 @@ import {
 } from 'react-navigation';
 
 const Stacks = StackNavigator({
-  landing: { screen: landing },
+    landing: { screen: landing },
     signUp: { screen: signUp },
     signIn: { screen: signIn },
+    goalPage: { screen: goalPage },
 });
 
 
@@ -49,3 +51,5 @@ export default class App extends Component {
         );
     }
 }
+
+module.exports = App;

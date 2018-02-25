@@ -5,6 +5,8 @@ import t from 'tcomb-form-native'; // 0.6.9
 import {
   StackNavigator,
 } from 'react-navigation';
+import goalPage from './goalPage';
+
 const styles = require('./styles.js');
 
 // creates the form
@@ -54,6 +56,10 @@ const options = {
     stylesheet: formStyles,
 };
 
+const Stacks = StackNavigator({
+    goalPage: { screen: goalPage },
+  
+});
 
 
 
@@ -88,20 +94,31 @@ export default class signIn extends Component {
 
     render() {
         const handleSubmit = this.handleSubmit;
+        const gp = this.goalPage;
+
         const { navigate }  = this.props.navigation;
         return (
-            <View style={styles.container}>
+                <View style={styles.container}>
                 <Text style={styles.welcome}>Get Wasted</Text>
 
                 <Form ref={c => this._form = c}
-                    type={User}
-                    options={options}
+            type={User}
+            options={options}
                 />
 
                 <Button style={styles.submit}
-                    title="Sign In!"
-                    onPress={this.handleSubmit}
+            title="Sign In!"
+            onPress={this.handleSubmit}
                 />
+                
+                <Button style={styles.submit}
+            title="Ali's Testing Button"
+            onPress={
+                function() {
+                    handleSubmit();
+                    navigate('goalPage', {});
+                }
+            }/>
 
             </View>
 

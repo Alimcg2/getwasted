@@ -8,74 +8,42 @@ import * as firebase from 'firebase';
 import React, { Component } from 'react';
 import { View, StyleSheet, Button, Text, Image} from 'react-native';
 
-import t from 'tcomb-form-native'; // 0.6.9
-
-
-// creates the form
-const Form = t.form.Form;
-
-
-const styles = require('./landingStyles.js');
-
-// this is the styling for the login form, we might be able to put this into the
-// stylesheet but its a little weird because its using tcomb
-const formStyles = {
-    ...Form.stylesheet,
-    formGroup: {
-        normal: {
-            marginLeft: 20,
-            marginRight: 20,
-            marginBottom: 10,
-        },
-    },
-    controlLabel: {
-        normal: {
-            color: 'black',
-            fontSize: 18,
-            marginBottom: 7,
-            fontWeight: '600',
-        },
-        // the style applied when a validation error occours
-        error: {
-            color: 'red',
-            fontSize: 18,
-            marginBottom: 7,
-            fontWeight: '600'
-        }
-    }
-}
-
-// these are the options for the login form
-const options = {
-    fields: {
-        email: {},
-        password: {}
-    },
-    stylesheet: formStyles,
-};
-
-
-// var signUp  = require('./signUp');
-// var signIn  = require('./signIn');
-
 import signUp from './signUp';
 import signIn from './signIn';
+import goalPage from './goalPage';
 
 import {
   StackNavigator,
 } from 'react-navigation';
+'react-navigation';
+
+const styles = require('./styles.js');
+
 
 const Stacks = StackNavigator({
-  signUp: { screen: signUp },
-  signIn: { screen: signIn },
+    signUp: { screen: signUp },
+    signIn: { screen: signIn },
+    goalPage: { screen: goalPage },
   
 });
+
+/*
+export default class landing extends Component { 
+
+    render() {
+        const sup = this.signUp;
+        const sin = this.signIn;
+        const gp = this.goalPage;
+    }
+  
+}); */
 
 export default class landing extends Component { 
 
     render() {
         const sup = this.signUp;
         const sin = this.signIn;
+        const gp = this.goalPage;
         const { navigate }  = this.props.navigation;
         const resizeMode = 'center';
 
