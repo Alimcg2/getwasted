@@ -24,6 +24,18 @@ var styles = StyleSheet.create({
         textAlign: 'center',
         padding: 10,
     },
+    image:{
+        width: 200,
+        height: 200,
+    },
+    container_reduce:{
+        justifyContent: 'center',
+        padding: 20,
+        paddingTop: 100,
+        paddingBottom: 250,
+        backgroundColor: '#FFFFFF',
+        alignContent: 'center',
+    },
 })
 
 module.exports = styles;
