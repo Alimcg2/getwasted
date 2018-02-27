@@ -6,6 +6,7 @@ import {
   StackNavigator,
 } from 'react-navigation';
 const styles = require('./styles.js');
+const goalPage = require('./goalPage.js');
 
 // creates the form
 const Form = t.form.Form;
@@ -101,6 +102,14 @@ export default class signIn extends Component {
                 <Button style={styles.submit}
                     title="Sign In!"
                     onPress={this.handleSubmit}
+                />
+                
+                <Button style={styles.submit}
+                    title="Ali's Button"
+                    onPress={
+                    function() {
+                        navigate('goalPage', {});
+                    }
                 />
 
             </View>
