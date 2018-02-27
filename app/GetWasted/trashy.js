@@ -20,7 +20,15 @@ export default class trashy extends Component {
         return (
             <View style={styles.container}>
                           
-                <Text style={styles.welcome}>Welcome to Trashy pix</Text>
+                <Text style={styles.welcome}>Trash Diary</Text>
+                
+                <Button style={styles.submit}
+                title="New trashy pic"
+                onPress={
+                    function() {
+                        handlesubmit();
+                    }
+                }/>
 
             </View>
 
