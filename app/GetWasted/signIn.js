@@ -5,7 +5,8 @@ import t from 'tcomb-form-native'; // 0.6.9
 import {
   StackNavigator,
 } from 'react-navigation';
-import goalPage from './goalPage';
+import goalPage from './goalPage'; 
+import reduce from './reduce';
 
 const styles = require('./styles.js');
 
@@ -57,7 +58,9 @@ const options = {
 };
 
 const Stacks = StackNavigator({
-    goalPage: { screen: goalPage },
+    goalPage: { screen: goalPage }, 
+    reduce: { screen: reduce }, 
+
   
 });
 
@@ -94,7 +97,8 @@ export default class signIn extends Component {
 
     render() {
         const handleSubmit = this.handleSubmit;
-        const gp = this.goalPage;
+        const gp = this.goalPage; 
+       const rd = this.reduce; 
 
         const { navigate }  = this.props.navigation;
         return (
@@ -108,8 +112,12 @@ export default class signIn extends Component {
 
                 <Button style={styles.submit}
             title="Sign In!"
-            onPress={this.handleSubmit}
-                />
+            onPress={
+                function() {
+                    handleSubmit();
+                    navigate('reduce', {});
+                }
+            }/>
                 
                 <Button style={styles.submit}
 

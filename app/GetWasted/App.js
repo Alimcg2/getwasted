@@ -21,6 +21,8 @@ import signUp from './signUp';
 import signIn from './signIn';
 import landing from './landing';
 import goalPage from './goalPage';
+import reduce from './reduce'; 
+import trashy from './trashy'; 
 const styles = require('./styles.js');
 
 // Initialize Firebase
@@ -41,6 +43,8 @@ const Stacks = StackNavigator({
     signUp: { screen: signUp },
     signIn: { screen: signIn },
     goalPage: { screen: goalPage },
+    reduce: { screen: reduce }, 
+    trashy: { screen: trashy },
 });
 
 
