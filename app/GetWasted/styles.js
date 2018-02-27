@@ -28,14 +28,32 @@ var styles = StyleSheet.create({
         width: 200,
         height: 200,
     },
-    container_reduce:{
+    container_reduce: {
         justifyContent: 'center',
         padding: 20,
         paddingTop: 100,
         paddingBottom: 250,
         backgroundColor: '#FFFFFF',
-        alignContent: 'center',
     },
+    header2: {
+        fontSize: 20,
+    },
+    square: {
+        width: 50, 
+        height: 50, 
+        backgroundColor: 'powderblue'
+    },
+    reduce_pictures_flex_container: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        flex: 4,
+        
+    },
+    reduce_button_flex_container: {
+        flexDirection: 'column',
+        alignItems: 'flex-start'
+    }
 })
 
 module.exports = styles;
