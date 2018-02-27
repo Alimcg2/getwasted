@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import React, { Component } from 'react';
 import { View, StyleSheet, Button, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
+import reduce from './reduce';
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -111,7 +112,7 @@ export default class signUp extends Component {
                 <Button style={styles.submit} title="Sign Up!" onPress={
                     function() {
                         handleSubmit();
-                        navigate('homePage', {});
+                        navigate('reduce', {});
                     }
                 }/>
 

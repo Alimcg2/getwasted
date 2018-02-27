@@ -11,7 +11,6 @@ import { View, StyleSheet, Button, Text, Image} from 'react-native';
 import signUp from './signUp';
 import signIn from './signIn';
 import goalPage from './goalPage';
-import reduce from './reduce';
 
 import {
   StackNavigator,
@@ -25,8 +24,6 @@ const Stacks = StackNavigator({
     signUp: { screen: signUp },
     signIn: { screen: signIn },
     goalPage: { screen: goalPage },
-    reduce: { screen: reduce }
-  
 });
 
 /*
@@ -46,7 +43,6 @@ export default class landing extends Component {
         const sup = this.signUp;
         const sin = this.signIn;
         const gp = this.goalPage;
-        const rd = this.reduce; 
         const ts = this.trashy;
         const { navigate }  = this.props.navigation;
         const resizeMode = 'center';
