@@ -8,7 +8,6 @@ import {
 import goalPage from './goalPage';
 
 const styles = require('./styles.js');
-const goalPage = require('./goalPage.js');
 
 // creates the form
 const Form = t.form.Form;
