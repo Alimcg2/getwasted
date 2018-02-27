@@ -71,11 +71,11 @@ export default class goalPage extends Component {
                 
                 <SectionList
             sections={sectionItems}
-            renderItem={({item}) => <Text style={styles.item} 
+            renderItem={({item}) => <Text style={styles.item} onpress={
                         function() {
                             console.log(this);
                             //navigate('goalInfo', {});
-                        }>{item}</Text>}
+                        }}>{item}</Text>}
             renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
             keyExtractor={(item, index) => index}
                 />
