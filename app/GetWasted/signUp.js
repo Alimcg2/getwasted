@@ -82,9 +82,15 @@ export default class signUp extends Component {
                 var profilePromise = user.updateProfile({
                     displayName: value["username"]
                 });
-                return profilePromise;
-
+                var currentUser = firebase.auth().currentUser;
+                
+                console.log("got here");
+                 // this pushes their name to the database with their uid
+                firebase.database().ref("Users").child(currentUser.uid).set({
+                                                              name: value["username"]
+                                                          });
                 // TODO: LOGIN AND GO TO HOME PAGE
+                return profilePromise;
             })
             .catch((error) => {
                 const { code, message } = error;
