@@ -41,6 +41,7 @@ var styles = StyleSheet.create({
     square: {
         width: 50, 
         height: 50, 
+        padding: 35,
         backgroundColor: 'powderblue'
     },
     reduce_pictures_flex_container: {
@@ -53,6 +54,10 @@ var styles = StyleSheet.create({
     reduce_button_flex_container: {
         flexDirection: 'column',
         alignItems: 'flex-start'
+    },
+    bigboy_trash: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     }
 })
 

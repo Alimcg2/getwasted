@@ -30,8 +30,31 @@ export default class trashy extends Component {
                     }
                 }/>
 
-            </View>
+                <View style={styles.bigboytrash} >
+                    <View style={styles.trash_flex_container} >
+                    <Text style={styles.header2}>Today's Pictures</Text>
+                        <View style ={styles.reduce_pictures_flex_container} >
+                            <View style={styles.square} />
 
+                            <View style={styles.square} />
+
+                            <View style={styles.square} />
+                        </View> 
+                    </View>
+
+                    <View style={styles.trash_flex_container} >
+                        <Text style={styles.header2}>Older Trashy Pictures</Text>
+                            <View style ={styles.reduce_pictures_flex_container} >
+                                <View style={styles.square} />
+
+                                <View style={styles.square} />
+
+                                <View style={styles.square} />
+                            </View> 
+                    </View>
+                    
+                </View>
+            </View>
         );
     }
 }

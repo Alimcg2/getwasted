@@ -14,17 +14,17 @@ const styles = require('./styles.js');
 export default class goalPage extends Component {
     constructor(props) {
         super(props);
-        var user = firebase.auth().currentUser;
+        var user = firebase.auth().currentUser; /* gets current user */
         this.state = { userName : user.displayName,
                        profileImg : "",
                        goalTitles : [],
                        goalBeginDates : [],
                        goalEndDates : [],
                        goalStatus: []};
-        var imageRef = firebase.database().ref().child("Users/" + user.uid + "/image");
+        var imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
         imageRef.on("value", function(snapshot) {
             this.setState({profileImg: snapshot.val()});
-        }.bind(this));
+        }.bind(this)); /* actual image-info */
         
         var goalRef = firebase.database().ref().child("Users/" + user.uid + "/goals");
         goalRef.on("value", function(snapshot) {
@@ -43,8 +43,7 @@ export default class goalPage extends Component {
             this.setState({goalBeginDates : beginDates});
             this.setState({goalEndDates : endDates});
             this.setState({goalStatus : status});
-        }.bind(this));
-        
+        }.bind(this));      
     }
 
 
