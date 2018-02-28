@@ -20,8 +20,8 @@ const Form = t.form.Form;
 
 // creates the user input
 const User = t.struct({
-    goalTitle: t.String,
-    startDate: t.Date,
+    goalText: t.String,
+    beginDate: t.Date,
     endDate: t.Date
 });
 
@@ -57,8 +57,8 @@ const formStyles = {
 // these are the options for the login form
 const options = {
     fields: {
-        goalTitle: {},
-        startDate: {},
+        goalText: {},
+        beginDate: {},
         endDate: {}
     },
     stylesheet: formStyles,
@@ -69,22 +69,30 @@ export default class newGoal extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = { 
+            user : firebase.auth().currentUser /* gets current user */
+        };   
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentWillUnmount() {
+        if (this.goalRef) {
+            this.goalRef.off();
+        }
     }
 
     // when the user presses submit this method will be called
     handleSubmit() {
-        const test = this._form.getValue();
-        var startDate = test["beginDate"]
-        test.beginDate = test.beginDate.toString;  // this doesn't work
-        test.endDate = test.endDate.toString;  // this doesn't work
-        console.log(test)
-        var user = firebase.auth().currentUser;
-        
-        var goalID = this.props.navigation.state.params.index + 1;
-        var goalRef = firebase.database().ref().child("Users/" + user.uid + "/goals/" + goalID);
-        goalRef.set({
-            test // this doesn't work
-        });                                  
+        const formValue = this._form.getValue();
+        this.userGoalsRef = firebase.database().ref("Users/" + this.state.user.uid + "/goals/");
+        var goalData = {
+            beginDate : formValue['beginDate'].toString(),
+            endDate : formValue['endDate'].toString(), 
+            goalText:  formValue['goalText'],
+            otherUsers: '',
+            status: 'Current'
+        };
+        this.userGoalsRef.push(goalData);
     }
 
     render() {
