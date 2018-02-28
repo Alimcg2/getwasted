@@ -23,6 +23,8 @@ import landing from './landing';
 import goalPage from './goalPage';
 import reduce from './reduce'; 
 import trashy from './trashy'; 
+import editGoal from './editGoal'; 
+import newGoal from './newGoal'; 
 const styles = require('./styles.js');
 
 // Initialize Firebase
@@ -45,6 +47,8 @@ const Stacks = StackNavigator({
     goalPage: { screen: goalPage },
     reduce: { screen: reduce }, 
     trashy: { screen: trashy },
+    editGoal: { screen: editGoal },
+    newGoal: { screen: newGoal }, 
 });
 
 

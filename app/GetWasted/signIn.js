@@ -60,8 +60,6 @@ const options = {
 const Stacks = StackNavigator({
     goalPage: { screen: goalPage }, 
     reduce: { screen: reduce }, 
-
-  
 });
 
 

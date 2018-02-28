@@ -7,8 +7,13 @@ import {
 } from 'react-navigation';
 
 import app from './app';
-
+import editGoal from './editGoal';
+import newGoal from './newGoal';
 const styles = require('./styles.js');
+
+const Stacks = StackNavigator({
+    newGoal: { screen: newGoal }, 
+});
 
 
 export default class goalPage extends Component {
@@ -47,39 +52,49 @@ export default class goalPage extends Component {
         
     }
 
-
     
     render() {
+        const editGoal = this.editGoal; 
+        const newGoal = this.newGoal; 
+
         let display = this.state.userName;
         var url = this.state.profileImg.toString();
         var titles = this.state.goalTitles;
         var beginDates = this.state.goalBeginDates;
         var endDates = this.state.goalEndDates;
         var status = this.state.goalStatus;
-        //var testing2 = testing["goalText"];
         var sectionItems = [
             {title: "Goals" , data: titles},
         ];
-        //console.log(testing2);
+        const { navigate }  = this.props.navigation;
         return (
                 <View style={styles.container}>
                 <Image
-            style={{width: 100, height: 100}}
+            style={{width: 80, height: 80}}
             source={{uri: url}}
                 />
-                <Text style={styles.welcome}>{display} Goals</Text>
+                <Text style={styles.welcome}>Goals</Text>
                 
                 <SectionList
             sections={sectionItems}
-            renderItem={({item}) => <Text style={styles.item} onpress={
-                        function() {
-                            console.log(this);
-                            //navigate('goalInfo', {});
-                        }}>{item}</Text>}
+            renderItem={({item}) => <Button style={styles.item} title={item} onPress={
+                function() {
+                    var index = titles.indexOf(item);
+                    console.log(index);
+                    navigate('editGoal', { index, item });
+                }
+            }/>
+                        
+                       }
             renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
             keyExtractor={(item, index) => index}
                 />
-
+                
+                <Button style={styles.submit} title="New Goal" onPress={
+                    function() {
+                        navigate('newGoal', {});
+                    }
+                }/>
             
             </View>
 
