@@ -74,48 +74,51 @@ const options = {
 export default class editGoal extends Component {
     constructor(props) {
         super(props);
-        var user = firebase.auth().currentUser;
+        this.state = { 
+            user : firebase.auth().currentUser, /* gets current user */
+            goalID : this.props.navigation.state.params.key,
+            goals : {},
+            initialValue: {}
+        };   
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
-        var goalID = this.props.navigation.state.params.index + 1;
-        
-        var goalRef = firebase.database().ref().child("Users/" + user.uid + "/goals/" + goalID);
-        console.log(goalRef);
-        goalRef.on("value", function(snapshot) {
-            console.log(snapshot.val());
-            this.setState({goals: snapshot.val()});
-            var beginDate = ""
-            var endDate = ""
-            var status = ""
-            snapshot.forEach(function(data) {
-                beginDate = data.val()["beginDate"];
-                endDate = data.val()["endDate"];
-                status = data.val()["goalStatus"];
-            }.bind(this));
-        this.state = {initialvalue : {goalText: this.props.navigation.state.params.item,
-                                      beginDate: beginDate,
-                                      endDate: endDate,
-                                      status: status
-                                     }
-                     }
+    componentWillMount() {
+        this.goalRef = firebase.database().ref().child("Users/" + this.state.user.uid + "/goals/" + this.state.goalID);
+        this.goalRef.on("value", function(snapshot) {
+            this.setState(
+                { 
+                    goals: snapshot.val(),
+                    initialValue : {
+                        goalText: this.props.navigation.state.params.item,
+                        beginDate: new Date(snapshot.val()['beginDate']),
+                        endDate: new Date(snapshot.val()['endDate']),
+                        status: snapshot.val()['status'],
+                    }
+                }
+            );
         }.bind(this));
-        
+    }
+
+    componentWillUnmount() {
+        if (this.goalRef) {
+            this.goalRef.off();
+        }
     }
 
     // when the user presses submit this method will be called
     handleSubmit() {
-        const test = this._form.getValue();
-        var startDate = test["beginDate"]
-        test.beginDate = test.beginDate.toString();  // this doesn't work
-        test.endDate = test.endDate.toString();  /// this doesn't work
-        console.log(test)
-        var user = firebase.auth().currentUser;
-        
-        var goalID = this.props.navigation.state.params.index + 1;
-        var goalRef = firebase.database().ref().child("Users/" + user.uid + "/goals/" + goalID);
-        goalRef.set({
-            test // this doesn't work
-        });
+        const formValue = this._form.getValue();
+
+        var updates = {};
+        updates["Users/" + this.state.user.uid + "/goals/" + this.state.goalID] = { 
+            beginDate : formValue['beginDate'],
+            endDate : formValue['endDate'], 
+            goalText:  formValue['goalText'],
+            otherUsers: this.state.goals.otherUsers,
+            status: formValue['status']
+        };
+        firebase.database().ref().update(updates);
     }
 
     render() {
@@ -124,9 +127,9 @@ export default class editGoal extends Component {
         return (
 
            <View style={styles.container}>
-                          <Text style={styles.welcome}>Edit Goal</Text>
+                <Text style={styles.welcome}>Edit Goal</Text>
             
-                          <Form ref={c => this._form = c} type={User} options={options} value={this.state.initialvalue}/>
+                <Form ref={c => this._form = c} type={User} options={options} value={this.state.initialValue}/>
                 <Button style={styles.submit} title="Update" onPress={
                     function() {
                         handleSubmit();
