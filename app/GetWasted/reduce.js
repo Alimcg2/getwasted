@@ -1,6 +1,7 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
 import { View, StyleSheet, Button, Text, Image } from 'react-native';
+import { FlatList, ScrollView, SectionList } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import app from './app';
 import trashy from './trashy';
@@ -97,17 +98,20 @@ export default class reduce extends Component {
 
             <Text style={styles.header2}>Pictures</Text>
             
-            <View style ={styles.reduce_pictures_flex_container} >
-                <View style={styles.square} />
-
-                <View style={styles.square} />
-
-                <View style={styles.square} />
-
-                <View style={styles.square} />
-            </View> 
-
+            <View style={styles.reduce_test}>
+                <SectionList
+            sections={[
+                {title: '', data: [<Image source={require('./trashtest.jpg')} />,
+                <Image source={require('./trashtest2.jpg')} />,
+                <Image source={require('./trashtest4.jpg')} />,]},
+            ]}
+            renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+            renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+            keyExtractor={(item, index) => index}
+            />
             </View>
+            
+        </View>
         );
     }
 }

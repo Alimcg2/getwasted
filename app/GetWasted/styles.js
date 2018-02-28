@@ -38,12 +38,6 @@ var styles = StyleSheet.create({
     header2: {
         fontSize: 20,
     },
-    square: {
-        width: 50, 
-        height: 50, 
-        padding: 35,
-        backgroundColor: 'powderblue'
-    },
     reduce_pictures_flex_container: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -58,6 +52,11 @@ var styles = StyleSheet.create({
     bigboy_trash: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    item: {
+        paddingVertical: 20,
+        borderTopWidth: 1,
+        borderColor: "#CED0CE"
     }
 })
 
