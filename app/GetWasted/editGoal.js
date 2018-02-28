@@ -106,8 +106,8 @@ export default class editGoal extends Component {
     handleSubmit() {
         const test = this._form.getValue();
         var startDate = test["beginDate"]
-        test.beginDate = test.beginDate.toString;  // this doesn't work
-        test.endDate = test.endDate.toString;  /// this doesn't work
+        test.beginDate = test.beginDate.toString();  // this doesn't work
+        test.endDate = test.endDate.toString();  /// this doesn't work
         console.log(test)
         var user = firebase.auth().currentUser;
         
