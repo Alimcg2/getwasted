@@ -9,10 +9,13 @@ import {
 import app from './app';
 import editGoal from './editGoal';
 import newGoal from './newGoal';
+import goalSummary from './goalSummary';
 const styles = require('./styles.js');
 
 const Stacks = StackNavigator({
     newGoal: { screen: newGoal }, 
+    editGoal: { screen: editGoal }, 
+    goalSummary: { screen: goalSummary }, 
 });
 
 
@@ -22,10 +25,8 @@ export default class goalPage extends Component {
         this.state = { user: firebase.auth().currentUser, /* gets current user */
                         userName : "",
                         profileImg : "",
-                        goalTitles : [],
-                        goalBeginDates : [],
-                        goalEndDates : [],
-                        goalStatus: []};   
+                       goalTitles : [],
+                     }
     }
 
     componentWillMount() {
@@ -39,22 +40,13 @@ export default class goalPage extends Component {
         this.goalRef.on("value", function(snapshot) {
             this.setState({goals: snapshot.val()});
             var titles = []
-            var beginDates = []
-            var endDates = []
-            var status = []
             var keys = [];
             snapshot.forEach(function(data) {
                 titles.push(data.val()["goalText"]);
-                beginDates.push(data.val()["beginDates"]);
-                endDates.push(data.val()["endDates"]);
-                status.push(data.val()["goalStatus"]);
                 keys.push(data.key);
             }.bind(this));
             this.setState({
                 goalTitles : titles,
-                goalBeginDates : beginDates,
-                goalEndDates : endDates,
-                goalStatus : status,
                 goalKeys: keys
             });
         }.bind(this));   
@@ -72,16 +64,14 @@ export default class goalPage extends Component {
     render() {
         const editGoal = this.editGoal; 
         const newGoal = this.newGoal; 
+        const goalSummary = this.goalSummary; 
 
         let display = this.state.userName;
         var url = this.state.profileImg.toString();
         var titles = this.state.goalTitles;
-        var beginDates = this.state.goalBeginDates;
-        var endDates = this.state.goalEndDates;
-        var status = this.state.goalStatus;
         var keys = this.state.goalKeys;
         var sectionItems = [
-            {title: "Goals" , data: titles},
+            {title: "" , data: titles},
         ];
         const { navigate }  = this.props.navigation;
         return (
@@ -99,7 +89,7 @@ export default class goalPage extends Component {
                     var index = titles.indexOf(item);
                     var key = keys[index];
                     console.log(index);
-                    navigate('editGoal', { index, item, key });
+                    navigate('goalSummary', { index, item, key });
                 }
             }/>
                         
