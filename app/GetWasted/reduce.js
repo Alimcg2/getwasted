@@ -1,11 +1,11 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Text, Image } from 'react-native';
-import { FlatList, ScrollView, SectionList } from 'react-native';
+import { Image, View, StyleSheet, Button, Text, FlatList, ListView, ListItem, ScrollView, SectionList } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import app from './app';
 import trashy from './trashy';
 import goalPage from './goalPage';
+import flatListdata from './reduce_fake_picture';
 
 import {
   StackNavigator,
@@ -61,7 +61,7 @@ export default class reduce extends Component {
         const { navigate }  = this.props.navigation;
         const resizeMode = 'center';
 
-        let display = this.state.userName;
+        var display = this.state.userName;
         var url = this.state.profileImg.toString();
         var titles = this.state.goalTitles;
         var beginDates = this.state.goalBeginDates;
@@ -100,15 +100,15 @@ export default class reduce extends Component {
             
             <View style={styles.reduce_test}>
                 <SectionList
-            sections={[
-                {title: '', data: [<Image source={require('./trashtest.jpg')} />,
-                <Image source={require('./trashtest2.jpg')} />,
-                <Image source={require('./trashtest4.jpg')} />,]},
-            ]}
-            renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
-            renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-            keyExtractor={(item, index) => index}
-            />
+                    sections={[
+                        {title: '', data: [require('./trashtest.jpg'),
+                        require('./trashtest2.jpg'),
+                        require('./trashtest4.jpg'),]},
+                    ]}
+                    renderItem={({item}) => <Image style={styles.item} source={item} />}
+                    renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+                    keyExtractor={(item, index) => index}
+                />
             </View>
             
         </View>

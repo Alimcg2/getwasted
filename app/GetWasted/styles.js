@@ -57,7 +57,10 @@ var styles = StyleSheet.create({
         paddingVertical: 20,
         borderTopWidth: 1,
         borderColor: "#CED0CE"
-    }
+    },
+    reduce_pictures_flex_container: {
+        backgroundColor: "red",
+    },
 })
 
 module.exports = styles;
