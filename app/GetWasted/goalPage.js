@@ -19,23 +19,24 @@ const Stacks = StackNavigator({
 export default class goalPage extends Component {
     constructor(props) {
         super(props);
-        this.state = { user: firebase.auth().currentUser, /* gets current user */
-                        userName : "",
-                        profileImg : "",
-                        goalTitles : [],
-                        goalBeginDates : [],
-                        goalEndDates : [],
-                        goalStatus: []};   
+        this.state = {
+            userName : "",
+            profileImg : "",
+            goalTitles : [],
+            goalBeginDates : [],
+            goalEndDates : [],
+            goalStatus: []
+        };   
     }
 
     componentWillMount() {
-        this.setState({userName: this.state.user.displayName })
-        this.imageRef = firebase.database().ref().child("Users/" + this.state.user.uid + "/image"); /* gets the image-parent class*/
+        var user = firebase.auth().currentUser;
+        this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
         this.imageRef.on("value", function(snapshot) {
             this.setState({profileImg: snapshot.val()});
         }.bind(this)); /* actual image-info */
         
-        this.goalRef = firebase.database().ref().child("Users/" + this.state.user.uid + "/goals");
+        this.goalRef = firebase.database().ref().child("Users/" + user.uid + "/goals");
         this.goalRef.on("value", function(snapshot) {
             this.setState({goals: snapshot.val()});
             var titles = []
@@ -51,6 +52,7 @@ export default class goalPage extends Component {
                 keys.push(data.key);
             }.bind(this));
             this.setState({
+                userName : user.displayName,
                 goalTitles : titles,
                 goalBeginDates : beginDates,
                 goalEndDates : endDates,
@@ -98,7 +100,6 @@ export default class goalPage extends Component {
                 function() {
                     var index = titles.indexOf(item);
                     var key = keys[index];
-                    console.log(index);
                     navigate('editGoal', { index, item, key });
                 }
             }/>
