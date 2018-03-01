@@ -70,6 +70,25 @@ export default class signUp extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // componentWillMount() {
+    //     this.unregister = firebase.auth().onAuthStateChanged(user => {
+    //         if(user) {
+    //             console.log('Logged in as', user.email);
+    //             this.props.navigation.navigate('reduce', {});
+    //         }
+    //         else{
+    //             console.log('Logged out');
+    //         }
+    //     });
+    // }
+
+    // componentWillUnmount() {
+    //     console.log('in will unmount');
+    //     if(this.unregister) {
+    //         this.unregister();
+    //     }
+    // }
+
     // when the user presses submit this method will be called
     handleSubmit() {
         const value = this._form.getValue();
@@ -112,7 +131,7 @@ export default class signUp extends Component {
                 <Button style={styles.submit} title="Sign Up!" onPress={
                     function() {
                         handleSubmit();
-                        navigate('reduce', {});
+                        {/* navigate('reduce', {}); */}
                     }
                 }/>
 

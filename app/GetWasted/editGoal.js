@@ -75,7 +75,7 @@ export default class editGoal extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            user : firebase.auth().currentUser, /* gets current user */
+            user : "", 
             goalID : this.props.navigation.state.params.key,
             goals : {},
             initialValue: {}
@@ -84,10 +84,12 @@ export default class editGoal extends Component {
     }
 
     componentWillMount() {
-        this.goalRef = firebase.database().ref().child("Users/" + this.state.user.uid + "/goals/" + this.state.goalID);
+        var user = firebase.auth().currentUser;
+        this.goalRef = firebase.database().ref().child("Users/" + user.uid + "/goals/" + this.state.goalID);
         this.goalRef.on("value", function(snapshot) {
             this.setState(
                 { 
+                    user: user,
                     goals: snapshot.val(),
                     initialValue : {
                         goalText: this.props.navigation.state.params.item,

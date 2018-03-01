@@ -12,9 +12,6 @@ import {
     Text,
     View
 } from 'react-native';
-// var Landing  = require('./landing'); <- KENZIES LANDING PAGE
-// var SignUp  = require('./signUp');
-// var HomePage = require('./homePage');
 
 
 import signUp from './signUp';

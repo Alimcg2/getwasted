@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Text, Image } from 'react-native';
+import { SectionList, View, StyleSheet, Button, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import app from './app';
 
@@ -30,30 +30,21 @@ export default class trashy extends Component {
                     }
                 }/>
 
-                <View style={styles.bigboytrash} >
-                    <View style={styles.trash_flex_container} >
+                <View style={styles.trash_flex_container} >
                     <Text style={styles.header2}>Today's Pictures</Text>
                         <View style ={styles.reduce_pictures_flex_container} >
-                            <View style={styles.square} />
-
-                            <View style={styles.square} />
-
-                            <View style={styles.square} />
-                        </View> 
-                    </View>
-
-                    <View style={styles.trash_flex_container} >
-                        <Text style={styles.header2}>Older Trashy Pictures</Text>
-                            <View style ={styles.reduce_pictures_flex_container} >
-                                <View style={styles.square} />
-
-                                <View style={styles.square} />
-
-                                <View style={styles.square} />
-                            </View> 
-                    </View>
-                    
-                </View>
+                            <SectionList
+                                sections={[
+                                    {title: '', data: [require('./trashtest.jpg'),
+                                    require('./trashtest2.jpg'),
+                                    require('./trashtest4.jpg'),]},
+                                ]}
+                                renderItem={({item}) => <Image style={styles.item} source={item} />}
+                                renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+                                keyExtractor={(item, index) => index}
+                            />
+                        </View>
+                </View> 
             </View>
         );
     }

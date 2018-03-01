@@ -26,17 +26,17 @@ export default class goalPage extends Component {
                         userName : "",
                         profileImg : "",
                        goalTitles : [],
-                     }
+
     }
 
     componentWillMount() {
-        this.setState({userName: this.state.user.displayName })
-        this.imageRef = firebase.database().ref().child("Users/" + this.state.user.uid + "/image"); /* gets the image-parent class*/
+        var user = firebase.auth().currentUser;
+        this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
         this.imageRef.on("value", function(snapshot) {
             this.setState({profileImg: snapshot.val()});
         }.bind(this)); /* actual image-info */
         
-        this.goalRef = firebase.database().ref().child("Users/" + this.state.user.uid + "/goals");
+        this.goalRef = firebase.database().ref().child("Users/" + user.uid + "/goals");
         this.goalRef.on("value", function(snapshot) {
             this.setState({goals: snapshot.val()});
             var titles = []
@@ -46,6 +46,7 @@ export default class goalPage extends Component {
                 keys.push(data.key);
             }.bind(this));
             this.setState({
+                userName : user.displayName,
                 goalTitles : titles,
                 goalKeys: keys
             });

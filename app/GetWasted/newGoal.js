@@ -68,11 +68,17 @@ const options = {
 export default class newGoal extends Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.state = { 
-            user : firebase.auth().currentUser /* gets current user */
+            user : ""
         };   
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentWillMount() {
+        this.setState({ 
+            user : firebase.auth().currentUser /* gets current user */
+        });  
     }
 
     componentWillUnmount() {

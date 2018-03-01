@@ -69,6 +69,27 @@ export default class signIn extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    // componentWillMount() {
+    //     this.unregister = firebase.auth().onAuthStateChanged(user => {
+    //         if(user) {
+    //             console.log('Logged in as', user.email);
+    //             this.props.navigation.navigate('reduce', {});
+    //         }
+    //         else{
+    //             console.log('Logged out');
+    //         }
+    //     });
+    // }
+
+    // componentWillUnmount() {
+    //     console.log('in will unmount');
+    //     if(this.unregister) {
+    //         console.log('unregistered');
+    //         this.unregister();
+    //     }
+    // }
+
     // when the user presses submit this method will be called
     handleSubmit = () => {
         const value = this._form.getValue();
@@ -83,7 +104,8 @@ export default class signIn extends Component {
             var userName = currentUser.displayName;
             console.log(userName);
 
-            // TODO: LOGIN AND GO TO HOME PAGE
+            // go to home page
+            // navigate('reduce', {});
         }).catch((error) => {
             const { code, message } = error;
             console.log(error); // logging things for now, take out eventually
@@ -113,7 +135,6 @@ export default class signIn extends Component {
             onPress={
                 function() {
                     handleSubmit();
-                    navigate('reduce', {});
                 }
             }/>
                 
@@ -123,7 +144,7 @@ export default class signIn extends Component {
             onPress={
                 function() {
                     handleSubmit();
-                    navigate('goalPage', {});
+                    {/* navigate('goalPage', {}); */}
                 }
             }/>
 
