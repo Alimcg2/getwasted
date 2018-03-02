@@ -26,7 +26,7 @@ export default class goalPage extends Component {
                         userName : "",
                         profileImg : "",
                        goalTitles : [],
-
+        }
     }
 
     componentWillMount() {

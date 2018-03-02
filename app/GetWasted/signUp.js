@@ -70,29 +70,17 @@ export default class signUp extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // componentWillMount() {
-    //     this.unregister = firebase.auth().onAuthStateChanged(user => {
-    //         if(user) {
-    //             console.log('Logged in as', user.email);
-    //             this.props.navigation.navigate('reduce', {});
-    //         }
-    //         else{
-    //             console.log('Logged out');
-    //         }
-    //     });
-    // }
-
-    // componentWillUnmount() {
-    //     console.log('in will unmount');
-    //     if(this.unregister) {
-    //         this.unregister();
-    //     }
-    // }
-
     // when the user presses submit this method will be called
     handleSubmit() {
         const value = this._form.getValue();
         console.log('value: ', value); // logging things for now, take out eventually
+
+        var icons =  ["https://i.imgur.com/7s2GF1V.png", "https://i.imgur.com/XhzyWSJ.png", "https://i.imgur.com/BY7bO14.png",
+        "https://i.imgur.com/4LzOgUA.png", "https://i.imgur.com/WZL9bLR.png", "https://i.imgur.com/i5BxS8Y.png", 
+        "https://i.imgur.com/DM8mrbL.png", "https://i.imgur.com/QIyPJao.png", "https://i.imgur.com/IHn8jpD.png", 
+        "https://i.imgur.com/VmJGyCx.png", "https://i.imgur.com/VHeY1S1.png", "https://i.imgur.com/QZAey0v.png", 
+        "https://i.imgur.com/3q4MJ9d.png"
+        ];
 
         firebase.auth().createUserWithEmailAndPassword(value["email"], value["password"])
             .then((user) => {
@@ -106,9 +94,12 @@ export default class signUp extends Component {
                 
                 console.log("got here");
                  // this pushes their name to the database with their uid
+                var iconImg = icons[Math.floor(Math.random() * icons.length)];
+                console.log(iconImg);
                 firebase.database().ref("Users").child(currentUser.uid).set({
-                                                              name: value["username"]
-                                                          });
+                    name: value["username"],
+                    image: iconImg
+                });
                 // TODO: LOGIN AND GO TO HOME PAGE
                 return profilePromise;
             })
