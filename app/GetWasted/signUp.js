@@ -6,8 +6,9 @@ TODO:
 */
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
+import Button from 'react-native-button';
 import reduce from './reduce';
 import {
   StackNavigator,
@@ -32,17 +33,22 @@ const formStyles = {
     ...Form.stylesheet,
     formGroup: {
         normal: {
-            marginLeft: 20,
-            marginRight: 20,
             marginBottom: 10,
+        },
+    },
+    textbox: {
+        normal: {
+            backgroundColor: 'white',
+            padding: 10,
+            fontSize: 20,
         },
     },
     controlLabel: {
         normal: {
             color: 'black',
-            fontSize: 18,
+            fontSize: 25,
             marginBottom: 7,
-            fontWeight: '600',
+            fontWeight: '400',
         },
         // the style applied when a validation error occours
         error: {
@@ -58,7 +64,7 @@ const formStyles = {
 const options = {
     fields: {
         email: {},
-        password: {}
+        password: {type: 'password'}
     },
     stylesheet: formStyles,
 };
@@ -122,18 +128,29 @@ export default class signUp extends Component {
     render() {
         const handleSubmit = this.handleSubmit;
         const { navigate }  = this.props.navigation;
+        const img = "https://i.pinimg.com/564x/b2/c0/bd/b2c0bd37b5c5b731cd5fd8fa96dc0d33.jpg"
         return (
 
-           <View style={styles.container}>
-                          <Text style={styles.welcome}>Get Wasted</Text>
+           <View style={styles.container_main}>
+                <Image
+            style={{
+                position: 'absolute',
+                flex: 1,
+                width: 500,
+                height: "100%",
+                marginLeft: 0,
+            }}
+            source={{ uri: img }}
+                />
+                          <Text style={styles.header_main}>GET WASTED</Text>
             
                           <Form ref={c => this._form = c} type={User} options={options} />
-                <Button style={styles.submit} title="Sign Up!" onPress={
+                <Button style={styles.button}  onPress={
                     function() {
                         handleSubmit();
                         {/* navigate('reduce', {}); */}
                     }
-                }/>
+                }>Sign Up</Button>
 
             </View>
                 

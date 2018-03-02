@@ -6,8 +6,9 @@ TODO:
 */
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
+import Button from 'react-native-button';
 import reduce from './reduce';
 import {
   StackNavigator,
@@ -22,7 +23,8 @@ const Form = t.form.Form;
 const User = t.struct({
     goalText: t.String,
     beginDate: t.Date,
-    endDate: t.Date
+    endDate: t.Date,
+    goalNotes: t.String,
 });
 
 
@@ -32,17 +34,25 @@ const formStyles = {
     ...Form.stylesheet,
     formGroup: {
         normal: {
-            marginLeft: 20,
-            marginRight: 20,
             marginBottom: 10,
+        },
+    },
+    textbox: {
+        normal: {
+            backgroundColor: 'white',
+            padding: 10,
+            fontSize: 20,
+            borderColor: "#ccc",
+            borderWidth: 1,
+            borderRadius: 3,
         },
     },
     controlLabel: {
         normal: {
             color: 'black',
-            fontSize: 18,
+            fontSize: 25,
             marginBottom: 7,
-            fontWeight: '600',
+            fontWeight: '400',
         },
         // the style applied when a validation error occours
         error: {
@@ -59,7 +69,8 @@ const options = {
     fields: {
         goalText: {},
         beginDate: {},
-        endDate: {}
+        endDate: {},
+        goalNotes: {type: 'textarea'}
     },
     stylesheet: formStyles,
 };
@@ -95,6 +106,7 @@ export default class newGoal extends Component {
             beginDate : formValue['beginDate'].toString(),
             endDate : formValue['endDate'].toString(), 
             goalText:  formValue['goalText'],
+            goalNotes:  formValue['goalNotes'],
             otherUsers: '',
             status: 'Current'
         };
@@ -106,16 +118,16 @@ export default class newGoal extends Component {
         const { navigate }  = this.props.navigation;
         return (
 
-           <View style={styles.container}>
-                          <Text style={styles.welcome}>Create New Goal</Text>
+           <View style={styles.container_main}>
+                          <Text style={styles.header}>NEW GOAL</Text>
             
                           <Form ref={c => this._form = c} type={User} options={options}/>
-                <Button style={styles.submit} title="Create" onPress={
+                <Button style={styles.button} title="Create" onPress={
                     function() {
                         handleSubmit();
                         //navigate('reduce', {});
                     }
-                }/>
+                }>Create</Button>
 
             </View>
                 

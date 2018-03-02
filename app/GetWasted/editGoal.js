@@ -6,8 +6,9 @@ TODO:
 */
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
+import Button from 'react-native-button';
 import reduce from './reduce';
 
 import {
@@ -28,6 +29,7 @@ const User = t.struct({
     goalText: t.String,
     beginDate: t.Date,
     endDate: t.Date,
+    goalNotes: t.String,
     status: Status,
 });
 
@@ -38,17 +40,25 @@ const formStyles = {
     ...Form.stylesheet,
     formGroup: {
         normal: {
-            marginLeft: 20,
-            marginRight: 20,
             marginBottom: 10,
+        },
+    },
+    textbox: {
+        normal: {
+            backgroundColor: 'white',
+            padding: 10,
+            fontSize: 20,
+            borderColor: "#ccc",
+            borderWidth: 1,
+            borderRadius: 3,
         },
     },
     controlLabel: {
         normal: {
             color: 'black',
-            fontSize: 18,
+            fontSize: 25,
             marginBottom: 7,
-            fontWeight: '600',
+            fontWeight: '400',
         },
         // the style applied when a validation error occours
         error: {
@@ -65,7 +75,8 @@ const options = {
     fields: {
         goalText: {},
         beginDate: {},
-        endDate: {}
+        endDate: {},
+        goalNotes: {type: 'textarea'}
     },
     stylesheet: formStyles,
 };
@@ -92,9 +103,10 @@ export default class editGoal extends Component {
                     user: user,
                     goals: snapshot.val(),
                     initialValue : {
-                        goalText: this.props.navigation.state.params.item,
+                        goalText: snapshot.val()['goalText'],
                         beginDate: new Date(snapshot.val()['beginDate']),
                         endDate: new Date(snapshot.val()['endDate']),
+                        goalNotes: snapshot.val()['goalNotes'],
                         status: snapshot.val()['status'],
                     }
                 }
@@ -117,6 +129,7 @@ export default class editGoal extends Component {
             beginDate : formValue['beginDate'],
             endDate : formValue['endDate'], 
             goalText:  formValue['goalText'],
+            goalNotes:  formValue['goalNotes'],
             otherUsers: this.state.goals.otherUsers,
             status: formValue['status']
         };
@@ -128,16 +141,16 @@ export default class editGoal extends Component {
         const { navigate }  = this.props.navigation;
         return (
 
-           <View style={styles.container}>
-                <Text style={styles.welcome}>Edit Goal</Text>
+           <View style={styles.container_main}>
+                <Text style={styles.header}>EDIT GOAL</Text>
             
                 <Form ref={c => this._form = c} type={User} options={options} value={this.state.initialValue}/>
-                <Button style={styles.submit} title="Update" onPress={
+                <Button style={styles.button} onPress={
                     function() {
                         handleSubmit();
                         //navigate('reduce', {});
                     }
-                }/>
+                }>Update</Button>
 
        
 

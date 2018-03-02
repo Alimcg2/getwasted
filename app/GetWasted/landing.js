@@ -6,11 +6,12 @@ TODO:
 */
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Text, Image} from 'react-native';
+import { View, StyleSheet, Text, Image} from 'react-native';
 
 import signUp from './signUp';
 import signIn from './signIn';
 import goalPage from './goalPage';
+import Button from 'react-native-button';
 
 import {
   StackNavigator,
@@ -68,30 +69,37 @@ export default class landing extends Component {
         const gp = this.goalPage;
         const ts = this.trashy;
         const { navigate }  = this.props.navigation;
-        const resizeMode = 'center';
+        const img = "https://i.pinimg.com/564x/b2/c0/bd/b2c0bd37b5c5b731cd5fd8fa96dc0d33.jpg"
 
         return (
 
-                <View style={styles.container}>
-              
+                <View style={styles.container_main}>
                 
-                <Text style={styles.welcome}>Welcome to Get Wasted</Text>
+                <Image
+            style={{
+                position: 'absolute',
+                flex: 1,
+                width: 500,
+                height: "100%",
+                marginLeft: 0,
+            }}
+            source={{ uri: img }}
+                />
+                <Text style={styles.header_main}>GET WASTED</Text>
                 
-                <Button style={styles.submit}
-            title="Sign Up!"
+                <Button style={styles.button}
             onPress={
                 function() {
                     navigate('signUp', {});
                 }
-            }/>
+            }>Sign Up</Button>
 
-                <Button style={styles.submit}
-            title="Login!"
+                <Button style={styles.button}
             onPress={
                 function() {
                     navigate('signIn', {});
                 }
-            }/>
+            }>Login</Button>
 
                 </View>
                 

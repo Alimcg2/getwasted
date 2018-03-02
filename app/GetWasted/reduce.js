@@ -1,14 +1,15 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { Image, View, StyleSheet, Button, Text, FlatList, ListView, ListItem, ScrollView, SectionList } from 'react-native';
+import { Image, View, StyleSheet, Text, FlatList, ListView, ListItem, ScrollView, SectionList } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import app from './app';
 import trashy from './trashy';
 import goalPage from './goalPage';
 import flatListdata from './reduce_fake_picture';
+import Button from 'react-native-button';
 
 import {
-  StackNavigator,
+    StackNavigator,
 } from 'react-navigation';
 
 const styles = require('./styles.js');
@@ -16,7 +17,7 @@ const styles = require('./styles.js');
 const Stacks = StackNavigator({
     trashy: { screen: trashy },
     goalPage: { screen: goalPage },
-  
+    
 });
 
 export default class reduce extends Component {
@@ -54,11 +55,11 @@ export default class reduce extends Component {
                 status.push(data.val()["goalStatus"]);
             }.bind(this));
             this.setState({ userName: user.displayName,
-                goalTitles : titles,
-                goalBeginDates : beginDates,
-                goalEndDates : endDates,
-                goalStatus : status
-            });
+                            goalTitles : titles,
+                            goalBeginDates : beginDates,
+                            goalEndDates : endDates,
+                            goalStatus : status
+                          });
         }.bind(this));
     }
 
@@ -94,53 +95,52 @@ export default class reduce extends Component {
         //var testing2 = testing["goalText"];
 
         return (
-            <View style={styles.container_reduce}>
-
-                <Text style={styles.welcome}>Reduce</Text>
+            
+            <View style={styles.container_main}>
                 
-                <Image style={styles.image} source={{url}} />
+                <View>
+                    <Image style={styles.image} source={{url}} />
+                    <Text style={styles.header}>REDUCE</Text>
+                </View>
+                <ScrollView style={styles.reduce_button_container}>
+                    <Button style={styles.button}
+            onPress={
+                function() {
+                    navigate('trashy', {});
+                }
+            }>Trashy Pics</Button>
 
-                <Button style={styles.submit}
-                    title="Sign out"
-                    onPress={this.handleSignOut}
-                />
+                    <Button style={styles.button}
+            onPress={
+                function() {
+                    navigate('goalPage', {});
+                }
+            }>Goals</Button>
 
-                <Text style={styles.header2}>{display}</Text>
-
-            <View style={styles.reduce_button_flex_container}>
-                <Button style={styles.submit}
-                title="Trashy Pics ;-)"
-                onPress={
-                    function() {
-                        navigate('trashy', {});
-                    }
-                }/>
-
-                <Button style={styles.submit}
-                title="Goals"
-                onPress={
-                    function() {
-                        navigate('goalPage', {});
-                    }
-                }/>
-            </View>
-
-            <Text style={styles.header2}>Pictures</Text>
             
-            <View style={styles.reduce_test}>
-                <SectionList
-                    sections={[
-                        {title: '', data: [require('./trashtest.jpg'),
-                        require('./trashtest2.jpg'),
-                        require('./trashtest4.jpg'),]},
-                    ]}
-                    renderItem={({item}) => <Image style={styles.item} source={item} />}
-                    renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-                    keyExtractor={(item, index) => index}
+                </ScrollView>
+                
+                <View style={styles.reduce_test}>
+                <SectionList style={styles.image_container}
+            sections={[
+                {title: '', data: [require('./trashtest.jpg'),
+                                   require('./trashtest2.jpg'),
+                                   require('./trashtest4.jpg'),]},
+            ]}
+            renderItem={({item}) => <Image style={styles.trashyPic} source={item} />}
+            renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+            keyExtractor={(item, index) => index}
                 />
+                </View>
+                
+                <View>
+                <Button
+            style={styles.signOut}
+            title="Sign out"
+            onPress={this.handleSignOut}
+                >Sign Out</Button>
+                </View>
             </View>
-            
-        </View>
         );
     }
 }

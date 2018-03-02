@@ -1,7 +1,8 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, SectionList, Button, Text, Image } from 'react-native';
+import { View, StyleSheet, SectionList, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
+import Button from 'react-native-button';
 import {
     StackNavigator,
 } from 'react-navigation';
@@ -26,6 +27,7 @@ export default class goalPage extends Component {
                         userName : "",
                         profileImg : "",
                        goalTitles : [],
+                     };
 
     }
 
@@ -76,34 +78,34 @@ export default class goalPage extends Component {
         ];
         const { navigate }  = this.props.navigation;
         return (
-                <View style={styles.container}>
+                <View style={styles.container_main}>
                 <Image
-            style={{width: 80, height: 80}}
+            style={styles.image}
             source={{uri: url}}
                 />
-                <Text style={styles.welcome}>Goals</Text>
+                <Text style={styles.header}>GOALS</Text>
                 
                  <SectionList
             sections={sectionItems}
-            renderItem={({item}) => <Button style={styles.item} title={item} onPress={
+            renderItem={({item}) => <Button style={styles.button}  onPress={
                 function() {
                     var index = titles.indexOf(item);
                     var key = keys[index];
                     console.log(index);
                     navigate('goalSummary', { index, item, key });
                 }
-            }/>
+            }>{item}</Button>
                         
                        }
             renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
             keyExtractor={(item, index) => index}
                 /> 
                 
-                <Button style={styles.submit} title="New Goal" onPress={
+                <Button style={styles.button_bottom} title="New Goal" onPress={
                     function() {
                         navigate('newGoal', {});
                     }
-                }/>
+                }>Create New Goal</Button>
             
             </View>
 

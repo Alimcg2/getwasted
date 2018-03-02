@@ -1,7 +1,9 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, SectionList, Button, Text, Image } from 'react-native';
+import { View, StyleSheet, SectionList, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
+import Moment from 'react-moment';
+import Button from 'react-native-button';
 import {
     StackNavigator,
 } from 'react-navigation';
@@ -31,7 +33,8 @@ export default class goalSummary extends Component {
             goalText: this.props.navigation.state.params.item,
             goalBeginDate : "",
             goalEndDate : [],
-            goalStatus: []
+            goalStatus: [],
+            goalNotes: []
         };   
         
     }
@@ -48,11 +51,13 @@ export default class goalSummary extends Component {
         this.goalRef.on("value", function(snapshot) {
             this.setState(
                 { 
-                    beginDate: new Date(snapshot.val()['beginDate']),
-                    endDate: new Date(snapshot.val()['endDate']),
-                    status: snapshot.val()['status'],
+                    goalBeginDate: new Date(snapshot.val()['beginDate']),
+                    goalEndDate: new Date(snapshot.val()['endDate']),
+                    goalStatus: snapshot.val()['status'],
+                    goalNotes: snapshot.val()['goalNotes'],
                 }
             );
+            console.log(this.state)
         }.bind(this));
     }
 
@@ -77,20 +82,22 @@ export default class goalSummary extends Component {
         var endDate = this.state.goalEndDate;
         var status = this.state.goalStatus;
         var key = this.state.goalID;
+        var goalNotes = this.state.goalNotes;
         return (
 
-                <View style={styles.container}>
-                <Text style={styles.welcome}>{title}</Text>
-                <Text style={styles.welcome}>{status}</Text>
-                
-                <Text style={styles.welcome}>{beginDate}</Text>
-                <Text style={styles.welcome}>{endDate}</Text>
-                
-                <Button style={styles.submit} title="Edit" onPress={
+                <View style={styles.container_main}>
+                <Text style={styles.header}>{title.toUpperCase()}</Text>
+                <Text style={styles.status}>{status}</Text>
+                <Text style={styles.main_text}>{goalNotes}</Text>
+                <Text style={styles.header2}>Start Date</Text>
+                <Moment element={Text} style={styles.date}>{beginDate}</Moment>
+                <Text style={styles.header2}>End Date</Text>
+                <Moment element={Text} style={styles.date}>{endDate}</Moment>
+                <Button style={styles.button}  onPress={
                     function() {
                         navigate('editGoal', {title, key});
                     }
-                }/>
+                }>Edit Goal</Button>
 
             
 
