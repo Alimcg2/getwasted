@@ -12,6 +12,7 @@ import app from './app';
 import goalPage from './goalPage';
 import editGoal from './editGoal';
 import newGoal from './newGoal';
+// import newReminder from './newReminder';
 
 const styles = require('./styles.js');
 
@@ -92,6 +93,11 @@ export default class goalSummary extends Component {
                     }
                 }>Edit Goal</Button>
 
+                 <Button style={styles.button}  onPress={
+                    function() {
+                        navigate('newReminder', {key});
+                    }
+                }>New Reminder</Button>
             
 
             </View>
