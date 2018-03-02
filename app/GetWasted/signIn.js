@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
-import {
-  StackNavigator,
-} from 'react-navigation';
 import goalPage from './goalPage'; 
 import reduce from './reduce';
 
+import {
+  StackNavigator,
+} from 'react-navigation';
 const styles = require('./styles.js');
 
 // creates the form
@@ -62,11 +62,6 @@ const options = {
     },
     stylesheet: formStyles,
 };
-
-const Stacks = StackNavigator({
-    goalPage: { screen: goalPage }, 
-    reduce: { screen: reduce }, 
-});
 
 
 

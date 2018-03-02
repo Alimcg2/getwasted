@@ -2,11 +2,12 @@ import * as firebase from 'firebase';
 import React, { Component } from 'react';
 import { Image, View, StyleSheet, Text, FlatList, ListView, ListItem, ScrollView, SectionList } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
+import flatListdata from './reduce_fake_picture';
+import Button from 'react-native-button';
 import app from './app';
 import trashy from './trashy';
 import goalPage from './goalPage';
-import flatListdata from './reduce_fake_picture';
-import Button from 'react-native-button';
+import cameraTest from './cameraTest';
 
 import {
     StackNavigator,
@@ -14,11 +15,6 @@ import {
 
 const styles = require('./styles.js');
 
-const Stacks = StackNavigator({
-    trashy: { screen: trashy },
-    goalPage: { screen: goalPage },
-    
-});
 
 export default class reduce extends Component {
     constructor(props) {

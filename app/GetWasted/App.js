@@ -23,6 +23,7 @@ import trashy from './trashy';
 import editGoal from './editGoal'; 
 import newGoal from './newGoal'; 
 import goalSummary from './goalSummary'; 
+import cameraTest from './cameraTest'; 
 const styles = require('./styles.js');
 
 // Initialize Firebase
@@ -48,6 +49,7 @@ const Stacks = StackNavigator({
     editGoal: { screen: editGoal },
     newGoal: { screen: newGoal }, 
     goalSummary: { screen: goalSummary }, 
+    cameraTest: { screen: cameraTest }, 
 });
 
 

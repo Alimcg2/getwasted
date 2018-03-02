@@ -11,6 +11,7 @@ import { View, StyleSheet, Text, Image} from 'react-native';
 import signUp from './signUp';
 import signIn from './signIn';
 import goalPage from './goalPage';
+import cameraTest from './cameraTest';
 import Button from 'react-native-button';
 
 import {
@@ -21,11 +22,6 @@ import {
 const styles = require('./styles.js');
 
 
-const Stacks = StackNavigator({
-    signUp: { screen: signUp },
-    signIn: { screen: signIn },
-    goalPage: { screen: goalPage },
-});
 
 /*
 export default class landing extends Component { 
@@ -67,7 +63,7 @@ export default class landing extends Component {
         const sup = this.signUp;
         const sin = this.signIn;
         const gp = this.goalPage;
-        const ts = this.trashy;
+        const ct = this.cameraTest;
         const { navigate }  = this.props.navigation;
         const img = "https://i.pinimg.com/564x/b2/c0/bd/b2c0bd37b5c5b731cd5fd8fa96dc0d33.jpg"
 
@@ -100,8 +96,7 @@ export default class landing extends Component {
                     navigate('signIn', {});
                 }
             }>Login</Button>
-
-                </View>
+                                </View>
                 
         );
     }
