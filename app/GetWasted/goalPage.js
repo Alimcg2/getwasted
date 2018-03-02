@@ -13,13 +13,6 @@ import newGoal from './newGoal';
 import goalSummary from './goalSummary';
 const styles = require('./styles.js');
 
-const Stacks = StackNavigator({
-    newGoal: { screen: newGoal }, 
-    editGoal: { screen: editGoal }, 
-    goalSummary: { screen: goalSummary }, 
-});
-
-
 export default class goalPage extends Component {
     constructor(props) {
         super(props);

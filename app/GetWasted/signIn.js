@@ -76,6 +76,7 @@ export default class signIn extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    
     // componentWillMount() {
     //     this.unregister = firebase.auth().onAuthStateChanged(user => {
     //         if(user) {
@@ -154,7 +155,6 @@ export default class signIn extends Component {
                     handleSubmit();
                 }
             }>Sign In</Button>
-                
 
             </View>
 

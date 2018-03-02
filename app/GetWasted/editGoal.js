@@ -11,6 +11,11 @@ import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import reduce from './reduce';
 
+import app from './app';
+import goalPage from './goalPage';
+import newGoal from './newGoal';
+import goalSummary from './goalSummary';
+
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -123,6 +128,8 @@ export default class editGoal extends Component {
     // when the user presses submit this method will be called
     handleSubmit() {
         const formValue = this._form.getValue();
+        const gs = this.goalSummary; 
+        const rd = this.reduce; 
 
         var updates = {};
         updates["Users/" + this.state.user.uid + "/goals/" + this.state.goalID] = { 
@@ -141,18 +148,17 @@ export default class editGoal extends Component {
         const { navigate }  = this.props.navigation;
         return (
 
-           <View style={styles.container_main}>
+                <View style={styles.container_main}>
                 <Text style={styles.header}>EDIT GOAL</Text>
-            
+                
                 <Form ref={c => this._form = c} type={User} options={options} value={this.state.initialValue}/>
                 <Button style={styles.button} onPress={
                     function() {
                         handleSubmit();
-                        //navigate('reduce', {});
                     }
                 }>Update</Button>
 
-       
+            
 
             </View>
                 

@@ -9,18 +9,11 @@ import {
 } from 'react-navigation';
 
 import app from './app';
-//import goalPage from './goalPage';
+import goalPage from './goalPage';
 import editGoal from './editGoal';
 import newGoal from './newGoal';
 
 const styles = require('./styles.js');
-
-const Stacks = StackNavigator({
-    //    goalPage: { screen: goalPage },
-    newGoal: { screen: newGoal },
-    editGoal: { screen: editGoal },
-});
-
 
 export default class goalSummary extends Component {
     constructor(props) {

@@ -1,7 +1,8 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { SectionList, View, StyleSheet, Button, Text, Image } from 'react-native';
+import { SectionList, View, StyleSheet, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
+import Button from 'react-native-button';
 import app from './app';
 
 import {
@@ -18,20 +19,19 @@ export default class trashy extends Component {
     render() {
 
         return (
-            <View style={styles.container}>
+            <View style={styles.container_main}>
                           
-                <Text style={styles.welcome}>Trash Diary</Text>
+                <Text style={styles.header}>TRASH DIARY</Text>
                 
-                <Button style={styles.submit}
-                title="New trashy pic"
+                <Button style={styles.button}
                 onPress={
                     function() {
-                        handlesubmit();
+                        //handlesubmit();
                     }
-                }/>
+                }>New Pic</Button>
 
                 <View style={styles.trash_flex_container} >
-                    <Text style={styles.header2}>Today's Pictures</Text>
+                <Text style={styles.header2}>{"Today's Pictures"}</Text>
                         <View style ={styles.reduce_pictures_flex_container} >
                             <SectionList
                                 sections={[

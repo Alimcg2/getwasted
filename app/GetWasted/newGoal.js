@@ -10,6 +10,11 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import reduce from './reduce';
+import app from './app';
+
+import goalPage from './goalPage';
+import editGoal from './editGoal';
+import goalSummary from './goalSummary';
 import {
   StackNavigator,
 } from 'react-navigation';
