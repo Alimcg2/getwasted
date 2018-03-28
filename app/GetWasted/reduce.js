@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Image, View, StyleSheet, Text, FlatList, ListView, ListItem, ScrollView, SectionList } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import flatListdata from './reduce_fake_picture';
+
 import Button from 'react-native-button';
 import app from './app';
 import trashy from './trashy';
@@ -19,7 +20,8 @@ const styles = require('./styles.js');
 export default class reduce extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
+            getMenu : false,
             userName : "",
             profileImg : "",
             goalTitles : [],
@@ -79,6 +81,7 @@ export default class reduce extends Component {
         const ts = this.trashy; 
         const gp = this.goalPage;
         
+        
         const { navigate }  = this.props.navigation;
         const resizeMode = 'center';
 
@@ -91,14 +94,33 @@ export default class reduce extends Component {
         //var testing2 = testing["goalText"];
 
         return (
-            
             <View style={styles.container_main}>
                 
+                <View style={[styles.menu, this.state.getMenu && styles.menu_active]}>
+                
+                <Button style={[styles.menu_item]}
+            onPress={
+                function() {
+                    this.setState({getMenu : false});
+                }.bind(this)
+            }>Reduce</Button>
+                
+                
+                <Button style={styles.menu_item} title="Sign out"
+                      onPress={this.handleSignOut} >Sign Out</Button>
+                </View>
+
+            
                 <View>
-                    <Image style={styles.image} source={{url}} />
+                <Button onPress={
+                function() {
+                    this.setState({getMenu : true});
+                }.bind(this)}>
+                <Image style={styles.image} source={{url}} />
+                </Button>
                     <Text style={styles.header}>REDUCE</Text>
                 </View>
-                <ScrollView style={styles.reduce_button_container}>
+                    <ScrollView style={styles.reduce_button_container}>
                     <Button style={styles.button}
             onPress={
                 function() {
@@ -117,7 +139,7 @@ export default class reduce extends Component {
                 </ScrollView>
                 
                 <View style={styles.reduce_test}>
-                <SectionList style={styles.image_container}
+                     <SectionList style={styles.image_container}
             sections={[
                 {title: '', data: [require('./trashtest.jpg'),
                                    require('./trashtest2.jpg'),
@@ -130,11 +152,6 @@ export default class reduce extends Component {
                 </View>
                 
                 <View>
-                <Button
-            style={styles.signOut}
-            title="Sign out"
-            onPress={this.handleSignOut}
-                >Sign Out</Button>
                 </View>
             </View>
         );

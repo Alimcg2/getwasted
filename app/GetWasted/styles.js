@@ -87,10 +87,6 @@ var styles = StyleSheet.create({
     },
     signOut: {
         color: "red",
-        fontSize: 20,
-        padding: 20,
-        paddingLeft: 0,
-        alignSelf: 'flex-start', 
     },
     button: {
         color: "black",
@@ -119,6 +115,25 @@ var styles = StyleSheet.create({
         fontWeight: "300",
         textAlign: "left",
         fontStyle: "italic",
+    },
+    menu: {
+        backgroundColor: "white",
+        width: "50%",
+        height: "100%",
+        position: "absolute",
+        zIndex: 1,
+        display: "none",
+        paddingTop: 20,
+    },
+    menu_item: {
+        fontSize: 20,
+        paddingTop: 20,
+        paddingLeft: 20,
+        alignSelf: 'flex-start',
+        color: "black",
+    },
+    menu_active: {
+        display: "flex",
     },
 })
 
