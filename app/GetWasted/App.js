@@ -25,6 +25,7 @@ import newGoal from './newGoal';
 import goalSummary from './goalSummary'; 
 import cameraTest from './cameraTest'; 
 import newReminder from './newReminder';
+import read from './read';
 const styles = require('./styles.js');
 
 // Initialize Firebase
@@ -51,7 +52,9 @@ const Stacks = StackNavigator({
     newGoal: { screen: newGoal }, 
     goalSummary: { screen: goalSummary }, 
     cameraTest: { screen: cameraTest }, 
-    newReminder: { screen: newReminder }
+    newReminder: { screen: newReminder },
+    read: { screen: read }
+
 });
 
 

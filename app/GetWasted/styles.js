@@ -135,6 +135,19 @@ var styles = StyleSheet.create({
     menu_active: {
         display: "flex",
     },
+    list_container: {
+        width: 250,
+        paddingTop: 30,
+    },
+    subtitle: {
+        fontSize: 20,
+    },
+    subtitle2: {
+        fontSize: 18,
+        fontWeight: "300",
+        textAlign: "left",
+        fontStyle: "italic"
+    }
 })
 
 module.exports = styles;

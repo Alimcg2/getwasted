@@ -7,6 +7,7 @@ import flatListdata from './reduce_fake_picture';
 import Button from 'react-native-button';
 import app from './app';
 import trashy from './trashy';
+import read from './read';
 import goalPage from './goalPage';
 import cameraTest from './cameraTest';
 
@@ -80,6 +81,7 @@ export default class reduce extends Component {
     render() {
         const ts = this.trashy; 
         const gp = this.goalPage;
+        const rd = this.read;
         
         
         const { navigate }  = this.props.navigation;
@@ -105,6 +107,12 @@ export default class reduce extends Component {
                 }.bind(this)
             }>Reduce</Button>
                 
+                <Button style={[styles.menu_item]}
+            onPress={
+                function() {
+                    navigate('read', {});
+                }.bind(this)
+            }>Read</Button>
                 
                 <Button style={styles.menu_item} title="Sign out"
                       onPress={this.handleSignOut} >Sign Out</Button>
