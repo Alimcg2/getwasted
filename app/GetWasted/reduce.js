@@ -10,6 +10,7 @@ import trashy from './trashy';
 import read from './read';
 import goalPage from './goalPage';
 import cameraTest from './cameraTest';
+import shop from './shop';
 
 import {
     StackNavigator,
@@ -113,6 +114,13 @@ export default class reduce extends Component {
                     navigate('read', {});
                 }.bind(this)
             }>Read</Button>
+                
+                <Button style={[styles.menu_item]}
+            onPress={
+                function() {
+                    navigate('shop', {});
+                }.bind(this)
+            }>Shop</Button>
                 
                 <Button style={styles.menu_item} title="Sign out"
                       onPress={this.handleSignOut} >Sign Out</Button>
