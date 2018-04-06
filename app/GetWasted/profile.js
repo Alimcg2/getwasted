@@ -8,6 +8,7 @@ import Button from 'react-native-button';
 import app from './app';
 import reduce from './reduce';
 
+
 import {
     StackNavigator,
 } from 'react-navigation';
@@ -80,6 +81,13 @@ export default class read extends Component {
                 <Button style={[styles.menu_item]}
             onPress={
                 function() {
+                    navigate('profile', {});
+                }.bind(this)
+            }>Profile</Button>
+
+                <Button style={[styles.menu_item]}
+            onPress={
+                function() {
                     navigate('reduce', {});
                 }.bind(this)
             }>Reduce</Button>
@@ -89,7 +97,14 @@ export default class read extends Component {
                 function() {
                     this.setState({getMenu : false});
                 }.bind(this)
-            }>Read</Button>                
+            }>Read</Button> 
+
+             <Button style={[styles.menu_item]}
+            onPress={
+                function() {
+                    navigate('shop', {});
+                }.bind(this)
+            }>Shop</Button>               
                 
                 <Button style={styles.menu_item} title="Sign out"
                       onPress={this.handleSignOut} >Sign Out</Button>
@@ -101,6 +116,18 @@ export default class read extends Component {
                 }.bind(this)}>
                 <Image style={styles.image} source={{url}} />
                 </Button>
+
+                <Text style={styles.subtitle2}>{"User Name"}</Text>
+
+                <Text style={styles.subtitle3}>{"Following: 592"}</Text>
+                
+                <Button style={[styles.subtitle3]}>Followers: 489</Button>
+
+                <Text style={styles.subtitle3}>{"Posts: 68"}</Text>
+                
+                <Button style={[styles.button2]}> Settings</Button>
+
+                <Text style={[styles.subtitle3]}>{"Post History"}</Text>
 
                 <FlatList
             data={imgs}
