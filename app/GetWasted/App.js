@@ -59,8 +59,8 @@ const Stacks = StackNavigator({
     newReminder: { screen: newReminder },
     read: { screen: read },
     shop: { screen: shop },
-    shareFeed: { screen: shareFeed}
-    profile: { screen: profile },
+    shareFeed: { screen: shareFeed},
+    profile: { screen: profile }
 
 });
 
