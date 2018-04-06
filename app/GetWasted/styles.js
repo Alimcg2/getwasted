@@ -120,6 +120,20 @@ var styles = StyleSheet.create({
         fontWeight: "300",
         textAlign: "left",
     },
+    button2: {
+        color: "black",
+        fontSize: 25,
+        padding: 10,
+        paddingLeft: 20,
+        marginBottom: 20,
+        margin: 5,
+        marginLeft: 0,
+        right: 0,
+        width: 400,
+        backgroundColor: "#e2ddd0",
+        fontWeight: "300",
+        textAlign: "left",
+    },
     button_bottom: {
         color: "black",
         fontSize: 25,
@@ -166,6 +180,12 @@ var styles = StyleSheet.create({
         fontWeight: "300",
         textAlign: "left",
         fontStyle: "italic"
+    },
+    subtitle3: {
+        fontSize: 14,
+        fontWeight: "400",
+        textAlign: "left",
+        fontStyle: "normal"
     }
 })
 
