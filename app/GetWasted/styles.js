@@ -39,6 +39,25 @@ var styles = StyleSheet.create({
         height: 80,
         marginTop: 20,
     },
+    share_image: {
+        width: '95%',
+        height: '85%',
+        marginTop: 20,
+    },
+    share_container: {
+        height: 300,
+        marginTop: 50,
+        marginBottom: 50
+    },
+    share_text: {
+        fontSize: 20,
+        margin: 5
+    },
+    share_date: {
+        fontSize: 15,
+        margin: 5,
+        color: 'grey'
+    },
     container_main: {
         backgroundColor: '#FFFFFF',
         paddingLeft: 60,

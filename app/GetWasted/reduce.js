@@ -11,6 +11,7 @@ import read from './read';
 import goalPage from './goalPage';
 import cameraTest from './cameraTest';
 import shop from './shop';
+import shareFeed from './shareFeed';
 
 import {
     StackNavigator,
@@ -121,6 +122,13 @@ export default class reduce extends Component {
                     navigate('shop', {});
                 }.bind(this)
             }>Shop</Button>
+
+                <Button style={[styles.menu_item]}
+            onPress={
+                function() {
+                    navigate('shareFeed', {});
+                }.bind(this)
+            }>Share</Button>
                 
                 <Button style={styles.menu_item} title="Sign out"
                       onPress={this.handleSignOut} >Sign Out</Button>
