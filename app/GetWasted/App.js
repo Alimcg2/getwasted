@@ -27,6 +27,9 @@ import cameraTest from './cameraTest';
 import newReminder from './newReminder';
 import read from './read';
 import shop from './shop';
+import shareFeed from './shareFeed';
+import profile from './profile';
+
 const styles = require('./styles.js');
 
 // Initialize Firebase
@@ -55,7 +58,9 @@ const Stacks = StackNavigator({
     cameraTest: { screen: cameraTest }, 
     newReminder: { screen: newReminder },
     read: { screen: read },
-    shop: { screen: shop }
+    shop: { screen: shop },
+    shareFeed: { screen: shareFeed},
+    profile: { screen: profile }
 
 });
 

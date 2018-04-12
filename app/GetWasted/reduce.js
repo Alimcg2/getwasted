@@ -11,6 +11,8 @@ import read from './read';
 import goalPage from './goalPage';
 import cameraTest from './cameraTest';
 import shop from './shop';
+import shareFeed from './shareFeed';
+import profile from './profile';
 
 import {
     StackNavigator,
@@ -83,6 +85,7 @@ export default class reduce extends Component {
         const ts = this.trashy; 
         const gp = this.goalPage;
         const rd = this.read;
+        const pf = this.profile;
         
         
         const { navigate }  = this.props.navigation;
@@ -104,10 +107,17 @@ export default class reduce extends Component {
                 <Button style={[styles.menu_item]}
             onPress={
                 function() {
+                    navigate('profile', {});
+                }.bind(this)
+            }>Profile</Button>
+            
+                <Button style={[styles.menu_item]}
+            onPress={
+                function() {
                     this.setState({getMenu : false});
                 }.bind(this)
             }>Reduce</Button>
-                
+
                 <Button style={[styles.menu_item]}
             onPress={
                 function() {
@@ -121,6 +131,13 @@ export default class reduce extends Component {
                     navigate('shop', {});
                 }.bind(this)
             }>Shop</Button>
+
+                <Button style={[styles.menu_item]}
+            onPress={
+                function() {
+                    navigate('shareFeed', {});
+                }.bind(this)
+            }>Share</Button>
                 
                 <Button style={styles.menu_item} title="Sign out"
                       onPress={this.handleSignOut} >Sign Out</Button>
