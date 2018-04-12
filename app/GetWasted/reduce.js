@@ -31,7 +31,10 @@ export default class reduce extends Component {
             goalTitles : [],
             goalBeginDates : [],
             goalEndDates : [],
-            goalStatus: []
+            goalStatus: [],
+            totalGoals: [],
+            totalCurrent: [],
+            totalImages: [],
         };
         this.handleSignOut = this.handleSignOut.bind(this);
     }
@@ -44,25 +47,45 @@ export default class reduce extends Component {
         }.bind(this)); /* actual image-info */
         
         this.goalRef = firebase.database().ref().child("Users/" + user.uid + "/goals");
+        this.picsRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
+        var titles = [];
+        var beginDates = [];
+        var endDates = [];
+        var status = [];
+        var images = [];
+        var goals = 0;
+        var current = 0;
+        var numImages = 0;
         this.goalRef.on("value", function(snapshot) {
             this.setState({goals: snapshot.val()});
-            var titles = []
-            var beginDates = []
-            var endDates = []
-            var status = []
             snapshot.forEach(function(data) {
                 titles.push(data.val()["goalText"]);
                 beginDates.push(data.val()["beginDates"]);
                 endDates.push(data.val()["endDates"]);
-                status.push(data.val()["goalStatus"]);
+                status.push(data.val()["status"]);
+                goals++;
+                if (data.val()["status"] == "Current"){
+                    current++;
+                }  
             }.bind(this));
-            this.setState({ userName: user.displayName,
-                            goalTitles : titles,
-                            goalBeginDates : beginDates,
-                            goalEndDates : endDates,
-                            goalStatus : status
-                          });
+            
+            this.setState({ totalGoals : goals, totalCurrent : current});
         }.bind(this));
+        this.picsRef.on("value", function(snapshot) {
+            this.setState({goals: snapshot.val()});
+            snapshot.forEach(function(data) {
+                images.push(data.val()["imageCaption"]);
+                numImages++;
+            }.bind(this));
+            this.setState({totalImages : numImages});
+        }.bind(this));
+        this.setState({ userName: user.displayName,
+                        goalTitles : titles,
+                        goalBeginDates : beginDates,
+                        goalEndDates : endDates,
+                        goalStatus : status,
+                      });
+        
     }
 
     componentWillUnmount() {
@@ -71,6 +94,9 @@ export default class reduce extends Component {
         }
         if (this.goalRef) {
             this.goalRef.off();
+        }
+        if (this.picsRef) {
+            this.picsRef.off();
         }
     }
 
@@ -97,6 +123,9 @@ export default class reduce extends Component {
         var beginDates = this.state.goalBeginDates;
         var endDates = this.state.goalEndDates;
         var status = this.state.goalStatus;
+        var goals = this.state.totalGoals;
+        var current = this.state.totalCurrent;
+        var images = this.state.totalImages;
         //var testing2 = testing["goalText"];
 
         return (
@@ -153,9 +182,11 @@ export default class reduce extends Component {
                 </Button>
                     <Text style={styles.header}>REDUCE</Text>
                 </View>
+
+            
                     <ScrollView style={styles.reduce_button_container}>
                     <Button style={styles.button}
-            onPress={
+                        onPress={
                 function() {
                     navigate('trashy', {});
                 }
@@ -167,26 +198,18 @@ export default class reduce extends Component {
                     navigate('goalPage', {});
                 }
             }>Goals</Button>
-
-            
                 </ScrollView>
                 
-                <View style={styles.reduce_test}>
-                     <SectionList style={styles.image_container}
-            sections={[
-                {title: '', data: [require('./trashtest.jpg'),
-                                   require('./trashtest2.jpg'),
-                                   require('./trashtest4.jpg'),]},
-            ]}
-            renderItem={({item}) => <Image style={styles.trashyPic} source={item} />}
-            renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-            keyExtractor={(item, index) => index}
-                />
-                </View>
+            
+                <View style={styles.goal_data_container}>
+                <Text style={styles.data_header}>TOTAL GOALS: <Text style={styles.goal_data}>{goals}</Text></Text>
                 
-                <View>
+                <Text style={styles.data_header}>TOTAL IN PROGRESS: <Text style={styles.goal_data}>{current}</Text></Text>
+                
+                <Text style={styles.data_header}>TOTAL TRASY PICS: <Text style={styles.goal_data}>{images}</Text></Text>
+                
                 </View>
-            </View>
+           </View>
         );
     }
 }

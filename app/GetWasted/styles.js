@@ -186,6 +186,19 @@ var styles = StyleSheet.create({
         fontWeight: "400",
         textAlign: "left",
         fontStyle: "normal"
+    },
+    goal_data_container: {
+        height: "47%",
+        marginTop: 0
+    },
+    data_header: {
+        fontSize: 20,
+        paddingTop: 10,
+        fontWeight: "800",
+    },
+    goal_data: {
+        fontSize: 20,
+        fontWeight: "300"
     }
 })
 
