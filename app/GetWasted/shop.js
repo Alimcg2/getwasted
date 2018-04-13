@@ -31,12 +31,15 @@ export default class shop extends Component {
 
     componentWillMount() {
         var user = firebase.auth().currentUser;
+
         this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
         this.imageRef.on("value", function (snapshot) {
             this.setState({ profileImg: snapshot.val() });
         }.bind(this)); /* actual image-info */
+
         this.blogsRef = firebase.database().ref().child("StorePosts/");
         this.blogsRef.on("value", function (snapshot) {
+            var productsArray = [];
             snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
                 var format;
@@ -46,10 +49,9 @@ export default class shop extends Component {
                 else {
                     format = { title: childData.Title, blog: childData.Store, img: { uri: childData.ImageURL }, link: childData.ItemURL }
                 }
-                var all = this.state.imgs;
-                all.push(format)
-                this.setState({ imgs: all });
+                productsArray.push(format);
             }.bind(this));
+            this.setState({ imgs: this.shuffleArray(productsArray) });
             this.setState({ loading: false });
         }.bind(this)); /* actual image-info */
     }
@@ -63,6 +65,12 @@ export default class shop extends Component {
         }
     }
 
+    shuffleArray(arr) {
+        return arr.map(a => [Math.random(), a])
+          .sort((a, b) => a[0] - b[0])
+          .map(a => a[1]);
+    }
+
     handleSignOut() {
         if (firebase.auth().currentUser) {
             firebase.auth().signOut();
@@ -73,7 +81,8 @@ export default class shop extends Component {
     render() {
         var url = this.state.profileImg.toString();
         const { navigate } = this.props.navigation;
-        var visibleProducts = this.state.imgs.slice(0, this.state.numProducts);
+        var allProducts = this.state.imgs;
+        var visibleProducts = allProducts.slice(0, this.state.numProducts);
         var loading = this.state.loading;
 
         return (
@@ -128,12 +137,15 @@ export default class shop extends Component {
                                 }
                             />
 
+                            {visibleProducts.length < allProducts.length ?
                             <Button style={[styles.button, styles.more_posts]} onPress={
                                 function () {
                                     this.setState({ numProducts: this.state.numProducts + 10 });
                                 }.bind(this)}>
                                 Load More Products
-                            </Button>
+                            </Button> :
+                            <View></View>
+                            }
 
                         </ScrollView>
                     </View>

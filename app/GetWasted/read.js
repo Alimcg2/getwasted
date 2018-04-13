@@ -31,12 +31,15 @@ export default class read extends Component {
 
     componentWillMount() {
         var user = firebase.auth().currentUser;
+
         this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
         this.imageRef.on("value", function (snapshot) {
             this.setState({ profileImg: snapshot.val() });
         }.bind(this)); /* actual image-info */
+
         this.blogsRef = firebase.database().ref().child("BlogPosts/");
         this.blogsRef.on("value", function (snapshot) {
+            var postsArray = [];
             snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
                 var format;
@@ -46,13 +49,13 @@ export default class read extends Component {
                 else {
                     format = { title: childData.Title, blog: childData.Blog, img: { uri: childData.ImageURL }, link: childData.Link }
                 }
-                var all = this.state.imgs;
-                all.push(format)
-                this.setState({ imgs: all });
+                postsArray.push(format);
             }.bind(this));
+            this.setState({ imgs: this.shuffleArray(postsArray) });
             this.setState({ loading: false });
         }.bind(this)); /* actual image-info */
     }
+    
     componentWillUnmount() {
         if (this.imageRef) {
             this.imageRef.off();
@@ -60,6 +63,12 @@ export default class read extends Component {
         if (this.blogsRef) {
             this.blogsRef.off();
         }
+    }
+
+    shuffleArray(arr) {
+        return arr.map(a => [Math.random(), a])
+          .sort((a, b) => a[0] - b[0])
+          .map(a => a[1]);
     }
 
     handleSignOut() {
@@ -74,7 +83,8 @@ export default class read extends Component {
     render() {
         var url = this.state.profileImg.toString();
         const { navigate } = this.props.navigation;
-        var visiblePosts = this.state.imgs.slice(0, this.state.numPosts);
+        var allPosts = this.state.imgs;
+        var visiblePosts = allPosts.slice(0, this.state.numPosts);
         var loading = this.state.loading;
 
         return (
@@ -128,12 +138,15 @@ export default class read extends Component {
                                 }
                             />
 
+                            {visiblePosts.length < allPosts.length ?
                             <Button style={[styles.button, styles.more_posts]} onPress={
                                 function () {
                                     this.setState({ numPosts: this.state.numPosts + 10 });
                                 }.bind(this)}>
                                 Load More Products
-                            </Button>
+                            </Button> :
+                            <View></View>
+                            }
 
                         </ScrollView>
                     </View>
