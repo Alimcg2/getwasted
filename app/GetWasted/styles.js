@@ -120,6 +120,9 @@ var styles = StyleSheet.create({
         fontWeight: "300",
         textAlign: "left",
     },
+    posts: {
+        marginBottom: 50
+    },
     button2: {
         color: "black",
         fontSize: 25,
@@ -199,6 +202,15 @@ var styles = StyleSheet.create({
     goal_data: {
         fontSize: 20,
         fontWeight: "300"
+    },
+    center: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: -50
+    },
+    more_posts: {
+        marginBottom: 150
     }
 })
 

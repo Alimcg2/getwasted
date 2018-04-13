@@ -20,9 +20,11 @@ export default class shop extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            getMenu : false,
-            profileImg : "",
-            imgs : [],
+            getMenu: false,
+            profileImg: "",
+            imgs: [],
+            loading: true,
+            numProducts: 10
         };
         this.handleSignOut = this.handleSignOut.bind(this);
     }
@@ -30,26 +32,28 @@ export default class shop extends Component {
     componentWillMount() {
         var user = firebase.auth().currentUser;
         this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
-        this.imageRef.on("value", function(snapshot) {
-            this.setState({profileImg: snapshot.val()});
+        this.imageRef.on("value", function (snapshot) {
+            this.setState({ profileImg: snapshot.val() });
         }.bind(this)); /* actual image-info */
         this.blogsRef = firebase.database().ref().child("StorePosts/");
-        this.blogsRef.on("value", function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
+        this.blogsRef.on("value", function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
                 var format;
                 if (childData.ImageURL == "NULL - image") {
-                    format = {title: childData.Title, blog: childData.Blog, img: require("./getwastedicon.png"), link: childData.Link}
+                    format = { title: childData.Title, blog: childData.Blog, img: require("./getwastedicon.png"), link: childData.Link }
                 }
                 else {
-                    format = {title: childData.Title, blog: childData.Store, img: {uri: childData.ImageURL}, link: childData.ItemURL}
+                    format = { title: childData.Title, blog: childData.Store, img: { uri: childData.ImageURL }, link: childData.ItemURL }
                 }
                 var all = this.state.imgs;
                 all.push(format)
-                this.setState({imgs: all});
+                this.setState({ imgs: all });
             }.bind(this));
+            this.setState({ loading: false });
         }.bind(this)); /* actual image-info */
     }
+
     componentWillUnmount() {
         if (this.imageRef) {
             this.imageRef.off();
@@ -66,55 +70,74 @@ export default class shop extends Component {
         this.props.navigation.navigate('landing', {});
     }
 
-    
-
     render() {
         var url = this.state.profileImg.toString();
-        const { navigate }  = this.props.navigation;
-        var imgs = this.state.imgs;
+        const { navigate } = this.props.navigation;
+        var visibleProducts = this.state.imgs.slice(0, this.state.numProducts);
+        var loading = this.state.loading;
+
         return (
             <View style={styles.container_main}>
-                
-                <View style={[styles.menu, this.state.getMenu && styles.menu_active]}>
-                
-                <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    navigate('reduce', {});
-                }.bind(this)
-            }>Reduce</Button>
-                
-                <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    this.setState({getMenu : false});
-                }.bind(this)
-            }>Read</Button>                
-                
-                <Button style={styles.menu_item} title="Sign out"
-                      onPress={this.handleSignOut} >Sign Out</Button>
-                </View>
-                
-                 <Button onPress={
-                function() {
-                    this.setState({getMenu : true});
-                }.bind(this)}>
-                <Image style={styles.image} source={{url}} />
-                </Button>
 
-                <FlatList
-            data={imgs}
-            renderItem={({item}) => <View style={styles.list_container}>
-                        
-                        <Button onPress={()=> Linking.openURL("")}>
-                        <Image style={styles.trashyPic} source={item.img}/>
+                {this.state.loading ?
+                    <View style={styles.center}>
+                        <Text>LOADING...</Text>
+                    </View> :
+
+                    <View>
+                        <View style={[styles.menu, this.state.getMenu && styles.menu_active]}>
+
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        navigate('reduce', {});
+                                    }.bind(this)
+                                }>Reduce</Button>
+
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        this.setState({ getMenu: false });
+                                    }.bind(this)
+                                }>Read</Button>
+
+                            <Button style={styles.menu_item} title="Sign out"
+                                onPress={this.handleSignOut} >Sign Out</Button>
+                        </View>
+
+                        <Button onPress={
+                            function () {
+                                this.setState({ getMenu: true });
+                            }.bind(this)}>
+                            <Image style={styles.image} source={{ url }} />
                         </Button>
-                        
-                        <Text style={styles.subtitle}>{item.title}</Text>
-                        <Text style={styles.subtitle2}>{item.blog}</Text>
-                        </View>}
-                />
-                
+
+                        <ScrollView>
+                            <FlatList style={styles.posts}
+                                data={visibleProducts}
+                                renderItem={({ item }) => <View style={styles.list_container}>
+
+                                    <Button onPress={() => Linking.openURL("")}>
+                                        <Image style={styles.trashyPic} source={item.img} />
+                                    </Button>
+
+                                    <Text style={styles.subtitle}>{item.title}</Text>
+                                    <Text style={styles.subtitle2}>{item.blog}</Text>
+
+                                </View>
+                                }
+                            />
+
+                            <Button style={[styles.button, styles.more_posts]} onPress={
+                                function () {
+                                    this.setState({ numProducts: this.state.numProducts + 10 });
+                                }.bind(this)}>
+                                Load More Products
+                            </Button>
+
+                        </ScrollView>
+                    </View>
+                }
             </View>
         );
     }
