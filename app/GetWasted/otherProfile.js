@@ -17,7 +17,7 @@ const styles = require('./styles.js');
 
 
 
-export default class profile extends Component {
+export default class otherProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,20 +27,27 @@ export default class profile extends Component {
             userName : "",
             followers: [],
             following: [],
+            userID: this.props.navigation.state.params.uid,
+            buttonText: "Follow" // make this dynamic
         };
         this.handleSignOut = this.handleSignOut.bind(this);
+        this.handleFollow = this.handleFollow.bind(this);
     }
 
     componentWillMount() {
-        var user = firebase.auth().currentUser;
-        this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
-        this.setState({userName: user.displayName});
+        console.log(this.props.navigation.state.params.uid);
+        var currentUser = firebase.auth().currentUser;
+        this.imageRef = firebase.database().ref().child("Users/" + this.state.userID + "/image"); /* gets the image-parent class*/
         this.imageRef.on("value", function(snapshot) {
             this.setState({profileImg: snapshot.val()});
         }.bind(this));
+        this.nameRef = firebase.database().ref().child("Users/" + this.state.userID + "/name");
+        this.nameRef.on("value", function(snapshot) {
+            this.setState({userName: snapshot.val()});
+        }.bind(this));
 
         
-        this.postRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
+        this.postRef = firebase.database().ref().child("Users/" + this.state.userID + "/trashypics");
         this.postRef.on("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 var childData = childSnapshot.val();
@@ -53,7 +60,7 @@ export default class profile extends Component {
         }.bind(this));
         
         
-        this.followRef = firebase.database().ref().child("Users/" + user.uid + "/followers");
+        this.followRef = firebase.database().ref().child("Users/" +  this.state.userID + "/followers");
         this.followRef.on("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 var childData = childSnapshot.val();
@@ -64,7 +71,7 @@ export default class profile extends Component {
             }.bind(this));
         }.bind(this));
         
-        this.followingRef = firebase.database().ref().child("Users/" + user.uid + "/following");
+        this.followingRef = firebase.database().ref().child("Users/" + this.state.userID + "/following");
         this.followingRef.on("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 var childData = childSnapshot.val();
@@ -89,6 +96,9 @@ export default class profile extends Component {
         if (this.followingRef) {
             this.followingRef.off();
         }
+        if (this.nameRef) {
+            this.nameRef.off();
+        }
     }
 
     handleSignOut() {
@@ -98,6 +108,27 @@ export default class profile extends Component {
         this.props.navigation.navigate('landing', {});
     }
 
+    handleFollow() {
+        if (this.state.buttonText == "Follow"){
+            
+            var currentUser = firebase.auth().currentUser;
+            
+            this.userGoalsRef = firebase.database().ref("Users/" + this.state.userID + "/followers/");
+            var addData = {
+                uid: currentUser.uid
+            };
+            this.userGoalsRef.push(addData);
+            this.userGoalsRef = firebase.database().ref("Users/" + currentUser.uid + "/following/");
+            var addData = {
+                uid: this.state.userID
+            };
+            this.userGoalsRef.push(addData);
+            this.setState({buttonText: "Unfollow"});
+        } else {
+            // figure out how to remove stuff here
+            this.setState({buttonText: "Follow"});
+        }
+    }
     
 
     render() {
@@ -107,6 +138,8 @@ export default class profile extends Component {
         var posts = this.state.posts;
         var followers = this.state.followers;
         var following = this.state.following;
+        var buttonText = this.state.buttonText;
+        console.log(posts);
         return (
             <View style={styles.container_main}>
                 
@@ -161,25 +194,31 @@ export default class profile extends Component {
                 <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
                 </View>
 
+                <Button style={styles.button2} onPress={
+                    this.handleFollow
+                }>
+                {buttonText}
+                </Button>
             
-
-                <Button style={[styles.button2]}> Settings</Button>
 
                 <FlatList
             data={posts}
-            renderItem={({item}) => <View style={styles.list_container}>
+            renderItem={({item}) =>
+                        <View style={styles.list_container}>
                         
                         <Image style={styles.trashyPic} source={item.img}/>
                         
                         <Text style={styles.subtitle}>{item.caption}</Text>
                         <Text style={styles.subtitle2}>Likes: {item.likes}</Text>
                         
-                        </View>}
+                        </View>
+                       }
                 />
+
                 
             </View>
         );
     }
 }
 
-module.exports = profile;
+module.exports = otherProfile;
