@@ -35,22 +35,6 @@ export default class ShareFeed extends Component {
             this.setState({ profileImg: snapshot.val() });
         }.bind(this));
 
-        // this.postsRef = firebase.database().ref("Posts");
-        // this.postsRef.on("value", function (snapshot) {
-        //     var postsArray = [];
-        //     snapshot.forEach(function (child) {
-        //         var obj = { 'postId': child.key, 'postObj': child.val() };
-        //         postsArray.push(obj);
-        //     });
-
-        //     // sort by time posted
-        //     // postsArray.sort((a, b) => {
-        //     //     return b.postObj.postDate - a.postObj.postDate;
-        //     // });
-        //     this.setState({ posts: postsArray });
-        // }.bind(this));
-
-
         this.friendsRef = firebase.database().ref('Users/' + user.uid + '/following');
         this.friendsRef.once('value').then((snapshot) => {
             var friendsArray = [];
@@ -69,6 +53,7 @@ export default class ShareFeed extends Component {
                         var postsArray = [];
                         snapshot.forEach((child) => {
                             var post = child.val();
+                            post['userId'] = friendId;
                             post['username'] = username;
                             postsArray.push(post);
                         });
@@ -108,7 +93,7 @@ export default class ShareFeed extends Component {
         var url = this.state.profileImg.toString();
 
         var postItems = this.state.posts.map((post, index) => {
-            return <PostItem key={index} post={post} />;
+            return <PostItem key={index} post={post} navigation={this.props.navigation} />;
         });
 
         return (
@@ -171,19 +156,26 @@ export default class ShareFeed extends Component {
 
 class PostItem extends Component {
     render() {
+        const { navigate } = this.props.navigation;
+
         var post = this.props.post;
         var url = post.imageURL;
         var date = moment(post.date).fromNow();
-
         return (
             <View style={styles.share_container}>
                 <Image style={styles.share_image} source={{ url }} />
+
                 <Text style={styles.share_text}>
-                    <Text style={{ fontWeight: "bold" }}>
+                    <Text style={{ fontWeight: "bold" }}
+                    onPress={(() => {
+                        navigate('otherProfile', {uid: post.userId});
+                    })}>
                         {post.username + "  "}
                     </Text>
+
                     {post.imageCaption}
                 </Text>
+
                 <Text style={styles.share_date}>
                     {date}
                 </Text>

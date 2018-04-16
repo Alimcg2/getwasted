@@ -52,7 +52,8 @@ export default class otherProfile extends Component {
             snapshot.forEach(function(childSnapshot) {
                 var childData = childSnapshot.val();
                 console.log(childData.imageURL);
-                var format = {caption: childData.imageCaption, likes: childData.likes.length, img: {uri: childData.imageURL}, date: childData.date}
+                var likes = childData.likes ? childData.likes.length : 0;
+                var format = {caption: childData.imageCaption, likes: likes, img: {uri: childData.imageURL}, date: childData.date}
                 var all = this.state.posts;
                 all.push(format)
                 this.setState({posts: all});
