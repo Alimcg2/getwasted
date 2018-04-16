@@ -67,8 +67,8 @@ export default class shop extends Component {
 
     shuffleArray(arr) {
         return arr.map(a => [Math.random(), a])
-          .sort((a, b) => a[0] - b[0])
-          .map(a => a[1]);
+            .sort((a, b) => a[0] - b[0])
+            .map(a => a[1]);
     }
 
     handleSignOut() {
@@ -99,6 +99,13 @@ export default class shop extends Component {
                             <Button style={[styles.menu_item]}
                                 onPress={
                                     function () {
+                                        navigate('profile', {});
+                                    }.bind(this)
+                                }>Profile</Button>
+
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
                                         navigate('reduce', {});
                                     }.bind(this)
                                 }>Reduce</Button>
@@ -106,9 +113,23 @@ export default class shop extends Component {
                             <Button style={[styles.menu_item]}
                                 onPress={
                                     function () {
-                                        this.setState({ getMenu: false });
+                                        navigate('read', {});
                                     }.bind(this)
                                 }>Read</Button>
+
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        this.setState({ getMenu: false });
+                                    }.bind(this)
+                                }>Shop</Button>
+
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        navigate('shareFeed', {});
+                                    }.bind(this)
+                                }>Share</Button>
 
                             <Button style={styles.menu_item} title="Sign out"
                                 onPress={this.handleSignOut} >Sign Out</Button>
@@ -138,13 +159,13 @@ export default class shop extends Component {
                             />
 
                             {visibleProducts.length < allProducts.length ?
-                            <Button style={[styles.button, styles.more_posts]} onPress={
-                                function () {
-                                    this.setState({ numProducts: this.state.numProducts + 10 });
-                                }.bind(this)}>
-                                Load More Products
+                                <Button style={[styles.button, styles.more_posts]} onPress={
+                                    function () {
+                                        this.setState({ numProducts: this.state.numProducts + 10 });
+                                    }.bind(this)}>
+                                    Load More Products
                             </Button> :
-                            <View></View>
+                                <View></View>
                             }
 
                         </ScrollView>

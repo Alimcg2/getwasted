@@ -101,6 +101,14 @@ export default class ShareFeed extends Component {
 
                 {/* sidebar */}
                 <View style={[styles.menu, this.state.getMenu && styles.menu_active]}>
+
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('profile', {});
+                            }.bind(this)
+                        }>Profile</Button>
+                        
                     <Button style={[styles.menu_item]}
                         onPress={
                             function () {
@@ -167,9 +175,9 @@ class PostItem extends Component {
 
                 <Text style={styles.share_text}>
                     <Text style={{ fontWeight: "bold" }}
-                    onPress={(() => {
-                        navigate('otherProfile', {uid: post.userId});
-                    })}>
+                        onPress={(() => {
+                            navigate('otherProfile', { uid: post.userId });
+                        })}>
                         {post.username + "  "}
                     </Text>
 

@@ -21,10 +21,10 @@ export default class profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            getMenu : false,
-            profileImg : "",
-            posts : [],
-            userName : "",
+            getMenu: false,
+            profileImg: "",
+            posts: [],
+            userName: "",
             followers: [],
             following: [],
         };
@@ -34,47 +34,47 @@ export default class profile extends Component {
     componentWillMount() {
         var user = firebase.auth().currentUser;
         this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
-        this.setState({userName: user.displayName});
-        this.imageRef.on("value", function(snapshot) {
-            this.setState({profileImg: snapshot.val()});
+        this.setState({ userName: user.displayName });
+        this.imageRef.on("value", function (snapshot) {
+            this.setState({ profileImg: snapshot.val() });
         }.bind(this));
 
-        
+
         this.postRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
-        this.postRef.on("value", function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
+        this.postRef.on("value", function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
                 console.log(childData.imageURL);
-                var format = {caption: childData.imageCaption, likes: childData.likes.length, img: {uri: childData.imageURL}, date: childData.date}
+                var format = { caption: childData.imageCaption, likes: childData.likes.length, img: { uri: childData.imageURL }, date: childData.date }
                 var all = this.state.posts;
                 all.push(format)
-                this.setState({posts: all});
+                this.setState({ posts: all });
             }.bind(this));
         }.bind(this));
-        
-        
+
+
         this.followRef = firebase.database().ref().child("Users/" + user.uid + "/followers");
-        this.followRef.on("value", function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
+        this.followRef.on("value", function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
-                var format = {uid: childData.uid}
+                var format = { uid: childData.uid }
                 var all = this.state.followers;
                 all.push(format)
-                this.setState({followers: all});
+                this.setState({ followers: all });
             }.bind(this));
         }.bind(this));
-        
+
         this.followingRef = firebase.database().ref().child("Users/" + user.uid + "/following");
-        this.followingRef.on("value", function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
+        this.followingRef.on("value", function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
-                var format = {uid: childData.uid}
+                var format = { uid: childData.uid }
                 var all = this.state.following;
                 all.push(format)
-                this.setState({following: all});
+                this.setState({ following: all });
             }.bind(this));
         }.bind(this));
-        
+
     }
     componentWillUnmount() {
         if (this.imageRef) {
@@ -98,85 +98,92 @@ export default class profile extends Component {
         this.props.navigation.navigate('landing', {});
     }
 
-    
+
 
     render() {
         var url = this.state.profileImg.toString();
-        const { navigate }  = this.props.navigation;
+        const { navigate } = this.props.navigation;
         var user = this.state.userName;
         var posts = this.state.posts;
         var followers = this.state.followers;
         var following = this.state.following;
         return (
             <View style={styles.container_main}>
-                
+
                 <View style={[styles.menu, this.state.getMenu && styles.menu_active]}>
-                
-                <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    navigate('profile', {});
-                }.bind(this)
-            }>Profile</Button>
 
-                <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    navigate('reduce', {});
-                }.bind(this)
-            }>Reduce</Button>
-                
-                <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    this.setState({getMenu : false});
-                }.bind(this)
-            }>Read</Button> 
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                this.setState({ getMenu: false });
+                            }.bind(this)
+                        }>Profile</Button>
 
-             <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    navigate('shop', {});
-                }.bind(this)
-            }>Shop</Button>               
-                
-                <Button style={styles.menu_item} title="Sign out"
-                      onPress={this.handleSignOut} >Sign Out</Button>
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('reduce', {});
+                            }.bind(this)
+                        }>Reduce</Button>
+
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('read', {});
+                            }.bind(this)
+                        }>Read</Button>
+
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('shop', {});
+                            }.bind(this)
+                        }>Shop</Button>
+
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('shareFeed', {});
+                            }.bind(this)
+                        }>Share</Button>
+
+                    <Button style={styles.menu_item} title="Sign out"
+                        onPress={this.handleSignOut} >Sign Out</Button>
                 </View>
-                
-                 <Button onPress={
-                function() {
-                    this.setState({getMenu : true});
-                }.bind(this)}>
-                <Image style={styles.image} source={{url}} />
+
+                <Button onPress={
+                    function () {
+                        this.setState({ getMenu: true });
+                    }.bind(this)}>
+                    <Image style={styles.image} source={{ url }} />
                 </Button>
 
                 <Text style={styles.header}>{user.toUpperCase()}</Text>
-                
-                <View style={styles.follow_container}>
-                <Text style={styles.subtitle3}>Following: {following.length }</Text>
-                
-                <Button style={[styles.subtitle3]}>Followers: {followers.length}</Button>
 
-                <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
+                <View style={styles.follow_container}>
+                    <Text style={styles.subtitle3}>Following: {following.length}</Text>
+
+                    <Button style={[styles.subtitle3]}>Followers: {followers.length}</Button>
+
+                    <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
                 </View>
 
-            
+
 
                 <Button style={[styles.button2]}> Settings</Button>
 
                 <FlatList
-            data={posts}
-            renderItem={({item}) => <View style={styles.list_container}>
-                        
-                        <Image style={styles.trashyPic} source={item.img}/>
-                        
+                    data={posts}
+                    renderItem={({ item }) => <View style={styles.list_container}>
+
+                        <Image style={styles.trashyPic} source={item.img} />
+
                         <Text style={styles.subtitle}>{item.caption}</Text>
                         <Text style={styles.subtitle2}>Likes: {item.likes}</Text>
-                        
-                        </View>}
+
+                    </View>}
                 />
-                
+
             </View>
         );
     }

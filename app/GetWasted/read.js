@@ -55,7 +55,7 @@ export default class read extends Component {
             this.setState({ loading: false });
         }.bind(this)); /* actual image-info */
     }
-    
+
     componentWillUnmount() {
         if (this.imageRef) {
             this.imageRef.off();
@@ -67,8 +67,8 @@ export default class read extends Component {
 
     shuffleArray(arr) {
         return arr.map(a => [Math.random(), a])
-          .sort((a, b) => a[0] - b[0])
-          .map(a => a[1]);
+            .sort((a, b) => a[0] - b[0])
+            .map(a => a[1]);
     }
 
     handleSignOut() {
@@ -101,6 +101,13 @@ export default class read extends Component {
                             <Button style={[styles.menu_item]}
                                 onPress={
                                     function () {
+                                        navigate('profile', {});
+                                    }.bind(this)
+                                }>Profile</Button>
+
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
                                         navigate('reduce', {});
                                     }.bind(this)
                                 }>Reduce</Button>
@@ -111,6 +118,20 @@ export default class read extends Component {
                                         this.setState({ getMenu: false });
                                     }.bind(this)
                                 }>Read</Button>
+
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        navigate('shop', {});
+                                    }.bind(this)
+                                }>Shop</Button>
+
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        navigate('shareFeed', {});
+                                    }.bind(this)
+                                }>Share</Button>
 
                             <Button style={styles.menu_item} title="Sign out"
                                 onPress={this.handleSignOut} >Sign Out</Button>
@@ -139,13 +160,13 @@ export default class read extends Component {
                             />
 
                             {visiblePosts.length < allPosts.length ?
-                            <Button style={[styles.button, styles.more_posts]} onPress={
-                                function () {
-                                    this.setState({ numPosts: this.state.numPosts + 10 });
-                                }.bind(this)}>
-                                Load More Posts
+                                <Button style={[styles.button, styles.more_posts]} onPress={
+                                    function () {
+                                        this.setState({ numPosts: this.state.numPosts + 10 });
+                                    }.bind(this)}>
+                                    Load More Posts
                             </Button> :
-                            <View></View>
+                                <View></View>
                             }
 
                         </ScrollView>
