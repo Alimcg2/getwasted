@@ -29,6 +29,7 @@ import read from './read';
 import shop from './shop';
 import shareFeed from './shareFeed';
 import profile from './profile';
+import otherProfile from './otherProfile';
 
 const styles = require('./styles.js');
 
@@ -60,7 +61,8 @@ const Stacks = StackNavigator({
     read: { screen: read },
     shop: { screen: shop },
     shareFeed: { screen: shareFeed},
-    profile: { screen: profile }
+    profile: { screen: profile },
+    otherProfile: { screen: otherProfile }
 
 });
 

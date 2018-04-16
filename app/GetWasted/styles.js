@@ -211,6 +211,21 @@ var styles = StyleSheet.create({
     },
     more_posts: {
         marginBottom: 150
+    },
+    follow_container: {
+        display: "flex",
+        flexDirection: 'row'
+        
+    },
+    subtitle3: {
+        fontSize: 16,
+        padding: 20,
+        paddingLeft: 0,
+        fontWeight: "300",
+        textAlign: "left",
+        fontStyle: "italic",
+        color: "black"
+        
     }
 })
 

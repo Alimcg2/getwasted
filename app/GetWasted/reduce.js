@@ -168,6 +168,7 @@ export default class reduce extends Component {
                 }.bind(this)
             }>Share</Button>
                 
+                
                 <Button style={styles.menu_item} title="Sign out"
                       onPress={this.handleSignOut} >Sign Out</Button>
                 </View>
