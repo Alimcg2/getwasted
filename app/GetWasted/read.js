@@ -143,7 +143,7 @@ export default class read extends Component {
                                 function () {
                                     this.setState({ numPosts: this.state.numPosts + 10 });
                                 }.bind(this)}>
-                                Load More Products
+                                Load More Posts
                             </Button> :
                             <View></View>
                             }

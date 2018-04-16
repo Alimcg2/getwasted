@@ -55,7 +55,7 @@ var styles = StyleSheet.create({
     },
     share_date: {
         fontSize: 15,
-        margin: 5,
+        marginLeft: 5,
         color: 'grey'
     },
     container_main: {

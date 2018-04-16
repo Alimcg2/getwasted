@@ -1,6 +1,7 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
 import { Image, View, StyleSheet, Text, FlatList, ListView, ListItem, ScrollView, SectionList } from 'react-native';
+import moment from 'moment';
 
 import Button from 'react-native-button';
 import app from './app';
@@ -19,6 +20,7 @@ export default class ShareFeed extends Component {
             getMenu: false,
             userName: "",
             profileImg: "",
+            following: [],
             posts: []
         };
         this.handleSignOut = this.handleSignOut.bind(this);
@@ -33,27 +35,60 @@ export default class ShareFeed extends Component {
             this.setState({ profileImg: snapshot.val() });
         }.bind(this));
 
-        this.postsRef = firebase.database().ref("Posts");
-        this.postsRef.on("value", function (snapshot) {
-            var postsArray = [];
-            snapshot.forEach(function (child) {
-                var obj = { 'postId': child.key, 'postObj': child.val() };
-                postsArray.push(obj);
+        // this.postsRef = firebase.database().ref("Posts");
+        // this.postsRef.on("value", function (snapshot) {
+        //     var postsArray = [];
+        //     snapshot.forEach(function (child) {
+        //         var obj = { 'postId': child.key, 'postObj': child.val() };
+        //         postsArray.push(obj);
+        //     });
+
+        //     // sort by time posted
+        //     // postsArray.sort((a, b) => {
+        //     //     return b.postObj.postDate - a.postObj.postDate;
+        //     // });
+        //     this.setState({ posts: postsArray });
+        // }.bind(this));
+
+
+        this.friendsRef = firebase.database().ref('Users/' + user.uid + '/following');
+        this.friendsRef.once('value').then((snapshot) => {
+            var friendsArray = [];
+            snapshot.forEach((child) => {
+                friendsArray.push(child.val().uid);
             });
+            this.setState({ following: Array.from(new Set(friendsArray)) });
+        }).then(() => {
+            this.state.following.forEach((friendId) => {
+                var username;
+                firebase.database().ref('Users/' + friendId + '/name').once('value').then((snapshot) => {
+                    username = snapshot.val();
+                }).then(() => {
+                    this.postsRef = firebase.database().ref('Users/' + friendId + '/trashypics')
+                    this.postsRef.once('value').then((snapshot) => {
+                        var postsArray = [];
+                        snapshot.forEach((child) => {
+                            var post = child.val();
+                            post['username'] = username;
+                            postsArray.push(post);
+                        });
+                        this.setState({ posts: postsArray });
+                    });
+                });
+            });
+        });
 
-            // sort by time posted
-            // postsArray.sort((a, b) => {
-            //     return b.postObj.postDate - a.postObj.postDate;
-            // });
+        // then order posts by time
 
-            this.setState({ posts: postsArray });
-        }.bind(this));
 
     }
 
     componentWillUnmount() {
         if (this.imageRef) {
             this.imageRef.off();
+        }
+        if (this.friendsRef) {
+            this.friendsRef.off();
         }
         if (this.postsRef) {
             this.postsRef.off();
@@ -72,12 +107,8 @@ export default class ShareFeed extends Component {
 
         var url = this.state.profileImg.toString();
 
-        var postItems = this.state.posts.map((post) => {
-            return (<PostItem key={post.postId} post={post.postObj} />);
-        });
-
-        this.state.posts.forEach((post) => {
-            console.log('Post', post);
+        var postItems = this.state.posts.map((post, index) => {
+            return <PostItem key={index} post={post} />;
         });
 
         return (
@@ -141,18 +172,20 @@ export default class ShareFeed extends Component {
 class PostItem extends Component {
     render() {
         var post = this.props.post;
-        var url = post.Image;
+        var url = post.imageURL;
+        var date = moment(post.date).fromNow();
+
         return (
             <View style={styles.share_container}>
                 <Image style={styles.share_image} source={{ url }} />
                 <Text style={styles.share_text}>
-                    <Text style={{fontWeight: "bold"}}>
-                        {post.Username + "  "}
+                    <Text style={{ fontWeight: "bold" }}>
+                        {post.username + "  "}
                     </Text>
-                    {post.Text}
+                    {post.imageCaption}
                 </Text>
                 <Text style={styles.share_date}>
-                    {post.PostDate}
+                    {date}
                 </Text>
             </View>
         );
