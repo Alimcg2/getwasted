@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { SectionList, FlatList, View, StyleSheet, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
-import PhotoUpload from 'react-native-photo-upload';
+//import PhotoUpload from 'react-native-photo-upload';
 import app from './app';
 import cameraTest from './cameraTest';
 
