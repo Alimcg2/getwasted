@@ -171,6 +171,12 @@ var styles = StyleSheet.create({
     menu_active: {
         display: "flex",
     },
+    postContainer: {
+        display: "flex",
+    },
+    search_active: {
+        display: "none",
+    },
     list_container: {
         width: 250,
         paddingTop: 30,
@@ -225,6 +231,15 @@ var styles = StyleSheet.create({
         textAlign: "left",
         fontStyle: "italic",
         color: "black"
+        
+    },
+    search_button: {
+        marginTop: -45,
+        padding: 2,
+        textAlign: "right",
+        marginLeft: "80%",
+        width: 25,
+        height: 25,
         
     }
 })

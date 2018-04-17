@@ -95,7 +95,6 @@ export default class signIn extends Component {
     // when the user presses submit this method will be called
     handleSubmit = () => {
         const value = this._form.getValue();
-        console.log('value: ', value); // logging things for now, take out eventually
 
         firebase.auth().signInWithEmailAndPassword(value["email"], value["password"])
         .then((user) => {
@@ -121,7 +120,6 @@ export default class signIn extends Component {
         const handleSubmit = this.handleSubmit;
         const gp = this.goalPage; 
        const rd = this.reduce; 
-        const img = "https://i.pinimg.com/564x/b2/c0/bd/b2c0bd37b5c5b731cd5fd8fa96dc0d33.jpg"
 
         const { navigate }  = this.props.navigation;
         return (
