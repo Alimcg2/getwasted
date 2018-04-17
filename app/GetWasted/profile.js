@@ -7,6 +7,7 @@ import flatListdata from './reduce_fake_picture';
 import Button from 'react-native-button';
 import app from './app';
 import reduce from './reduce';
+import setting from './setting';
 
 
 import {
@@ -170,7 +171,12 @@ export default class profile extends Component {
 
 
 
-                <Button style={[styles.button2]}> Settings</Button>
+                <Button style={[styles.button2]}
+                        onPress={
+                            function () {
+                                navigate('setting', {});
+                            }.bind(this)
+                        }> Settings</Button>
 
                 <FlatList
                     data={posts}
