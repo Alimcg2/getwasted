@@ -155,6 +155,7 @@ export default class editGoal extends Component {
                 <Button style={styles.button} onPress={
                     function() {
                         handleSubmit();
+                        navigate('goalPage', {});
                     }
                 }>Update</Button>
 

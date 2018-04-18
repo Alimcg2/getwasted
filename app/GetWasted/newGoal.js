@@ -130,7 +130,7 @@ export default class newGoal extends Component {
                 <Button style={styles.button} title="Create" onPress={
                     function() {
                         handleSubmit();
-                        //navigate('reduce', {});
+                        navigate('goalPage', {});
                     }
                 }>Create</Button>
 
