@@ -241,6 +241,9 @@ var styles = StyleSheet.create({
         width: 25,
         height: 25,
         
+    },
+    no_posts_found: {
+        marginTop: 50
     }
 })
 

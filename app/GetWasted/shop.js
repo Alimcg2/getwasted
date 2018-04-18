@@ -135,12 +135,16 @@ export default class shop extends Component {
                                 onPress={this.handleSignOut} >Sign Out</Button>
                         </View>
 
-                        <Button onPress={
-                            function () {
-                                this.setState({ getMenu: true });
-                            }.bind(this)}>
-                            <Image style={styles.image} source={{ url }} />
-                        </Button>
+                        {/* icon to open sidebar */}
+                        <View>
+                            <Button onPress={
+                                function () {
+                                    this.setState({ getMenu: true });
+                                }.bind(this)}>
+                                <Image style={styles.image} source={{ url }} />
+                            </Button>
+                            <Text style={styles.header}>SHOP</Text>
+                        </View>
 
                         <ScrollView>
                             <FlatList style={styles.posts}
