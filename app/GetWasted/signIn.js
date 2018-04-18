@@ -120,6 +120,7 @@ export default class signIn extends Component {
         const handleSubmit = this.handleSubmit;
         const gp = this.goalPage; 
        const rd = this.reduce; 
+        const img = "https://i.pinimg.com/564x/b2/c0/bd/b2c0bd37b5c5b731cd5fd8fa96dc0d33.jpg"
 
         const { navigate }  = this.props.navigation;
         return (
