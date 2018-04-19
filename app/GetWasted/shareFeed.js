@@ -108,7 +108,7 @@ export default class ShareFeed extends Component {
                                 navigate('profile', {});
                             }.bind(this)
                         }>Profile</Button>
-                        
+
                     <Button style={[styles.menu_item]}
                         onPress={
                             function () {
@@ -162,10 +162,23 @@ export default class ShareFeed extends Component {
                     <Text style={styles.header}>SHARE</Text>
                 </View>
 
-                <ScrollView>
-                    {postItems}
-                </ScrollView>
-
+                {postItems.length == 0 ?
+                    // button to follow people if no posts
+                    <View>
+                        <Button style={[styles.button, styles.no_posts_found]} onPress={
+                            function () {
+                                console.log('boop');
+                            }.bind(this)}>
+                            Find people to follow
+                        </Button>
+                    </View> :
+                    // posts if following people with posts
+                    <View>
+                        <ScrollView>
+                            {postItems}
+                        </ScrollView>
+                    </View>
+                }
 
             </View>
         );

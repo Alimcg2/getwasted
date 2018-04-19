@@ -102,7 +102,7 @@ export default class read extends Component {
                 postsArray.push(format);
                 var all = this.state.keywords;
                 all.push(childData.Keywords)
-                this.setState({ keywords : all })
+                this.setState({ keywords: all })
             }.bind(this));
             this.shuffleArray(postsArray)
             this.setState({ imgs: postsArray });
@@ -137,14 +137,14 @@ export default class read extends Component {
         var result = [];
         console.log(value.seach);
         var list = this.state.keywords
-        for (var i = 0; i < list.length; i ++) {
-            if (list[i].includes(value.seach.toLowerCase())){
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].includes(value.seach.toLowerCase())) {
                 console.log(list[i]);
                 result.push(this.state.imgs[i])
             }
         }
         console.log(result)
-        this.setState({searchPosts: result, searchOn: true});
+        this.setState({ searchPosts: result, searchOn: true });
     }
 
 
@@ -207,36 +207,39 @@ export default class read extends Component {
                      function () {
                          navigate('setting', {});
                      }.bind(this)
-                 }> Settings</Button>
-
+                 }>Settings</Button>
                  
-                 <Button style={styles.menu_item} title="Sign out"
+                 <Button style={styles.signOut} title="Sign out"
                  onPress={this.handleSignOut} >Sign Out</Button>
                  </View>
                  
 
                  
+                 {/* icon to open sidebar */}
+                 <View>
                  <Button onPress={
-                            function () {
-                                this.setState({ getMenu: true });
-                            }.bind(this)}>
-                            <Image style={styles.image} source={{ url }} />
-                 </Button>
-                 
-                <Form ref={c => this._form = c}
-            type={User}
-            options={options}
-                 />
-                 
-                <Button style={styles.search_button}
-            onPress={
-                function() {
-                    handleSearch();
-                }
-            }><Image style={styles.search_button} source={{uri: "https://cdn.shopify.com/s/files/1/1161/9636/t/15/assets/search-icon.png?7610983656426791530"}}/></Button>
-                 
+                     function () {
+                                    this.setState({ getMenu: true });
+                                }.bind(this)}>
+                                <Image style={styles.image} source={{ url }} />
+                            </Button>
+                            <Text style={styles.header}>READ</Text>
+                        </View>
 
-                 <ScrollView style={[styles.postContainer, this.state.searchOn && styles.search_active]}> 
+                        <Form ref={c => this._form = c}
+                            type={User}
+                            options={options}
+                        />
+
+                        <Button style={styles.search_button}
+                            onPress={
+                                function () {
+                                    handleSearch();
+                                }
+                            }><Image style={styles.search_button} source={{ uri: "https://cdn.shopify.com/s/files/1/1161/9636/t/15/assets/search-icon.png?7610983656426791530" }} /></Button>
+
+
+                        <ScrollView style={[styles.postContainer, this.state.searchOn && styles.search_active]}>
                             <FlatList style={styles.posts}
                                 data={visiblePosts}
                                 renderItem={({ item }) => <View style={styles.list_container}>
@@ -257,13 +260,13 @@ export default class read extends Component {
                                         this.setState({ numPosts: this.state.numPosts + 10 });
                                     }.bind(this)}>
                                     Load More Posts
-                            </Button> :
+                                </Button> :
                                 <View></View>
                             }
 
-                 </ScrollView>
+                        </ScrollView>
 
-                  <ScrollView style={[styles.postContainer, !this.state.searchOn && styles.search_active]}> 
+                        <ScrollView style={[styles.postContainer, !this.state.searchOn && styles.search_active]}>
                             <FlatList style={styles.posts}
                                 data={this.state.searchPosts}
                                 renderItem={({ item }) => <View style={styles.list_container}>
@@ -288,8 +291,8 @@ export default class read extends Component {
                                 <View></View>
                             }
 
-                 </ScrollView>
-                 
+                        </ScrollView>
+
                     </View>
                 }
             </View>
