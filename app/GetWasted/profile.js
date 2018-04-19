@@ -148,7 +148,15 @@ export default class profile extends Component {
                             }.bind(this)
                         }>Share</Button>
 
-                    <Button style={styles.menu_item} title="Sign out"
+            
+                <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('setting', {});
+                            }.bind(this)
+                        }>Settings</Button>
+                
+                    <Button style={styles.signOut} title="Sign out"
                         onPress={this.handleSignOut} >Sign Out</Button>
                 </View>
 
@@ -169,14 +177,6 @@ export default class profile extends Component {
                     <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
                 </View>
 
-
-
-                <Button style={[styles.button2]}
-                        onPress={
-                            function () {
-                                navigate('setting', {});
-                            }.bind(this)
-                        }> Settings</Button>
 
                 <FlatList
                     data={posts}

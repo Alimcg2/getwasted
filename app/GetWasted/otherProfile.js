@@ -167,14 +167,22 @@ export default class otherProfile extends Component {
                 }.bind(this)
             }>Read</Button> 
 
-             <Button style={[styles.menu_item]}
+                <Button style={[styles.menu_item]}
             onPress={
                 function() {
                     navigate('shop', {});
                 }.bind(this)
-            }>Shop</Button>               
+            }>Shop</Button>
                 
-                <Button style={styles.menu_item} title="Sign out"
+                <Button style={[styles.menu_item]}
+            onPress={
+                function () {
+                    navigate('setting', {});
+                }.bind(this)
+            }>Settings</Button>
+                
+            
+                <Button style={styles.signOut} title="Sign out"
                       onPress={this.handleSignOut} >Sign Out</Button>
                 </View>
                 

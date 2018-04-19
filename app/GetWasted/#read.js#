@@ -207,10 +207,10 @@ export default class read extends Component {
                      function () {
                          navigate('setting', {});
                      }.bind(this)
-                 }> Settings</Button>
+                 }>Settings</Button>
 
                  
-                 <Button style={styles.menu_item} title="Sign out"
+                 <Button style={styles.signOut} title="Sign out"
                  onPress={this.handleSignOut} >Sign Out</Button>
                  </View>
                  

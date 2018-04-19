@@ -105,7 +105,11 @@ var styles = StyleSheet.create({
         height: 300,
     },
     signOut: {
-        color: "red",
+        fontSize: 20,
+        paddingLeft: 20,
+        alignSelf: 'flex-start',
+        color: "black",
+        paddingTop: "160%"
     },
     button: {
         color: "black",

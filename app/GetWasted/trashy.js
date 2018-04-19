@@ -71,6 +71,15 @@ export default class trashy extends Component {
             }>Upload Picture</Button>
 
 
+            
+            
+                <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('setting', {});
+                            }.bind(this)
+                        }>Settings</Button>
+                
                 <View style={styles.trash_flex_container} >
                 
                 <FlatList

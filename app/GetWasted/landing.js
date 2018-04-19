@@ -42,7 +42,7 @@ export default class landing extends Component {
                 console.log('Logged in as', user.email);
                 console.log('authFlag: ' + authFlag);
                 if (authFlag) {
-                    this.props.navigation.navigate('reduce', {});
+                    this.props.navigation.navigate('profile', {});
                     authFlag = false;
                 } else {
                     authFlag = true;

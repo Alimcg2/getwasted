@@ -131,7 +131,16 @@ export default class shop extends Component {
                                     }.bind(this)
                                 }>Share</Button>
 
-                            <Button style={styles.menu_item} title="Sign out"
+                 
+            
+                <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('setting', {});
+                            }.bind(this)
+                        }>Settings</Button>
+                
+                            <Button style={styles.signOut} title="Sign out"
                                 onPress={this.handleSignOut} >Sign Out</Button>
                         </View>
 
