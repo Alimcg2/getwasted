@@ -14,21 +14,24 @@ import {
 const styles = require('./styles.js');
 
 
-// creates the form
+// creates the form for search bar
 const Form = t.form.Form;
 
-// creates the user input
+// creates the search input
 const Search = t.struct({
     search: t.String
 });
-// this is the styling for the sign in form, we might be able to put this into the
-// stylesheet but its a little weird because its using tcomb
+
+// form styling
 const formStyles = {
     ...Form.stylesheet,
     formGroup: {
         normal: {
             marginBottom: 10,
         },
+        error: {
+            marginBottom: 10
+        }
     },
     textbox: {
         normal: {
@@ -37,6 +40,12 @@ const formStyles = {
             fontSize: 20,
             marginTop: 10
         },
+        error: {
+            backgroundColor: '#e2ddd0',
+            padding: 10,
+            fontSize: 20,
+            marginTop: 10
+        }
     },
     controlLabel: {
         normal: {
@@ -44,10 +53,7 @@ const formStyles = {
         },
         // the style applied when a validation error occours
         error: {
-            color: 'red',
-            fontSize: 18,
-            marginBottom: 7,
-            fontWeight: '600'
+            display: "none"
         }
     }
 }
@@ -61,7 +67,6 @@ const options = {
 };
 
 
-
 export default class read extends Component {
     constructor(props) {
         super(props);
@@ -71,7 +76,6 @@ export default class read extends Component {
             imgs: [],
             loading: true,
             numPosts: 10,
-            keywords: [],
             searchOn: false,
             searchPosts: [],
             searchValue: ""
@@ -98,7 +102,7 @@ export default class read extends Component {
                     format = { title: childData.Title, blog: childData.Blog, img: require("./getwastedicon.png"), link: childData.Link }
                 }
                 else {
-                    format = { 
+                    format = {
                         title: childData.Title,
                         blog: childData.Blog,
                         keywords: childData.Keywords,
@@ -107,13 +111,9 @@ export default class read extends Component {
                     };
                 }
                 postsArray.push(format);
-                // var all = this.state.keywords;
-                // all.push(childData.Keywords);
-                // this.setState({ keywords: all });
             }.bind(this));
             postsArray = this.shuffleArray(postsArray);
-            this.setState({ imgs: postsArray });
-            this.setState({ loading: false });
+            this.setState({ imgs: postsArray, loading: false });
         }.bind(this)); /* actual image-info */
     }
 
@@ -158,7 +158,6 @@ export default class read extends Component {
             this.setState({ searchPosts: result, searchOn: true });
         }
     }
-
 
     render() {
         const handleSearch = this.handleSearch;
@@ -268,33 +267,36 @@ export default class read extends Component {
                         }
 
 
-                        {/* content */}
+                        {/* normal content */}
                         <ScrollView style={[styles.postContainer, this.state.searchOn && styles.search_active]}>
                             <FlatList style={styles.posts}
                                 data={visiblePosts}
-                                renderItem={({ item }) => <View style={styles.list_container}>
+                                renderItem={({ item }) =>
+                                    <View style={styles.list_container}>
+                                        <Button onPress={() => Linking.openURL("")}>
+                                            <Image style={styles.trashyPic} source={item.img} />
+                                        </Button>
 
-                                    <Button onPress={() => Linking.openURL("")}>
-                                        <Image style={styles.trashyPic} source={item.img} />
-                                    </Button>
-
-                                    <Text style={styles.subtitle}>{item.title}</Text>
-                                    <Text style={styles.subtitle2}>{item.blog}</Text>
-                                </View>
+                                        <Text style={styles.subtitle}>{item.title}</Text>
+                                        <Text style={styles.subtitle2}>{item.blog}</Text>
+                                    </View>
                                 }
                             />
 
-                            {visiblePosts.length < allPosts.length ?
-                                <Button style={[styles.button, styles.more_posts]} onPress={
-                                    function () {
-                                        this.setState({ numPosts: this.state.numPosts + 10 });
-                                    }.bind(this)}>
-                                    Load More Posts
-                                </Button> :
-                                <View></View>
-                            }
+                            <View style={styles.more_posts}>
+                                {visiblePosts.length < allPosts.length ?
+                                    <Button style={[styles.button, styles.more_posts]} onPress={
+                                        function () {
+                                            this.setState({ numPosts: this.state.numPosts + 10 });
+                                        }.bind(this)}>
+                                        Load More Posts
+                                    </Button> :
+                                    <View></View>
+                                }
+                            </View>
                         </ScrollView>
 
+                        {/* search content */}
                         <ScrollView style={[styles.postContainer, !this.state.searchOn && styles.search_active]}>
                             <FlatList style={styles.posts}
                                 data={this.state.searchPosts}
