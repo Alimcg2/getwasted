@@ -137,16 +137,16 @@ export default class ShareFeed extends Component {
                             }.bind(this)
                         }>Share</Button>
 
-            
-            
-                <Button style={[styles.menu_item]}
+
+
+                    <Button style={[styles.menu_item]}
                         onPress={
                             function () {
                                 navigate('setting', {});
                             }.bind(this)
                         }>Settings</Button>
 
-            
+
                     <Button style={styles.signOut} title="Sign out"
                         onPress={this.handleSignOut} >Sign Out</Button>
                 </View>
@@ -162,23 +162,26 @@ export default class ShareFeed extends Component {
                     <Text style={styles.header}>SHARE</Text>
                 </View>
 
-                {postItems.length == 0 ?
-                    // button to follow people if no posts
-                    <View>
-                        <Button style={[styles.button, styles.no_posts_found]} onPress={
-                            function () {
-                                console.log('boop');
-                            }.bind(this)}>
-                            Find people to follow
-                        </Button>
-                    </View> :
-                    // posts if following people with posts
-                    <View>
-                        <ScrollView>
-                            {postItems}
-                        </ScrollView>
-                    </View>
-                }
+                <View>
+                    {postItems.length == 0 ?
+                        // button to follow people if no posts
+                        <View>
+                            <Button style={[styles.button, styles.no_posts_found]} onPress={
+                                function () {
+                                    console.log('boop');
+                                }.bind(this)}>
+                                Find people to follow
+                            </Button>
+                        </View> :
+                        // posts if following people with posts
+                        <View>
+                            <ScrollView>
+                                {postItems}
+                                <View style={styles.buffer}></View>
+                            </ScrollView>
+                        </View>
+                    }
+                </View>
 
             </View>
         );

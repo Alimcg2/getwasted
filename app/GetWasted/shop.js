@@ -131,15 +131,15 @@ export default class shop extends Component {
                                     }.bind(this)
                                 }>Share</Button>
 
-                 
-            
-                <Button style={[styles.menu_item]}
-                        onPress={
-                            function () {
-                                navigate('setting', {});
-                            }.bind(this)
-                        }>Settings</Button>
-                
+
+
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        navigate('setting', {});
+                                    }.bind(this)
+                                }>Settings</Button>
+
                             <Button style={styles.signOut} title="Sign out"
                                 onPress={this.handleSignOut} >Sign Out</Button>
                         </View>
@@ -171,15 +171,17 @@ export default class shop extends Component {
                                 }
                             />
 
-                            {visibleProducts.length < allProducts.length ?
-                                <Button style={[styles.button, styles.more_posts]} onPress={
-                                    function () {
-                                        this.setState({ numProducts: this.state.numProducts + 10 });
-                                    }.bind(this)}>
-                                    Load More Products
-                            </Button> :
-                                <View></View>
-                            }
+                            <View style={styles.more_posts}>
+                                {visibleProducts.length < allProducts.length ?
+                                    <Button style={styles.button} onPress={
+                                        function () {
+                                            this.setState({ numProducts: this.state.numProducts + 10 });
+                                        }.bind(this)}>
+                                        Load More Products
+                                    </Button> :
+                                    <View></View>
+                                }
+                            </View>
 
                         </ScrollView>
                     </View>

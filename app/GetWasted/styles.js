@@ -58,6 +58,9 @@ var styles = StyleSheet.create({
         marginLeft: 5,
         color: 'grey'
     },
+    buffer: {
+        height: 200
+    },
     container_main: {
         backgroundColor: '#FFFFFF',
         paddingLeft: 60,
@@ -220,7 +223,7 @@ var styles = StyleSheet.create({
         marginLeft: -50
     },
     more_posts: {
-        marginBottom: 150
+        marginBottom: 250
     },
     follow_container: {
         display: "flex",

@@ -18,7 +18,7 @@ const styles = require('./styles.js');
 const Form = t.form.Form;
 
 // creates the user input
-const User = t.struct({
+const Search = t.struct({
     seach: t.String
 });
 // this is the styling for the sign in form, we might be able to put this into the
@@ -52,7 +52,7 @@ const formStyles = {
     }
 }
 
-// these are the options for the sign in form
+// these are the options for the search form
 const options = {
     fields: {
         search: {}
@@ -97,14 +97,20 @@ export default class read extends Component {
                     format = { title: childData.Title, blog: childData.Blog, img: require("./getwastedicon.png"), link: childData.Link }
                 }
                 else {
-                    format = { title: childData.Title, blog: childData.Blog, img: { uri: childData.ImageURL }, link: childData.Link }
+                    format = { 
+                        title: childData.Title,
+                        blog: childData.Blog,
+                        keywords: childData.Keywords,
+                        img: { uri: childData.ImageURL },
+                        link: childData.Link
+                    };
                 }
                 postsArray.push(format);
-                var all = this.state.keywords;
-                all.push(childData.Keywords)
-                this.setState({ keywords: all })
+                // var all = this.state.keywords;
+                // all.push(childData.Keywords);
+                // this.setState({ keywords: all });
             }.bind(this));
-            this.shuffleArray(postsArray)
+            postsArray = this.shuffleArray(postsArray);
             this.setState({ imgs: postsArray });
             this.setState({ loading: false });
         }.bind(this)); /* actual image-info */
@@ -136,11 +142,14 @@ export default class read extends Component {
         const value = this._form.getValue();
         var result = [];
         console.log(value.seach);
-        var list = this.state.keywords
+        // var list = this.state.imgs;
+        var list = this.state.imgs.map(item => item.keywords);
         for (var i = 0; i < list.length; i++) {
-            if (list[i].includes(value.seach.toLowerCase())) {
-                console.log(list[i]);
-                result.push(this.state.imgs[i])
+            if (list[i]) {
+                if (list[i].includes(value.seach.toLowerCase())) {
+                    console.log(list[i]);
+                    result.push(this.state.imgs[i])
+                }
             }
         }
         console.log(result)
@@ -167,58 +176,58 @@ export default class read extends Component {
                     <View>
                         <View style={[styles.menu, this.state.getMenu && styles.menu_active]}>
 
-                 <Button style={[styles.menu_item]}
-                 onPress={
-                     function () {
-                         navigate('profile', {});
-                     }.bind(this)
-                 }>Profile</Button>
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        navigate('profile', {});
+                                    }.bind(this)
+                                }>Profile</Button>
 
-                 <Button style={[styles.menu_item]}
-                 onPress={
-                     function () {
-                         navigate('reduce', {});
-                     }.bind(this)
-                 }>Reduce</Button>
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        navigate('reduce', {});
+                                    }.bind(this)
+                                }>Reduce</Button>
 
-                 <Button style={[styles.menu_item]}
-                 onPress={
-                     function () {
-                         this.setState({ getMenu: false });
-                     }.bind(this)
-                 }>Read</Button>
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        this.setState({ getMenu: false });
+                                    }.bind(this)
+                                }>Read</Button>
 
-                 <Button style={[styles.menu_item]}
-                 onPress={
-                     function () {
-                         navigate('shop', {});
-                     }.bind(this)
-                 }>Shop</Button>
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        navigate('shop', {});
+                                    }.bind(this)
+                                }>Shop</Button>
 
-                 <Button style={[styles.menu_item]}
-                 onPress={
-                     function () {
-                         navigate('shareFeed', {});
-                     }.bind(this)
-                 }>Share</Button>
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        navigate('shareFeed', {});
+                                    }.bind(this)
+                                }>Share</Button>
 
-                 <Button style={[styles.menu_item]}
-                 onPress={
-                     function () {
-                         navigate('setting', {});
-                     }.bind(this)
-                 }>Settings</Button>
-                 
-                 <Button style={styles.signOut} title="Sign out"
-                 onPress={this.handleSignOut} >Sign Out</Button>
-                 </View>
-                 
+                            <Button style={[styles.menu_item]}
+                                onPress={
+                                    function () {
+                                        navigate('setting', {});
+                                    }.bind(this)
+                                }>Settings</Button>
 
-                 
-                 {/* icon to open sidebar */}
-                 <View>
-                 <Button onPress={
-                     function () {
+                            <Button style={styles.signOut} title="Sign out"
+                                onPress={this.handleSignOut} >Sign Out</Button>
+                        </View>
+
+
+
+                        {/* icon to open sidebar */}
+                        <View>
+                            <Button onPress={
+                                function () {
                                     this.setState({ getMenu: true });
                                 }.bind(this)}>
                                 <Image style={styles.image} source={{ url }} />
@@ -226,19 +235,22 @@ export default class read extends Component {
                             <Text style={styles.header}>READ</Text>
                         </View>
 
+
+                        {/* search bar */}
                         <Form ref={c => this._form = c}
-                            type={User}
+                            type={Search}
                             options={options}
                         />
-
                         <Button style={styles.search_button}
                             onPress={
                                 function () {
                                     handleSearch();
                                 }
-                            }><Image style={styles.search_button} source={{ uri: "https://cdn.shopify.com/s/files/1/1161/9636/t/15/assets/search-icon.png?7610983656426791530" }} /></Button>
+                            }><Image style={styles.search_button} source={{ uri: "https://cdn.shopify.com/s/files/1/1161/9636/t/15/assets/search-icon.png?7610983656426791530" }} />
+                        </Button>
 
 
+                        {/* content */}
                         <ScrollView style={[styles.postContainer, this.state.searchOn && styles.search_active]}>
                             <FlatList style={styles.posts}
                                 data={visiblePosts}
@@ -263,7 +275,6 @@ export default class read extends Component {
                                 </Button> :
                                 <View></View>
                             }
-
                         </ScrollView>
 
                         <ScrollView style={[styles.postContainer, !this.state.searchOn && styles.search_active]}>
@@ -280,17 +291,7 @@ export default class read extends Component {
                                 </View>
                                 }
                             />
-
-                            {visiblePosts.length < allPosts.length ?
-                                <Button style={[styles.button, styles.more_posts]} onPress={
-                                    function () {
-                                        this.setState({ numPosts: this.state.numPosts + 10 });
-                                    }.bind(this)}>
-                                    Load More Posts
-                            </Button> :
-                                <View></View>
-                            }
-
+                            <View style={styles.more_posts}></View>
                         </ScrollView>
 
                     </View>
