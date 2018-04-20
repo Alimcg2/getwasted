@@ -273,7 +273,7 @@ export default class read extends Component {
                                 data={visiblePosts}
                                 renderItem={({ item }) =>
                                     <View style={styles.list_container}>
-                                        <Button onPress={() => Linking.openURL("")}>
+                                        <Button onPress={() => Linking.openURL(item.link).catch(err => console.error('An error occurred', err))}>
                                             <Image style={styles.trashyPic} source={item.img} />
                                         </Button>
 
@@ -302,7 +302,7 @@ export default class read extends Component {
                                 data={this.state.searchPosts}
                                 renderItem={({ item }) => <View style={styles.list_container}>
 
-                                    <Button onPress={() => Linking.openURL("")}>
+                                    <Button onPress={() => Linking.openURL(item.link).catch(err => console.error('An error occurred', err))}>
                                         <Image style={styles.trashyPic} source={item.img} />
                                     </Button>
 

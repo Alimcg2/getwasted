@@ -243,11 +243,9 @@ var styles = StyleSheet.create({
     search_button: {
         marginTop: -45,
         padding: 2,
-        textAlign: "right",
         marginLeft: "80%",
         width: 25,
         height: 25,
-        
     },
     no_posts_found: {
         marginTop: 50

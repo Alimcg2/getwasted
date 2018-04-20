@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { Image, View, StyleSheet, Text, FlatList, List, Linking, ListView, ListItem, ScrollView, SectionList } from 'react-native';
+import { Image, View, StyleSheet, Text, FlatList, List, Linking, ListView, ListItem, ScrollView, SectionList, WebView } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import flatListdata from './reduce_fake_picture';
 
@@ -168,6 +168,11 @@ export default class shop extends Component {
         var visibleProducts = allProducts.slice(0, this.state.numProducts);
         var loading = this.state.loading;
 
+        var images = allProducts.map(object => {
+            return object.img.uri
+        });
+        console.log(images);
+        
         return (
             <View style={styles.container_main}>
 
@@ -274,7 +279,7 @@ export default class shop extends Component {
                                 data={visibleProducts}
                                 renderItem={({ item }) =>
                                     <View style={styles.list_container}>
-                                        <Button onPress={() => Linking.openURL("")}>
+                                        <Button onPress={() => Linking.openURL(item.link).catch(err => console.error('An error occurred', err))}>
                                             <Image style={styles.trashyPic} source={item.img} />
                                         </Button>
 
@@ -303,7 +308,7 @@ export default class shop extends Component {
                                 data={this.state.searchPosts}
                                 renderItem={({ item }) => <View style={styles.list_container}>
 
-                                    <Button onPress={() => Linking.openURL("")}>
+                                    <Button onPress={() => Linking.openURL(item.link).catch(err => console.error('An error occurred', err))}>
                                         <Image style={styles.trashyPic} source={item.img} />
                                     </Button>
 
