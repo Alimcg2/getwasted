@@ -19,7 +19,7 @@ const Form = t.form.Form;
 
 // creates the user input
 const Search = t.struct({
-    seach: t.String
+    search: t.String
 });
 // this is the styling for the sign in form, we might be able to put this into the
 // stylesheet but its a little weird because its using tcomb
@@ -74,6 +74,7 @@ export default class read extends Component {
             keywords: [],
             searchOn: false,
             searchPosts: [],
+            searchValue: ""
         };
         this.handleSignOut = this.handleSignOut.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
@@ -140,20 +141,22 @@ export default class read extends Component {
 
     handleSearch = () => {
         const value = this._form.getValue();
-        var result = [];
-        console.log(value.seach);
-        // var list = this.state.imgs;
-        var list = this.state.imgs.map(item => item.keywords);
-        for (var i = 0; i < list.length; i++) {
-            if (list[i]) {
-                if (list[i].includes(value.seach.toLowerCase())) {
-                    console.log(list[i]);
-                    result.push(this.state.imgs[i])
+        if (value) {
+            var result = [];
+            this.setState({ searchValue: value.search });
+            console.log(value.search);
+            // var list = this.state.imgs;
+            var list = this.state.imgs.map(item => item.keywords);
+            for (var i = 0; i < list.length; i++) {
+                if (list[i]) {
+                    if (list[i].includes(value.search.toLowerCase())) {
+                        result.push(this.state.imgs[i])
+                    }
                 }
             }
+            console.log(result);
+            this.setState({ searchPosts: result, searchOn: true });
         }
-        console.log(result)
-        this.setState({ searchPosts: result, searchOn: true });
     }
 
 
@@ -248,6 +251,21 @@ export default class read extends Component {
                                 }
                             }><Image style={styles.search_button} source={{ uri: "https://cdn.shopify.com/s/files/1/1161/9636/t/15/assets/search-icon.png?7610983656426791530" }} />
                         </Button>
+
+                        {/* text under search bar after search */}
+                        {this.state.searchOn ?
+                            <View style={{ paddingBottom: 10 }}>
+                                <Text>Showing posts for &quot;{this.state.searchValue}&quot;</Text>
+                                <Text style={{ fontWeight: "bold" }} onPress={() => {
+                                    this.setState({
+                                        searchPosts: [],
+                                        searchOn: false,
+                                        searchValue: ""
+                                    });
+                                }}>Clear Search</Text>
+                            </View> :
+                            <View></View>
+                        }
 
 
                         {/* content */}
