@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
-import goalPage from './goalPage'; 
+import goalPage from './goalPage';
 import reduce from './reduce';
 
 import {
-  StackNavigator,
+    StackNavigator,
 } from 'react-navigation';
 const styles = require('./styles.js');
 
@@ -57,8 +57,10 @@ const formStyles = {
 // these are the options for the sign in form
 const options = {
     fields: {
-        email: {},
-        password: {type: 'password'}
+        password: { 
+            password: true,
+            secureTextEntry: true
+        }
     },
     stylesheet: formStyles,
 };
@@ -71,7 +73,7 @@ export default class signIn extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    
+
     // componentWillMount() {
     //     this.unregister = firebase.auth().onAuthStateChanged(user => {
     //         if(user) {
@@ -97,58 +99,58 @@ export default class signIn extends Component {
         const value = this._form.getValue();
 
         firebase.auth().signInWithEmailAndPassword(value["email"], value["password"])
-        .then((user) => {
-            console.log("it worked"); // logging things for now, take out eventually
+            .then((user) => {
+                console.log("it worked"); // logging things for now, take out eventually
 
-            // make sure user is signed in by printing display name 
-            var currentUser = firebase.auth().currentUser;
-            var userName = currentUser.displayName;
-            console.log(userName);
+                // make sure user is signed in by printing display name 
+                var currentUser = firebase.auth().currentUser;
+                var userName = currentUser.displayName;
+                console.log(userName);
 
-            // go to home page
-            // navigate('reduce', {});
-        }).catch((error) => {
-            const { code, message } = error;
-            console.log(error); // logging things for now, take out eventually
-            // TODO:  NEED TO PRINT OUT THE ERROR CODE ON THE PAGE
-        });
+                // go to home page
+                // navigate('reduce', {});
+            }).catch((error) => {
+                const { code, message } = error;
+                console.log(error); // logging things for now, take out eventually
+                // TODO:  NEED TO PRINT OUT THE ERROR CODE ON THE PAGE
+            });
 
 
     }
 
     render() {
         const handleSubmit = this.handleSubmit;
-        const gp = this.goalPage; 
-       const rd = this.reduce; 
+        const gp = this.goalPage;
+        const rd = this.reduce;
         const img = "https://i.pinimg.com/564x/b2/c0/bd/b2c0bd37b5c5b731cd5fd8fa96dc0d33.jpg"
 
-        const { navigate }  = this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
-                <View style={styles.container_main}>
-                
+            <View style={styles.container_main}>
+
                 <Image
-            style={{
-                position: 'absolute',
-                flex: 1,
-                width: 500,
-                height: "100%",
-                marginLeft: 0,
-            }}
-            source={{ uri: img }}
+                    style={{
+                        position: 'absolute',
+                        flex: 1,
+                        width: 500,
+                        height: "100%",
+                        marginLeft: 0,
+                    }}
+                    source={{ uri: img }}
                 />
                 <Text style={styles.header_main}>GET WASTED</Text>
 
                 <Form ref={c => this._form = c}
-            type={User}
-            options={options}
+                    type={User}
+                    options={options}
                 />
 
                 <Button style={styles.button}
-            onPress={
-                function() {
-                    handleSubmit();
-                }
-            }>Sign In</Button>
+                    onPress={
+                        function () {
+                            handleSubmit();
+                        }
+                    }>Sign In</Button>
 
             </View>
 
