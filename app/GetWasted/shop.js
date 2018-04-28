@@ -171,7 +171,6 @@ export default class shop extends Component {
         var images = allProducts.map(object => {
             return object.img.uri
         });
-        console.log(images);
         
         return (
             <View style={styles.container_main}>

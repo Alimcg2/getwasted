@@ -266,7 +266,6 @@ export default class read extends Component {
                             <View></View>
                         }
 
-
                         {/* normal content */}
                         <ScrollView style={[styles.postContainer, this.state.searchOn && styles.search_active]}>
                             <FlatList style={styles.posts}
@@ -285,7 +284,7 @@ export default class read extends Component {
 
                             <View style={styles.more_posts}>
                                 {visiblePosts.length < allPosts.length ?
-                                    <Button style={[styles.button, styles.more_posts]} onPress={
+                                    <Button style={styles.button} onPress={
                                         function () {
                                             this.setState({ numPosts: this.state.numPosts + 10 });
                                         }.bind(this)}>
