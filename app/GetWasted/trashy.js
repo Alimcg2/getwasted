@@ -162,7 +162,7 @@ export default class trashy extends Component {
     pushImage(response, mime = 'application/octet-stream') {
         return new Promise((resolve, reject) => {
             const uploadUri = response.uri.replace('file://', '');
-            const uploadTime = new Date().getTime();
+            const uploadTime = new Date();
             let uploadBlob = null;
             // create reference in firebase storage for the file
             this.storageRef = firebase.storage().ref('Images').child(response.fileName);
