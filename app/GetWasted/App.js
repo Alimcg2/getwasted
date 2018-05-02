@@ -65,9 +65,11 @@ const Stacks = StackNavigator({
     profile: { screen: profile },
     otherProfile: { screen: otherProfile },
     setting: { screen: setting }
-
-});
-
+},
+{ 
+    headerMode: 'none' 
+  }
+);
 
 export default class App extends Component {
     render() {
