@@ -8,6 +8,17 @@ const constants = {
 
 
 var styles = StyleSheet.create({
+      container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  gallery: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
     status: {
         fontSize: 20,
         paddingBottom: 30,
@@ -248,6 +259,9 @@ var styles = StyleSheet.create({
     },
     no_posts_found: {
         marginTop: 50
+    },
+    none: {
+        display: "none",
     }
 })
 
