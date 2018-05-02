@@ -64,7 +64,10 @@ const formStyles = {
 const options = {
     fields: {
         email: {},
-        password: {type: 'password'}
+        password: { 
+            password: true,
+            secureTextEntry: true
+        }
     },
     stylesheet: formStyles,
 };
