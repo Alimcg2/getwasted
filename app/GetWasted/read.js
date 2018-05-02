@@ -176,65 +176,11 @@ export default class read extends Component {
                     </View> :
 
                     <View>
-                        <View style={[styles.menu, this.state.getMenu && styles.menu_active]}>
-
-                            <Button style={[styles.menu_item]}
-                                onPress={
-                                    function () {
-                                        navigate('profile', {});
-                                    }.bind(this)
-                                }>Profile</Button>
-
-                            <Button style={[styles.menu_item]}
-                                onPress={
-                                    function () {
-                                        navigate('reduce', {});
-                                    }.bind(this)
-                                }>Reduce</Button>
-
-                            <Button style={[styles.menu_item]}
-                                onPress={
-                                    function () {
-                                        this.setState({ getMenu: false });
-                                    }.bind(this)
-                                }>Read</Button>
-
-                            <Button style={[styles.menu_item]}
-                                onPress={
-                                    function () {
-                                        navigate('shop', {});
-                                    }.bind(this)
-                                }>Shop</Button>
-
-                            <Button style={[styles.menu_item]}
-                                onPress={
-                                    function () {
-                                        navigate('shareFeed', {});
-                                    }.bind(this)
-                                }>Share</Button>
-
-                            <Button style={[styles.menu_item]}
-                                onPress={
-                                    function () {
-                                        navigate('setting', {});
-                                    }.bind(this)
-                                }>Settings</Button>
-
-                            <Button style={styles.signOut} title="Sign out"
-                                onPress={this.handleSignOut} >Sign Out</Button>
-                        </View>
-
 
 
                         {/* icon to open sidebar */}
                         <View>
-                            <Button onPress={
-                                function () {
-                                    this.setState({ getMenu: true });
-                                }.bind(this)}>
-                                <Image style={styles.image} source={{ url }} />
-                            </Button>
-                            <Text style={styles.header}>READ</Text>
+                            <Text style={styles.headerPadding}>READ</Text>
                         </View>
 
 
@@ -315,6 +261,51 @@ export default class read extends Component {
 
                     </View>
                 }
+            
+                <View style={[styles.menu]}>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('profile', {});
+                            }.bind(this)
+                        }>
+                <Image style={styles.image} source={require("./005-avatar.png")} />
+                </Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('reduce', {});
+                            }.bind(this)
+                        }>
+                <Image style={styles.image} source={require("./001-reload.png")} /></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('read', {});
+                            }.bind(this)
+                        }>
+                <Image style={styles.image} source={require("./002-book.png")} /></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shop', {});
+                            }.bind(this)
+                        }>
+                <Image style={styles.image} source={require("./008-shopping-bag.png")} /></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shareFeed', {});
+                            }.bind(this)
+                        }>
+                <Image style={styles.image} source={require("./006-share.png")} /></Button>
+
+            </View>
             </View>
         );
     }
