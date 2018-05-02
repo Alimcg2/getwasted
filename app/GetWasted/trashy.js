@@ -11,7 +11,7 @@ import app from './app';
 import cameraTest from './cameraTest';
 
 import {
-  StackNavigator,
+    StackNavigator,
 } from 'react-navigation';
 
 
@@ -25,14 +25,14 @@ const User = t.struct({
 
 
 var options = {
-  title: 'Select Avatar',
-  customButtons: [
-    {name: 'fb', title: 'Choose Photo from Facebook'},
-  ],
-  storageOptions: {
-    skipBackup: true,
-    path: 'images'
-  }
+    title: 'Select Avatar',
+    customButtons: [
+        { name: 'fb', title: 'Choose Photo from Facebook' },
+    ],
+    storageOptions: {
+        skipBackup: true,
+        path: 'images'
+    }
 };
 
 // this is the styling for the login form, we might be able to put this into the
@@ -78,31 +78,35 @@ const formOptions = {
 
 const styles = require('./styles.js');
 
+const Blob = RNFetchBlob.polyfill.Blob;
+const fs = RNFetchBlob.fs;
+window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
+window.Blob = Blob;
+
 export default class trashy extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            images : [],
+            images: [],
             avatarSource: "",
             showImageOptions: true,
         };
         this.uploadImage = this.uploadImage.bind(this);
-        
+
     }
 
     componentWillMount() {
         var user = firebase.auth().currentUser;
         this.picsRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
-        this.picsRef.on("value", function(snapshot) {
-            this.setState({goals: snapshot.val()});
-            snapshot.forEach(function(data) {
-                var format = {caption: data.val()["imageCaption"], url : {uri: data.val()["imageURL"]} }
+        this.picsRef.on("value", function (snapshot) {
+            this.setState({ goals: snapshot.val() });
+            snapshot.forEach(function (data) {
+                var format = { caption: data.val()["imageCaption"], url: { uri: data.val()["imageURL"] } }
                 var all = this.state.images;
                 all.push(format)
-                this.setState({imgs: all});
+                this.setState({ imgs: all });
             }.bind(this));
         }.bind(this));
-        
     }
 
     componentWillUnmount() {
@@ -113,9 +117,8 @@ export default class trashy extends Component {
             this.picsRef.off();
         }
     }
-    
+
     uploadImage() {
-        console.log("here");
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
 
@@ -130,11 +133,11 @@ export default class trashy extends Component {
             }
             else {
                 // You can display the image using either data...
-                const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
+                // const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
 
                 // or a reference to the platform specific asset location
-                 source = {uri: response.uri.replace('file://', ''), isStatic: true};
-                console.log(source);
+                // source = {uri: response.uri.replace('file://', ''), isStatic: true};
+
                 // push to firebase:
                 // push the imageurl = response.data
                 // also push the response.timestamp
@@ -142,64 +145,111 @@ export default class trashy extends Component {
                 // also need to push the caption
                 // initalize #likes to 0
                 // !!!!!!
-                this.setState({showImageOptions: false});
-                
+
+                this.pushImage(response).then(function (response) {
+                    console.log("Success!", response);
+                    // let user know upload was successfully somehow?
+                }, function (error) {
+                    console.log("Failed!", error);
+                });
+
+                this.setState({ showImageOptions: false });
             }
-        })
+        });
     }
-    
+
+
+    pushImage(response, mime = 'application/octet-stream') {
+        return new Promise((resolve, reject) => {
+            const uploadUri = response.uri.replace('file://', '');
+            const uploadTime = new Date().getTime();
+            let uploadBlob = null;
+            // create reference in firebase storage for the file
+            this.storageRef = firebase.storage().ref('Images').child(response.fileName);
+            // encode data with base64 prior to uploading
+            fs.readFile(uploadUri, 'base64')
+                .then((data) => {
+                    return Blob.build(data, { type: `{mime};BASE64` });
+                })
+                // place the blog into storage reference
+                .then((blob) => {
+                    uploadBlob = blob;
+                    return this.storageRef.put(blob, { contentType: mime });
+                })
+                // get download url of image
+                .then(() => {
+                    uploadBlob.close();
+                    return this.storageRef.getDownloadURL();
+                })
+                .then((url) => {
+                    resolve(url);
+                    // store reference to the download url of the image
+                    // in the database
+                    storeReference(url, uploadTime);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    reject(error);
+                });
+        });
+    }
+
+    storeReference(downloadURL, uploadTime) {
+        // SAVE THE NEW POST TO FIREBASE HERE
+    }
+
     render() {
- 
+
         const ts = this.trashy;
         var imgs = this.state.images;
-        const { navigate }  = this.props.navigation;
+        const { navigate } = this.props.navigation;
 
         return (
-                
-                <View style={styles.container_main}>
-                          
+
+            <View style={styles.container_main}>
+
                 <Text style={styles.header}>TRASH DIARY</Text>
-                
-                <Button style={styles.button}
-            onPress={
-                function() {
-                    navigate('cameraTest', {});
-                }
-            }>Take Picture</Button>
-                
-                <Button style={styles.button}
-            onPress={
-                this.uploadImage
-            }>Upload Picture</Button>
 
-            <View style={styles.none}>
-                <Form ref={c => this._form = c} type={User} options={options} />
+                <Button style={styles.button}
+                    onPress={
+                        function () {
+                            navigate('cameraTest', {});
+                        }
+                    }>Take Picture</Button>
+
+                <Button style={styles.button}
+                    onPress={
+                        this.uploadImage
+                    }>Upload Picture</Button>
+
+                <View style={styles.none}>
+                    <Form ref={c => this._form = c} type={User} options={options} />
                 </View>
-                
+
                 <Button style={[styles.menu_item]}
-                        onPress={
-                            function () {
-                                navigate('setting', {});
-                            }.bind(this)
-                        }>Settings</Button>
-                
-                <View style={styles.trash_flex_container} >
-                
-                <FlatList
-            data={imgs}
-            renderItem={({item}) =>
-                        <View style={styles.list_container}>
-                        
-                        <Image style={styles.trashyPic} source={item.url}/>
-                        
-                        <Text style={styles.subtitle}>{item.caption}</Text>
-                        </View>
-                       }
-                />
+                    onPress={
+                        function () {
+                            navigate('setting', {});
+                        }.bind(this)
+                    }>Settings</Button>
 
-            
-            </View>
+                <View style={styles.trash_flex_container} >
+
+                    <FlatList
+                        data={imgs}
+                        renderItem={({ item }) =>
+                            <View style={styles.list_container}>
+
+                                <Image style={styles.trashyPic} source={item.url} />
+
+                                <Text style={styles.subtitle}>{item.caption}</Text>
+                            </View>
+                        }
+                    />
+
+
                 </View>
+            </View>
         );
     }
 }
