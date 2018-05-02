@@ -131,65 +131,8 @@ export default class reduce extends Component {
         return (
             <View style={styles.container_main}>
                 
-                <View style={[styles.menu, this.state.getMenu && styles.menu_active]}>
                 
-                <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    navigate('profile', {});
-                }.bind(this)
-            }>Profile</Button>
-            
-                <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    this.setState({getMenu : false});
-                }.bind(this)
-            }>Reduce</Button>
-
-                <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    navigate('read', {});
-                }.bind(this)
-            }>Read</Button>
-                
-                <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    navigate('shop', {});
-                }.bind(this)
-            }>Shop</Button>
-
-                <Button style={[styles.menu_item]}
-            onPress={
-                function() {
-                    navigate('shareFeed', {});
-                }.bind(this)
-            }>Share</Button>
-                
-                <Button style={[styles.menu_item]}
-                        onPress={
-                            function () {
-                                navigate('setting', {});
-                            }.bind(this)
-                        }>Settings</Button>
-
-            
-                <Button style={styles.signOut} title="Sign out"
-                      onPress={this.handleSignOut} >Sign Out</Button>
-                </View>
-
-            
-                <View>
-                <Button onPress={
-                function() {
-                    this.setState({getMenu : true});
-                }.bind(this)}>
-                <Image style={styles.image} source={{url}} />
-                </Button>
-                    <Text style={styles.header}>REDUCE</Text>
-                </View>
+                    <Text style={styles.headerPadding}>REDUCE</Text>
 
             
                     <ScrollView style={styles.reduce_button_container}>
@@ -217,7 +160,52 @@ export default class reduce extends Component {
                 <Text style={styles.data_header}>TOTAL TRASY PICS: <Text style={styles.goal_data}>{images}</Text></Text>
                 
                 </View>
-           </View>
+            
+                <View style={[styles.menu]}>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('profile', {});
+                            }.bind(this)
+                        }>
+                <Image style={styles.image} source={require("./005-avatar.png")} />
+                </Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('reduce', {});
+                            }.bind(this)
+                        }>
+                <Image style={styles.image} source={require("./001-reload.png")} /></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('read', {});
+                            }.bind(this)
+                        }>
+                <Image style={styles.image} source={require("./002-book.png")} /></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shop', {});
+                            }.bind(this)
+                        }>
+                <Image style={styles.image} source={require("./008-shopping-bag.png")} /></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shareFeed', {});
+                            }.bind(this)
+                        }>
+                <Image style={styles.image} source={require("./006-share.png")} /></Button>
+
+            </View>
+                </View>
         );
     }
 }

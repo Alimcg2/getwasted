@@ -32,6 +32,11 @@ var styles = StyleSheet.create({
         fontWeight: "900",
         marginTop: 10,
     },
+    headerPadding: {
+        fontSize: 40,
+        fontWeight: "900",
+        marginTop: 80,
+    },
     header_main: {
         fontSize: 60,
         padding: 30,
@@ -45,10 +50,14 @@ var styles = StyleSheet.create({
         textAlign: 'center',
         padding: 10,
     },
-    image:{
-        width: 80,
-        height: 80,
-        marginTop: 20,
+    icon:{
+        width: 10,
+        height: 10,
+    },
+    profileImage:{
+        width: 70,
+        height: 70,
+        marginTop: 40,
     },
     share_image: {
         width: '95%',
@@ -75,6 +84,7 @@ var styles = StyleSheet.create({
     container_main: {
         backgroundColor: '#FFFFFF',
         paddingLeft: 60,
+        
         flex: 1,
     },
     header2: {
@@ -117,6 +127,10 @@ var styles = StyleSheet.create({
     },
     image_container: {
         height: 300,
+    },
+    image: {
+        height: 25,
+        width: 25,
     },
     signOut: {
         fontSize: 20,
@@ -171,20 +185,15 @@ var styles = StyleSheet.create({
         fontStyle: "italic",
     },
     menu: {
-        backgroundColor: "white",
-        width: "50%",
-        height: "100%",
+        backgroundColor: "#CED0CE",
         position: "absolute",
+        display:"flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
         zIndex: 1,
-        display: "none",
-        paddingTop: 20,
-    },
-    menu_item: {
-        fontSize: 20,
-        paddingTop: 20,
-        paddingLeft: 20,
-        alignSelf: 'flex-start',
-        color: "black",
+        bottom: 0,
+        padding: 20,
+        width: "120%",
     },
     menu_active: {
         display: "flex",
