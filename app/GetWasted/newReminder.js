@@ -6,8 +6,9 @@ import Button from 'react-native-button';
 import moment from 'moment';
 import app from './app';
 import {
-  StackNavigator,
+    StackNavigator,
 } from 'react-navigation';
+import RNCalendarEvents from 'react-native-calendar-events';
 
 const styles = require('./styles.js');
 
@@ -78,7 +79,7 @@ const options = {
         timeOfDay: {
             label: 'Time of Day',
             mode: 'time',
-            config: { 
+            config: {
                 format: (date) => moment(date).format('hh:mm a')
             }
         }
@@ -90,16 +91,42 @@ const options = {
 export default class newReminder extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            user : ""
-        };   
+        this.state = {
+            user: ""
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentWillMount() {
-        this.setState({ 
-            user : firebase.auth().currentUser /* gets current user */
-        });  
+        // ask for permission to access calendar
+        RNCalendarEvents.authorizeEventStore();
+        RNCalendarEvents.findCalendars()
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+        // var today = new Date();
+        // today.setMinutes(today.getMinutes() + 5);
+        // console.log(today.toISOString());
+
+        // RNCalendarEvents.saveEvent('Reminder event', {
+        //     location: 'location',
+        //     notes: 'notes',
+        //     startDate: today.toISOString(),
+        //     endDate: today.toISOString(),
+        //     alarm: [{
+        //        date: -1
+        //     }]
+        // }).then(id => {
+        //     console.log(id);
+        // });
+
+        this.setState({
+            user: firebase.auth().currentUser /* gets current user */
+        });
     }
 
     componentWillUnmount() {
@@ -115,14 +142,14 @@ export default class newReminder extends Component {
         var goalId = this.props.navigation.state.params.key;
         this.userGoalRemindersRef = firebase.database().ref("Users/" + this.state.user.uid + "/goals/" + goalId + "/reminders/");
         var reminderData = {
-            reminderText : formValue['reminderText'],
-            Sunday : formValue['Sunday'], 
-            Monday : formValue['Monday'], 
-            Tuesday : formValue['Tuesday'], 
-            Wednesday : formValue['Wednesday'], 
-            Thursday : formValue['Thursday'], 
-            Friday : formValue['Friday'], 
-            Saturday : formValue['Saturday'], 
+            reminderText: formValue['reminderText'],
+            Sunday: formValue['Sunday'],
+            Monday: formValue['Monday'],
+            Tuesday: formValue['Tuesday'],
+            Wednesday: formValue['Wednesday'],
+            Thursday: formValue['Thursday'],
+            Friday: formValue['Friday'],
+            Saturday: formValue['Saturday'],
             timeOfDay: time
         };
         this.userGoalRemindersRef.push(reminderData);
@@ -131,22 +158,22 @@ export default class newReminder extends Component {
 
     render() {
         const handleSubmit = this.handleSubmit;
-        const { navigate }  = this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
 
-           <ScrollView style={styles.container_main}>
+            <ScrollView style={styles.container_main}>
                 <Text style={styles.header}>NEW REMINDER</Text>
-            
+
                 <Form ref={c => this._form = c} type={Reminder} options={options} />
-                
+
                 <Button style={styles.button} title="Create" onPress={
-                    function() {
+                    function () {
                         handleSubmit();
                     }
                 }>Create</Button>
 
             </ScrollView>
-                
+
         );
     }
 }
