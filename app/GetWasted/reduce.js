@@ -168,8 +168,9 @@ export default class reduce extends Component {
                             function () {
                                 navigate('profile', {});
                             }.bind(this)
-                        }>
+                        }><View style={styles.icon}>
                 <Image style={styles.image} source={require("./005-avatar.png")} />
+                </View>
                 </Button>
 
                     <Button style={[styles.icon]}
@@ -177,32 +178,35 @@ export default class reduce extends Component {
                             function () {
                                 navigate('reduce', {});
                             }.bind(this)
-                        }>
-                <Image style={styles.image} source={require("./001-reload.png")} /></Button>
+                        }><View style={styles.iconClicked}>
+                <Image style={styles.image} source={require("./001-reload.png")} />
+                </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
                             function () {
                                 navigate('read', {});
                             }.bind(this)
-                        }>
-                <Image style={styles.image} source={require("./002-book.png")} /></Button>
+                        }><View style={styles.icon}>
+                <Image style={styles.image} source={require("./002-book.png")} /></View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
                             function () {
                                 navigate('shop', {});
                             }.bind(this)
-                        }>
-                <Image style={styles.image} source={require("./008-shopping-bag.png")} /></Button>
+                        }><View style={styles.icon}>
+                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
                             function () {
                                 navigate('shareFeed', {});
                             }.bind(this)
-                        }>
-                <Image style={styles.image} source={require("./006-share.png")} /></Button>
+                        }><View style={styles.icon}>
+                <Image style={styles.image} source={require("./006-share.png")} />
+                </View></Button>
 
             </View>
                 </View>

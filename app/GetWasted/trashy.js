@@ -90,8 +90,12 @@ export default class trashy extends Component {
             images: [],
             avatarSource: "",
             showImageOptions: true,
+            showCaption: false,
+            urlImage: "",
+            time: "",
         };
         this.uploadImage = this.uploadImage.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
 
     }
 
@@ -119,6 +123,7 @@ export default class trashy extends Component {
     }
 
     uploadImage() {
+        this.setState({ showCaption: true });
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
 
@@ -153,13 +158,14 @@ export default class trashy extends Component {
                     console.log("Failed!", error);
                 });
 
-                this.setState({ showImageOptions: false });
             }
         });
     }
 
 
     pushImage(response, mime = 'application/octet-stream') {
+        var urlImage = "";
+        var ulpoadTimeVar = "";
         return new Promise((resolve, reject) => {
             const uploadUri = response.uri.replace('file://', '');
             const uploadTime = new Date();
@@ -185,17 +191,25 @@ export default class trashy extends Component {
                     resolve(url);
                     // store reference to the download url of the image
                     // in the database
-                    storeReference(url, uploadTime);
+                    urlImage = url;
+                    uploadTimeVar = uploadTime;
                 })
                 .catch((error) => {
                     console.log(error);
                     reject(error);
                 });
         });
+        this.setState({ urlImage: urlImage, time: uploadTimeVar});
     }
 
     storeReference(downloadURL, uploadTime) {
-        // SAVE THE NEW POST TO FIREBASE HERE
+        // not sure if I need this anymore
+    }
+
+    handleUpload(){
+        console.log(this._form.getValue());
+        console.log(this.state.urlImage);
+        // push to firebase the url/timme from state and caption from here
     }
 
     render() {
@@ -208,30 +222,23 @@ export default class trashy extends Component {
 
             <View style={styles.container_main}>
 
-                <Text style={styles.header}>TRASH DIARY</Text>
+                <Text style={styles.headerPadding}>TRASH DIARY</Text>
+
 
                 <Button style={styles.button}
-                    onPress={
-                        function () {
-                            navigate('cameraTest', {});
-                        }
-                    }>Take Picture</Button>
-
-                <Button style={styles.button}
-                    onPress={
-                        this.uploadImage
+            onPress={this.uploadImage
                     }>Upload Picture</Button>
 
-                <View style={styles.none}>
-                    <Form ref={c => this._form = c} type={User} options={options} />
+                <View style={{display: this.state.showCaption ? 'flex' : 'none' }}>
+                <Form ref={c => this._form = c} type={User} options={options} />
+                
+                <Button style={styles.button}
+            onPress={
+                this.handleUpload
+                    }>Upload</Button>
+
                 </View>
 
-                <Button style={[styles.menu_item]}
-                    onPress={
-                        function () {
-                            navigate('setting', {});
-                        }.bind(this)
-                    }>Settings</Button>
 
                 <View style={styles.trash_flex_container} >
 
@@ -248,7 +255,63 @@ export default class trashy extends Component {
                     />
 
 
-                </View>
+            </View>
+                
+                <View style={[styles.menu]}>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('profile', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+            <Image style={styles.image} source={require("./005-avatar.png")} />
+            </View>
+                </Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('reduce', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.iconClicked}>
+                <Image style={styles.image} source={require("./001-reload.png")} />
+                </View></Button>
+                
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('read', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./002-book.png")} />
+                </View></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shop', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                </View></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shareFeed', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./006-share.png")} />
+                </View></Button>
+
+            </View>
             </View>
         );
     }

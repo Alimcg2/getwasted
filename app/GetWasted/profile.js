@@ -117,9 +117,19 @@ export default class profile extends Component {
                 }.bind(this)}>
                 <Image style={styles.profileImage} source={{url}} />
                 </Button>
+
+            
                 
                 <Text style={styles.header}>{user.toUpperCase()}</Text>
 
+            
+                <Button style={[styles.menu_item]}
+                    onPress={
+                        function () {
+                            navigate('setting', {});
+                        }.bind(this)
+                    }>Settings</Button>
+                
                 <View style={styles.follow_container}>
                     <Text style={styles.subtitle3}>Following: {following.length}</Text>
 
@@ -150,7 +160,9 @@ export default class profile extends Component {
                                 navigate('profile', {});
                             }.bind(this)
                         }>
-                <Image style={styles.image} source={require("./005-avatar.png")} />
+                        <View style={styles.iconClicked}>
+            <Image style={styles.image} source={require("./005-avatar.png")} />
+            </View>
                 </Button>
 
                     <Button style={[styles.icon]}
@@ -159,7 +171,10 @@ export default class profile extends Component {
                                 navigate('reduce', {});
                             }.bind(this)
                         }>
-                <Image style={styles.image} source={require("./001-reload.png")} /></Button>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./001-reload.png")} />
+                </View></Button>
+                
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -167,7 +182,9 @@ export default class profile extends Component {
                                 navigate('read', {});
                             }.bind(this)
                         }>
-                <Image style={styles.image} source={require("./002-book.png")} /></Button>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./002-book.png")} />
+                </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -175,7 +192,9 @@ export default class profile extends Component {
                                 navigate('shop', {});
                             }.bind(this)
                         }>
-                <Image style={styles.image} source={require("./008-shopping-bag.png")} /></Button>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -183,7 +202,9 @@ export default class profile extends Component {
                                 navigate('shareFeed', {});
                             }.bind(this)
                         }>
-                <Image style={styles.image} source={require("./006-share.png")} /></Button>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./006-share.png")} />
+                </View></Button>
 
             </View>
                 </View>

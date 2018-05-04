@@ -99,67 +99,9 @@ export default class ShareFeed extends Component {
         return (
             <View style={styles.container_main}>
 
-                {/* sidebar */}
-                <View style={[styles.menu, this.state.getMenu && styles.menu_active]}>
-
-                    <Button style={[styles.menu_item]}
-                        onPress={
-                            function () {
-                                navigate('profile', {});
-                            }.bind(this)
-                        }>Profile</Button>
-
-                    <Button style={[styles.menu_item]}
-                        onPress={
-                            function () {
-                                navigate('reduce', {});
-                            }.bind(this)
-                        }>Reduce</Button>
-
-                    <Button style={[styles.menu_item]}
-                        onPress={
-                            function () {
-                                navigate('read', {});
-                            }.bind(this)
-                        }>Read</Button>
-
-                    <Button style={[styles.menu_item]}
-                        onPress={
-                            function () {
-                                navigate('shop', {});
-                            }.bind(this)
-                        }>Shop</Button>
-
-                    <Button style={[styles.menu_item]}
-                        onPress={
-                            function () {
-                                this.setState({ getMenu: false });
-                            }.bind(this)
-                        }>Share</Button>
-
-
-
-                    <Button style={[styles.menu_item]}
-                        onPress={
-                            function () {
-                                navigate('setting', {});
-                            }.bind(this)
-                        }>Settings</Button>
-
-
-                    <Button style={styles.signOut} title="Sign out"
-                        onPress={this.handleSignOut} >Sign Out</Button>
-                </View>
-
                 {/* icon to open sidebar */}
                 <View>
-                    <Button onPress={
-                        function () {
-                            this.setState({ getMenu: true });
-                        }.bind(this)}>
-                        <Image style={styles.image} source={{ url }} />
-                    </Button>
-                    <Text style={styles.header}>SHARE</Text>
+                    <Text style={styles.headerPadding}>SHARE</Text>
                 </View>
 
                 <View>
@@ -183,6 +125,61 @@ export default class ShareFeed extends Component {
                     }
                 </View>
 
+                <View style={[styles.menu]}>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('profile', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+            <Image style={styles.image} source={require("./005-avatar.png")} />
+            </View>
+                </Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('reduce', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./001-reload.png")} />
+                </View></Button>
+                
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('read', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./002-book.png")} />
+                </View></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shop', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                </View></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shareFeed', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.iconClicked}>
+                <Image style={styles.image} source={require("./006-share.png")} />
+                </View></Button>
+
+            </View>
             </View>
         );
     }
@@ -212,7 +209,9 @@ class PostItem extends Component {
 
                 <Text style={styles.share_date}>
                     {date}
-                </Text>
+            </Text>
+
+            
             </View>
         );
     }

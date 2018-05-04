@@ -51,8 +51,11 @@ var styles = StyleSheet.create({
         padding: 10,
     },
     icon:{
-        width: 10,
-        height: 10,
+        padding: 20,
+    },
+    iconClicked: {
+        padding: 20,
+        backgroundColor: "white",
     },
     profileImage:{
         width: 70,
@@ -192,7 +195,6 @@ var styles = StyleSheet.create({
         justifyContent: "space-between",
         zIndex: 1,
         bottom: 0,
-        padding: 20,
         width: "120%",
     },
     menu_active: {
