@@ -36,3 +36,20 @@ h2 {
 p {
     font-weight: 300;
 }
+
+.feature {
+    height: 400px;
+    display: flex;
+    margin-top: 100px;
+    
+}
+
+img {
+    height: 300px;
+    margin: 30px;
+    margin-top: 80px;
+}
+
+.feature h3 {
+    font-size: 40px;
+}
