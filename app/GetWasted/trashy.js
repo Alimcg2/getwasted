@@ -8,8 +8,6 @@ import RNFetchBlob from 'react-native-fetch-blob';
 var ImagePicker = require('react-native-image-picker');
 
 import app from './app';
-import cameraTest from './cameraTest';
-
 import {
     StackNavigator,
 } from 'react-navigation';

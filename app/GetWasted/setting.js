@@ -6,10 +6,7 @@ import Button from 'react-native-button';
 import PhotoUpload from 'react-native-photo-upload';
 import app from './app';
 import cameraTest from './cameraTest';
-
-import {
-  StackNavigator,
-} from 'react-navigation';
+import  StackNavigator from 'react-navigation';
 
 const styles = require('./styles.js');
 
@@ -18,6 +15,7 @@ export default class trashy extends Component {
         super(props);
         this.state = {
         };
+        this.handleSignOut = this.handleSignOut.bind(this);
     }
 
     componentWillMount() {
@@ -25,14 +23,29 @@ export default class trashy extends Component {
     }
 
     componentWillUnmount() {
+        
+    }
+    
+    handleSignOut() {
+        if (firebase.auth().currentUser) {
+            firebase.auth().signOut();
+        }
+        this.props.navigation.navigate('landing', {});
     }
 
 
     render() {
+        
         const { navigate }  = this.props.navigation;
 
         return (
-            <View style={styles.container_main}>
+                <View style={styles.container_main}>
+
+            
+                    <Button style={styles.button}
+                        onPress={this.handleSignOut }>Sign Out</Button>
+
+            
                 <PhotoUpload
             onPhotoSelect={avatar => {
                 if (avatar) {

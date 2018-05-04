@@ -31,6 +31,10 @@ import shareFeed from './shareFeed';
 import profile from './profile';
 import otherProfile from './otherProfile';
 import setting from './setting';
+import tutorialPage1 from './tutorialPage1';
+import tutorialPage2 from './tutorialPage2';
+import tutorialPage3 from './tutorialPage3';
+import tutorialPage4 from './tutorialPage4';
 
 const styles = require('./styles.js');
 
@@ -64,7 +68,11 @@ const Stacks = StackNavigator({
     shareFeed: { screen: shareFeed},
     profile: { screen: profile },
     otherProfile: { screen: otherProfile },
-    setting: { screen: setting }
+    setting: { screen: setting },
+    tutorialPage1: { screen: tutorialPage1},
+    tutorialPage2: { screen: tutorialPage2},
+    tutorialPage3: { screen: tutorialPage3},
+    tutorialPage4: { screen: tutorialPage4}
 },
 { 
     headerMode: 'none' 
