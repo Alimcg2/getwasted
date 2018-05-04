@@ -95,7 +95,7 @@ export default class goalSummary extends Component {
 
                  <Button style={styles.button}  onPress={
                     function() {
-                        navigate('newReminder', {key});
+                        navigate('newReminder', {key, beginDate, endDate});
                     }
                 }>New Reminder</Button>
             

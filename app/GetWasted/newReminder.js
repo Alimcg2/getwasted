@@ -92,7 +92,9 @@ export default class newReminder extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: ""
+            user: "",
+            goalBeginDate: this.props.navigation.state.params.beginDate.toISOString(),
+            goalEndDate: this.props.navigation.state.params.endDate.toISOString()
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -100,29 +102,6 @@ export default class newReminder extends Component {
     componentWillMount() {
         // ask for permission to access calendar
         RNCalendarEvents.authorizeEventStore();
-        RNCalendarEvents.findCalendars()
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-        // var today = new Date();
-        // today.setMinutes(today.getMinutes() + 5);
-        // console.log(today.toISOString());
-
-        // RNCalendarEvents.saveEvent('Reminder event', {
-        //     location: 'location',
-        //     notes: 'notes',
-        //     startDate: today.toISOString(),
-        //     endDate: today.toISOString(),
-        //     alarm: [{
-        //        date: -1
-        //     }]
-        // }).then(id => {
-        //     console.log(id);
-        // });
 
         this.setState({
             user: firebase.auth().currentUser /* gets current user */
@@ -135,25 +114,81 @@ export default class newReminder extends Component {
         }
     }
 
+    getNextDayOfWeek(dayOfWeek) {
+        var d = new Date(this.state.goalBeginDate);
+        d.setDate(d.getDate() + ((7-d.getDay())%7+dayOfWeek) % 7);
+        return d;
+    }
+
+    createEvent(eventBeginDate) {
+        // get time from form
+        const formValue = this._form.getValue();
+        var hour = formValue.timeOfDay.getHours();
+        var mins = formValue.timeOfDay.getMinutes();
+
+        // set time for begin date to time from form
+        eventBeginDate.setHours(hour);
+        eventBeginDate.setMinutes(mins);
+        eventBeginDate.setSeconds(0);
+
+        // create new event on calendar
+        // starts at goal begin date and ends at goal end date,
+        // repeating weekly for the days selected by the user
+        RNCalendarEvents.saveEvent('Reminder event', {
+            location: 'location',
+            notes: 'notes',
+            startDate: eventBeginDate,
+            endDate: eventBeginDate,
+            recurrenceRule: {
+                frequency: "weekly",
+                endDate: this.state.goalEndDate
+            },
+            alarm: [{
+               date: -1
+            }]
+        }).then(id => {
+            console.log(id);
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
     // when the user presses submit this method will be called
     handleSubmit() {
         const formValue = this._form.getValue();
-        var time = moment(formValue['timeOfDay']).format('hh:mm a');
-        var goalId = this.props.navigation.state.params.key;
-        this.userGoalRemindersRef = firebase.database().ref("Users/" + this.state.user.uid + "/goals/" + goalId + "/reminders/");
-        var reminderData = {
-            reminderText: formValue['reminderText'],
-            Sunday: formValue['Sunday'],
-            Monday: formValue['Monday'],
-            Tuesday: formValue['Tuesday'],
-            Wednesday: formValue['Wednesday'],
-            Thursday: formValue['Thursday'],
-            Friday: formValue['Friday'],
-            Saturday: formValue['Saturday'],
-            timeOfDay: time
-        };
-        this.userGoalRemindersRef.push(reminderData);
-        // TO DO: navigate back to goal summary page
+
+        if (formValue.Sunday) {
+            var sun = this.getNextDayOfWeek(0);
+            this.createEvent(sun);
+        }
+        if (formValue.Monday) {
+            var mon = this.getNextDayOfWeek(1);
+            this.createEvent(mon);
+        }
+        if (formValue.Tuesday) {
+            var tues = this.getNextDayOfWeek(2);
+            this.createEvent(tues);
+        }
+        if (formValue.Wednesday) {
+            var wed = this.getNextDayOfWeek(3);
+            this.createEvent(wed);
+        }
+        if (formValue.Thursday) {
+            var thurs = this.getNextDayOfWeek(4);
+            this.createEvent(thurs);
+        }
+        if (formValue.Friday) {
+            var fri = this.getNextDayOfWeek(5);
+            this.createEvent(fri);
+        }
+        if (formValue.Saturday) {
+            var sat = this.getNextDayOfWeek(6);
+            this.createEvent(sat);
+        }
+
+        // TO DO: let user know events were added to calendar
+            // and navigate back to goal summary page
+
     }
 
     render() {
