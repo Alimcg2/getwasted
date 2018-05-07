@@ -46,7 +46,13 @@ export default class profile extends Component {
             snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
                 console.log(childData.imageURL);
-                var format = { caption: childData.imageCaption, likes: childData.likes.length, img: { uri: childData.imageURL }, date: childData.date }
+                // var likes;
+                // if (childData.likes) {
+                //     likes = childData.likes.length;
+                // } else {
+                //     likes: 0;
+                // }
+                var format = { caption: childData.imageCaption, likes: 0, img: { uri: childData.imageURL }, date: childData.date }
                 var all = this.state.posts;
                 all.push(format)
                 this.setState({ posts: all });
