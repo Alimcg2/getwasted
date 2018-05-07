@@ -87,7 +87,6 @@ var styles = StyleSheet.create({
     container_main: {
         backgroundColor: '#FFFFFF',
         paddingLeft: 60,
-        
         flex: 1,
     },
     header2: {
@@ -274,7 +273,72 @@ var styles = StyleSheet.create({
     },
     none: {
         display: "none",
-    }
+    },
+    smallHeader: {
+        fontSize: 40,
+        marginTop: 80,
+    },
+    largeHeader: {
+        fontSize: 45,
+        fontWeight: "900",
+        marginTop: 10,
+    },
+    largeHeader2: {
+        fontSize: 40,
+        fontWeight: "900",
+        marginTop: 10,
+    },
+    skip: {
+        marginRight: "90%",
+        color: "black",
+    },
+    next: {
+        marginLeft: "30%",
+        color: "black",
+        fontSize: 25,
+        padding: 10,
+        paddingLeft: 20,
+        right: 0,
+        width: 400,
+        backgroundColor: "#e2ddd0",
+        fontWeight: "300",
+        textAlign: "left",
+        marginTop: -40,
+        
+    },
+    buttonBottom: {
+        position:"absolute",
+        paddingLeft: 60,
+        bottom: 30,
+        
+    },
+    smallText: {
+        paddingTop: 100,
+        fontSize: 20
+    },
+    smallText2: {
+        paddingTop: 20,
+        fontSize: 18,
+        fontStyle: "italic",
+    },
+    smallText3: {
+        padding: 0,
+        margin: 0,
+        fontSize: 17,
+        fontStyle: "italic",
+    },
+    bold: {
+        fontWeight: "800",
+    },
+    tutorialImage: {
+        height: 400,
+        width: 300,
+    },
+    container_main2: {
+        backgroundColor: '#f0f0f0',
+        paddingLeft: 60,
+        flex: 1,
+    },
 })
 
 module.exports = styles;
