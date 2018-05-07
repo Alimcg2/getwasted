@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { SectionList, FlatList, View, StyleSheet, Text, Image } from 'react-native';
+import { SectionList, FlatList, View, StyleSheet, Text, Image, ScrollView } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 //import CameraRollPicker from 'react-native-camera-roll-picker';
@@ -85,12 +85,14 @@ export default class trashy extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            user : firebase.auth().currentUser,
             images: [],
             avatarSource: "",
             showImageOptions: true,
             showCaption: false,
             urlImage: "",
             time: "",
+            loading: false
         };
         this.uploadImage = this.uploadImage.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
@@ -98,8 +100,7 @@ export default class trashy extends Component {
     }
 
     componentWillMount() {
-        var user = firebase.auth().currentUser;
-        this.picsRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
+        this.picsRef = firebase.database().ref().child("Users/" + this.state.user.uid + "/trashypics");
         this.picsRef.on("value", function (snapshot) {
             this.setState({ goals: snapshot.val() });
             snapshot.forEach(function (data) {
@@ -121,7 +122,7 @@ export default class trashy extends Component {
     }
 
     uploadImage() {
-        this.setState({ showCaption: true });
+        this.setState({ showCaption: true, loading: true });
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
 
@@ -135,24 +136,11 @@ export default class trashy extends Component {
                 console.log('User tapped custom button: ', response.customButton);
             }
             else {
-                // You can display the image using either data...
-                // const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
-
-                // or a reference to the platform specific asset location
-                // source = {uri: response.uri.replace('file://', ''), isStatic: true};
-
-                // push to firebase:
-                // push the imageurl = response.data
-                // also push the response.timestamp
-                // maybe push response.filename if you want?
-                // also need to push the caption
-                // initalize #likes to 0
-                // !!!!!!
-
                 this.pushImage(response).then(function (response) {
                     console.log("Success!", response);
                     // let user know upload was successfully somehow?
                 }, function (error) {
+                    this.setState({ loading: false });
                     console.log("Failed!", error);
                 });
 
@@ -187,74 +175,96 @@ export default class trashy extends Component {
                 })
                 .then((url) => {
                     resolve(url);
-                    // store reference to the download url of the image
-                    // in the database
-                    urlImage = url;
-                    uploadTimeVar = uploadTime;
+                    // save download url and upload time to state
+                    this.setState({ urlImage: url, time: uploadTime, loading: false });
                 })
                 .catch((error) => {
                     console.log(error);
+                    this.setState({ loading: false });
                     reject(error);
                 });
         });
-        this.setState({ urlImage: urlImage, time: uploadTimeVar});
     }
 
-    storeReference(downloadURL, uploadTime) {
-        // not sure if I need this anymore
-    }
+    handleUpload() {
+        const formValue = this._form.getValue();
 
-    handleUpload(){
-        console.log(this._form.getValue());
-        console.log(this.state.urlImage);
-        // push to firebase the url/timme from state and caption from here
+        this.trashyRef = firebase.database().ref("Users/" + this.state.user.uid + "/trashypics/");
+        var data = {
+            imageURL: this.state.urlImage,
+            imageCaption: formValue.caption,
+            date: this.state.time
+        }
+        this.trashyRef.push(data);
     }
 
     render() {
+        console.log(typeof (this.state.images[0].url));
 
         const ts = this.trashy;
         var imgs = this.state.images;
         const { navigate } = this.props.navigation;
+        var loading = this.state.loading;
 
         return (
 
             <View style={styles.container_main}>
 
-                <Text style={styles.headerPadding}>TRASH DIARY</Text>
+                {this.state.loading ?
+                    <View style={styles.center}>
+                        <Text>LOADING...</Text>
+                    </View> :
 
+                    <View>
 
-                <Button style={styles.button}
-            onPress={this.uploadImage
-                    }>Upload Picture</Button>
+                        <Text style={styles.headerPadding}>TRASH DIARY</Text>
 
-                <View style={{display: this.state.showCaption ? 'flex' : 'none' }}>
-                <Form ref={c => this._form = c} type={User} options={options} />
-                
-                <Button style={styles.button}
-            onPress={
-                this.handleUpload
-                    }>Upload</Button>
+                        <ScrollView>
+                            {this.state.urlImage ?
+                                <View>
+                                    <Image style={styles.trashyPic} source={{uri: this.state.urlImage}} />
 
-                </View>
+                                    <Form ref={c => this._form = c} type={User} options={options} />
 
+                                    <Button style={styles.button} onPress={this.handleUpload}>
+                                        Upload
+                                    </Button>
+                                </View> :
 
-                <View style={styles.trash_flex_container} >
+                                <Button style={styles.button} onPress={this.uploadImage}>
+                                    Upload Picture
+                                </Button>
+                            }
 
-                    <FlatList
-                        data={imgs}
-                        renderItem={({ item }) =>
-                            <View style={styles.list_container}>
+                            {/* <View style={{ display: this.state.showCaption ? 'flex' : 'none' }}>
+                                <Form ref={c => this._form = c} type={User} options={options} />
 
-                                <Image style={styles.trashyPic} source={item.url} />
+                                <Button style={styles.button}
+                                    onPress={
+                                        this.handleUpload
+                                    }>Upload</Button>
 
-                                <Text style={styles.subtitle}>{item.caption}</Text>
+                            </View> */}
+
+                            <View style={styles.trash_flex_container} >
+                                <FlatList
+                                    data={imgs}
+                                    renderItem={({ item }) =>
+                                        <View style={styles.list_container}>
+
+                                            <Image style={styles.trashyPic} source={item.url} />
+
+                                            <Text style={styles.subtitle}>{item.caption}</Text>
+                                        </View>
+                                    }
+                                />
                             </View>
-                        }
-                    />
+                        </ScrollView>
+
+                    </View>
+                }
 
 
-            </View>
-                
                 <View style={[styles.menu]}>
 
                     <Button style={[styles.icon]}
@@ -264,9 +274,9 @@ export default class trashy extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-            <Image style={styles.image} source={require("./005-avatar.png")} />
-            </View>
-                </Button>
+                            <Image style={styles.image} source={require("./005-avatar.png")} />
+                        </View>
+                    </Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -275,9 +285,9 @@ export default class trashy extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.iconClicked}>
-                <Image style={styles.image} source={require("./001-reload.png")} />
-                </View></Button>
-                
+                            <Image style={styles.image} source={require("./001-reload.png")} />
+                        </View></Button>
+
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -286,8 +296,8 @@ export default class trashy extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./002-book.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./002-book.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -296,8 +306,8 @@ export default class trashy extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -306,10 +316,11 @@ export default class trashy extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./006-share.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./006-share.png")} />
+                        </View></Button>
 
-            </View>
+                </View>
+
             </View>
         );
     }
