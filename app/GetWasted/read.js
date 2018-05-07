@@ -180,7 +180,7 @@ export default class read extends Component {
 
                         {/* icon to open sidebar */}
                         <View>
-                            <Text style={styles.headerPadding}>READ</Text>
+                            <Text style={styles.headerPadding}>EXPLORE</Text>
                         </View>
 
 

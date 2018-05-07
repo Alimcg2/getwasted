@@ -31,9 +31,9 @@ export default class tutorialPage1 extends Component {
 
 
                 <Text style={styles.smallHeader}>WELCOME TO</Text>
-                <Text style={styles.largeHeader}>GET WASTED</Text>
+                <Text style={styles.largeHeader}>WASTELESS</Text>
 
-                <Text style={styles.smallText}>Us humans can breathe... the Earth should be able to too!</Text>
+                <Text style={styles.smallText}>Aiding the zero waste community in learning, sharing and saving the earth!</Text>
                 <View style={styles.buttonBottom}>
                 <Button style={styles.skip}
             onPress={

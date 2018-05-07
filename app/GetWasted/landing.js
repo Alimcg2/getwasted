@@ -78,10 +78,11 @@ export default class landing extends Component {
                 width: 500,
                 height: "100%",
                 marginLeft: 0,
+                opacity: 0.5,
             }}
-            source={{ uri: img }}
+            source={require("./background.jpg")}
                 />
-                <Text style={styles.header_main}>GET WASTED</Text>
+                <Text style={styles.header_main}>WASTE LESS</Text>
                 
                 <Button style={styles.button}
             onPress={

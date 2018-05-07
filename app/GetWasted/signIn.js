@@ -135,10 +135,11 @@ export default class signIn extends Component {
                         width: 500,
                         height: "100%",
                         marginLeft: 0,
+                opacity: 0.5,
                     }}
-                    source={{ uri: img }}
+            source={require("./background.jpg")}
                 />
-                <Text style={styles.header_main}>GET WASTED</Text>
+                <Text style={styles.header_main}>WASTE LESS</Text>
 
                 <Form ref={c => this._form = c}
                     type={User}

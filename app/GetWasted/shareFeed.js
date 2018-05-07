@@ -101,7 +101,7 @@ export default class ShareFeed extends Component {
 
                 {/* icon to open sidebar */}
                 <View>
-                    <Text style={styles.headerPadding}>SHARE</Text>
+                    <Text style={styles.headerPadding}>CONNECT</Text>
                 </View>
 
                 <View>

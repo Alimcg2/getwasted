@@ -40,6 +40,7 @@ var styles = StyleSheet.create({
     header_main: {
         fontSize: 60,
         padding: 30,
+        paddingTop: 80,
         paddingLeft: 0,
         fontWeight: "900",
     },

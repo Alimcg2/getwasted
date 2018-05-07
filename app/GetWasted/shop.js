@@ -184,7 +184,7 @@ export default class shop extends Component {
 
                         {/* icon to open sidebar */}
                         <View>
-                 <Text style={styles.headerPadding}>SHOP</Text>
+                 <Text style={styles.headerPadding}>EQUIP</Text>
                         </View>
 
 
