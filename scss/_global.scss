@@ -16,11 +16,15 @@ a {
 }
 
 .text-primary {
-  color: $primary !important;
+  color: #a0deda !important;
+}
+
+.icon:hover {
+  cursor: pointer;
 }
 
 .selected .text-primary {
-  color: darken($primary, 20%) !important;
+  color: #758b8a !important;
 }
 
 h1,
@@ -80,6 +84,10 @@ section {
   &:focus {
     box-shadow: 0 0 0 0.1rem lighten(#4b4c4b, 20%) !important;
   }
+}
+
+#logo {
+  width: 300px;
 }
 
 // Highlight color customization

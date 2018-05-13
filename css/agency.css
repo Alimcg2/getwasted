@@ -5,7 +5,7 @@
  */
 body {
   overflow-x: hidden;
-  font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 p {
@@ -21,11 +21,15 @@ a:hover {
 }
 
 .text-primary {
-  color: #e2ddd0 !important;
+  color: #a0deda !important;
+}
+
+.icon:hover {
+  cursor: pointer;
 }
 
 .selected .text-primary {
-  color: #bbaf91 !important;
+  color: #758b8a !important;
 }
 
 h1,
@@ -88,6 +92,10 @@ section h3.section-subheading {
   box-shadow: 0 0 0 0.1rem #7e7f7e !important;
 }
 
+#logo {
+  width: 300px;
+}
+
 ::-moz-selection {
   background: #e2ddd0;
   text-shadow: none;
@@ -123,7 +131,7 @@ img::-moz-selection {
 
 #mainNav .navbar-brand {
   color: #4b4c4b;
-  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, cursive;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
@@ -176,7 +184,7 @@ img::-moz-selection {
 header.masthead {
   text-align: center;
   color: white;
-  text-shadow: 3px 3px 7px #4b4c4b;
+  text-shadow: 1px 1px 7px #4b4c4b;
   background-repeat: no-repeat;
   background: linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)), url("../img/header-bg.jpg");
   background-attachment: scroll;
@@ -205,6 +213,7 @@ header.masthead .intro-text .intro-heading {
   font-weight: 700;
   line-height: 50px;
   margin-bottom: 25px;
+  text-shadow: 3px 3px 7px #4b4c4b;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 

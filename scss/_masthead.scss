@@ -2,7 +2,7 @@
 header.masthead {
   text-align: center;
   color: white;
-  text-shadow: 3px 3px 7px #4b4c4b;
+  text-shadow: 1px 1px 7px #4b4c4b;
   // background-image: url('../img/header-bg.jpg');
   background-repeat: no-repeat;
   background: linear-gradient(rgba(255, 255, 255, 0.25),
@@ -28,6 +28,7 @@ header.masthead {
       font-weight: 700;
       line-height: 50px;
       margin-bottom: 25px;
+      text-shadow: 3px 3px 7px #4b4c4b;
       @include heading-font;
     }
   }
