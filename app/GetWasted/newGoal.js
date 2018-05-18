@@ -6,7 +6,7 @@ TODO:
 */
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { Image, View, StyleSheet, Text, FlatList, ListView, ListItem, ScrollView, SectionList } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import reduce from './reduce';
@@ -46,7 +46,7 @@ const formStyles = {
         normal: {
             backgroundColor: 'white',
             padding: 10,
-            fontSize: 20,
+            fontSize: 18,
             borderColor: "#ccc",
             borderWidth: 1,
             borderRadius: 3,
@@ -55,14 +55,14 @@ const formStyles = {
     controlLabel: {
         normal: {
             color: 'black',
-            fontSize: 25,
+            fontSize: 20,
             marginBottom: 7,
             fontWeight: '400',
         },
         // the style applied when a validation error occours
         error: {
             color: 'red',
-            fontSize: 18,
+            fontSize: 15,
             marginBottom: 7,
             fontWeight: '600'
         }
@@ -137,14 +137,17 @@ export default class newGoal extends Component {
                 <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
                           <Text style={styles.headerPadding}>NEW GOAL</Text>
-            
+
+            <ScrollView>
                           <Form ref={c => this._form = c} type={User} options={options}/>
-                <Button style={styles.button} title="Create" onPress={
+                <Button style={styles.button2} title="Create" onPress={
                     function() {
                         handleSubmit();
                         navigate('goalPage', {});
                     }
                 }>Create</Button>
+
+            </ScrollView>
            
                 <View style={[styles.menu]}>
 
