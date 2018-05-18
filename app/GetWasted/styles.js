@@ -63,15 +63,13 @@ var styles = StyleSheet.create({
         height: 70,
         marginTop: 40,
     },
-    share_image: {
-        width: '95%',
-        height: '85%',
-        marginTop: 20,
-    },
+    // share_image: {
+    //     width: '95%',
+    //     height: '85%',
+    //     marginTop: 20,
+    // },
     share_container: {
-        height: 300,
-        marginTop: 50,
-        marginBottom: 50
+        paddingBottom: 500
     },
     share_text: {
         fontSize: 20,
@@ -248,7 +246,7 @@ var styles = StyleSheet.create({
         marginLeft: -50
     },
     more_posts: {
-        marginBottom: 250
+        marginBottom: 300
     },
     follow_container: {
         display: "flex",

@@ -132,7 +132,7 @@ export default class ShareFeed extends Component {
                         </View> :
                         // posts if following people with posts
                         <View>
-                            <ScrollView>
+                            <ScrollView style={styles.posts}>
                                 {postItems}
                                 <View style={styles.buffer}></View>
                             </ScrollView>
@@ -149,9 +149,9 @@ export default class ShareFeed extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-            <Image style={styles.image} source={require("./005-avatar.png")} />
-            </View>
-                </Button>
+                            <Image style={styles.image} source={require("./005-avatar.png")} />
+                        </View>
+                    </Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -160,9 +160,9 @@ export default class ShareFeed extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./001-reload.png")} />
-                </View></Button>
-                
+                            <Image style={styles.image} source={require("./001-reload.png")} />
+                        </View></Button>
+
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -171,8 +171,8 @@ export default class ShareFeed extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./002-book.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./002-book.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -181,8 +181,8 @@ export default class ShareFeed extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -191,10 +191,10 @@ export default class ShareFeed extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.iconClicked}>
-                <Image style={styles.image} source={require("./006-share.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./006-share.png")} />
+                        </View></Button>
 
-            </View>
+                </View>
             </View>
         );
     }
@@ -208,9 +208,15 @@ class PostItem extends Component {
         var url = post.imageURL;
         var date = moment(post.date).fromNow();
         return (
-            <View style={styles.share_container}>
-                <Image style={styles.share_image} source={{ url }} />
+            <View style={styles.list_container}>
+                {/* linked image */}
+                <Button onPress={(() => {
+                    navigate('otherProfile', { uid: post.userId });
+                })}>
+                    <Image style={styles.trashyPic} source={{ url }} />
+                </Button>
 
+                {/* linked username */}
                 <Text style={styles.share_text}>
                     <Text style={{ fontWeight: "bold" }}
                         onPress={(() => {
@@ -224,9 +230,9 @@ class PostItem extends Component {
 
                 <Text style={styles.share_date}>
                     {date}
-            </Text>
+                </Text>
 
-            
+
             </View>
         );
     }
