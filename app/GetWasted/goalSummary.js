@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, SectionList, Text, Image } from 'react-native';
+import { View, StyleSheet, SectionList, Text, Image, ScrollView } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Moment from 'react-moment';
 import Button from 'react-native-button';
@@ -19,32 +19,32 @@ const styles = require('./styles.js');
 export default class goalSummary extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            user : firebase.auth().currentUser, /* gets current user */
-            userName : firebase.auth().currentUser.displayName,
-            profileImg : "",
-            goalID : this.props.navigation.state.params.key,
+        this.state = {
+            user: firebase.auth().currentUser, /* gets current user */
+            userName: firebase.auth().currentUser.displayName,
+            profileImg: "",
+            goalID: this.props.navigation.state.params.key,
             goalText: this.props.navigation.state.params.item,
-            goalBeginDate : "",
-            goalEndDate : [],
+            goalBeginDate: "",
+            goalEndDate: [],
             goalStatus: [],
             goalNotes: []
-        };   
-        
+        };
+
     }
 
     componentWillMount() {
-        this.setState({userName: this.state.user.displayName })
+        this.setState({ userName: this.state.user.displayName })
         this.imageRef = firebase.database().ref().child("Users/" + this.state.user.uid + "/image"); /* gets the image-parent class*/
-        this.imageRef.on("value", function(snapshot) {
-            this.setState({profileImg: snapshot.val()});
+        this.imageRef.on("value", function (snapshot) {
+            this.setState({ profileImg: snapshot.val() });
         }.bind(this)); /* actual image-info */
 
-        
+
         this.goalRef = firebase.database().ref().child("Users/" + this.state.user.uid + "/goals/" + this.state.goalID);
-        this.goalRef.on("value", function(snapshot) {
+        this.goalRef.on("value", function (snapshot) {
             this.setState(
-                { 
+                {
                     goalBeginDate: new Date(snapshot.val()['beginDate']),
                     goalEndDate: new Date(snapshot.val()['endDate']),
                     goalStatus: snapshot.val()['status'],
@@ -67,8 +67,8 @@ export default class goalSummary extends Component {
 
 
     render() {
-        const { navigate }  = this.props.navigation;
-        
+        const { navigate } = this.props.navigation;
+
         let display = this.state.userName;
         var url = this.state.profileImg.toString();
         var title = this.state.goalText;
@@ -79,40 +79,42 @@ export default class goalSummary extends Component {
         var goalNotes = this.state.goalNotes;
         return (
 
-                <View style={styles.container_main}>
+            <View style={styles.container_main}>
                 <View style={styles.topContainer}>
-                <Text style={styles.title}>Wasteless</Text>
-                <Button style={[styles.menu_item]}
-                    onPress={
-                        function () {
-                            navigate('setting', {});
-                        }.bind(this)
-                    }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                    <Text style={styles.title}>Wasteless</Text>
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('setting', {});
+                            }.bind(this)
+                        }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
                 </View>
 
                 <View sytle={styles.pls}>
-                <Text style={styles.hr}>_______________________________________________________________________</Text>
+                    <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
 
                 <Text style={styles.headerPadding}>{title.toUpperCase()}</Text>
-                <Text style={styles.status}>{status}</Text>
-                <Text style={styles.main_text}>{goalNotes}</Text>
-                <Text style={styles.header2}>Start Date</Text>
-                <Moment element={Text} style={styles.date}>{beginDate}</Moment>
-                <Text style={styles.header2}>End Date</Text>
-                <Moment element={Text} style={styles.date}>{endDate}</Moment>
-                <Button style={styles.button}  onPress={
-                    function() {
-                        navigate('editGoal', {title, key});
-                    }
-                }>Edit Goal</Button>
+                <ScrollView>
+                    <Text style={styles.status}>{status}</Text>
+                    <Text style={styles.main_text}>{goalNotes}</Text>
+                    <Text style={styles.header2}>Start Date</Text>
+                    <Moment element={Text} style={styles.date}>{beginDate}</Moment>
+                    <Text style={styles.header2}>End Date</Text>
+                    <Moment element={Text} style={styles.date}>{endDate}</Moment>
+                    <Button style={styles.button} onPress={
+                        function () {
+                            navigate('editGoal', { title, key });
+                        }
+                    }>Edit Goal</Button>
 
-                 <Button style={styles.button}  onPress={
-                    function() {
-                        navigate('newReminder', {key, beginDate, endDate});
-                    }
-                }>New Reminder</Button>
-            
+                    <Button style={styles.button2} onPress={
+                        function () {
+                            navigate('newReminder', { key, beginDate, endDate });
+                        }
+                    }>New Reminder</Button>
+                </ScrollView>
+
                 <View style={[styles.menu]}>
 
 
@@ -123,9 +125,9 @@ export default class goalSummary extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-            <Image style={styles.image} source={require("./005-avatar.png")} />
-            </View>
-                </Button>
+                            <Image style={styles.image} source={require("./005-avatar.png")} />
+                        </View>
+                    </Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -134,9 +136,9 @@ export default class goalSummary extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./001-reload.png")} />
-                </View></Button>
-                
+                            <Image style={styles.image} source={require("./001-reload.png")} />
+                        </View></Button>
+
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -145,8 +147,8 @@ export default class goalSummary extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.iconClicked}>
-                <Image style={styles.image} source={require("./002-book.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./002-book.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -155,8 +157,8 @@ export default class goalSummary extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -165,12 +167,12 @@ export default class goalSummary extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./006-share.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./006-share.png")} />
+                        </View></Button>
 
+                </View>
             </View>
-            </View>
-                
+
         );
     }
 }
