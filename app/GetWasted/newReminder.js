@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView, Alert } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import moment from 'moment';
@@ -116,7 +116,7 @@ export default class newReminder extends Component {
 
     getNextDayOfWeek(dayOfWeek) {
         var d = new Date(this.state.goalBeginDate);
-        d.setDate(d.getDate() + ((7-d.getDay())%7+dayOfWeek) % 7);
+        d.setDate(d.getDate() + ((7 - d.getDay()) % 7 + dayOfWeek) % 7);
         return d;
     }
 
@@ -144,7 +144,7 @@ export default class newReminder extends Component {
                 endDate: this.state.goalEndDate
             },
             alarm: [{
-               date: -1
+                date: -1
             }]
         }).then(id => {
             console.log(id);
@@ -186,8 +186,20 @@ export default class newReminder extends Component {
             this.createEvent(sat);
         }
 
-        // TO DO: let user know events were added to calendar
-            // and navigate back to goal summary page
+        // let user know reminders were added to phone calendar
+        Alert.alert(
+            'Reminder has been added to your calendar!',
+            'You can edit your reminders from your phone calendar.',
+            [
+                {
+                    text: 'OK', onPress: (() => {
+                        // navigate back to goal summary page
+                        this.props.navigation.goBack();
+                    })
+                },
+            ],
+            { cancelable: false }
+        );
 
     }
 
