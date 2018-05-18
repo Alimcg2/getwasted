@@ -39,64 +39,44 @@
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
-  // Show explore feature description when it's clicked
-  $('#explore').on('click', function (e) {
-    $('#explore-descr').removeClass("d-none");
-    $('#explore').addClass("selected");
+  // Highlight reduce feature when it's selected
+  $('#reduce').on('click', function (e) {
+    $("#screen").attr("src", "img/screens/1.png");
 
-    $('#equip-descr').addClass("d-none");
-    $('#equip').removeClass("selected");
-
-    $('#connect-descr').addClass("d-none");
+    $('#reduce').addClass("selected");
     $('#connect').removeClass("selected");
+    $('#explore').removeClass("selected");
+    $('#equip').removeClass("selected");
+  });
 
-    $('#reduce-descr').addClass("d-none");
+  // Highlight explore feature when it's selected
+  $('#explore').on('click', function (e) {
+    $("#screen").attr("src", "img/screens/2.png");
+
+    $('#explore').addClass("selected");
+    $('#equip').removeClass("selected");
+    $('#connect').removeClass("selected");
     $('#reduce').removeClass("selected");
   });
 
-  // Show equip feature description when it's clicked
+  // Highlight equip feature when it's selected
   $('#equip').on('click', function (e) {
-    $('#equip-descr').removeClass("d-none");
+    $("#screen").attr("src", "img/screens/3.png");
+
     $('#equip').addClass("selected");
-
-    $('#explore-descr').addClass("d-none");
     $('#explore').removeClass("selected");
-
-    $('#connect-descr').addClass("d-none");
     $('#connect').removeClass("selected");
-
-    $('#reduce-descr').addClass("d-none");
     $('#reduce').removeClass("selected");
-  })
+  });
 
-  // Show connect feature description when it's clicked
+  // Highlight connect feature when it's selected
   $('#connect').on('click', function (e) {
-    $('#connect-descr').removeClass("d-none");
+    $("#screen").attr("src", "img/screens/4.png");
+
     $('#connect').addClass("selected");
-    
-    $('#explore-descr').addClass("d-none");
     $('#explore').removeClass("selected");
-
-    $('#equip-descr').addClass("d-none");
     $('#equip').removeClass("selected");
-    
-    $('#reduce-descr').addClass("d-none");
     $('#reduce').removeClass("selected");
-  })
-
-  // Show reduce feature description when it's clicked
-  $('#reduce').on('click', function (e) {
-    $('#reduce-descr').removeClass("d-none");
-    $('#reduce').addClass("selected");
-    
-    $('#connect-descr').addClass("d-none");
-    $('#connect').removeClass("selected");
-    
-    $('#explore-descr').addClass("d-none");
-    $('#explore').removeClass("selected");
-
-    $('#equip-descr').addClass("d-none");
-    $('#equip').removeClass("selected");
-  })
+  });
 
 })(jQuery);
