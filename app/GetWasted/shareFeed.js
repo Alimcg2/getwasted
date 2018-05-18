@@ -97,7 +97,22 @@ export default class ShareFeed extends Component {
         });
 
         return (
-            <View style={styles.container_main}>
+            
+                <View style={styles.container_main}>
+                <View style={styles.topContainer}>
+                <Text style={styles.title}>Wasteless</Text>
+                <Button style={[styles.menu_item]}
+                    onPress={
+                        function () {
+                            navigate('setting', {});
+                        }.bind(this)
+                    }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                </View>
+
+
+                <View sytle={styles.pls}>
+                <Text style={styles.hr}>_______________________________________________________________________</Text>
+                </View>
 
                 {/* icon to open sidebar */}
                 <View>

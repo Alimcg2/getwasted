@@ -80,7 +80,21 @@ export default class goalSummary extends Component {
         return (
 
                 <View style={styles.container_main}>
-                <Text style={styles.header}>{title.toUpperCase()}</Text>
+                <View style={styles.topContainer}>
+                <Text style={styles.title}>Wasteless</Text>
+                <Button style={[styles.menu_item]}
+                    onPress={
+                        function () {
+                            navigate('setting', {});
+                        }.bind(this)
+                    }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                </View>
+
+                <View sytle={styles.pls}>
+                <Text style={styles.hr}>_______________________________________________________________________</Text>
+                </View>
+
+                <Text style={styles.headerPadding}>{title.toUpperCase()}</Text>
                 <Text style={styles.status}>{status}</Text>
                 <Text style={styles.main_text}>{goalNotes}</Text>
                 <Text style={styles.header2}>Start Date</Text>
@@ -99,7 +113,62 @@ export default class goalSummary extends Component {
                     }
                 }>New Reminder</Button>
             
+                <View style={[styles.menu]}>
 
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('profile', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+            <Image style={styles.image} source={require("./005-avatar.png")} />
+            </View>
+                </Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('reduce', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./001-reload.png")} />
+                </View></Button>
+                
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('read', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.iconClicked}>
+                <Image style={styles.image} source={require("./002-book.png")} />
+                </View></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shop', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                </View></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shareFeed', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./006-share.png")} />
+                </View></Button>
+
+            </View>
             </View>
                 
         );

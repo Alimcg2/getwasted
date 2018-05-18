@@ -147,9 +147,23 @@ export default class editGoal extends Component {
         const handleSubmit = this.handleSubmit;
         const { navigate }  = this.props.navigation;
         return (
-
+            
                 <View style={styles.container_main}>
-                <Text style={styles.header}>EDIT GOAL</Text>
+                <View style={styles.topContainer}>
+                <Text style={styles.title}>Wasteless</Text>
+                <Button style={[styles.menu_item]}
+                    onPress={
+                        function () {
+                            navigate('setting', {});
+                        }.bind(this)
+                    }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                </View>
+
+                <View sytle={styles.pls}>
+                <Text style={styles.hr}>_______________________________________________________________________</Text>
+                </View>
+
+                <Text style={styles.headerPadding}>EDIT GOAL</Text>
                 
                 <Form ref={c => this._form = c} type={User} options={options} value={this.state.initialValue}/>
                 <Button style={styles.button} onPress={
@@ -159,7 +173,63 @@ export default class editGoal extends Component {
                     }
                 }>Update</Button>
 
-            
+                       
+                <View style={[styles.menu]}>
+
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('profile', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+            <Image style={styles.image} source={require("./005-avatar.png")} />
+            </View>
+                </Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('reduce', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./001-reload.png")} />
+                </View></Button>
+                
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('read', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.iconClicked}>
+                <Image style={styles.image} source={require("./002-book.png")} />
+                </View></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shop', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                </View></Button>
+
+                    <Button style={[styles.icon]}
+                        onPress={
+                            function () {
+                                navigate('shareFeed', {});
+                            }.bind(this)
+                        }>
+                        <View style={styles.icon}>
+                <Image style={styles.image} source={require("./006-share.png")} />
+                </View></Button>
+
+            </View>
 
             </View>
                 

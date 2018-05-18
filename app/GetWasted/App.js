@@ -14,6 +14,8 @@ import {
 } from 'react-native';
 
 
+import {YellowBox} from 'react-native';
+console.disableYellowBox = true;
 import signUp from './signUp';
 import signIn from './signIn';
 import landing from './landing';

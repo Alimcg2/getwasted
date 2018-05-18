@@ -35,7 +35,7 @@ var styles = StyleSheet.create({
     headerPadding: {
         fontSize: 40,
         fontWeight: "900",
-        marginTop: 80,
+        marginTop: 40,
     },
     header_main: {
         fontSize: 60,
@@ -132,8 +132,8 @@ var styles = StyleSheet.create({
         height: 300,
     },
     image: {
-        height: 25,
-        width: 25,
+        height: 20,
+        width: 20,
     },
     signOut: {
         fontSize: 20,
@@ -188,14 +188,17 @@ var styles = StyleSheet.create({
         fontStyle: "italic",
     },
     menu: {
-        backgroundColor: "#CED0CE",
+        backgroundColor: "#f0f0f0",
         position: "absolute",
         display:"flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        zIndex: 1,
+        zIndex: 2,
         bottom: 0,
         width: "120%",
+        shadowOffset:{  width: 0,  height: 0,  },
+        shadowColor: 'grey',
+        shadowOpacity: 0.5,
     },
     menu_active: {
         display: "flex",
@@ -259,7 +262,7 @@ var styles = StyleSheet.create({
         fontWeight: "300",
         textAlign: "left",
         fontStyle: "italic",
-        color: "black"
+        color: "black",
         
     },
     search_button: {
@@ -340,6 +343,54 @@ var styles = StyleSheet.create({
         paddingLeft: 60,
         flex: 1,
     },
+    settingsImage: {
+        width: 20,
+        height: 20,
+        right: 15,
+        position: "absolute",
+        top: -25,
+        
+        
+    },
+    topContainer: {
+        height: 65,
+        textAlign: "center",
+        marginLeft: -60,
+        backgroundColor: "#f0f0f0",
+        zIndex: 1
+        
+    },
+    title: {
+        fontSize: 24,
+        fontStyle: "italic",
+        textAlign: "center",
+        marginTop: 30,
+        fontWeight: "200"
+    },
+    hr: {
+        shadowOffset:{  width: 0,  height: 0,  },
+        shadowColor: 'grey',
+        shadowOpacity: 0.5,
+        marginTop: -15,
+        marginLeft: -60,
+        color: "grey",
+        zIndex: -3,
+        flex: 1,
+        
+    },
+    pls: {
+        flexDirection: 'row',
+    },
+    outline: {
+        shadowOffset:{  width: 0,  height: -5,  },
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+
+    },
+    scrollContainer: {
+        marginBottom: 100,
+    }
+        
 })
 
 module.exports = styles;

@@ -115,7 +115,20 @@ export default class profile extends Component {
         var followers = this.state.followers;
         var following = this.state.following;
         return (
-            <View style={styles.container_main}>
+                <View style={styles.container_main}>
+                <View style={styles.topContainer}>
+                <Text style={styles.title}>Wasteless</Text>
+                <Button style={[styles.menu_item]}
+                    onPress={
+                        function () {
+                            navigate('setting', {});
+                        }.bind(this)
+                    }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                </View>
+
+                <View sytle={styles.pls}>
+                <Text style={styles.hr}>_______________________________________________________________________</Text>
+                </View>
 
                 <Button onPress={
                 function() {
@@ -129,12 +142,6 @@ export default class profile extends Component {
                 <Text style={styles.header}>{user.toUpperCase()}</Text>
 
             
-                <Button style={[styles.menu_item]}
-                    onPress={
-                        function () {
-                            navigate('setting', {});
-                        }.bind(this)
-                    }>Settings</Button>
                 
                 <View style={styles.follow_container}>
                     <Text style={styles.subtitle3}>Following: {following.length}</Text>
@@ -145,7 +152,7 @@ export default class profile extends Component {
                 </View>
 
 
-                <FlatList
+                <FlatList style={styles.scrollContainer}
                     data={posts}
                     renderItem={({ item }) => <View style={styles.list_container}>
 
@@ -158,6 +165,7 @@ export default class profile extends Component {
                 />
 
             
+
                 <View style={[styles.menu]}>
 
                     <Button style={[styles.icon]}
