@@ -140,12 +140,20 @@ export default class newGoal extends Component {
 
             <ScrollView>
                           <Form ref={c => this._form = c} type={User} options={options}/>
-                <Button style={styles.button2} title="Create" onPress={
+                <Button style={styles.button} title="Create" onPress={
                     function() {
                         handleSubmit();
                         navigate('goalPage', {});
                     }
                 }>Create</Button>
+                
+                <Button style={styles.button3}  onPress={
+                    
+                    function() {
+                        navigate('goalPage', {});
+                    }
+                }>Cancel</Button>
+
 
             </ScrollView>
            
