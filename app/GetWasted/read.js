@@ -218,11 +218,22 @@ export default class read extends Component {
                                 data={visiblePosts}
                                 renderItem={({ item }) =>
                                     <View style={styles.list_container}>
-                                        <Button onPress={() => Linking.openURL(item.link).catch(err => console.error('An error occurred', err))}>
+                                        {/* linked image */}
+                                        <Button onPress={() =>
+                                            Linking.openURL(item.link).catch(err => console.error('An error occurred', err))
+                                        }>
                                             <Image style={styles.trashyPic} source={item.img} />
                                         </Button>
 
-                                        <Text style={styles.subtitle}>{item.title}</Text>
+                                        {/* linked title */}
+                                        <Text style={styles.subtitle}
+                                            onPress={(() => {
+                                                Linking.openURL(item.link).catch(err => console.error('An error occurred', err))
+                                            })}>
+                                            {item.title}
+                                        </Text>
+
+                                        {/* blog name */}
                                         <Text style={styles.subtitle2}>{item.blog}</Text>
                                     </View>
                                 }
@@ -245,15 +256,26 @@ export default class read extends Component {
                         <ScrollView style={[styles.postContainer, !this.state.searchOn && styles.search_active]}>
                             <FlatList style={styles.posts}
                                 data={this.state.searchPosts}
-                                renderItem={({ item }) => <View style={styles.list_container}>
+                                renderItem={({ item }) =>
+                                    <View style={styles.list_container}>
+                                        {/* linked image */}
+                                        <Button onPress={() =>
+                                            Linking.openURL(item.link).catch(err => console.error('An error occurred', err))
+                                        }>
+                                            <Image style={styles.trashyPic} source={item.img} />
+                                        </Button>
 
-                                    <Button onPress={() => Linking.openURL(item.link).catch(err => console.error('An error occurred', err))}>
-                                        <Image style={styles.trashyPic} source={item.img} />
-                                    </Button>
+                                        {/* linked title */}
+                                        <Text style={styles.subtitle}
+                                            onPress={(() => {
+                                                Linking.openURL(item.link).catch(err => console.error('An error occurred', err))
+                                            })}>
+                                            {item.title}
+                                        </Text>
 
-                                    <Text style={styles.subtitle}>{item.title}</Text>
-                                    <Text style={styles.subtitle2}>{item.blog}</Text>
-                                </View>
+                                        {/* blog name */}
+                                        <Text style={styles.subtitle2}>{item.blog}</Text>
+                                    </View>
                                 }
                             />
                             <View style={styles.more_posts}></View>
@@ -261,7 +283,7 @@ export default class read extends Component {
 
                     </View>
                 }
-            
+
                 <View style={[styles.menu]}>
 
 
@@ -272,9 +294,9 @@ export default class read extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-            <Image style={styles.image} source={require("./005-avatar.png")} />
-            </View>
-                </Button>
+                            <Image style={styles.image} source={require("./005-avatar.png")} />
+                        </View>
+                    </Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -283,9 +305,9 @@ export default class read extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./001-reload.png")} />
-                </View></Button>
-                
+                            <Image style={styles.image} source={require("./001-reload.png")} />
+                        </View></Button>
+
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -294,8 +316,8 @@ export default class read extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.iconClicked}>
-                <Image style={styles.image} source={require("./002-book.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./002-book.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -304,8 +326,8 @@ export default class read extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -314,10 +336,10 @@ export default class read extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./006-share.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./006-share.png")} />
+                        </View></Button>
 
-            </View>
+                </View>
             </View>
         );
     }

@@ -245,7 +245,7 @@ var styles = StyleSheet.create({
         marginLeft: -50
     },
     more_posts: {
-        marginBottom: 250
+        marginBottom: 300
     },
     follow_container: {
         display: "flex",
