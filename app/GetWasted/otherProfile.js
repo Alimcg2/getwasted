@@ -160,7 +160,7 @@ export default class otherProfile extends Component {
                
                 <Image style={styles.profileImage} source={{url}} />
 
-                <Text style={styles.header}>{user.toUpperCase()}</Text>
+                <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
                 
                 <View style={styles.follow_container}>
                 <Text style={styles.subtitle3}>Following: {following.length }</Text>
@@ -170,16 +170,16 @@ export default class otherProfile extends Component {
                 <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
                 </View>
 
-                <Button style={styles.button2} onPress={
+                <Button style={styles.button2NoPadding} onPress={
                     this.handleFollow
                 }>
                 {buttonText}
                 </Button>
             
 
-                <FlatList
-            data={posts}
-            renderItem={({item}) =>
+                <FlatList style={styles.paddingBottom}
+            data={posts} 
+            renderItem={({item} ) =>
                         <View style={styles.list_container}>
                         
                         <Image style={styles.trashyPic} source={item.img}/>

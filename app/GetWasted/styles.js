@@ -32,6 +32,12 @@ var styles = StyleSheet.create({
         fontWeight: "900",
         marginTop: 10,
     },
+    headerRight: {
+        fontSize: 32,
+        fontWeight: "900",
+        right: -80,
+        top: -40,
+    },
     headerPadding: {
         fontSize: 40,
         fontWeight: "900",
@@ -53,6 +59,7 @@ var styles = StyleSheet.create({
     },
     icon:{
         padding: 20,
+        opacity: 0.6,
     },
     iconClicked: {
         padding: 20,
@@ -178,6 +185,26 @@ var styles = StyleSheet.create({
         fontWeight: "300",
         textAlign: "left",
     },
+    button2NoPadding: {
+        color: "black",
+        fontSize: 25,
+        padding: 10,
+        paddingLeft: 20,
+        marginBottom: 20,
+        margin: 5,
+        marginLeft: 0,
+        right: 0,
+        width: 400,
+        backgroundColor: "#e2ddd0",
+        fontWeight: "300",
+        textAlign: "left",
+    },
+    paddingBottom: {
+        marginBottom: 100,
+    },
+    paddingBottom2: {
+        marginBottom: 120,
+    },
     button3: {
         color: "black",
         fontSize: 25,
@@ -234,10 +261,10 @@ var styles = StyleSheet.create({
         paddingTop: 30,
     },
     subtitle: {
-        fontSize: 20,
+        fontSize: 18,
     },
     subtitle2: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: "300",
         textAlign: "left",
         fontStyle: "italic"
@@ -272,7 +299,8 @@ var styles = StyleSheet.create({
     },
     follow_container: {
         display: "flex",
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginTop: -45,
         
     },
     subtitle3: {
@@ -291,6 +319,7 @@ var styles = StyleSheet.create({
         marginLeft: "80%",
         width: 25,
         height: 25,
+        
     },
     no_posts_found: {
         marginTop: 50
@@ -369,6 +398,7 @@ var styles = StyleSheet.create({
         right: 15,
         position: "absolute",
         top: -25,
+        opacity: 0.6,
     },
     topContainer: {
         height: 65,
@@ -412,6 +442,13 @@ var styles = StyleSheet.create({
     },
     scrollContainer: {
         marginBottom: 100,
+    },
+    heartImage: {
+        width: 30,
+        height: 30,
+        opacity: 0.6,
+        marginLeft: 220,
+        marginTop: -45,
     }
         
 })

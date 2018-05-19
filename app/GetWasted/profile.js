@@ -8,6 +8,7 @@ import Button from 'react-native-button';
 import app from './app';
 import reduce from './reduce';
 import setting from './setting';
+import moment from 'moment';
 
 
 import {
@@ -30,6 +31,7 @@ export default class profile extends Component {
             following: [],
         };
         this.handleSignOut = this.handleSignOut.bind(this);
+        this.handleLike = this.handleLike.bind(this);
     }
 
     componentWillMount() {
@@ -46,13 +48,14 @@ export default class profile extends Component {
             snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
                 console.log(childData.imageURL);
-                // var likes;
-                // if (childData.likes) {
-                //     likes = childData.likes.length;
-                // } else {
-                //     likes: 0;
-                // }
-                var format = { caption: childData.imageCaption, likes: 0, img: { uri: childData.imageURL }, date: childData.date }
+                 var numLikes;
+                 if (childData.likes) {
+                     numLikes = childData.likes.length;
+                 } else {
+                     numLikes = 0;
+                 }
+                var userName = this.state.userName;
+                var format = { caption: childData.imageCaption, likes: numLikes, img: { uri: childData.imageURL }, date: childData.date, username: user.displayName, userId: user.uid }
                 var all = this.state.posts;
                 all.push(format)
                 this.setState({ posts: all });
@@ -106,14 +109,36 @@ export default class profile extends Component {
     }
 
 
+    handleLike() {
+        console.log(this.state.likes);
+
+        // var updates = {};
+        // updates["Users/" + this.state.user.uid + "/goals/" + this.state.goalID] = { 
+        //     beginDate : formValue['beginDate'],
+        //     endDate : formValue['endDate'], 
+        //     goalText:  formValue['goalText'],
+        //     goalNotes:  formValue['goalNotes'],
+        //     otherUsers: this.state.goals.otherUsers,
+        //     status: formValue['status']
+        // };
+        // firebase.database().ref().update(updates);
+        //this.setState({this.state.likes + 1})
+        console.log(this.state.likes);
+    }
+
 
     render() {
+        var handleLike = this.handleLike;
         var url = this.state.profileImg.toString();
         const { navigate } = this.props.navigation;
         var user = this.state.userName;
         var posts = this.state.posts;
         var followers = this.state.followers;
         var following = this.state.following;
+
+        var postItems = this.state.posts.map((post, index) => {
+            return <PostItem key={index} post={post} navigation={this.props.navigation} />;
+        });
         return (
                 <View style={styles.container_main}>
                 <View style={styles.topContainer}>
@@ -139,7 +164,7 @@ export default class profile extends Component {
 
             
                 
-                <Text style={styles.header}>{user.toUpperCase()}</Text>
+                <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
 
             
                 
@@ -152,17 +177,12 @@ export default class profile extends Component {
                 </View>
 
 
-                <FlatList style={styles.scrollContainer}
-                    data={posts}
-                    renderItem={({ item }) => <View style={styles.list_container}>
-
-                        <Image style={styles.trashyPic} source={item.img} />
-
-                        <Text style={styles.subtitle}>{item.caption}</Text>
-                        <Text style={styles.subtitle2}>Likes: {item.likes}</Text>
-
-                    </View>}
-                />
+                        <View>
+                            <ScrollView style={styles.posts}>
+                                {postItems}
+                                <View style={styles.buffer}></View>
+                            </ScrollView>
+                        </View>
 
             
 
@@ -226,5 +246,60 @@ export default class profile extends Component {
         );
     }
 }
+
+
+
+class PostItem extends Component {
+    render() {
+        const { navigate } = this.props.navigation;
+        const handleLike = this.handleLike;
+        var post = this.props.post;
+        var url = post.img;
+        var numLikes = post.likes;
+        var caption = post.caption;
+        var date = moment(post.date).fromNow();
+        return (
+            <View style={styles.paddingBottom}>
+                {/* linked image */}
+                <Button onPress={(() => {
+                    navigate('otherProfile', { uid: post.userId });
+                })}>
+                    <Image style={styles.trashyPic} source={ url } />
+                </Button>
+
+                {/* linked username */}
+                <Text style={styles.share_text}>
+                    <Text style={{ fontWeight: "bold" }}
+                        onPress={(() => {
+                            navigate('otherProfile', { uid: post.userId });
+                        })}>
+                        {post.username + "  "}
+                    </Text>
+
+                    {caption}
+            </Text>
+            
+                <Text style={styles.share_date}>
+                Likes: {numLikes}
+                </Text>
+
+                <Button onPress={
+                    function() {
+                        handleLike();
+                    }
+                }>
+                <Image style={styles.heartImage} source={require("./007-heart.png")} />
+                </Button>
+                
+                <Text style={styles.share_date}>
+                    {date}
+                </Text>
+
+
+            </View>
+        );
+    }
+}
+
 
 module.exports = profile;

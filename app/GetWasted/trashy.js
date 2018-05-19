@@ -231,9 +231,9 @@ export default class trashy extends Component {
 
                     <View>
 
-                        <Text style={styles.headerPadding}>TRASH DIARY</Text>
+                 <Text style={styles.headerPadding}>TRASHY PICS</Text>
 
-                        <ScrollView>
+                        <ScrollView >
                             {this.state.urlImage ?
                                 <View>
                                     <Image style={styles.trashyPic} source={{uri: this.state.urlImage}} />
@@ -260,8 +260,8 @@ export default class trashy extends Component {
 
                             </View> */}
 
-                            <View style={styles.trash_flex_container} >
-                                <FlatList
+                            <View>
+                 <FlatList style={styles.paddingBottom2}
                                     data={imgs}
                                     renderItem={({ item }) =>
                                         <View style={styles.list_container}>
@@ -272,12 +272,12 @@ export default class trashy extends Component {
                                         </View>
                                     }
                                 />
-                            </View>
-                        </ScrollView>
+                 </View>
+                 <View style={styles.paddingBottom2}></View>
+                 </ScrollView>
 
                     </View>
                 }
-
 
                 <View style={[styles.menu]}>
 
