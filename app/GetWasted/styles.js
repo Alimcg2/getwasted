@@ -140,6 +140,14 @@ var styles = StyleSheet.create({
         height: 20,
         width: 20,
     },
+    plusIcon: {
+        height: 30,
+        width: 30,
+        right: 15,
+        position: "absolute",
+        top: -40,
+        opacity: 0.6
+    },
     signOut: {
         fontSize: 20,
         paddingLeft: 20,
@@ -390,8 +398,7 @@ var styles = StyleSheet.create({
         right: 15,
         position: "absolute",
         top: -25,
-        opacity: 0.6, 
-        
+        opacity: 0.6,
     },
     topContainer: {
         height: 65,
@@ -404,6 +411,12 @@ var styles = StyleSheet.create({
         fontSize: 24,
         fontStyle: "italic",
         textAlign: "center",
+        marginTop: 30,
+        fontWeight: "200"
+    },
+    goalTitle: {
+        fontSize: 24,
+        fontStyle: "italic",
         marginTop: 30,
         fontWeight: "200"
     },
