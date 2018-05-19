@@ -430,6 +430,13 @@ var styles = StyleSheet.create({
     },
     scrollContainer: {
         marginBottom: 100,
+    },
+    heartImage: {
+        width: 30,
+        height: 30,
+        opacity: 0.6,
+        marginLeft: 220,
+        marginTop: -45,
     }
         
 })
