@@ -139,7 +139,7 @@ export default class profile extends Component {
 
             
                 
-                <Text style={styles.header}>{user.toUpperCase()}</Text>
+                <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
 
             
                 
