@@ -7,6 +7,7 @@ import flatListdata from './reduce_fake_picture';
 import Button from 'react-native-button';
 import app from './app';
 import reduce from './reduce';
+import setting from './setting';
 import moment from 'moment';
 
 
@@ -18,38 +19,33 @@ const styles = require('./styles.js');
 
 
 
-export default class otherProfile extends Component {
+export default class profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            getMenu : false,
-            profileImg : "",
-            posts : [],
-            userName : "",
+            getMenu: false,
+            profileImg: "",
+            posts: [],
+            userName: "",
             followers: [],
             following: [],
-            userID: this.props.navigation.state.params.uid,
-            buttonText: "Follow" // make this dynamic
         };
         this.handleSignOut = this.handleSignOut.bind(this);
-        this.handleFollow = this.handleFollow.bind(this);
+        this.handleLike = this.handleLike.bind(this);
     }
 
     componentWillMount() {
-        console.log(this.props.navigation.state.params.uid);
-        var currentUser = firebase.auth().currentUser;
-        this.imageRef = firebase.database().ref().child("Users/" + this.state.userID + "/image"); /* gets the image-parent class*/
-        this.imageRef.on("value", function(snapshot) {
-            this.setState({profileImg: snapshot.val()});
-        }.bind(this));
-        this.nameRef = firebase.database().ref().child("Users/" + this.state.userID + "/name");
-        this.nameRef.on("value", function(snapshot) {
-            this.setState({userName: snapshot.val()});
+        var user = firebase.auth().currentUser;
+        this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
+        this.setState({ userName: user.displayName });
+        this.imageRef.on("value", function (snapshot) {
+            this.setState({ profileImg: snapshot.val() });
         }.bind(this));
 
-        this.postRef = firebase.database().ref().child("Users/" + this.state.userID + "/trashypics");
-        this.postRef.on("value", function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
+
+        this.postRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
+        this.postRef.on("value", function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
                 console.log(childData.imageURL);
                  var numLikes;
@@ -58,36 +54,37 @@ export default class otherProfile extends Component {
                  } else {
                      numLikes = 0;
                  }
-                var format = {caption: childData.imageCaption, likes: numLikes, img: {uri: childData.imageURL}, date: childData.date}
+                var userName = this.state.userName;
+                var format = { caption: childData.imageCaption, likes: numLikes, img: { uri: childData.imageURL }, date: childData.date, username: user.displayName, userId: user.uid }
                 var all = this.state.posts;
                 all.push(format)
-                this.setState({posts: all});
+                this.setState({ posts: all });
             }.bind(this));
         }.bind(this));
-        
-        
-        this.followRef = firebase.database().ref().child("Users/" +  this.state.userID + "/followers");
-        this.followRef.on("value", function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
+
+
+        this.followRef = firebase.database().ref().child("Users/" + user.uid + "/followers");
+        this.followRef.on("value", function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
-                var format = {uid: childData.uid}
+                var format = { uid: childData.uid }
                 var all = this.state.followers;
                 all.push(format)
-                this.setState({followers: all});
+                this.setState({ followers: all });
             }.bind(this));
         }.bind(this));
-        
-        this.followingRef = firebase.database().ref().child("Users/" + this.state.userID + "/following");
-        this.followingRef.on("value", function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
+
+        this.followingRef = firebase.database().ref().child("Users/" + user.uid + "/following");
+        this.followingRef.on("value", function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
-                var format = {uid: childData.uid}
+                var format = { uid: childData.uid }
                 var all = this.state.following;
                 all.push(format)
-                this.setState({following: all});
+                this.setState({ following: all });
             }.bind(this));
         }.bind(this));
-        
+
     }
     componentWillUnmount() {
         if (this.imageRef) {
@@ -102,9 +99,6 @@ export default class otherProfile extends Component {
         if (this.followingRef) {
             this.followingRef.off();
         }
-        if (this.nameRef) {
-            this.nameRef.off();
-        }
     }
 
     handleSignOut() {
@@ -114,44 +108,38 @@ export default class otherProfile extends Component {
         this.props.navigation.navigate('landing', {});
     }
 
-    handleFollow() {
-        if (this.state.buttonText == "Follow"){
-            
-            var currentUser = firebase.auth().currentUser;
-            
-            this.userGoalsRef = firebase.database().ref("Users/" + this.state.userID + "/followers/");
-            var addData = {
-                uid: currentUser.uid
-            };
-            this.userGoalsRef.push(addData);
-            this.userGoalsRef = firebase.database().ref("Users/" + currentUser.uid + "/following/");
-            var addData = {
-                uid: this.state.userID
-            };
-            this.userGoalsRef.push(addData);
-            this.setState({buttonText: "Unfollow"});
-        } else {
-            // figure out how to remove stuff here
-            this.setState({buttonText: "Follow"});
-        }
+
+    handleLike() {
+        console.log(this.state.likes);
+
+        // var updates = {};
+        // updates["Users/" + this.state.user.uid + "/goals/" + this.state.goalID] = { 
+        //     beginDate : formValue['beginDate'],
+        //     endDate : formValue['endDate'], 
+        //     goalText:  formValue['goalText'],
+        //     goalNotes:  formValue['goalNotes'],
+        //     otherUsers: this.state.goals.otherUsers,
+        //     status: formValue['status']
+        // };
+        // firebase.database().ref().update(updates);
+        //this.setState({this.state.likes + 1})
+        console.log(this.state.likes);
     }
-    
+
 
     render() {
+        var handleLike = this.handleLike;
         var url = this.state.profileImg.toString();
-        const { navigate }  = this.props.navigation;
+        const { navigate } = this.props.navigation;
         var user = this.state.userName;
         var posts = this.state.posts;
         var followers = this.state.followers;
         var following = this.state.following;
-        var buttonText = this.state.buttonText;
-        
+
         var postItems = this.state.posts.map((post, index) => {
-            return <PostItem key={index} post={post} userName={user} navigation={this.props.navigation} />;
+            return <PostItem key={index} post={post} navigation={this.props.navigation} />;
         });
-        console.log(posts);
         return (
-            
                 <View style={styles.container_main}>
                 <View style={styles.topContainer}>
                 <Text style={styles.title}>Wasteless</Text>
@@ -166,25 +154,27 @@ export default class otherProfile extends Component {
                 <View sytle={styles.pls}>
                 <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
-               
-                <Image style={styles.profileImage} source={{url}} />
 
+                <Button onPress={
+                function() {
+                    this.setState({getMenu : true});
+                }.bind(this)}>
+                <Image style={styles.profileImage} source={{url}} />
+                </Button>
+
+            
+                
                 <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
+
+            
                 
                 <View style={styles.follow_container}>
-                <Text style={styles.subtitle3}>Following: {following.length }</Text>
-                
-                <Button style={[styles.subtitle3]}>Followers: {followers.length}</Button>
+                    <Text style={styles.subtitle3}>Following: {following.length}</Text>
 
-                <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
+                    <Button style={[styles.subtitle3]}>Followers: {followers.length}</Button>
+
+                    <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
                 </View>
-
-                <Button style={styles.button2NoPadding} onPress={
-                    this.handleFollow
-                }>
-                {buttonText}
-                </Button>
-            
 
 
                         <View>
@@ -192,9 +182,10 @@ export default class otherProfile extends Component {
                                 {postItems}
                                 <View style={styles.buffer}></View>
                             </ScrollView>
-                </View>
-                
+                        </View>
+
             
+
                 <View style={[styles.menu]}>
 
                     <Button style={[styles.icon]}
@@ -203,7 +194,7 @@ export default class otherProfile extends Component {
                                 navigate('profile', {});
                             }.bind(this)
                         }>
-                        <View style={styles.icon}>
+                        <View style={styles.iconClicked}>
             <Image style={styles.image} source={require("./005-avatar.png")} />
             </View>
                 </Button>
@@ -245,16 +236,17 @@ export default class otherProfile extends Component {
                                 navigate('shareFeed', {});
                             }.bind(this)
                         }>
-                        <View style={styles.iconClicked}>
+                        <View style={styles.icon}>
                 <Image style={styles.image} source={require("./006-share.png")} />
                 </View></Button>
 
             </View>
+                </View>
                 
-            </View>
         );
     }
 }
+
 
 
 class PostItem extends Component {
@@ -266,13 +258,11 @@ class PostItem extends Component {
         var numLikes = post.likes;
         var caption = post.caption;
         var date = moment(post.date).fromNow();
-        var userID = this.props.navigation.state.params.uid;
-        var username = this.props.userName;
         return (
             <View style={styles.list_container}>
                 {/* linked image */}
                 <Button onPress={(() => {
-                    navigate('otherProfile', { uid: userID });
+                    navigate('otherProfile', { uid: post.userId });
                 })}>
                     <Image style={styles.trashyPic} source={ url } />
                 </Button>
@@ -283,7 +273,7 @@ class PostItem extends Component {
                         onPress={(() => {
                             navigate('otherProfile', { uid: post.userId });
                         })}>
-                        {username + "  "}
+                        {post.username + "  "}
                     </Text>
 
                     {caption}
@@ -311,4 +301,5 @@ class PostItem extends Component {
     }
 }
 
-module.exports = otherProfile;
+
+module.exports = profile;
