@@ -366,7 +366,6 @@ var styles = StyleSheet.create({
     },
     topContainer: {
         height: 65,
-        textAlign: "center",
         marginLeft: -60,
         backgroundColor: "#f0f0f0",
         zIndex: 1
