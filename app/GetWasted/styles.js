@@ -169,7 +169,7 @@ var styles = StyleSheet.create({
         textAlign: "left",
     },
     posts: {
-        marginBottom: 50
+        marginBottom: 200,
     },
     button2: {
         color: "black",
