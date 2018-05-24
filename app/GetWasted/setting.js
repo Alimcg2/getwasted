@@ -66,6 +66,7 @@ export default class trashy extends Component {
 
     uploadImage() {
         this.setState({ showCaption: true, loading: true });
+        var url = "";
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
 
@@ -81,6 +82,8 @@ export default class trashy extends Component {
             else {
                 this.pushImage(response).then(function (response) {
                     console.log("Success!", response);
+                    url = response;
+                    console.log(url);
                     // let user know upload was successfully somehow?
                 }, function (error) {
                     this.setState({ loading: false });
@@ -89,6 +92,8 @@ export default class trashy extends Component {
 
             }
         });
+        console.log(url);
+        this.setState({urlImage: url});
     }
 
 
@@ -122,7 +127,7 @@ export default class trashy extends Component {
                 })
                 .then((url) => {
                     resolve(url);
-                    console.log("does this get called fuckk");
+                    console.log(url);
                     // save download url and upload time to state
                     this.setState({ urlImage: url, loading: false });
                 })
