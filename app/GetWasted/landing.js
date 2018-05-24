@@ -37,12 +37,19 @@ export default class landing extends Component {
 export default class landing extends Component { 
     componentWillMount() {
         authFlag = true;
+
         this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
             if(user) {
                 console.log('Logged in as', user.email);
                 console.log('authFlag: ' + authFlag);
                 if (authFlag) {
-                    this.props.navigation.navigate('tutorialPage1', {});
+                    if (user.metadata.lastSignInTime === user.metadata.creationTime) {
+                        console.log("new user");
+                        this.props.navigation.navigate('tutorialPage1', {});
+                    } else {
+                        console.log("old user");
+                        this.props.navigation.navigate('profile', {});
+                    }
                     authFlag = false;
                 } else {
                     authFlag = true;
