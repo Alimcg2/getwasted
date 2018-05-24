@@ -1,3 +1,4 @@
+
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
 import { Image, View, StyleSheet, Text, FlatList, List, Linking, ListView, ListItem, ScrollView, SectionList } from 'react-native';
@@ -29,6 +30,7 @@ export default class profile extends Component {
             userName: "",
             followers: [],
             following: [],
+            userInfo: [],
         };
         this.handleSignOut = this.handleSignOut.bind(this);
         this.handleLike = this.handleLike.bind(this);
@@ -36,6 +38,7 @@ export default class profile extends Component {
 
     componentWillMount() {
         var user = firebase.auth().currentUser;
+        this.setState({userInfo: user});
         this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
         this.setState({ userName: user.displayName });
         this.imageRef.on("value", function (snapshot) {
@@ -55,7 +58,7 @@ export default class profile extends Component {
                      numLikes = 0;
                  }
                 var userName = this.state.userName;
-                var format = { caption: childData.imageCaption, likes: numLikes, img: { uri: childData.imageURL }, date: childData.date, username: user.displayName, userId: user.uid }
+                var format = { caption: childData.imageCaption, likes: numLikes, img: { uri: childData.imageURL }, date: childData.date, username: user.displayName, userId: user.uid, i: childSnapshot.key }
                 var all = this.state.posts;
                 all.push(format)
                 this.setState({ posts: all });
@@ -109,26 +112,22 @@ export default class profile extends Component {
     }
 
 
-    handleLike() {
-        console.log(this.state.likes);
-
-        // var updates = {};
-        // updates["Users/" + this.state.user.uid + "/goals/" + this.state.goalID] = { 
-        //     beginDate : formValue['beginDate'],
-        //     endDate : formValue['endDate'], 
-        //     goalText:  formValue['goalText'],
-        //     goalNotes:  formValue['goalNotes'],
-        //     otherUsers: this.state.goals.otherUsers,
-        //     status: formValue['status']
-        // };
-        // firebase.database().ref().update(updates);
-        //this.setState({this.state.likes + 1})
-        console.log(this.state.likes);
+    handleLike(post) {
+        console.log(this.state.posts[post.i]);
+        numLikes =  this.state.posts[post.i] + 1;
+        
+        var updates = {};
+        updates["Users/" + this.state.userInfo.uid + "/trashypics/" + post.i + "/likes/" ] = {
+            uid: this.state.userInfo.uid
+        };
+        firebase.database().ref().update(updates);
+        //this.setState({this.state.posts[post.i] : numLikes})
+        
     }
 
 
     render() {
-        var handleLike = this.handleLike;
+        const handleLike = this.handleLike;
         var url = this.state.profileImg.toString();
         const { navigate } = this.props.navigation;
         var user = this.state.userName;
@@ -137,7 +136,7 @@ export default class profile extends Component {
         var following = this.state.following;
 
         var postItems = this.state.posts.map((post, index) => {
-            return <PostItem key={index} post={post} navigation={this.props.navigation} />;
+            return <PostItem key={index} post={post} handleLike={handleLike} navigation={this.props.navigation} />;
         });
         return (
                 <View style={styles.container_main}>
@@ -252,14 +251,14 @@ export default class profile extends Component {
 class PostItem extends Component {
     render() {
         const { navigate } = this.props.navigation;
-        const handleLike = this.handleLike;
+        const handleLike = this.props.handleLike;
         var post = this.props.post;
         var url = post.img;
         var numLikes = post.likes;
         var caption = post.caption;
         var date = moment(post.date).fromNow();
         return (
-            <View style={styles.paddingBottom}>
+            <View style={styles.list_container}>
                 {/* linked image */}
                 <Button onPress={(() => {
                     navigate('otherProfile', { uid: post.userId });
@@ -285,7 +284,7 @@ class PostItem extends Component {
 
                 <Button onPress={
                     function() {
-                        handleLike();
+                        handleLike(post);
                     }
                 }>
                 <Image style={styles.heartImage} source={require("./007-heart.png")} />

@@ -7,6 +7,7 @@ import flatListdata from './reduce_fake_picture';
 import Button from 'react-native-button';
 import app from './app';
 import reduce from './reduce';
+import moment from 'moment';
 
 
 import {
@@ -46,14 +47,18 @@ export default class otherProfile extends Component {
             this.setState({userName: snapshot.val()});
         }.bind(this));
 
-        
         this.postRef = firebase.database().ref().child("Users/" + this.state.userID + "/trashypics");
         this.postRef.on("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 var childData = childSnapshot.val();
                 console.log(childData.imageURL);
-                var likes = childData.likes ? childData.likes.length : 0;
-                var format = {caption: childData.imageCaption, likes: likes, img: {uri: childData.imageURL}, date: childData.date}
+                 var numLikes;
+                 if (childData.likes) {
+                     numLikes = childData.likes.length;
+                 } else {
+                     numLikes = 0;
+                 }
+                var format = {caption: childData.imageCaption, likes: numLikes, img: {uri: childData.imageURL}, date: childData.date}
                 var all = this.state.posts;
                 all.push(format)
                 this.setState({posts: all});
@@ -140,6 +145,10 @@ export default class otherProfile extends Component {
         var followers = this.state.followers;
         var following = this.state.following;
         var buttonText = this.state.buttonText;
+        
+        var postItems = this.state.posts.map((post, index) => {
+            return <PostItem key={index} post={post} userName={user} navigation={this.props.navigation} />;
+        });
         console.log(posts);
         return (
             
@@ -177,19 +186,14 @@ export default class otherProfile extends Component {
                 </Button>
             
 
-                <FlatList style={styles.paddingBottom}
-            data={posts} 
-            renderItem={({item} ) =>
-                        <View style={styles.list_container}>
-                        
-                        <Image style={styles.trashyPic} source={item.img}/>
-                        
-                        <Text style={styles.subtitle}>{item.caption}</Text>
-                        <Text style={styles.subtitle2}>Likes: {item.likes}</Text>
-                        
-                        </View>
-                       }
-                />
+
+                        <View>
+                            <ScrollView style={styles.posts}>
+                                {postItems}
+                                <View style={styles.buffer}></View>
+                            </ScrollView>
+                </View>
+                
             
                 <View style={[styles.menu]}>
 
@@ -247,6 +251,61 @@ export default class otherProfile extends Component {
 
             </View>
                 
+            </View>
+        );
+    }
+}
+
+
+class PostItem extends Component {
+    render() {
+        const { navigate } = this.props.navigation;
+        const handleLike = this.handleLike;
+        var post = this.props.post;
+        var url = post.img;
+        var numLikes = post.likes;
+        var caption = post.caption;
+        var date = moment(post.date).fromNow();
+        var userID = this.props.navigation.state.params.uid;
+        var username = this.props.userName;
+        return (
+            <View style={styles.list_container}>
+                {/* linked image */}
+                <Button onPress={(() => {
+                    navigate('otherProfile', { uid: userID });
+                })}>
+                    <Image style={styles.trashyPic} source={ url } />
+                </Button>
+
+                {/* linked username */}
+                <Text style={styles.share_text}>
+                    <Text style={{ fontWeight: "bold" }}
+                        onPress={(() => {
+                            navigate('otherProfile', { uid: post.userId });
+                        })}>
+                        {username + "  "}
+                    </Text>
+
+                    {caption}
+            </Text>
+            
+                <Text style={styles.share_date}>
+                Likes: {numLikes}
+                </Text>
+
+                <Button onPress={
+                    function() {
+                        handleLike();
+                    }
+                }>
+                <Image style={styles.heartImage} source={require("./007-heart.png")} />
+                </Button>
+                
+                <Text style={styles.share_date}>
+                    {date}
+                </Text>
+
+
             </View>
         );
     }
