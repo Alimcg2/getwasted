@@ -23,10 +23,7 @@ const User = t.struct({
 
 
 var options = {
-    title: 'Select Avatar',
-    customButtons: [
-        { name: 'fb', title: 'Choose Photo from Facebook' },
-    ],
+    title: 'Upload Trashy Picture',
     storageOptions: {
         skipBackup: true,
         path: 'images'
