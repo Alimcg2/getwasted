@@ -99,7 +99,7 @@ export default class read extends Component {
                 var childData = childSnapshot.val();
                 var format;
                 if (childData.ImageURL == "NULL - image") {
-                    format = { title: childData.Title, blog: childData.Blog, img: require("./getwastedicon.png"), link: childData.Link }
+                    format = { title: childData.Title, blog: childData.Blog, img: require("./no-image.png"), link: childData.Link }
                 }
                 else {
                     format = {

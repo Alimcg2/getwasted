@@ -94,14 +94,16 @@ export default class goalSummary extends Component {
                     <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
 
-                <Text style={styles.headerPadding}>{title.toUpperCase()}</Text>
+                <Text style={styles.headerPadding2}>{title.toUpperCase()}</Text>
                 <ScrollView>
+                <Text style={styles.header2}>Status</Text>
                     <Text style={styles.status}>{status}</Text>
-                    <Text style={styles.main_text}>{goalNotes}</Text>
+                    <Text style={styles.header2}>Notes</Text>
+                    <Text style={styles.status}>{goalNotes ? goalNotes : "No notes"}</Text>
                     <Text style={styles.header2}>Start Date</Text>
-                    <Moment element={Text} style={styles.date}>{beginDate}</Moment>
+                    <Moment element={Text} format='ddd MMM DD YYYY' style={styles.date}>{beginDate}</Moment>
                     <Text style={styles.header2}>End Date</Text>
-                    <Moment element={Text} style={styles.date}>{endDate}</Moment>
+                    <Moment element={Text} format='ddd MMM DD YYYY' style={styles.date}>{endDate}</Moment>
                     <Button style={styles.button} onPress={
                         function () {
                             navigate('editGoal', { title, key });

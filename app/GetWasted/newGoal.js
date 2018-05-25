@@ -61,17 +61,19 @@ const formStyles = {
     },
     controlLabel: {
         normal: {
-            color: 'black',
-            fontSize: 20,
-            marginBottom: 7,
-            fontWeight: '400',
+            fontSize: 25,
+            padding: 10,
+            paddingLeft: 0,
+            fontStyle: "italic",
+            fontWeight: "200",
         },
         // keep style the same if there's an error
         error: {
-            color: 'black',
-            fontSize: 20,
-            marginBottom: 7,
-            fontWeight: '400',
+            fontSize: 25,
+            padding: 10,
+            paddingLeft: 0,
+            fontStyle: "italic",
+            fontWeight: "200",
         }
     }
 }
@@ -79,7 +81,9 @@ const formStyles = {
 // these are the options for the login form
 const options = {
     fields: {
-        goalText: {},
+        goalText: {
+            label: 'Goal title',
+        },
         beginDate: {
             mode: 'date',
             config: {
