@@ -115,7 +115,7 @@ export default class editGoal extends Component {
             goalID: this.props.navigation.state.params.key,
             goals: {},
             initialValue: {},
-            keyboardAvoidingViewKey: new Date()
+            keyboardAvoidingViewKey: 'keyboardAvoidingViewKey' + new Date().getTime()
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onKeyboardHide = this.onKeyboardHide.bind(this);

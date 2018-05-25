@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image, ScrollView, Alert } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView, Alert, KeyboardAvoidingView, Keyboard } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import moment from 'moment';
@@ -107,9 +107,11 @@ export default class newReminder extends Component {
         this.state = {
             user: "",
             goalBeginDate: this.props.navigation.state.params.beginDate.toISOString(),
-            goalEndDate: this.props.navigation.state.params.endDate.toISOString()
+            goalEndDate: this.props.navigation.state.params.endDate.toISOString(),
+            keyboardAvoidingViewKey: 'keyboardAvoidingViewKey' + new Date().getTime()
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onKeyboardHide = this.onKeyboardHide.bind(this);
     }
 
     componentWillMount() {
@@ -119,6 +121,10 @@ export default class newReminder extends Component {
         this.setState({
             user: firebase.auth().currentUser /* gets current user */
         });
+    }
+
+    componentDidMount() {
+        this.keyboardHideListener = Keyboard.addListener('keyboardWillHide', this.onKeyboardHide);
     }
 
     componentWillUnmount() {
@@ -131,6 +137,13 @@ export default class newReminder extends Component {
         var d = new Date(this.state.goalBeginDate);
         d.setDate(d.getDate() + ((7 - d.getDay()) % 7 + dayOfWeek) % 7);
         return d;
+    }
+
+    // change key to force re-render when keyboard closes (fixes padding issue)
+    onKeyboardHide() {
+        this.setState({
+            keyboardAvoidingViewKey: 'keyboardAvoidingViewKey' + new Date().getTime()
+        });
     }
 
     createEvent(eventBeginDate) {
@@ -176,14 +189,14 @@ export default class newReminder extends Component {
             if (!formValue.Sunday && !formValue.Monday && !formValue.Tuesday
                 && !formValue.Wednesday && !formValue.Thursday &&
                 !formValue.Friday && !formValue.Saturday) {
-                    Alert.alert(
-                        "Error", // title
-                        "Please select at least on day of the week.", // message
-                        [
-                            { text: 'OK' } // button
-                        ],
-                        { cancelable: false }
-                    );
+                Alert.alert(
+                    "Error", // title
+                    "Please select at least on day of the week.", // message
+                    [
+                        { text: 'OK' } // button
+                    ],
+                    { cancelable: false }
+                );
             } else {
                 if (formValue.Sunday) {
                     var sun = this.getNextDayOfWeek(0);
@@ -247,33 +260,35 @@ export default class newReminder extends Component {
         const handleSubmit = this.handleSubmit;
         const { navigate } = this.props.navigation;
         return (
-
             <View style={styles.container_main}>
-                <View style={styles.topContainer}>
-                    <Text style={styles.title}>Wasteless</Text>
-                    <Button style={[styles.menu_item]}
-                        onPress={
+
+                <KeyboardAvoidingView behavior="padding" key={this.state.keyboardAvoidingViewKey}>
+                    <View style={styles.topContainer}>
+                        <Text style={styles.title}>Wasteless</Text>
+                        <Button style={[styles.menu_item]}
+                            onPress={
+                                function () {
+                                    navigate('setting', {});
+                                }.bind(this)
+                            }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                    </View>
+
+                    <View sytle={styles.pls}>
+                        <Text style={styles.hr}>_______________________________________________________________________</Text>
+                    </View>
+
+                    <Text style={styles.headerPadding}>NEW REMINDER</Text>
+
+                    <ScrollView>
+                        <Form ref={c => this._form = c} type={Reminder} options={options} />
+
+                        <Button style={[styles.button, {marginBottom: 250}]} title="Create" onPress={
                             function () {
-                                navigate('setting', {});
-                            }.bind(this)
-                        }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
-                </View>
-
-                <View sytle={styles.pls}>
-                    <Text style={styles.hr}>_______________________________________________________________________</Text>
-                </View>
-
-                <Text style={styles.headerPadding}>NEW REMINDER</Text>
-
-                <ScrollView>
-                    <Form ref={c => this._form = c} type={Reminder} options={options} />
-
-                    <Button style={styles.button2} title="Create" onPress={
-                        function () {
-                            handleSubmit();
-                        }
-                    }>Create</Button>
-                </ScrollView>
+                                handleSubmit();
+                            }
+                        }>Create</Button>
+                    </ScrollView>
+                </KeyboardAvoidingView>
 
                 <View style={[styles.menu]}>
                     <Button style={[styles.icon]}
