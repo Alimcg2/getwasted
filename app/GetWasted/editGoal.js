@@ -270,7 +270,7 @@ export default class editGoal extends Component {
                                 navigate('reduce', {});
                             }.bind(this)
                         }>
-                        <View style={styles.icon}>
+                        <View style={styles.iconClicked}>
                             <Image style={styles.image} source={require("./001-reload.png")} />
                         </View></Button>
 
@@ -281,7 +281,7 @@ export default class editGoal extends Component {
                                 navigate('read', {});
                             }.bind(this)
                         }>
-                        <View style={styles.iconClicked}>
+                        <View style={styles.icon}>
                             <Image style={styles.image} source={require("./002-book.png")} />
                         </View></Button>
 

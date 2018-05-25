@@ -180,6 +180,9 @@ var styles = StyleSheet.create({
     posts: {
         marginBottom: 50,
     },
+    profilePosts: {
+        marginBottom: 200,
+    },
     button2: {
         color: "black",
         fontSize: 25,
