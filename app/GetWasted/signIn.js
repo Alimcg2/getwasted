@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image, Alert } from 'react-native';
+import { View, StyleSheet, Text, Image, Alert, KeyboardAvoidingView } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import goalPage from './goalPage';
@@ -89,20 +89,20 @@ export default class signIn extends Component {
         // if all fields are filled out
         if (value) {
             firebase.auth().signInWithEmailAndPassword(value["email"], value["password"])
-            .then((user) => {
-                // will automatically redirect when signed in
-            }).catch((error) => {
-                const { code, message } = error;
-                var alertBody = (code == "auth/invalid-email" ? message : "Invalid credentials.")
-                Alert.alert(
-                    'Sign in failed', // title
-                    alertBody, // message
-                    [
-                        { text: 'OK' } // button
-                    ],
-                    { cancelable: false }
-                );
-            });
+                .then((user) => {
+                    // will automatically redirect when signed in
+                }).catch((error) => {
+                    const { code, message } = error;
+                    var alertBody = (code == "auth/invalid-email" ? message : "Invalid credentials.")
+                    Alert.alert(
+                        'Sign in failed', // title
+                        alertBody, // message
+                        [
+                            { text: 'OK' } // button
+                        ],
+                        { cancelable: false }
+                    );
+                });
         } else {
             Alert.alert(
                 "Sign in failed", // title
@@ -124,7 +124,6 @@ export default class signIn extends Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container_main}>
-
                 <Image
                     style={{
                         position: 'absolute',
@@ -136,20 +135,24 @@ export default class signIn extends Component {
                     }}
                     source={require("./background.jpg")}
                 />
-                <Text style={styles.header_main}>WASTE LESS</Text>
 
-                <Form ref={c => this._form = c}
-                    type={User}
-                    options={options}
-                />
+                <KeyboardAvoidingView behavior="position">
+                    <Text style={styles.header_main}>WASTE LESS</Text>
 
-                <Button style={styles.button}
-                    onPress={
-                        function () {
-                            handleSubmit();
-                        }
-                    }>Sign In</Button>
+                    <Form ref={c => this._form = c}
+                        type={User}
+                        options={options}
+                    />
 
+                    <Button style={styles.button}
+                        onPress={
+                            function () {
+                                handleSubmit();
+                            }
+                        }>Sign In</Button>
+
+                    <View style={{ height: 60 }} />
+                </KeyboardAvoidingView>
             </View>
 
         );

@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image, Alert } from 'react-native';
+import { View, StyleSheet, Text, Image, Alert, KeyboardAvoidingView } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import reduce from './reduce';
@@ -153,15 +153,19 @@ export default class signUp extends Component {
                     }}
                     source={require("./background.jpg")}
                 />
-                <Text style={styles.header_main}>WASTE LESS</Text>
 
-                <Form ref={c => this._form = c} type={User} options={options} />
-                <Button style={styles.button} onPress={
-                    function () {
-                        handleSubmit();
-                    }
-                }>Sign Up</Button>
+                <KeyboardAvoidingView behavior="position">
+                    <Text style={styles.header_main}>WASTE LESS</Text>
 
+                    <Form ref={c => this._form = c} type={User} options={options} />
+                    <Button style={styles.button} onPress={
+                        function () {
+                            handleSubmit();
+                        }
+                    }>Sign Up</Button>
+
+                    <View style={{ height: 60 }} />
+                </KeyboardAvoidingView>
             </View>
 
         );

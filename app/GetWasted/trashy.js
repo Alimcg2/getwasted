@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { SectionList, FlatList, View, StyleSheet, Text, Image, ScrollView, Alert } from 'react-native';
+import { SectionList, FlatList, View, StyleSheet, Text, Image, ScrollView, Alert, KeyboardAvoidingView } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 //import CameraRollPicker from 'react-native-camera-roll-picker';
@@ -245,34 +245,46 @@ export default class trashy extends Component {
 
                         <ScrollView >
                             {this.state.urlImage ?
-                                <View>
+                                <KeyboardAvoidingView behavior="position">
                                     <Image style={styles.trashyPic} source={{ uri: this.state.urlImage }} />
 
                                     <Form ref={c => this._form = c} type={User} options={options} />
 
                                     <Button style={styles.button} onPress={this.handleUpload}>
                                         Upload
-                                    </Button>
-                                </View> :
-
-                                <Button style={styles.button} onPress={this.uploadImage}>
-                                    Upload Picture
                                 </Button>
-                            }
-
-                            <View>
-                                <FlatList style={styles.paddingBottom2}
-                                    data={imgs}
-                                    renderItem={({ item }) =>
-                                        <View style={styles.list_container}>
-
-                                            <Image style={styles.trashyPic} source={item.url} />
-
-                                            <Text style={styles.subtitle}>{item.caption}</Text>
-                                        </View>
+                                    <Button style={styles.button3} onPress={() => {
+                                        // close upload form
+                                        this.setState({ urlImage: "" });
                                     }
-                                />
-                            </View>
+                                    }>Cancel</Button>
+
+                                    <View style={{ height: 60 }} />
+                                </KeyboardAvoidingView>
+
+                                :
+
+                                <View>
+                                    <Button style={styles.button} onPress={this.uploadImage}>
+                                        Upload Picture
+                                </Button>
+
+                                    <View>
+                                        <FlatList style={styles.paddingBottom2}
+                                            data={imgs}
+                                            renderItem={({ item }) =>
+                                                <View style={styles.list_container}>
+
+                                                    <Image style={styles.trashyPic} source={item.url} />
+
+                                                    <Text style={styles.subtitle}>{item.caption}</Text>
+                                                </View>
+                                            }
+                                        />
+                                    </View>
+
+                                </View>
+                            }
                             <View style={styles.paddingBottom2}></View>
                         </ScrollView>
 

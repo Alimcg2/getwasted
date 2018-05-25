@@ -25,12 +25,12 @@ export default class reduce extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            getMenu : false,
-            userName : "",
-            profileImg : "",
-            goalTitles : [],
-            goalBeginDates : [],
-            goalEndDates : [],
+            getMenu: false,
+            userName: "",
+            profileImg: "",
+            goalTitles: [],
+            goalBeginDates: [],
+            goalEndDates: [],
             goalStatus: [],
             totalGoals: [],
             totalCurrent: [],
@@ -42,10 +42,10 @@ export default class reduce extends Component {
     componentWillMount() {
         var user = firebase.auth().currentUser;
         this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
-        this.imageRef.on("value", function(snapshot) {
-            this.setState({profileImg: snapshot.val()});
+        this.imageRef.on("value", function (snapshot) {
+            this.setState({ profileImg: snapshot.val() });
         }.bind(this)); /* actual image-info */
-        
+
         this.goalRef = firebase.database().ref().child("Users/" + user.uid + "/goals");
         this.picsRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
         var titles = [];
@@ -56,36 +56,37 @@ export default class reduce extends Component {
         var goals = 0;
         var current = 0;
         var numImages = 0;
-        this.goalRef.on("value", function(snapshot) {
-            this.setState({goals: snapshot.val()});
-            snapshot.forEach(function(data) {
+        this.goalRef.on("value", function (snapshot) {
+            this.setState({ goals: snapshot.val() });
+            snapshot.forEach(function (data) {
                 titles.push(data.val()["goalText"]);
                 beginDates.push(data.val()["beginDates"]);
                 endDates.push(data.val()["endDates"]);
                 status.push(data.val()["status"]);
                 goals++;
-                if (data.val()["status"] == "Current"){
+                if (data.val()["status"] == "Current") {
                     current++;
-                }  
+                }
             }.bind(this));
-            
-            this.setState({ totalGoals : goals, totalCurrent : current});
+
+            this.setState({ totalGoals: goals, totalCurrent: current });
         }.bind(this));
-        this.picsRef.on("value", function(snapshot) {
-            this.setState({goals: snapshot.val()});
-            snapshot.forEach(function(data) {
+        this.picsRef.on("value", function (snapshot) {
+            this.setState({ goals: snapshot.val() });
+            snapshot.forEach(function (data) {
                 images.push(data.val()["imageCaption"]);
                 numImages++;
             }.bind(this));
-            this.setState({totalImages : numImages});
+            this.setState({ totalImages: numImages });
         }.bind(this));
-        this.setState({ userName: user.displayName,
-                        goalTitles : titles,
-                        goalBeginDates : beginDates,
-                        goalEndDates : endDates,
-                        goalStatus : status,
-                      });
-        
+        this.setState({
+            userName: user.displayName,
+            goalTitles: titles,
+            goalBeginDates: beginDates,
+            goalEndDates: endDates,
+            goalStatus: status,
+        });
+
     }
 
     componentWillUnmount() {
@@ -108,13 +109,12 @@ export default class reduce extends Component {
     }
 
     render() {
-        const ts = this.trashy; 
+        const ts = this.trashy;
         const gp = this.goalPage;
         const rd = this.read;
         const pf = this.profile;
-        
-        
-        const { navigate }  = this.props.navigation;
+
+        const { navigate } = this.props.navigation;
         const resizeMode = 'center';
 
         var display = this.state.userName;
@@ -126,53 +126,52 @@ export default class reduce extends Component {
         var goals = this.state.totalGoals;
         var current = this.state.totalCurrent;
         var images = this.state.totalImages;
-        //var testing2 = testing["goalText"];
 
         return (
-                <View style={styles.container_main}>
+            <View style={styles.container_main}>
                 <View style={styles.topContainer}>
-                <Text style={styles.title}>Wasteless</Text>
-                <Button style={[styles.menu_item]}
-                    onPress={
-                        function () {
-                            navigate('setting', {});
-                        }.bind(this)
-                    }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                    <Text style={styles.title}>Wasteless</Text>
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('setting', {});
+                            }.bind(this)
+                        }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
                 </View>
 
                 <View sytle={styles.pls}>
-                <Text style={styles.hr}>_______________________________________________________________________</Text>
+                    <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
-                
-                    <Text style={styles.headerPadding}>REDUCE</Text>
 
-            
-                    <ScrollView style={styles.reduce_button_container}>
+                <Text style={styles.headerPadding}>REDUCE</Text>
+
+
+                <ScrollView style={styles.reduce_button_container}>
                     <Button style={styles.button}
                         onPress={
-                function() {
-                    navigate('trashy', {});
-                }
-            }>Trashy Pics</Button>
+                            function () {
+                                navigate('trashy', {});
+                            }
+                        }>Trashy Pics</Button>
 
                     <Button style={styles.button}
-            onPress={
-                function() {
-                    navigate('goalPage', {});
-                }
-            }>Goals</Button>
+                        onPress={
+                            function () {
+                                navigate('goalPage', {});
+                            }
+                        }>Goals</Button>
                 </ScrollView>
-                
-            
+
+
                 <View style={styles.goal_data_container}>
-                <Text style={styles.data_header}>TOTAL GOALS: <Text style={styles.goal_data}>{goals}</Text></Text>
-                
-                <Text style={styles.data_header}>TOTAL IN PROGRESS: <Text style={styles.goal_data}>{current}</Text></Text>
-                
-                <Text style={styles.data_header}>TOTAL TRASY PICS: <Text style={styles.goal_data}>{images}</Text></Text>
-                
+                    <Text style={styles.data_header}>TOTAL GOALS: <Text style={styles.goal_data}>{goals}</Text></Text>
+
+                    <Text style={styles.data_header}>TOTAL IN PROGRESS: <Text style={styles.goal_data}>{current}</Text></Text>
+
+                    <Text style={styles.data_header}>TOTAL TRASY PICS: <Text style={styles.goal_data}>{images}</Text></Text>
+
                 </View>
-            
+
                 <View style={[styles.menu]}>
 
                     <Button style={[styles.icon]}
@@ -181,9 +180,9 @@ export default class reduce extends Component {
                                 navigate('profile', {});
                             }.bind(this)
                         }><View style={styles.icon}>
-                <Image style={styles.image} source={require("./005-avatar.png")} />
-                </View>
-                </Button>
+                            <Image style={styles.image} source={require("./005-avatar.png")} />
+                        </View>
+                    </Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -191,8 +190,8 @@ export default class reduce extends Component {
                                 navigate('reduce', {});
                             }.bind(this)
                         }><View style={styles.iconClicked}>
-                <Image style={styles.image} source={require("./001-reload.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./001-reload.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -200,7 +199,7 @@ export default class reduce extends Component {
                                 navigate('read', {});
                             }.bind(this)
                         }><View style={styles.icon}>
-                <Image style={styles.image} source={require("./002-book.png")} /></View></Button>
+                            <Image style={styles.image} source={require("./002-book.png")} /></View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -208,8 +207,8 @@ export default class reduce extends Component {
                                 navigate('shop', {});
                             }.bind(this)
                         }><View style={styles.icon}>
-                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -217,11 +216,11 @@ export default class reduce extends Component {
                                 navigate('shareFeed', {});
                             }.bind(this)
                         }><View style={styles.icon}>
-                <Image style={styles.image} source={require("./006-share.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./006-share.png")} />
+                        </View></Button>
 
-            </View>
                 </View>
+            </View>
         );
     }
 }
