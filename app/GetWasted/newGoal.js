@@ -1,9 +1,3 @@
-/*
-TODO:
-   1. Error handling when a user tries to login but firebase throws an error doesn't do anything right now. We need to display a message saying why it failed see error["message"].
-   2. Definitely need to add our own style, fonts, colors, etc. NOT SURE HOW TO DO THIS REALLY..
-   3. Error handling when one of the fields is blank should work but doesn't...
-*/
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
 import { Image, View, StyleSheet, Text, FlatList, ListView, ListItem, ScrollView, SectionList, Alert } from 'react-native';
@@ -11,7 +5,7 @@ import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import reduce from './reduce';
 import app from './app';
-
+import moment from 'moment';
 import goalPage from './goalPage';
 import editGoal from './editGoal';
 import goalSummary from './goalSummary';
@@ -86,8 +80,18 @@ const formStyles = {
 const options = {
     fields: {
         goalText: {},
-        beginDate: {},
-        endDate: {},
+        beginDate: {
+            mode: 'date',
+            config: {
+                format: (date) => moment(date).format('ddd MMM DD YYYY')
+            }
+        },
+        endDate: {
+            mode: 'date',
+            config: {
+                format: (date) => moment(date).format('ddd MMM DD YYYY')
+            }
+        },
         goalNotes: { type: 'textarea' }
     },
     stylesheet: formStyles,
@@ -121,8 +125,16 @@ export default class newGoal extends Component {
         const { navigate } = this.props.navigation;
         const formValue = this._form.getValue();
         if (formValue) {
+            var begin = formValue['beginDate'];
+            var end = formValue['endDate'];
+
+            // set time to beginning of day
+            begin.setHours(0,0,0,0);
+            // set time to end of day
+            end.setHours(23,59,59,59);
+
             // if end date is before begin date
-            if (formValue['beginDate'] > formValue['endDate']) {
+            if (begin > end) {
                 Alert.alert(
                     "Error", // title
                     "End date cannot be before begin date.", // message
