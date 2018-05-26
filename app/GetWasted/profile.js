@@ -51,14 +51,22 @@ export default class profile extends Component {
             snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
                 console.log(childData.imageURL);
-                 var numLikes;
+                var numLikes;
+                var likeString;
+                var liked = false;;
                  if (childData.likes) {
-                     numLikes = childData.likes.length;
+                     numLikes = childData.likes.split(",").length;
+                     likeString = childData.likes;
+                     if (childData.likes.split(",").includes(user.uid)) {
+                         liked = true;
+                     }
                  } else {
                      numLikes = 0;
+                     likeString = "";
                  }
                 var userName = this.state.userName;
-                var format = { caption: childData.imageCaption, likes: numLikes, img: { uri: childData.imageURL }, date: childData.date, username: user.displayName, userId: user.uid, i: childSnapshot.key }
+                console.log(likeString);
+                var format = { caption: childData.imageCaption, likes: numLikes, img: { uri: childData.imageURL }, date: childData.date, username: user.displayName, userId: user.uid, i: childSnapshot.key, currentLikes: likeString, isLiked: liked}
                 var all = this.state.posts;
                 all.push(format)
                 this.setState({ posts: all });
@@ -115,10 +123,18 @@ export default class profile extends Component {
     handleLike(post) {
         console.log(this.state.posts[post.i]);
         numLikes =  this.state.posts[post.i] + 1;
-        
+        var uids;
+        if (this.state.posts.currentLikes != "" && this.state.posts.currentLikes != undefined){
+            uids = this.state.posts.currentLikes + "," + this.state.userInfo.uid;
+        } else {
+            uids = this.state.userInfo.uid;
+        }
         var updates = {};
-        updates["Users/" + this.state.userInfo.uid + "/trashypics/" + post.i + "/likes/" ] = {
-            uid: this.state.userInfo.uid
+        updates["Users/" + this.state.userInfo.uid + "/trashypics/" + post.i + "/" ] = {
+            likes: uids,
+            imageCaption: post.caption,
+            imageURL: post.img.uri
+            
         };
         firebase.database().ref().update(updates);
         //this.setState({this.state.posts[post.i] : numLikes})
@@ -287,7 +303,10 @@ class PostItem extends Component {
                         handleLike(post);
                     }
                 }>
-                <Image style={styles.heartImage} source={require("./007-heart.png")} />
+                {!post.isLiked ?
+                 <Image style={styles.heartImage} source={require("./007-heart.png")} /> : 
+                 <Image style={styles.heartImage} source={require("./heartafter.png")} />
+            }
                 </Button>
                 
                 <Text style={styles.share_date}>
