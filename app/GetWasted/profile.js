@@ -122,13 +122,29 @@ export default class profile extends Component {
 
     handleLike(post) {
         console.log(this.state.posts[post.i]);
-        numLikes =  this.state.posts[post.i] + 1;
         var uids;
-        if (this.state.posts.currentLikes != "" && this.state.posts.currentLikes != undefined){
-            uids = this.state.posts.currentLikes + "," + this.state.userInfo.uid;
+        if (post.isLiked == false) {
+            numLikes =  this.state.posts[post.i] + 1;
+            if (this.state.posts.currentLikes != "" && this.state.posts.currentLikes != undefined){
+                uids = this.state.posts.currentLikes + "," + this.state.userInfo.uid;
+            } else {
+                uids = this.state.userInfo.uid;
+            }
         } else {
-            uids = this.state.userInfo.uid;
+            numLikes =  this.state.posts[post.i]  - 1;
+            if (this.state.posts.currentLikes != "" && this.state.posts.currentLikes != undefined){
+                if (post.currentLikes.includes("," + this.state.userInfo.uid)) {
+                    uids = this.state.post.currentLikes.replace("," + this.state.userInfo.uid, "");
+                } else if (post.currentLikes.includes(this.state.userInfo.uid)) {
+                    uids = this.state.post.currentLikes.replace(this.state.userInfo.uid, "");
+                }
+            } else {
+                uids = "";
+            }
+                    
         }
+        //this.setState({ posts[post.i].currentLikes: uids });
+//        this.setState({ posts[post.i].numLikes: numLikes });
         var updates = {};
         updates["Users/" + this.state.userInfo.uid + "/trashypics/" + post.i + "/" ] = {
             likes: uids,
