@@ -53,6 +53,39 @@ import {
   StackNavigator,
 } from 'react-navigation';
 
+let Transition = (index, position) => {
+    const inputRange = [index - 1, index, index + 0.99, index + 1];
+
+    const opacity = position.interpolate({
+        inputRange,
+        outputRange: ([0.9, 1, 1, 0.9]),
+    });
+
+    const translateX = 0;
+    const translateY = 0;
+
+    return {
+        opacity,
+        transform: [
+            { translateX },
+            { translateY }
+        ],
+    };
+};
+
+let TransitionConfiguration = () => {
+    return {
+        // Define scene interpolation, eq. custom transition
+        screenInterpolator: (sceneProps) => {
+
+            const {position, scene} = sceneProps;
+            const {index} = scene;
+
+            return Transition(index, position);
+        }
+    }
+};
+
 const Stacks = StackNavigator({
     landing: { screen: landing },
     signUp: { screen: signUp },
@@ -77,7 +110,8 @@ const Stacks = StackNavigator({
     tutorialPage4: { screen: tutorialPage4}
 },
 { 
-    headerMode: 'none' 
+    headerMode: 'none',
+    transitionConfig: TransitionConfiguration
   }
 );
 

@@ -90,24 +90,22 @@ export default class trashy extends Component {
             urlImage: "",
             time: "",
             loading: false,
-            uploading: false
         };
         this.uploadImage = this.uploadImage.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
-
     }
 
     componentWillMount() {
         this.picsRef = firebase.database().ref().child("Users/" + this.state.user.uid + "/trashypics");
-        this.picsRef.on("value", function (snapshot) {
-            this.setState({ goals: snapshot.val() });
-            snapshot.forEach(function (data) {
-                var format = { caption: data.val()["imageCaption"], url: { uri: data.val()["imageURL"] } }
-                var all = this.state.images;
-                all.push(format)
-                this.setState({ imgs: all });
-            }.bind(this));
-        }.bind(this));
+        this.picsRef.on("value", (snapshot) => {
+            var pics = [];
+            snapshot.forEach((child) => {
+                var pic = child.val();
+                var format = { caption: pic["imageCaption"], url: { uri: pic["imageURL"] } }
+                pics.push(format);
+            });
+            this.setState({ images: pics });
+        });
     }
 
     componentWillUnmount() {
@@ -120,7 +118,7 @@ export default class trashy extends Component {
     }
 
     uploadImage() {
-        this.setState({ showCaption: true, loading: true, uploading: true });
+        this.setState({ showCaption: true, loading: true });
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
 
@@ -149,7 +147,6 @@ export default class trashy extends Component {
 
     pushImage(response, mime = 'application/octet-stream') {
         var urlImage = "";
-        var ulpoadTimeVar = "";
         return new Promise((resolve, reject) => {
             const uploadUri = response.uri.replace('file://', '');
             const uploadTime = new Date();
@@ -174,7 +171,7 @@ export default class trashy extends Component {
                 .then((url) => {
                     resolve(url);
                     // save download url and upload time to state
-                    this.setState({ urlImage: url, time: uploadTime, loading: false });
+                    this.setState({ urlImage: url, time: uploadTime.toString(), loading: false });
                 })
                 .catch((error) => {
                     console.log(error);
@@ -205,11 +202,11 @@ export default class trashy extends Component {
         }
         this.trashyRef.push(data);
 
-        this.setState({ uploading: false });
+        this.setState({ urlImage: "" });
     }
 
     render() {
-        console.log(typeof (this.state.images[0].url));
+        console.log(this.state.images);
 
         const ts = this.trashy;
         var imgs = this.state.images;
