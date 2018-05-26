@@ -1,7 +1,7 @@
 
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { SectionList, FlatList, View, StyleSheet, Text, ScrollView, Image } from 'react-native';
+import { SectionList, FlatList, View, StyleSheet, Alert, Text, ScrollView, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import PhotoUpload from 'react-native-photo-upload';
@@ -28,9 +28,9 @@ const Form = t.form.Form;
 
 // creates the user input
 const User = t.struct({
-    changeEmail: t.String,
-    changeName: t.String,
-    changePass: t.String
+    changeEmail: t.maybe(t.String),
+    changeUserName: t.maybe(t.String),
+    changePassword: t.maybe(t.String)
 });
 
 
@@ -51,7 +51,7 @@ const formStyles = {
         normal: {
             backgroundColor: 'white',
             padding: 10,
-            fontSize: 20,
+            fontSize: 18,
             borderColor: "#ccc",
             borderWidth: 1,
             borderRadius: 3,
@@ -66,14 +66,14 @@ const formStyles = {
     controlLabel: {
         normal: {
             color: 'black',
-            fontSize: 25,
+            fontSize: 20,
             marginBottom: 7,
             fontWeight: '400',
         },
         // keep style the same if there's an error
         error: {
             color: 'black',
-            fontSize: 25,
+            fontSize: 20,
             marginBottom: 7,
             fontWeight: '400',
         }
@@ -84,8 +84,8 @@ const formStyles = {
 const options = {
     fields: {
         changeEmail: {},
-        changeName: {},
-        changePass: {
+        changeUserName: {},
+        changePassword: {
             password: true,
             secureTextEntry: true
         }
@@ -105,7 +105,7 @@ export default class trashy extends Component {
             profileImg: "",
             urlImage: "",
             loading: false,
-            user: [],
+            user: []
         };
         this.handleSignOut = this.handleSignOut.bind(this);
         this.uploadImage = this.uploadImage.bind(this);
@@ -216,13 +216,49 @@ export default class trashy extends Component {
     handleUpload() {
         const value = this._form.getValue();
         console.log(value);
+
         
-        console.log(this.state.urlImage);
-        this.trashyRef = firebase.database().ref("Users/" + this.state.user.uid + "/");
-        var data = {
-            image: this.state.urlImage,
+        var user = this.state.user;
+        // var followersRef = firebase.database().ref().child("Users/" + user.uid + "/followers");
+        // var followingRef = firebase.database().ref().child("Users/" + user.uid + "/following");
+        // var trashypicsRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
+        // var goalsRef = firebase.database().ref().child("Users/" + user.uid + "/goals");
+        // var imageRef = firebase.database().ref().child("Users/" + user.uid + "/image");
+        // var nameRef = firebase.database().ref().child("Users/" + user.uid + "/name");
+        if (value.changeEmail != null) {
+            user.updateEmail(value.changeEmail)
         }
-        this.trashyRef.update(data);
+        if (value.changeUserName != null) {
+            user.updateProfile({
+                displayName: value.changeUserName})
+            nameRef = value.changeUserName;
+            this.trashyRef = firebase.database().ref("Users/" + this.state.user.uid + "/");
+            var data = {
+                name: value.changeUserName
+                
+            }
+            this.trashyRef.update(data);
+        }
+        if (value.changePassword != null) {
+            user.updatePassword(value.changePassword);
+        }
+        console.log(this.state.urlImage);
+        if (this.state.urlImage != "" && this.state.urlImage != undefined){
+            this.trashyRef = firebase.database().ref("Users/" + this.state.user.uid + "/");
+            var data = {
+                image: this.state.urlImage
+            }
+            this.trashyRef.update(data);
+        }
+        
+        Alert.alert(
+            "Success!", // title
+            "You have updated your settings.", // message
+            [
+                { text: 'OK' } // button
+            ],
+            { cancelable: false }
+        );
     }
 
     render() {

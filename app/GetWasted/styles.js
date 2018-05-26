@@ -256,7 +256,7 @@ var styles = StyleSheet.create({
         fontSize: 16,
         padding: 10,
         paddingLeft: 20,
-        marginBottom: 10,
+        marginBottom: 20,
         margin: 5,
         marginLeft: 0,
         right: 0,
