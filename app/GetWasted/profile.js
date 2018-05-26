@@ -47,17 +47,17 @@ export default class profile extends Component {
 
 
         this.postRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
-        this.postRef.on("value", function (snapshot) {
-            snapshot.forEach(function (childSnapshot) {
-                var childData = childSnapshot.val();
-                console.log(childData.imageURL);
+        this.postRef.on("value", (snapshot) => {
+            var pics = [];
+            snapshot.forEach((child) => {
+                var pic = child.val();
                 var numLikes;
                 var likeString;
                 var liked = false;;
-                 if (childData.likes) {
-                     numLikes = childData.likes.split(",").length;
-                     likeString = childData.likes;
-                     if (childData.likes.split(",").includes(user.uid)) {
+                 if (pic.likes) {
+                     numLikes = pic.likes.split(",").length;
+                     likeString = pic.likes;
+                     if (pic.likes.split(",").includes(user.uid)) {
                          liked = true;
                      }
                  } else {
@@ -65,13 +65,14 @@ export default class profile extends Component {
                      likeString = "";
                  }
                 var userName = this.state.userName;
-                console.log(likeString);
-                var format = { caption: childData.imageCaption, likes: numLikes, img: { uri: childData.imageURL }, date: childData.date, username: user.displayName, userId: user.uid, i: childSnapshot.key, currentLikes: likeString, isLiked: liked}
-                var all = this.state.posts;
-                all.push(format)
-                this.setState({ posts: all });
-            }.bind(this));
-        }.bind(this));
+                var format = { caption: pic.imageCaption, likes: numLikes, img: { uri: pic.imageURL }, date: pic.date, username: user.displayName, userId: user.uid, i: child.key, currentLikes: likeString, isLiked: liked}
+                // var all = this.state.posts;
+                // all.push(format)
+                // this.setState({ posts: all });
+                pics.push(format);
+            });
+            this.setState({ posts: pics });
+        });
 
 
         this.followRef = firebase.database().ref().child("Users/" + user.uid + "/followers");
@@ -149,8 +150,8 @@ export default class profile extends Component {
         updates["Users/" + this.state.userInfo.uid + "/trashypics/" + post.i + "/" ] = {
             likes: uids,
             imageCaption: post.caption,
-            imageURL: post.img.uri
-            
+            imageURL: post.img.uri,
+            date: post.date
         };
         firebase.database().ref().update(updates);
         //this.setState({this.state.posts[post.i] : numLikes})
