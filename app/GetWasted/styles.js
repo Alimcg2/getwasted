@@ -75,6 +75,11 @@ var styles = StyleSheet.create({
         height: 70,
         marginTop: 40,
     },
+    profileImage2:{
+        width: 80,
+        height: 80,
+        marginTop: 40,
+    },
     // share_image: {
     //     width: '95%',
     //     height: '85%',
@@ -245,6 +250,20 @@ var styles = StyleSheet.create({
         fontWeight: "300",
         textAlign: "left",
         fontStyle: "italic",
+    },
+    smallButton: {
+        color: "black",
+        fontSize: 16,
+        padding: 10,
+        paddingLeft: 20,
+        marginBottom: 80,
+        margin: 5,
+        marginLeft: 0,
+        right: 0,
+        width: 400,
+        backgroundColor: "#e2ddd0",
+        fontWeight: "300",
+        textAlign: "left",
     },
     menu: {
         backgroundColor: "#f0f0f0",
