@@ -6,7 +6,7 @@ import Button from 'react-native-button';
 //import CameraRollPicker from 'react-native-camera-roll-picker';
 import RNFetchBlob from 'react-native-fetch-blob';
 var ImagePicker = require('react-native-image-picker');
-
+import moment from 'moment';
 import app from './app';
 import {
     StackNavigator,
@@ -101,7 +101,7 @@ export default class trashy extends Component {
             var pics = [];
             snapshot.forEach((child) => {
                 var pic = child.val();
-                var format = { caption: pic["imageCaption"], url: { uri: pic["imageURL"] } }
+                var format = { caption: pic["imageCaption"], url: { uri: pic["imageURL"] }, date: pic["date"] }
                 pics.push(format);
             });
             this.setState({ images: pics });
@@ -206,8 +206,6 @@ export default class trashy extends Component {
     }
 
     render() {
-        console.log(this.state.images);
-
         const ts = this.trashy;
         var imgs = this.state.images;
         const { navigate } = this.props.navigation;
@@ -275,6 +273,7 @@ export default class trashy extends Component {
                                                     <Image style={styles.trashyPic} source={item.url} />
 
                                                     <Text style={styles.subtitle}>{item.caption}</Text>
+                                                    <Text>{moment(item.date).format('MMM DD YYYY')}</Text>
                                                 </View>
                                             }
                                         />
