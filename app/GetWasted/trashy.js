@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { SectionList, FlatList, View, StyleSheet, Text, Image, ScrollView } from 'react-native';
+import { SectionList, FlatList, View, StyleSheet, Text, Image, ScrollView, Alert, KeyboardAvoidingView } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 //import CameraRollPicker from 'react-native-camera-roll-picker';
@@ -18,7 +18,7 @@ const Form = t.form.Form;
 
 // creates the user input
 const User = t.struct({
-    caption: t.String
+    caption: t.maybe(t.String)
 });
 
 
@@ -82,14 +82,15 @@ export default class trashy extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user : firebase.auth().currentUser,
+            user: firebase.auth().currentUser,
             images: [],
             avatarSource: "",
             showImageOptions: true,
             showCaption: false,
             urlImage: "",
             time: "",
-            loading: false
+            loading: false,
+            uploading: false
         };
         this.uploadImage = this.uploadImage.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
@@ -119,7 +120,7 @@ export default class trashy extends Component {
     }
 
     uploadImage() {
-        this.setState({ showCaption: true, loading: true });
+        this.setState({ showCaption: true, loading: true, uploading: true });
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
 
@@ -178,6 +179,16 @@ export default class trashy extends Component {
                 .catch((error) => {
                     console.log(error);
                     this.setState({ loading: false });
+
+                    Alert.alert(
+                        "Error", // title
+                        "Something went wrong. Please try again.", // message
+                        [
+                            { text: 'OK' } // button
+                        ],
+                        { cancelable: false }
+                    );
+
                     reject(error);
                 });
         });
@@ -193,6 +204,8 @@ export default class trashy extends Component {
             date: this.state.time
         }
         this.trashyRef.push(data);
+
+        this.setState({ uploading: false });
     }
 
     render() {
@@ -205,20 +218,20 @@ export default class trashy extends Component {
 
         return (
 
-                <View style={styles.container_main}>
+            <View style={styles.container_main}>
                 <View style={styles.topContainer}>
-                <Text style={styles.title}>Wasteless</Text>
-                <Button style={[styles.menu_item]}
-                    onPress={
-                        function () {
-                            navigate('setting', {});
-                        }.bind(this)
-                    }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                    <Text style={styles.title}>Wasteless</Text>
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('setting', {});
+                            }.bind(this)
+                        }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
                 </View>
 
 
                 <View sytle={styles.pls}>
-                <Text style={styles.hr}>_______________________________________________________________________</Text>
+                    <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
 
                 {this.state.loading ?
@@ -228,50 +241,52 @@ export default class trashy extends Component {
 
                     <View>
 
-                 <Text style={styles.headerPadding}>TRASHY PICS</Text>
+                        <Text style={styles.headerPadding}>TRASHY PICS</Text>
 
                         <ScrollView >
                             {this.state.urlImage ?
-                                <View>
-                                    <Image style={styles.trashyPic} source={{uri: this.state.urlImage}} />
+                                <KeyboardAvoidingView behavior="position">
+                                    <Image style={styles.trashyPic} source={{ uri: this.state.urlImage }} />
 
                                     <Form ref={c => this._form = c} type={User} options={options} />
 
                                     <Button style={styles.button} onPress={this.handleUpload}>
                                         Upload
-                                    </Button>
-                                </View> :
-
-                                <Button style={styles.button} onPress={this.uploadImage}>
-                                    Upload Picture
                                 </Button>
-                            }
-
-                            {/* <View style={{ display: this.state.showCaption ? 'flex' : 'none' }}>
-                                <Form ref={c => this._form = c} type={User} options={options} />
-
-                                <Button style={styles.button}
-                                    onPress={
-                                        this.handleUpload
-                                    }>Upload</Button>
-
-                            </View> */}
-
-                            <View>
-                 <FlatList style={styles.paddingBottom2}
-                                    data={imgs}
-                                    renderItem={({ item }) =>
-                                        <View style={styles.list_container}>
-
-                                            <Image style={styles.trashyPic} source={item.url} />
-
-                                            <Text style={styles.subtitle}>{item.caption}</Text>
-                                        </View>
+                                    <Button style={styles.button3} onPress={() => {
+                                        // close upload form
+                                        this.setState({ urlImage: "" });
                                     }
-                                />
-                 </View>
-                 <View style={styles.paddingBottom2}></View>
-                 </ScrollView>
+                                    }>Cancel</Button>
+
+                                    <View style={{ height: 60 }} />
+                                </KeyboardAvoidingView>
+
+                                :
+
+                                <View>
+                                    <Button style={styles.button} onPress={this.uploadImage}>
+                                        Upload Picture
+                                </Button>
+
+                                    <View>
+                                        <FlatList style={styles.paddingBottom2}
+                                            data={imgs}
+                                            renderItem={({ item }) =>
+                                                <View style={styles.list_container}>
+
+                                                    <Image style={styles.trashyPic} source={item.url} />
+
+                                                    <Text style={styles.subtitle}>{item.caption}</Text>
+                                                </View>
+                                            }
+                                        />
+                                    </View>
+
+                                </View>
+                            }
+                            <View style={styles.paddingBottom2}></View>
+                        </ScrollView>
 
                     </View>
                 }

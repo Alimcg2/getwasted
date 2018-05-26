@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image, ScrollView, Alert } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView, Alert, KeyboardAvoidingView, Keyboard } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import moment from 'moment';
@@ -37,9 +37,22 @@ const formStyles = {
         normal: {
             marginBottom: 10,
         },
+        // keep style the same if there's an error
+        error: {
+            marginBottom: 10,
+        },
     },
     textbox: {
         normal: {
+            backgroundColor: 'white',
+            padding: 10,
+            fontSize: 20,
+            borderColor: "#ccc",
+            borderWidth: 1,
+            borderRadius: 3,
+        },
+        // keep style the same if there's an error
+        error: {
             backgroundColor: 'white',
             padding: 10,
             fontSize: 20,
@@ -55,12 +68,12 @@ const formStyles = {
             marginBottom: 7,
             fontWeight: '400',
         },
-        // the style applied when a validation error occours
+        // keep style the same if there's an error
         error: {
-            color: 'red',
-            fontSize: 18,
+            color: 'black',
+            fontSize: 25,
             marginBottom: 7,
-            fontWeight: '600'
+            fontWeight: '400',
         }
     }
 }
@@ -94,9 +107,11 @@ export default class newReminder extends Component {
         this.state = {
             user: "",
             goalBeginDate: this.props.navigation.state.params.beginDate.toISOString(),
-            goalEndDate: this.props.navigation.state.params.endDate.toISOString()
+            goalEndDate: this.props.navigation.state.params.endDate.toISOString(),
+            keyboardAvoidingViewKey: 'keyboardAvoidingViewKey' + new Date().getTime()
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onKeyboardHide = this.onKeyboardHide.bind(this);
     }
 
     componentWillMount() {
@@ -106,6 +121,10 @@ export default class newReminder extends Component {
         this.setState({
             user: firebase.auth().currentUser /* gets current user */
         });
+    }
+
+    componentDidMount() {
+        this.keyboardHideListener = Keyboard.addListener('keyboardWillHide', this.onKeyboardHide);
     }
 
     componentWillUnmount() {
@@ -118,6 +137,13 @@ export default class newReminder extends Component {
         var d = new Date(this.state.goalBeginDate);
         d.setDate(d.getDate() + ((7 - d.getDay()) % 7 + dayOfWeek) % 7);
         return d;
+    }
+
+    // change key to force re-render when keyboard closes (fixes padding issue)
+    onKeyboardHide() {
+        this.setState({
+            keyboardAvoidingViewKey: 'keyboardAvoidingViewKey' + new Date().getTime()
+        });
     }
 
     createEvent(eventBeginDate) {
@@ -157,49 +183,76 @@ export default class newReminder extends Component {
     handleSubmit() {
         const formValue = this._form.getValue();
 
-        if (formValue.Sunday) {
-            var sun = this.getNextDayOfWeek(0);
-            this.createEvent(sun);
-        }
-        if (formValue.Monday) {
-            var mon = this.getNextDayOfWeek(1);
-            this.createEvent(mon);
-        }
-        if (formValue.Tuesday) {
-            var tues = this.getNextDayOfWeek(2);
-            this.createEvent(tues);
-        }
-        if (formValue.Wednesday) {
-            var wed = this.getNextDayOfWeek(3);
-            this.createEvent(wed);
-        }
-        if (formValue.Thursday) {
-            var thurs = this.getNextDayOfWeek(4);
-            this.createEvent(thurs);
-        }
-        if (formValue.Friday) {
-            var fri = this.getNextDayOfWeek(5);
-            this.createEvent(fri);
-        }
-        if (formValue.Saturday) {
-            var sat = this.getNextDayOfWeek(6);
-            this.createEvent(sat);
-        }
+        // if text value is filled out
+        if (formValue) {
+            // if no days are selected
+            if (!formValue.Sunday && !formValue.Monday && !formValue.Tuesday
+                && !formValue.Wednesday && !formValue.Thursday &&
+                !formValue.Friday && !formValue.Saturday) {
+                Alert.alert(
+                    "Error", // title
+                    "Please select at least on day of the week.", // message
+                    [
+                        { text: 'OK' } // button
+                    ],
+                    { cancelable: false }
+                );
+            } else {
+                if (formValue.Sunday) {
+                    var sun = this.getNextDayOfWeek(0);
+                    this.createEvent(sun);
+                }
+                if (formValue.Monday) {
+                    var mon = this.getNextDayOfWeek(1);
+                    this.createEvent(mon);
+                }
+                if (formValue.Tuesday) {
+                    var tues = this.getNextDayOfWeek(2);
+                    this.createEvent(tues);
+                }
+                if (formValue.Wednesday) {
+                    var wed = this.getNextDayOfWeek(3);
+                    this.createEvent(wed);
+                }
+                if (formValue.Thursday) {
+                    var thurs = this.getNextDayOfWeek(4);
+                    this.createEvent(thurs);
+                }
+                if (formValue.Friday) {
+                    var fri = this.getNextDayOfWeek(5);
+                    this.createEvent(fri);
+                }
+                if (formValue.Saturday) {
+                    var sat = this.getNextDayOfWeek(6);
+                    this.createEvent(sat);
+                }
 
-        // let user know reminders were added to phone calendar
-        Alert.alert(
-            'Reminder has been added to your calendar!',
-            'You can edit your reminders from your phone calendar.',
-            [
-                {
-                    text: 'OK', onPress: (() => {
-                        // navigate back to goal summary page
-                        this.props.navigation.goBack();
-                    })
-                },
-            ],
-            { cancelable: false }
-        );
+                // let user know reminders were added to phone calendar
+                Alert.alert(
+                    'Reminder has been added to your calendar!',
+                    'You can edit your reminders from your phone calendar.',
+                    [
+                        {
+                            text: 'OK', onPress: (() => {
+                                // navigate back to goal summary page
+                                this.props.navigation.goBack();
+                            })
+                        },
+                    ],
+                    { cancelable: false }
+                );
+            }
+
+        } else {
+            Alert.alert(
+                "Error", // title
+                "Please include some text for your reminder.", // message
+                [
+                    { text: 'OK' } // button
+                ],
+                { cancelable: false }
+            );
+        }
 
     }
 
@@ -207,33 +260,35 @@ export default class newReminder extends Component {
         const handleSubmit = this.handleSubmit;
         const { navigate } = this.props.navigation;
         return (
-
             <View style={styles.container_main}>
-                <View style={styles.topContainer}>
-                    <Text style={styles.title}>Wasteless</Text>
-                    <Button style={[styles.menu_item]}
-                        onPress={
+
+                <KeyboardAvoidingView behavior="padding" key={this.state.keyboardAvoidingViewKey}>
+                    <View style={styles.topContainer}>
+                        <Text style={styles.title}>Wasteless</Text>
+                        <Button style={[styles.menu_item]}
+                            onPress={
+                                function () {
+                                    navigate('setting', {});
+                                }.bind(this)
+                            }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                    </View>
+
+                    <View sytle={styles.pls}>
+                        <Text style={styles.hr}>_______________________________________________________________________</Text>
+                    </View>
+
+                    <Text style={styles.headerPadding}>NEW REMINDER</Text>
+
+                    <ScrollView>
+                        <Form ref={c => this._form = c} type={Reminder} options={options} />
+
+                        <Button style={[styles.button, {marginBottom: 250}]} title="Create" onPress={
                             function () {
-                                navigate('setting', {});
-                            }.bind(this)
-                        }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
-                </View>
-
-                <View sytle={styles.pls}>
-                    <Text style={styles.hr}>_______________________________________________________________________</Text>
-                </View>
-
-                <Text style={styles.headerPadding}>NEW REMINDER</Text>
-
-                <ScrollView>
-                    <Form ref={c => this._form = c} type={Reminder} options={options} />
-
-                    <Button style={styles.button2} title="Create" onPress={
-                        function () {
-                            handleSubmit();
-                        }
-                    }>Create</Button>
-                </ScrollView>
+                                handleSubmit();
+                            }
+                        }>Create</Button>
+                    </ScrollView>
+                </KeyboardAvoidingView>
 
                 <View style={[styles.menu]}>
                     <Button style={[styles.icon]}
@@ -253,7 +308,7 @@ export default class newReminder extends Component {
                                 navigate('reduce', {});
                             }.bind(this)
                         }>
-                        <View style={styles.icon}>
+                        <View style={styles.iconClicked}>
                             <Image style={styles.image} source={require("./001-reload.png")} />
                         </View></Button>
 
@@ -264,7 +319,7 @@ export default class newReminder extends Component {
                                 navigate('read', {});
                             }.bind(this)
                         }>
-                        <View style={styles.iconClicked}>
+                        <View style={styles.icon}>
                             <Image style={styles.image} source={require("./002-book.png")} />
                         </View></Button>
 

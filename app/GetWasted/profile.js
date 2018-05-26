@@ -38,7 +38,7 @@ export default class profile extends Component {
 
     componentWillMount() {
         var user = firebase.auth().currentUser;
-        this.setState({userInfo: user});
+        this.setState({ userInfo: user });
         this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
         this.setState({ userName: user.displayName });
         this.imageRef.on("value", function (snapshot) {
@@ -138,7 +138,7 @@ export default class profile extends Component {
         };
         firebase.database().ref().update(updates);
         //this.setState({this.state.posts[post.i] : numLikes})
-        
+
     }
 
 
@@ -155,34 +155,34 @@ export default class profile extends Component {
             return <PostItem key={index} post={post} handleLike={handleLike} navigation={this.props.navigation} />;
         });
         return (
-                <View style={styles.container_main}>
+            <View style={styles.container_main}>
                 <View style={styles.topContainer}>
-                <Text style={styles.title}>Wasteless</Text>
-                <Button style={[styles.menu_item]}
-                    onPress={
-                        function () {
-                            navigate('setting', {});
-                        }.bind(this)
-                    }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                    <Text style={styles.title}>Wasteless</Text>
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('setting', {});
+                            }.bind(this)
+                        }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
                 </View>
 
                 <View sytle={styles.pls}>
-                <Text style={styles.hr}>_______________________________________________________________________</Text>
+                    <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
 
                 <Button onPress={
-                function() {
-                    this.setState({getMenu : true});
-                }.bind(this)}>
-                <Image style={styles.profileImage} source={{url}} />
+                    function () {
+                        this.setState({ getMenu: true });
+                    }.bind(this)}>
+                    <Image style={styles.profileImage} source={{ url }} />
                 </Button>
 
-            
-                
+
+
                 <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
 
-            
-                
+
+
                 <View style={styles.follow_container}>
                     <Text style={styles.subtitle3}>Following: {following.length}</Text>
 
@@ -192,14 +192,14 @@ export default class profile extends Component {
                 </View>
 
 
-                        <View>
-                            <ScrollView style={styles.posts}>
-                                {postItems}
-                                <View style={styles.buffer}></View>
-                            </ScrollView>
-                        </View>
+                <View>
+                    <ScrollView style={styles.profilePosts}>
+                        {postItems}
+                        <View style={styles.buffer}></View>
+                    </ScrollView>
+                </View>
 
-            
+
 
                 <View style={[styles.menu]}>
 
@@ -210,9 +210,9 @@ export default class profile extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.iconClicked}>
-            <Image style={styles.image} source={require("./005-avatar.png")} />
-            </View>
-                </Button>
+                            <Image style={styles.image} source={require("./005-avatar.png")} />
+                        </View>
+                    </Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -221,9 +221,9 @@ export default class profile extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./001-reload.png")} />
-                </View></Button>
-                
+                            <Image style={styles.image} source={require("./001-reload.png")} />
+                        </View></Button>
+
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -232,8 +232,8 @@ export default class profile extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./002-book.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./002-book.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -242,8 +242,8 @@ export default class profile extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./008-shopping-bag.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./008-shopping-bag.png")} />
+                        </View></Button>
 
                     <Button style={[styles.icon]}
                         onPress={
@@ -252,12 +252,12 @@ export default class profile extends Component {
                             }.bind(this)
                         }>
                         <View style={styles.icon}>
-                <Image style={styles.image} source={require("./006-share.png")} />
-                </View></Button>
+                            <Image style={styles.image} source={require("./006-share.png")} />
+                        </View></Button>
 
-            </View>
                 </View>
-                
+            </View>
+
         );
     }
 }
@@ -279,7 +279,7 @@ class PostItem extends Component {
                 <Button onPress={(() => {
                     navigate('otherProfile', { uid: post.userId });
                 })}>
-                    <Image style={styles.trashyPic} source={ url } />
+                    <Image style={styles.trashyPic} source={url} />
                 </Button>
 
                 {/* linked username */}
@@ -292,23 +292,24 @@ class PostItem extends Component {
                     </Text>
 
                     {caption}
-            </Text>
-            
+                </Text>
+
                 <Text style={styles.share_date}>
-                Likes: {numLikes}
+                    Likes: {numLikes}
                 </Text>
 
                 <Button onPress={
-                    function() {
+                    function () {
                         handleLike(post);
                     }
                 }>
+                
                 {!post.isLiked ?
                  <Image style={styles.heartImage} source={require("./007-heart.png")} /> : 
                  <Image style={styles.heartImage} source={require("./heartafter.png")} />
             }
                 </Button>
-                
+
                 <Text style={styles.share_date}>
                     {date}
                 </Text>

@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, Alert, KeyboardAvoidingView } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import goalPage from './goalPage';
@@ -29,6 +29,10 @@ const formStyles = {
         normal: {
             marginBottom: 10,
         },
+        // keep style the same if there's an error
+        error: {
+            marginBottom: 10
+        }
     },
     textbox: {
         normal: {
@@ -36,6 +40,12 @@ const formStyles = {
             padding: 10,
             fontSize: 20,
         },
+        // keep style the same if there's an error
+        error: {
+            backgroundColor: 'white',
+            padding: 10,
+            fontSize: 20,
+        }
     },
     controlLabel: {
         normal: {
@@ -44,12 +54,12 @@ const formStyles = {
             marginBottom: 7,
             fontWeight: '400',
         },
-        // the style applied when a validation error occours
+        // keep style the same if there's an error
         error: {
-            color: 'red',
-            fontSize: 18,
+            color: 'black',
+            fontSize: 25,
             marginBottom: 7,
-            fontWeight: '600'
+            fontWeight: '400',
         }
     }
 }
@@ -57,7 +67,7 @@ const formStyles = {
 // these are the options for the sign in form
 const options = {
     fields: {
-        password: { 
+        password: {
             password: true,
             secureTextEntry: true
         }
@@ -66,56 +76,43 @@ const options = {
 };
 
 
-
 export default class signIn extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
-    // componentWillMount() {
-    //     this.unregister = firebase.auth().onAuthStateChanged(user => {
-    //         if(user) {
-    //             console.log('Logged in as', user.email);
-    //             this.props.navigation.navigate('reduce', {});
-    //         }
-    //         else{
-    //             console.log('Logged out');
-    //         }
-    //     });
-    // }
-
-    // componentWillUnmount() {
-    //     console.log('in will unmount');
-    //     if(this.unregister) {
-    //         console.log('unregistered');
-    //         this.unregister();
-    //     }
-    // }
-
     // when the user presses submit this method will be called
     handleSubmit = () => {
         const value = this._form.getValue();
 
-        firebase.auth().signInWithEmailAndPassword(value["email"], value["password"])
-            .then((user) => {
-                console.log("it worked"); // logging things for now, take out eventually
-
-                // make sure user is signed in by printing display name 
-                var currentUser = firebase.auth().currentUser;
-                var userName = currentUser.displayName;
-                console.log(userName);
-
-                // go to home page
-                // navigate('reduce', {});
-            }).catch((error) => {
-                const { code, message } = error;
-                console.log(error); // logging things for now, take out eventually
-                // TODO:  NEED TO PRINT OUT THE ERROR CODE ON THE PAGE
-            });
-
-
+        // if all fields are filled out
+        if (value) {
+            firebase.auth().signInWithEmailAndPassword(value["email"], value["password"])
+                .then((user) => {
+                    // will automatically redirect when signed in
+                }).catch((error) => {
+                    const { code, message } = error;
+                    var alertBody = (code == "auth/invalid-email" ? message : "Invalid credentials.")
+                    Alert.alert(
+                        'Sign in failed', // title
+                        alertBody, // message
+                        [
+                            { text: 'OK' } // button
+                        ],
+                        { cancelable: false }
+                    );
+                });
+        } else {
+            Alert.alert(
+                "Sign in failed", // title
+                "Please provide both an email and a password.", // message
+                [
+                    { text: 'OK' } // button
+                ],
+                { cancelable: false }
+            );
+        }
     }
 
     render() {
@@ -127,7 +124,6 @@ export default class signIn extends Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container_main}>
-
                 <Image
                     style={{
                         position: 'absolute',
@@ -135,24 +131,28 @@ export default class signIn extends Component {
                         width: 500,
                         height: "100%",
                         marginLeft: 0,
-                opacity: 0.5,
+                        opacity: 0.5,
                     }}
-            source={require("./background.jpg")}
-                />
-                <Text style={styles.header_main}>WASTE LESS</Text>
-
-                <Form ref={c => this._form = c}
-                    type={User}
-                    options={options}
+                    source={require("./background.jpg")}
                 />
 
-                <Button style={styles.button}
-                    onPress={
-                        function () {
-                            handleSubmit();
-                        }
-                    }>Sign In</Button>
+                <KeyboardAvoidingView behavior="position">
+                    <Text style={styles.header_main}>WASTE LESS</Text>
 
+                    <Form ref={c => this._form = c}
+                        type={User}
+                        options={options}
+                    />
+
+                    <Button style={styles.button}
+                        onPress={
+                            function () {
+                                handleSubmit();
+                            }
+                        }>Sign In</Button>
+
+                    <View style={{ height: 60 }} />
+                </KeyboardAvoidingView>
             </View>
 
         );

@@ -19,7 +19,7 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-    status: {
+    goalText: {
         fontSize: 20,
         paddingBottom: 30,
     },
@@ -40,6 +40,11 @@ var styles = StyleSheet.create({
     },
     headerPadding: {
         fontSize: 40,
+        fontWeight: "900",
+        marginTop: 40,
+    },
+    headerPadding2: {
+        fontSize: 32,
         fontWeight: "900",
         marginTop: 40,
     },
@@ -118,6 +123,10 @@ var styles = StyleSheet.create({
         color: "#bbb",
         paddingBottom: 20,
     },
+    status: {
+        fontSize: 20,
+        paddingBottom: 20,
+    },
     reduce_pictures_flex_container: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -174,6 +183,9 @@ var styles = StyleSheet.create({
         textAlign: "left",
     },
     posts: {
+        marginBottom: 50,
+    },
+    profilePosts: {
         marginBottom: 200,
     },
     button2: {
