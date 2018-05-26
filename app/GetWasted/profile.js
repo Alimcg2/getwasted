@@ -143,8 +143,8 @@ export default class profile extends Component {
             }
                     
         }
-        //this.setState({ posts[post.i].currentLikes: uids });
-//        this.setState({ posts[post.i].numLikes: numLikes });
+        //this.setState({ this.state.posts[post.i].currentLikes: uids });
+        //this.setState({ this.state.posts[post.i].numLikes: numLikes });
         var updates = {};
         updates["Users/" + this.state.userInfo.uid + "/trashypics/" + post.i + "/" ] = {
             likes: uids,
