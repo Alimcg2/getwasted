@@ -1,6 +1,7 @@
+
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { SectionList, FlatList, View, StyleSheet, Text, Image } from 'react-native';
+import { SectionList, FlatList, View, StyleSheet, Alert, Text, ScrollView, Image } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import PhotoUpload from 'react-native-photo-upload';
@@ -20,6 +21,78 @@ var options = {
         path: 'images'
     }
 };
+
+
+// creates the form
+const Form = t.form.Form;
+
+// creates the user input
+const User = t.struct({
+    changeEmail: t.maybe(t.String),
+    changeUserName: t.maybe(t.String),
+    changePassword: t.maybe(t.String)
+});
+
+
+// this is the styling for the login form, we might be able to put this into the
+// stylesheet but its a little weird because its using tcomb
+const formStyles = {
+    ...Form.stylesheet,
+    formGroup: {
+        normal: {
+            marginBottom: 10,
+        },
+        // keep style the same if there's an error
+        error: {
+            marginBottom: 10
+        }
+    },
+    textbox: {
+        normal: {
+            backgroundColor: 'white',
+            padding: 10,
+            fontSize: 18,
+            borderColor: "#ccc",
+            borderWidth: 1,
+            borderRadius: 3,
+        },
+        // keep style the same if there's an error
+        error: {
+            backgroundColor: 'white',
+            padding: 10,
+            fontSize: 20,
+        }
+    },
+    controlLabel: {
+        normal: {
+            color: 'black',
+            fontSize: 20,
+            marginBottom: 7,
+            fontWeight: '400',
+        },
+        // keep style the same if there's an error
+        error: {
+            color: 'black',
+            fontSize: 20,
+            marginBottom: 7,
+            fontWeight: '400',
+        }
+    }
+}
+
+// these are the options for the login form
+const options = {
+    fields: {
+        changeEmail: {},
+        changeUserName: {},
+        changePassword: {
+            password: true,
+            secureTextEntry: true
+        }
+    },
+    stylesheet: formStyles,
+};
+
 const Blob = RNFetchBlob.polyfill.Blob;
 const fs = RNFetchBlob.fs;
 window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
@@ -32,7 +105,7 @@ export default class trashy extends Component {
             profileImg: "",
             urlImage: "",
             loading: false,
-            user: [],
+            user: []
         };
         this.handleSignOut = this.handleSignOut.bind(this);
         this.uploadImage = this.uploadImage.bind(this);
@@ -141,13 +214,51 @@ export default class trashy extends Component {
 
     
     handleUpload() {
+        const value = this._form.getValue();
+        console.log(value);
 
-        console.log(this.state.urlImage);
-        this.trashyRef = firebase.database().ref("Users/" + this.state.user.uid + "/");
-        var data = {
-            image: this.state.urlImage,
+        
+        var user = this.state.user;
+        // var followersRef = firebase.database().ref().child("Users/" + user.uid + "/followers");
+        // var followingRef = firebase.database().ref().child("Users/" + user.uid + "/following");
+        // var trashypicsRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
+        // var goalsRef = firebase.database().ref().child("Users/" + user.uid + "/goals");
+        // var imageRef = firebase.database().ref().child("Users/" + user.uid + "/image");
+        // var nameRef = firebase.database().ref().child("Users/" + user.uid + "/name");
+        if (value.changeEmail != null) {
+            user.updateEmail(value.changeEmail)
         }
-        this.trashyRef.update(data);
+        if (value.changeUserName != null) {
+            user.updateProfile({
+                displayName: value.changeUserName})
+            nameRef = value.changeUserName;
+            this.trashyRef = firebase.database().ref("Users/" + this.state.user.uid + "/");
+            var data = {
+                name: value.changeUserName
+                
+            }
+            this.trashyRef.update(data);
+        }
+        if (value.changePassword != null) {
+            user.updatePassword(value.changePassword);
+        }
+        console.log(this.state.urlImage);
+        if (this.state.urlImage != "" && this.state.urlImage != undefined){
+            this.trashyRef = firebase.database().ref("Users/" + this.state.user.uid + "/");
+            var data = {
+                image: this.state.urlImage
+            }
+            this.trashyRef.update(data);
+        }
+        
+        Alert.alert(
+            "Success!", // title
+            "You have updated your settings.", // message
+            [
+                { text: 'OK' } // button
+            ],
+            { cancelable: false }
+        );
     }
 
     render() {
@@ -171,7 +282,8 @@ export default class trashy extends Component {
                 <View sytle={styles.pls}>
                 <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
-            
+
+            <ScrollView>
                 <Button onPress={this.uploadImage}>
                 <Image style={styles.profileImage2} source={{url}} />
                 </Button>
@@ -179,6 +291,8 @@ export default class trashy extends Component {
                 Change Image
                 </Button>
 
+            
+                 <Form ref={c => this._form = c} type={User} options={options} />
 
                 <Button  style={styles.button} onPress={this.handleUpload}>
                 Save Changes
@@ -188,6 +302,7 @@ export default class trashy extends Component {
                     <Button style={styles.button_bottom}
                         onPress={this.handleSignOut }>Sign Out</Button>
 
+            </ScrollView>
 
                 <View style={[styles.menu]}>
 
