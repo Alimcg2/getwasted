@@ -71,27 +71,31 @@ export default class otherProfile extends Component {
             });
         });
 
-        this.followRef = firebase.database().ref().child("Users/" + this.state.userID + "/followers");
-        this.followRef.on("value", function (snapshot) {
-            snapshot.forEach(function (childSnapshot) {
-                var childData = childSnapshot.val();
-                var format = { uid: childData.uid }
-                var all = this.state.followers;
-                all.push(format)
-                this.setState({ followers: all });
-            }.bind(this));
-        }.bind(this));
+        this.followersRef = firebase.database().ref().child("Users/" + this.state.userID + "/followers");
+        this.followersRef.on("value", (snapshot) => {
+            var followers = [];
+            snapshot.forEach((child) => {
+                var user = child.val();
+                // if current user is a follower change button text
+                if (user.uid == currentUser.uid) {
+                    this.setState({ buttonText: "Unfollow" });
+                }
+                var format = { uid: user.uid }
+                followers.push(user);
+            });
+            this.setState({ followers: followers });
+        });
 
         this.followingRef = firebase.database().ref().child("Users/" + this.state.userID + "/following");
-        this.followingRef.on("value", function (snapshot) {
-            snapshot.forEach(function (childSnapshot) {
-                var childData = childSnapshot.val();
-                var format = { uid: childData.uid }
-                var all = this.state.following;
-                all.push(format)
-                this.setState({ following: all });
-            }.bind(this));
-        }.bind(this));
+        this.followingRef.on("value", (snapshot) => {
+            var following = [];
+            snapshot.forEach((child) => {
+                var user = child.val();
+                var format = { uid: user.uid }
+                following.push(user);
+            });
+            this.setState({ following: following });
+        });
 
     }
     componentWillUnmount() {
@@ -101,14 +105,17 @@ export default class otherProfile extends Component {
         if (this.postRef) {
             this.postRef.off();
         }
-        if (this.followRef) {
-            this.followRef.off();
+        if (this.followersRef) {
+            this.followersRef.off();
         }
         if (this.followingRef) {
             this.followingRef.off();
         }
         if (this.nameRef) {
             this.nameRef.off();
+        }
+        if (this.currentUserFollowingRef) {
+            this.currentUserFollowingRef.off();
         }
     }
 
@@ -120,23 +127,48 @@ export default class otherProfile extends Component {
     }
 
     handleFollow() {
+        var currentUser = firebase.auth().currentUser;
+        this.currentUserFollowingRef = firebase.database().ref("Users/" + currentUser.uid + "/following/");
+
         if (this.state.buttonText == "Follow") {
-
-            var currentUser = firebase.auth().currentUser;
-
-            this.userGoalsRef = firebase.database().ref("Users/" + this.state.userID + "/followers/");
+            // add current user to this user's list of followers
+            // this.followersRef = firebase.database().ref("Users/" + this.state.userID + "/followers/");
             var addData = {
                 uid: currentUser.uid
-            };
-            this.userGoalsRef.push(addData);
-            this.userGoalsRef = firebase.database().ref("Users/" + currentUser.uid + "/following/");
+            }
+            this.followersRef.push(addData);
+
+            // add this user to the current user's list of following
             var addData = {
                 uid: this.state.userID
             };
-            this.userGoalsRef.push(addData);
+            this.currentUserFollowingRef.push(addData);
+
+            // change button to say unfollow
             this.setState({ buttonText: "Unfollow" });
         } else {
             // figure out how to remove stuff here
+
+            // this.followersRef.remove(data);
+            // firebase.database().ref("Users/" + currentUser.uid + "/following/").remove(data);
+
+            // remove current user from this user's list of followers
+            this.followersRef.orderByChild('uid').equalTo(currentUser.uid)
+                .once('value').then((snapshot) => {
+                    snapshot.forEach((child) => {
+                        // remove child
+                        this.followersRef.child(child.key).remove();
+                    });
+                });
+
+            this.currentUserFollowingRef.orderByChild('uid').equalTo(this.state.userID)
+                .once('value').then((snapshot) => {
+                    snapshot.forEach((child) => {
+                        // remove child
+                        this.currentUserFollowingRef.child(child.key).remove();
+                    });
+                });
+
             this.setState({ buttonText: "Follow" });
         }
     }
@@ -172,6 +204,7 @@ export default class otherProfile extends Component {
                     <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
 
+                {/* if the user just came from user search on connect page, show back button */}
                 {this.props.navigation.state.params.fromSearch ?
                     < Button onPress={() => {
                         // navigate back to search on connect page
