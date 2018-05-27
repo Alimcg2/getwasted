@@ -54,21 +54,28 @@ export default class profile extends Component {
                 var numLikes;
                 var likeString;
                 var liked = false;;
-                 if (pic.likes) {
-                     numLikes = pic.likes.split(",").length;
-                     likeString = pic.likes;
-                     if (pic.likes.split(",").includes(user.uid)) {
-                         liked = true;
-                     }
-                 } else {
-                     numLikes = 0;
-                     likeString = "";
-                 }
+                if (pic.likes) {
+                    numLikes = pic.likes.split(",").length;
+                    likeString = pic.likes;
+                    if (pic.likes.split(",").includes(user.uid)) {
+                        liked = true;
+                    }
+                } else {
+                    numLikes = 0;
+                    likeString = "";
+                }
                 var userName = this.state.userName;
-                var format = { caption: pic.imageCaption, likes: numLikes, img: { uri: pic.imageURL }, date: pic.date, username: user.displayName, userId: user.uid, i: child.key, currentLikes: likeString, isLiked: liked}
-                // var all = this.state.posts;
-                // all.push(format)
-                // this.setState({ posts: all });
+                var format = {
+                    caption: pic.imageCaption,
+                    likes: numLikes,
+                    img: { uri: pic.imageURL },
+                    date: pic.date,
+                    username: user.displayName,
+                    userId: user.uid,
+                    i: child.key,
+                    currentLikes: likeString,
+                    isLiked: liked
+                }
                 pics.push(format);
             });
             this.setState({ posts: pics });
@@ -125,15 +132,15 @@ export default class profile extends Component {
         console.log(this.state.posts[post.i]);
         var uids;
         if (post.isLiked == false) {
-            numLikes =  this.state.posts[post.i] + 1;
-            if (this.state.posts.currentLikes != "" && this.state.posts.currentLikes != undefined){
+            numLikes = this.state.posts[post.i] + 1;
+            if (this.state.posts.currentLikes != "" && this.state.posts.currentLikes != undefined) {
                 uids = this.state.posts.currentLikes + "," + this.state.userInfo.uid;
             } else {
                 uids = this.state.userInfo.uid;
             }
         } else {
-            numLikes =  this.state.posts[post.i]  - 1;
-            if (this.state.posts.currentLikes != "" && this.state.posts.currentLikes != undefined){
+            numLikes = this.state.posts[post.i] - 1;
+            if (this.state.posts.currentLikes != "" && this.state.posts.currentLikes != undefined) {
                 if (post.currentLikes.includes("," + this.state.userInfo.uid)) {
                     uids = this.state.post.currentLikes.replace("," + this.state.userInfo.uid, "");
                 } else if (post.currentLikes.includes(this.state.userInfo.uid)) {
@@ -142,12 +149,12 @@ export default class profile extends Component {
             } else {
                 uids = "";
             }
-                    
+
         }
         //this.setState({ this.state.posts[post.i].currentLikes: uids });
         //this.setState({ this.state.posts[post.i].numLikes: numLikes });
         var updates = {};
-        updates["Users/" + this.state.userInfo.uid + "/trashypics/" + post.i + "/" ] = {
+        updates["Users/" + this.state.userInfo.uid + "/trashypics/" + post.i + "/"] = {
             likes: uids,
             imageCaption: post.caption,
             imageURL: post.img.uri,
@@ -320,11 +327,11 @@ class PostItem extends Component {
                         handleLike(post);
                     }
                 }>
-                
-                {!post.isLiked ?
-                 <Image style={styles.heartImage} source={require("./007-heart.png")} /> : 
-                 <Image style={styles.heartImage} source={require("./heartafter.png")} />
-            }
+
+                    {!post.isLiked ?
+                        <Image style={styles.heartImage} source={require("./007-heart.png")} /> :
+                        <Image style={styles.heartImage} source={require("./heartafter.png")} />
+                    }
                 </Button>
 
                 <Text style={styles.share_date}>

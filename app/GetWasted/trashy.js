@@ -101,7 +101,16 @@ export default class trashy extends Component {
             var pics = [];
             snapshot.forEach((child) => {
                 var pic = child.val();
-                var format = { caption: pic["imageCaption"], url: { uri: pic["imageURL"] }, date: pic["date"] }
+                var numLikes;
+                var likeString;
+                var format = {
+                    caption: pic.imageCaption,
+                    likes: pic.likes,
+                    url: { uri: pic.imageURL },
+                    date: pic.date,
+                    key: child.key,
+                    published: pic.published
+                }
                 pics.push(format);
             });
             this.setState({ images: pics });
@@ -205,6 +214,18 @@ export default class trashy extends Component {
         this.setState({ urlImage: "" });
     }
 
+    handlePublish(post, published) {
+        var updates = {};
+        updates["Users/" + this.state.user.uid + "/trashypics/" + post.key + "/"] = {
+            imageCaption: post.caption,
+            likes: post.likes,
+            imageURL: post.url.uri,
+            date: post.date,
+            published: published
+        };
+        firebase.database().ref().update(updates);
+    }
+
     render() {
         const ts = this.trashy;
         var imgs = this.state.images;
@@ -273,7 +294,25 @@ export default class trashy extends Component {
                                                     <Image style={styles.trashyPic} source={item.url} />
 
                                                     <Text style={styles.subtitle}>{item.caption}</Text>
-                                                    <Text>{moment(item.date).format('MMM DD YYYY')}</Text>
+
+                                                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+                                                        <Text style={styles.trashyDate}>{moment(item.date).format('MMM DD YYYY')}</Text>
+
+                                                        {item.published ?
+                                                            <Button style={{ backgroundColor: '#CED0CE', padding: 5, marginTop: -15, color: 'white' }} onPress={(() => {
+                                                                this.handlePublish(item, false);
+                                                            })}>
+                                                                Unpublish
+                                                            </Button>
+                                                            :
+                                                            <Button style={{ backgroundColor: '#e2ddd0', padding: 5, marginTop: -15, color: 'white' }} onPress={(() => {
+                                                                this.handlePublish(item, true);
+                                                            })}>
+                                                                Publish
+                                                            </Button>
+                                                        }
+                                                    </View>
+
                                                 </View>
                                             }
                                         />

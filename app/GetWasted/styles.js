@@ -97,6 +97,10 @@ var styles = StyleSheet.create({
         marginLeft: 5,
         color: 'grey'
     },
+    trashyDate: {
+        fontSize: 15,
+        color: 'grey'
+    },
     buffer: {
         height: 200
     },
