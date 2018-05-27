@@ -484,8 +484,34 @@ var styles = StyleSheet.create({
         opacity: 0.6,
         marginLeft: 220,
         marginTop: -45,
+    },
+    userContainer: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 40,
+    },
+    userSearchInfo: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        paddingRight: 80 
+    },
+    userSearchPhoto: {
+        width: 50,
+        height: 50
+    },
+    userSearchName: {
+        fontWeight: "bold",
+        padding: 10
+    },
+    followButton: {
+        backgroundColor: "#e2ddd0",
+        padding: 5,
+        color: "white",
+        marginRight: 10
     }
-        
 })
 
 module.exports = styles;
