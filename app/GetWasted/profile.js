@@ -51,32 +51,34 @@ export default class profile extends Component {
             var pics = [];
             snapshot.forEach((child) => {
                 var pic = child.val();
-                var numLikes;
-                var likeString;
-                var liked = false;;
-                if (pic.likes) {
-                    numLikes = pic.likes.split(",").length;
-                    likeString = pic.likes;
-                    if (pic.likes.split(",").includes(user.uid)) {
-                        liked = true;
+                if (pic.published) {
+                    var numLikes;
+                    var likeString;
+                    var liked = false;;
+                    if (pic.likes) {
+                        numLikes = pic.likes.split(",").length;
+                        likeString = pic.likes;
+                        if (pic.likes.split(",").includes(user.uid)) {
+                            liked = true;
+                        }
+                    } else {
+                        numLikes = 0;
+                        likeString = "";
                     }
-                } else {
-                    numLikes = 0;
-                    likeString = "";
+                    var userName = this.state.userName;
+                    var format = {
+                        caption: pic.imageCaption,
+                        likes: numLikes,
+                        img: { uri: pic.imageURL },
+                        date: pic.date,
+                        username: user.displayName,
+                        userId: user.uid,
+                        i: child.key,
+                        currentLikes: likeString,
+                        isLiked: liked
+                    }
+                    pics.push(format);
                 }
-                var userName = this.state.userName;
-                var format = {
-                    caption: pic.imageCaption,
-                    likes: numLikes,
-                    img: { uri: pic.imageURL },
-                    date: pic.date,
-                    username: user.displayName,
-                    userId: user.uid,
-                    i: child.key,
-                    currentLikes: likeString,
-                    isLiked: liked
-                }
-                pics.push(format);
             });
             this.setState({ posts: pics });
         });

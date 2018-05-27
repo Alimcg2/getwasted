@@ -53,9 +53,11 @@ export default class ShareFeed extends Component {
                         var postsArray = [];
                         snapshot.forEach((child) => {
                             var post = child.val();
-                            post['userId'] = friendId;
-                            post['username'] = username;
-                            postsArray.push(post);
+                            if (post.published) {
+                                post['userId'] = friendId;
+                                post['username'] = username;
+                                postsArray.push(post);
+                            }
                         });
                         this.setState({ posts: postsArray });
                     });

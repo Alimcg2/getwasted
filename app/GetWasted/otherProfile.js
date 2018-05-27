@@ -48,23 +48,29 @@ export default class otherProfile extends Component {
         }.bind(this));
 
         this.postRef = firebase.database().ref().child("Users/" + this.state.userID + "/trashypics");
-        this.postRef.on("value", function (snapshot) {
-            snapshot.forEach(function (childSnapshot) {
-                var childData = childSnapshot.val();
-                console.log(childData.imageURL);
-                var numLikes;
-                if (childData.likes) {
-                    numLikes = childData.likes.length;
-                } else {
-                    numLikes = 0;
+        this.postRef.on("value", (snapshot) => {
+            var pics = [];
+            snapshot.forEach((child) => {
+                var pic = child.val();
+                if (pic.published) {
+                    var numLikes;
+                    if (pic.likes) {
+                        numLikes = pic.likes.length;
+                    } else {
+                        numLikes = 0;
+                    }
+                    var format = {
+                        caption: pic.imageCaption,
+                        likes: numLikes,
+                        img: { uri: pic.imageURL },
+                        date: pic.date
+                    }
+                    var all = this.state.posts;
+                    all.push(format)
+                    this.setState({ posts: all });
                 }
-                var format = { caption: childData.imageCaption, likes: numLikes, img: { uri: childData.imageURL }, date: childData.date }
-                var all = this.state.posts;
-                all.push(format)
-                this.setState({ posts: all });
-            }.bind(this));
-        }.bind(this));
-
+            });
+        });
 
         this.followRef = firebase.database().ref().child("Users/" + this.state.userID + "/followers");
         this.followRef.on("value", function (snapshot) {
