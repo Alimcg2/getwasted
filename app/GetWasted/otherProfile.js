@@ -36,7 +36,6 @@ export default class otherProfile extends Component {
     }
 
     componentWillMount() {
-        console.log(this.props.navigation.state.params.uid);
         var currentUser = firebase.auth().currentUser;
         this.imageRef = firebase.database().ref().child("Users/" + this.state.userID + "/image"); /* gets the image-parent class*/
         this.imageRef.on("value", function (snapshot) {
@@ -155,7 +154,7 @@ export default class otherProfile extends Component {
         var postItems = this.state.posts.map((post, index) => {
             return <PostItem key={index} post={post} userName={user} navigation={this.props.navigation} />;
         });
-        console.log(posts);
+
         return (
 
             <View style={styles.container_main}>
@@ -172,6 +171,17 @@ export default class otherProfile extends Component {
                 <View sytle={styles.pls}>
                     <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
+
+                {this.props.navigation.state.params.fromSearch ?
+                    < Button onPress={() => {
+                        // navigate back to search on connect page
+                        this.props.navigation.goBack();
+                    }}>
+                        <Image style={styles.backIcon} source={require("./angle-left.png")} />
+                    </Button>
+                    :
+                    <View></View>
+                }
 
                 <Image style={styles.profileImage} source={{ url }} />
 
@@ -257,7 +267,7 @@ export default class otherProfile extends Component {
 
                 </View>
 
-            </View>
+            </View >
         );
     }
 }

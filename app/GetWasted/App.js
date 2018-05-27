@@ -54,11 +54,11 @@ import {
 } from 'react-navigation';
 
 let Transition = (index, position) => {
-    const inputRange = [index - 1, index, index + 0.99, index + 1];
+    const inputRange = [index - 1, index, index + 1, index + 1];
 
     const opacity = position.interpolate({
         inputRange,
-        outputRange: ([0.9, 1, 1, 0.9]),
+        outputRange: ([1, 1, 1, 1]),
     });
 
     const translateX = 0;

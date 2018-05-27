@@ -73,7 +73,8 @@ export default class ShareFeed extends Component {
             profileImg: "",
             following: [],
             posts: [],
-            users: []
+            users: [],
+            filteredUsers: []
         };
         this.handleSignOut = this.handleSignOut.bind(this);
     }
@@ -134,7 +135,7 @@ export default class ShareFeed extends Component {
                     users.push(userData);
                 }
             });
-            this.setState({ users: users });
+            this.setState({ users: users, filteredUsers: users });
         });
     }
 
@@ -161,7 +162,20 @@ export default class ShareFeed extends Component {
     }
 
     handleSearch() {
-        console.log("handling search");
+        const value = this._form.getValue();
+        if (value) {
+            var result = [];
+            var names = this.state.users.map(user => user.name);
+            for (var i = 0; i < names.length; i++) {
+                var name = names[i].toLowerCase();
+                if (name.includes(value.search.toLowerCase())) {
+                    result.push(this.state.users[i]);
+                }
+            }
+            this.setState({ filteredUsers: result });
+        } else {
+            this.setState({ filteredUsers: users });
+        }
     }
 
     handleFollow(userToFollow) {
@@ -177,6 +191,7 @@ export default class ShareFeed extends Component {
     }
 
     render() {
+        console.log(this.state.filteredUsers);
         const { navigate } = this.props.navigation;
 
         var url = this.state.profileImg.toString();
@@ -185,18 +200,18 @@ export default class ShareFeed extends Component {
             return <PostItem key={index} post={post} navigation={this.props.navigation} />;
         });
 
-        var userItems = this.state.users.map((user, index) => {
+        var userItems = this.state.filteredUsers.map((user, index) => {
             var followingUser = this.state.following.includes(user.userId);
             return (
                 <View key={index} style={styles.userContainer}>
                     <View style={styles.userSearchInfo}>
                         <Button onPress={(() => {
-                            navigate('otherProfile', { uid: user.userId });
+                            navigate('otherProfile', { uid: user.userId, fromSearch: true });
                         })}>
                             <Image style={styles.userSearchPhoto} source={{ uri: user.image }} />
                         </Button>
                         <Button onPress={(() => {
-                            navigate('otherProfile', { uid: user.userId });
+                            navigate('otherProfile', { uid: user.userId, fromSearch: true });
                         })}>
                             <Text style={styles.userSearchName}>{user.name}</Text>
                         </Button>
@@ -235,12 +250,16 @@ export default class ShareFeed extends Component {
 
                     {!this.state.searching ?
                         <Button onPress={() => {
-                            this.setState({ searching: true });
+                            this.setState({ searching: true, filteredUsers: this.state.users });
                         }}>
                             <Image style={styles.plusIcon} source={require("./user-plus.png")} />
                         </Button>
                         :
-                        <View></View>
+                        <Button onPress={() => {
+                            this.setState({ searching: false });
+                        }}>
+                            <Image style={styles.closeIcon} source={require("./close.png")} />
+                        </Button>
                     }
                 </View>
 
@@ -257,13 +276,8 @@ export default class ShareFeed extends Component {
                             }}>
                             <Image style={styles.search_button} source={{ uri: "https://cdn.shopify.com/s/files/1/1161/9636/t/15/assets/search-icon.png?7610983656426791530" }} />
                         </Button>
-                        <View style={{ paddingBottom: 20 }}>
-                            <Text style={{ fontWeight: "bold" }} onPress={() => {
-                                this.setState({ searching: false });
-                            }}>X Done Searching</Text>
-                        </View>
 
-                        <ScrollView>
+                        <ScrollView style={{ marginTop: 20 }}>
                             {userItems}
                             <View style={{ height: 325 }}></View>
                         </ScrollView>

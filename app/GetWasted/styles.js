@@ -166,6 +166,22 @@ var styles = StyleSheet.create({
         top: -40,
         opacity: 0.6
     },
+    closeIcon: {
+        height: 20,
+        width: 20,
+        right: 25,
+        position: "absolute",
+        top: -35,
+        opacity: 0.6
+    },
+    backIcon: {
+        height: 40,
+        width: 40,
+        position: "absolute",
+        top: 10,
+        left: -50,
+        opacity: 0.6
+    },
     signOut: {
         fontSize: 20,
         paddingLeft: 20,
