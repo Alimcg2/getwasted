@@ -30,6 +30,7 @@ export default class profile extends Component {
             followers: [],
             following: [],
             userInfo: [],
+            containsPosts: false,
         };
         this.handleSignOut = this.handleSignOut.bind(this);
         this.handleLike = this.handleLike.bind(this);
@@ -46,11 +47,13 @@ export default class profile extends Component {
 
 
         this.postRef = firebase.database().ref().child("Users/" + user.uid + "/trashypics");
+        var hasPosts = false;
         this.postRef.on("value", (snapshot) => {
             var pics = [];
             snapshot.forEach((child) => {
                 var pic = child.val();
                 if (pic.published) {
+                    hasPosts = true;
                     var numLikes;
                     var likeString;
                     var liked = false;;
@@ -80,6 +83,7 @@ export default class profile extends Component {
                 }
             });
             this.setState({ posts: pics });
+            this.setState({ containsPosts: hasPosts});
         });
 
 
@@ -209,9 +213,13 @@ export default class profile extends Component {
                             <Button style={[styles.subtitle3]}>Followers: {followers.length}</Button>
 
                             <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
-                        </View>
-                        
-                        {postItems}
+                </View>
+                {!this.state.containsPosts ?
+                 {postItems}
+                  :
+                  <Text>TeSTING</Text>
+                 }
+                
                         <View style={{ height: 150 }}></View>
                     </ScrollView>
                 </View>
@@ -291,6 +299,7 @@ class PostItem extends Component {
         var caption = post.caption;
         var date = moment(post.date).fromNow();
         return (
+            
             <View style={styles.list_container}>
                 {/* linked image */}
                 <Button onPress={(() => {

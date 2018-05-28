@@ -30,7 +30,6 @@ export default class otherProfile extends Component {
             following: [],
             userID: this.props.navigation.state.params.uid,
             buttonText: "Follow" // make this dynamic
-            noPosts: false,
         };
         this.handleSignOut = this.handleSignOut.bind(this);
         this.handleFollow = this.handleFollow.bind(this);
@@ -50,11 +49,9 @@ export default class otherProfile extends Component {
         this.postRef = firebase.database().ref().child("Users/" + this.state.userID + "/trashypics");
         this.postRef.on("value", (snapshot) => {
             var pics = [];
-            var containsPics = false;
             snapshot.forEach((child) => {
                 var pic = child.val();
                 if (pic.published) {
-                    containsPics = true;
                     var numLikes;
                     if (pic.likes) {
                         numLikes = pic.likes.length;
@@ -71,7 +68,6 @@ export default class otherProfile extends Component {
                 }
             });
             this.setState({ posts: pics });
-            this.setState({ noPosts: containsPics});
         });
 
         this.followersRef = firebase.database().ref().child("Users/" + this.state.userID + "/followers");
