@@ -208,7 +208,7 @@ export default class otherProfile extends Component {
                 </View>
 
                 <View>
-                    <ScrollView style={styles.profilePosts}>
+                    <ScrollView>
                         <Image style={styles.profileImage} source={{ url }} />
 
                         <Text style={styles.headerRight}>{user.toUpperCase()}</Text>

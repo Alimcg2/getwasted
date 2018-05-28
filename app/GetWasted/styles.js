@@ -206,7 +206,7 @@ var styles = StyleSheet.create({
         marginBottom: 50,
     },
     profilePosts: {
-        // marginBottom: 200,
+        marginBottom: 200,
     },
     button2: {
         color: "black",

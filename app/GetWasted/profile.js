@@ -24,7 +24,6 @@ export default class profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            getMenu: false,
             profileImg: "",
             posts: [],
             userName: "",
@@ -197,32 +196,22 @@ export default class profile extends Component {
                     <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
 
-                <Button onPress={
-                    function () {
-                        this.setState({ getMenu: true });
-                    }.bind(this)}>
-                    <Image style={styles.profileImage} source={{ url }} />
-                </Button>
-
-
-
-                <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
-
-
-
-                <View style={styles.follow_container}>
-                    <Text style={styles.subtitle3}>Following: {following.length}</Text>
-
-                    <Button style={[styles.subtitle3]}>Followers: {followers.length}</Button>
-
-                    <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
-                </View>
-
-
                 <View>
-                    <ScrollView style={styles.profilePosts}>
+                    <ScrollView>
+                        <Image style={styles.profileImage} source={{ url }} />
+
+                        <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
+
+                        <View style={styles.follow_container}>
+                            <Text style={styles.subtitle3}>Following: {following.length}</Text>
+
+                            <Button style={[styles.subtitle3]}>Followers: {followers.length}</Button>
+
+                            <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
+                        </View>
+                        
                         {postItems}
-                        <View style={styles.buffer}></View>
+                        <View style={{ height: 150 }}></View>
                     </ScrollView>
                 </View>
 
