@@ -160,7 +160,8 @@ export default class profile extends Component {
             likes: uids,
             imageCaption: post.caption,
             imageURL: post.img.uri,
-            date: post.date
+            date: post.date,
+            published: true
         };
         firebase.database().ref().update(updates);
         //this.setState({this.state.posts[post.i] : numLikes})

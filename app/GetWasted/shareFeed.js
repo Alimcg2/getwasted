@@ -69,8 +69,6 @@ export default class ShareFeed extends Component {
         super(props);
         this.state = {
             getMenu: false,
-            userName: "",
-            profileImg: "",
             following: [],
             posts: [],
             users: [],
@@ -80,53 +78,43 @@ export default class ShareFeed extends Component {
     }
 
     componentWillMount() {
-        var user = firebase.auth().currentUser;
-        this.setState({ userName: user.displayName });
+        var currentUser = firebase.auth().currentUser;
 
-        this.imageRef = firebase.database().ref().child("Users/" + user.uid + '/image');
-        this.imageRef.on("value", function (snapshot) {
-            this.setState({ profileImg: snapshot.val() });
-        }.bind(this));
-
-        this.friendsRef = firebase.database().ref('Users/' + user.uid + '/following');
-        this.friendsRef.once('value').then((snapshot) => {
-            var friendsArray = [];
-            snapshot.forEach((child) => {
-                friendsArray.push(child.val().uid);
-            });
-            this.setState({ following: Array.from(new Set(friendsArray)) });
-        }).then(() => {
-            this.state.following.forEach((friendId) => {
-                var username;
-                firebase.database().ref('Users/' + friendId + '/name').once('value').then((snapshot) => {
-                    username = snapshot.val();
-                }).then(() => {
-                    this.postsRef = firebase.database().ref('Users/' + friendId + '/trashypics')
-                    this.postsRef.once('value').then((snapshot) => {
-                        var postsArray = [];
-                        snapshot.forEach((child) => {
-                            var post = child.val();
-                            if (post.published) {
-                                post['userId'] = friendId;
-                                post['username'] = username;
-                                postsArray.push(post);
-                            }
-                        });
-                        this.setState({ posts: postsArray });
-                    });
-                });
-            });
-        });
-
-        // then order posts by time
-
-        // get all users and store in state
         this.usersRef = firebase.database().ref().child("Users");
         this.usersRef.on("value", (snapshot) => {
+            // get list of users current user is following
+            var following = snapshot.val()[currentUser.uid].following;
+            var followingKeys = Object.keys(following);
+            var followingIds = [];
+            followingKeys.forEach((key) => {
+                followingIds.push(following[key].uid);
+            });
+            this.setState({ following: followingIds });
+
+            // get posts of each user followed
+            var allPosts = [];
+            followingIds.forEach((uid) => {
+                var name = snapshot.val()[uid].name;
+                var posts = snapshot.val()[uid].trashypics;
+                if (posts) {
+                    posts.forEach((post) => {
+                        // only save published posts
+                        if (post.published) {
+                            post["userId"] = uid;
+                            post["userName"] = name;
+                            allPosts.push(post);
+                        }
+                    });
+                }
+            });
+            // TO DO: ORDER POSTS BY TIME CREATED
+            this.setState({ posts: allPosts });
+
+            // get list of all users for search
             var users = [];
             snapshot.forEach((child) => {
                 var user = child.val();
-                if (child.key != firebase.auth().currentUser.uid) {
+                if (child.key != currentUser.uid) {
                     var userData = {
                         name: user.name,
                         image: user.image,
@@ -140,15 +128,6 @@ export default class ShareFeed extends Component {
     }
 
     componentWillUnmount() {
-        if (this.imageRef) {
-            this.imageRef.off();
-        }
-        if (this.friendsRef) {
-            this.friendsRef.off();
-        }
-        if (this.postsRef) {
-            this.postsRef.off();
-        }
         if (this.usersRef) {
             this.usersRef.off();
         }
@@ -181,20 +160,15 @@ export default class ShareFeed extends Component {
     handleFollow(userToFollow) {
         var currentUser = firebase.auth().currentUser;
 
-        this.followingRef = firebase.database().ref("Users/" + currentUser.uid + "/following/");
-        this.followingRef.push({
-            uid: userToFollow
-        });
-        var following = this.state.following;
-        following.push(userToFollow);
-        this.setState({ following: following });
+        firebase.database().ref().child("Users/" + currentUser.uid + "/following")
+            .push({ uid: userToFollow });
+
+        firebase.database().ref().child("Users/" + userToFollow + "/followers")
+            .push({ uid: currentUser.uid });
     }
 
     render() {
-        console.log(this.state.filteredUsers);
         const { navigate } = this.props.navigation;
-
-        var url = this.state.profileImg.toString();
 
         var postItems = this.state.posts.map((post, index) => {
             return <PostItem key={index} post={post} navigation={this.props.navigation} />;
@@ -383,7 +357,7 @@ class PostItem extends Component {
                         onPress={(() => {
                             navigate('otherProfile', { uid: post.userId });
                         })}>
-                        {post.username + "  "}
+                        {post.userName + "  "}
                     </Text>
 
                     {post.imageCaption}

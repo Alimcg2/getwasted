@@ -64,11 +64,10 @@ export default class otherProfile extends Component {
                         img: { uri: pic.imageURL },
                         date: pic.date
                     }
-                    var all = this.state.posts;
-                    all.push(format)
-                    this.setState({ posts: all });
+                    pics.push(format);
                 }
             });
+            this.setState({ posts: pics });
         });
 
         this.followersRef = firebase.database().ref().child("Users/" + this.state.userID + "/followers");
@@ -132,7 +131,6 @@ export default class otherProfile extends Component {
 
         if (this.state.buttonText == "Follow") {
             // add current user to this user's list of followers
-            // this.followersRef = firebase.database().ref("Users/" + this.state.userID + "/followers/");
             var addData = {
                 uid: currentUser.uid
             }
@@ -147,11 +145,6 @@ export default class otherProfile extends Component {
             // change button to say unfollow
             this.setState({ buttonText: "Unfollow" });
         } else {
-            // figure out how to remove stuff here
-
-            // this.followersRef.remove(data);
-            // firebase.database().ref("Users/" + currentUser.uid + "/following/").remove(data);
-
             // remove current user from this user's list of followers
             this.followersRef.orderByChild('uid').equalTo(currentUser.uid)
                 .once('value').then((snapshot) => {
@@ -204,17 +197,12 @@ export default class otherProfile extends Component {
                     <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
 
-                {/* if the user just came from user search on connect page, show back button */}
-                {this.props.navigation.state.params.fromSearch ?
-                    < Button onPress={() => {
-                        // navigate back to search on connect page
-                        this.props.navigation.goBack();
-                    }}>
-                        <Image style={styles.backIcon} source={require("./angle-left.png")} />
-                    </Button>
-                    :
-                    <View></View>
-                }
+                {/* back button to take user back to connect page */}
+                < Button onPress={() => {
+                    this.props.navigation.goBack();
+                }}>
+                    <Image style={styles.backIcon} source={require("./angle-left.png")} />
+                </Button>
 
                 <Image style={styles.profileImage} source={{ url }} />
 
