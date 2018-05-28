@@ -214,10 +214,12 @@ export default class profile extends Component {
 
                             <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
                 </View>
+
                 {this.state.containsPosts ?
                  <View>
                  {postItems}
                  </View>
+
                   :
                  <Button style={styles.publishFirst}
                         onPress={

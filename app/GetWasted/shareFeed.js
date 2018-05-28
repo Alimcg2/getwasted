@@ -100,7 +100,9 @@ export default class ShareFeed extends Component {
                     var name = snapshot.val()[uid].name;
                     var posts = snapshot.val()[uid].trashypics;
                     if (posts) {
-                        posts.forEach((post) => {
+                        var postKeys = Object.keys(posts);
+                        postKeys.forEach((key) => {
+                            var post = posts[key];
                             // only save published posts
                             if (post.published) {
                                 post["userId"] = uid;
