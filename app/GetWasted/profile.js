@@ -215,7 +215,9 @@ export default class profile extends Component {
                             <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
                 </View>
                 {!this.state.containsPosts ?
-                 {postItems}
+                <View>
+                {postItems}
+                </View>
                   :
                   <Text>TeSTING</Text>
                  }
