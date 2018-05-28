@@ -84,12 +84,14 @@ export default class ShareFeed extends Component {
         this.usersRef.on("value", (snapshot) => {
             // get list of users current user is following
             var following = snapshot.val()[currentUser.uid].following;
-            var followingKeys = Object.keys(following);
-            var followingIds = [];
-            followingKeys.forEach((key) => {
-                followingIds.push(following[key].uid);
-            });
-            this.setState({ following: followingIds });
+            if (following) {
+                var followingKeys = Object.keys(following);
+                var followingIds = [];
+                followingKeys.forEach((key) => {
+                    followingIds.push(following[key].uid);
+                });
+                this.setState({ following: followingIds });
+            }
 
             // get posts of each user followed
             var allPosts = [];
