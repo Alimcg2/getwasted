@@ -197,11 +197,12 @@ export default class profile extends Component {
                 </View>
 
                 <View>
-                    <ScrollView>
+                <ScrollView>
+                <View style={styles.flexContainer}>
                         <Image style={styles.profileImage} source={{ url }} />
 
                         <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
-
+</View>
                         <View style={styles.follow_container}>
                             <Text style={styles.subtitle3}>Following: {following.length}</Text>
 

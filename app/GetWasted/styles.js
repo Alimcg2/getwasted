@@ -35,8 +35,14 @@ var styles = StyleSheet.create({
     headerRight: {
         fontSize: 32,
         fontWeight: "900",
-        right: -80,
-        top: -40,
+        width: "70%",
+        marginLeft: 20
+    },
+    flexContainer: {
+        flex: 1,
+        flexDirection: "row",
+        alignContent: "flex-start",
+        marginTop: 40
     },
     headerPadding: {
         fontSize: 40,
@@ -73,7 +79,6 @@ var styles = StyleSheet.create({
     profileImage: {
         width: 70,
         height: 70,
-        marginTop: 40,
     },
     profileImage2: {
         width: 80,
@@ -351,7 +356,6 @@ var styles = StyleSheet.create({
     follow_container: {
         display: "flex",
         flexDirection: 'row',
-        marginTop: -45,
 
     },
     subtitle3: {
