@@ -95,20 +95,22 @@ export default class ShareFeed extends Component {
 
             // get posts of each user followed
             var allPosts = [];
-            followingIds.forEach((uid) => {
-                var name = snapshot.val()[uid].name;
-                var posts = snapshot.val()[uid].trashypics;
-                if (posts) {
-                    posts.forEach((post) => {
-                        // only save published posts
-                        if (post.published) {
-                            post["userId"] = uid;
-                            post["userName"] = name;
-                            allPosts.push(post);
-                        }
-                    });
-                }
-            });
+            if (followingIds) {
+                followingIds.forEach((uid) => {
+                    var name = snapshot.val()[uid].name;
+                    var posts = snapshot.val()[uid].trashypics;
+                    if (posts) {
+                        posts.forEach((post) => {
+                            // only save published posts
+                            if (post.published) {
+                                post["userId"] = uid;
+                                post["userName"] = name;
+                                allPosts.push(post);
+                            }
+                        });
+                    }
+                });
+            }
             // TO DO: ORDER POSTS BY TIME CREATED
             this.setState({ posts: allPosts });
 
