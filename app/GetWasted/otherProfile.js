@@ -185,6 +185,16 @@ export default class otherProfile extends Component {
             <View style={styles.container_main}>
                 <View style={styles.topContainer}>
                     <Text style={styles.title}>Wasteless</Text>
+
+                    {/* back button to take user back to connect page */}
+                    < Button onPress={() => {
+                        console.log("pressing back");
+                        this.props.navigation.goBack();
+                    }}>
+                        <Image style={styles.backIcon} source={require("./angle-left.png")} />
+                    </Button>
+
+                    {/* settings */}
                     <Button style={[styles.menu_item]}
                         onPress={
                             function () {
@@ -197,37 +207,28 @@ export default class otherProfile extends Component {
                     <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
 
-                {/* back button to take user back to connect page */}
-                < Button onPress={() => {
-                    this.props.navigation.goBack();
-                }}>
-                    <Image style={styles.backIcon} source={require("./angle-left.png")} />
-                </Button>
-
-                <Image style={styles.profileImage} source={{ url }} />
-
-                <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
-
-                <View style={styles.follow_container}>
-                    <Text style={styles.subtitle3}>Following: {following.length}</Text>
-
-                    <Button style={[styles.subtitle3]}>Followers: {followers.length}</Button>
-
-                    <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
-                </View>
-
-                <Button style={styles.button2NoPadding} onPress={
-                    this.handleFollow
-                }>
-                    {buttonText}
-                </Button>
-
-
-
                 <View>
                     <ScrollView style={styles.profilePosts}>
+                        <Image style={styles.profileImage} source={{ url }} />
+
+                        <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
+
+                        <View style={styles.follow_container}>
+                            <Text style={styles.subtitle3}>Following: {following.length}</Text>
+
+                            <Button style={[styles.subtitle3]}>Followers: {followers.length}</Button>
+
+                            <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
+                        </View>
+
+                        <Button style={styles.button2NoPadding} onPress={
+                            this.handleFollow
+                        }>
+                            {buttonText}
+                        </Button>
+
                         {postItems}
-                        <View style={styles.buffer}></View>
+                        <View style={{ height: 150 }}></View>
                     </ScrollView>
                 </View>
 

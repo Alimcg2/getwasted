@@ -1,6 +1,6 @@
 
 const React = require('react-native')
-const {StyleSheet} = React
+const { StyleSheet } = React
 const constants = {
     actionColor: '#24CE84'
 };
@@ -8,17 +8,17 @@ const constants = {
 
 
 var styles = StyleSheet.create({
-      container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  gallery: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
+    gallery: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+    },
     goalText: {
         fontSize: 20,
         paddingBottom: 30,
@@ -62,7 +62,7 @@ var styles = StyleSheet.create({
         textAlign: 'center',
         padding: 10,
     },
-    icon:{
+    icon: {
         padding: 20,
         opacity: 0.6,
     },
@@ -70,12 +70,12 @@ var styles = StyleSheet.create({
         padding: 20,
         backgroundColor: "white",
     },
-    profileImage:{
+    profileImage: {
         width: 70,
         height: 70,
         marginTop: 40,
     },
-    profileImage2:{
+    profileImage2: {
         width: 80,
         height: 80,
         marginTop: 40,
@@ -175,11 +175,11 @@ var styles = StyleSheet.create({
         opacity: 0.6
     },
     backIcon: {
-        height: 40,
-        width: 40,
+        height: 35,
+        width: 35,
         position: "absolute",
-        top: 10,
-        left: -50,
+        top: -30,
+        left: 10,
         opacity: 0.6
     },
     signOut: {
@@ -206,7 +206,7 @@ var styles = StyleSheet.create({
         marginBottom: 50,
     },
     profilePosts: {
-        marginBottom: 200,
+        // marginBottom: 200,
     },
     button2: {
         color: "black",
@@ -288,13 +288,13 @@ var styles = StyleSheet.create({
     menu: {
         backgroundColor: "#f0f0f0",
         position: "absolute",
-        display:"flex",
+        display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         zIndex: 2,
         bottom: 0,
         width: "120%",
-        shadowOffset:{  width: 0,  height: 0,  },
+        shadowOffset: { width: 0, height: 0, },
         shadowColor: 'grey',
         shadowOpacity: 0.5,
     },
@@ -352,7 +352,7 @@ var styles = StyleSheet.create({
         display: "flex",
         flexDirection: 'row',
         marginTop: -45,
-        
+
     },
     subtitle3: {
         fontSize: 16,
@@ -362,7 +362,7 @@ var styles = StyleSheet.create({
         textAlign: "left",
         fontStyle: "italic",
         color: "black",
-        
+
     },
     search_button: {
         marginTop: -45,
@@ -370,7 +370,7 @@ var styles = StyleSheet.create({
         marginLeft: "80%",
         width: 25,
         height: 25,
-        
+
     },
     no_posts_found: {
         marginTop: 50
@@ -408,13 +408,13 @@ var styles = StyleSheet.create({
         fontWeight: "300",
         textAlign: "left",
         marginTop: -40,
-        
+
     },
     buttonBottom: {
-        position:"absolute",
+        position: "absolute",
         paddingLeft: 60,
         bottom: 30,
-        
+
     },
     smallText: {
         paddingTop: 100,
@@ -456,7 +456,7 @@ var styles = StyleSheet.create({
         marginLeft: -60,
         backgroundColor: "#f0f0f0",
         zIndex: 1
-        
+
     },
     title: {
         fontSize: 24,
@@ -472,7 +472,7 @@ var styles = StyleSheet.create({
         fontWeight: "200"
     },
     hr: {
-        shadowOffset:{  width: 0,  height: 0,  },
+        shadowOffset: { width: 0, height: 0, },
         shadowColor: 'grey',
         shadowOpacity: 0.5,
         marginTop: -15,
@@ -480,13 +480,13 @@ var styles = StyleSheet.create({
         color: "grey",
         zIndex: -3,
         flex: 1,
-        
+
     },
     pls: {
         flexDirection: 'row',
     },
     outline: {
-        shadowOffset:{  width: 0,  height: -5,  },
+        shadowOffset: { width: 0, height: -5, },
         shadowColor: 'black',
         shadowOpacity: 0.5,
 
@@ -512,7 +512,7 @@ var styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         alignItems: "center",
-        paddingRight: 80 
+        paddingRight: 80
     },
     userSearchPhoto: {
         width: 50,
@@ -532,7 +532,7 @@ var styles = StyleSheet.create({
 
 module.exports = styles;
 module.exports.constants = constants;
-                               
+
 
 
 
