@@ -214,10 +214,18 @@ export default class profile extends Component {
 
                             <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
                 </View>
-                {!this.state.containsPosts ?
+                {this.state.containsPosts ?
+                 <View>
                  {postItems}
+                 </View>
                   :
-                  <Text>TeSTING</Text>
+                 <Button style={styles.publishFirst}
+                        onPress={
+                            function () {
+                                navigate('trashy', {});
+                            }.bind(this)
+                        }> Publish your first Trashy Pic!</Button>
+                 
                  }
                 
                         <View style={{ height: 150 }}></View>

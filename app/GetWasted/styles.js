@@ -167,6 +167,7 @@ var styles = StyleSheet.create({
         height: 30,
         width: 30,
         right: 15,
+        padding: 15,
         position: "absolute",
         top: -40,
         opacity: 0.6
@@ -531,7 +532,16 @@ var styles = StyleSheet.create({
         padding: 5,
         color: "white",
         marginRight: 10
+    },
+    publishFirst: {
+        padding: 10,
+        color: "black",
+        marginTop: 20,
+        backgroundColor: "#e2ddd0",
+        textAlign: "left",
+        fontSize: 20
     }
+        
 })
 
 module.exports = styles;
