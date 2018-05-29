@@ -94,7 +94,7 @@ export default class goalSummary extends Component {
                     <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
 
-                <Text style={styles.headerPadding2}>{title.toUpperCase()}</Text>
+                <Text style={styles.headerPadding}>{title.toUpperCase()}</Text>
                 <ScrollView>
                 <Text style={styles.header2}>Status</Text>
                     <Text style={styles.status}>{status}</Text>

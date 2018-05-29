@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { Image, View, StyleSheet, Text, FlatList, ListView, ListItem, ScrollView, SectionList, Alert, KeyboardAvoidingView, Keyboard } from 'react-native';
+import { Image, View, StyleSheet, Text, FlatList, ListView, ListItem, ScrollView, SectionList, Alert } from 'react-native';
 import t from 'tcomb-form-native'; // 0.6.9
 import Button from 'react-native-button';
 import reduce from './reduce';
@@ -109,7 +109,6 @@ export default class newGoal extends Component {
             user: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onKeyboardHide = this.onKeyboardHide.bind(this);
     }
 
     componentWillMount() {
@@ -118,21 +117,10 @@ export default class newGoal extends Component {
         });
     }
 
-    componentDidMount() {
-        this.keyboardHideListener = Keyboard.addListener('keyboardWillHide', this.onKeyboardHide);
-    }
-
     componentWillUnmount() {
         if (this.goalRef) {
             this.goalRef.off();
         }
-    }
-
-    // change key to force re-render when keyboard closes (fixes padding issue)
-    onKeyboardHide() {
-        this.setState({
-            keyboardAvoidingViewKey: 'keyboardAvoidingViewKey' + new Date().getTime()
-        });
     }
 
     // when the user presses submit this method will be called
@@ -202,38 +190,35 @@ export default class newGoal extends Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container_main}>
-
-                <KeyboardAvoidingView behavior="padding" key={this.state.keyboardAvoidingViewKey}>
-                    <View style={styles.topContainer}>
-                        <Text style={styles.title}>WasteLess</Text>
-                        <Button style={[styles.menu_item]}
-                            onPress={
-                                function () {
-                                    navigate('setting', {});
-                                }.bind(this)
-                            }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
-                    </View>
-
-                    <View sytle={styles.pls}>
-                        <Text style={styles.hr}>_______________________________________________________________________</Text>
-                    </View>
-
-                    <Text style={styles.headerPadding}>NEW GOAL</Text>
-                    <ScrollView>
-                        <Form ref={c => this._form = c} type={User} options={options} />
-                        <Button style={styles.button} title="Create" onPress={
+                <View style={styles.topContainer}>
+                    <Text style={styles.title}>WasteLess</Text>
+                    <Button style={[styles.menu_item]}
+                        onPress={
                             function () {
-                                handleSubmit();
-                            }
-                        }>Create</Button>
+                                navigate('setting', {});
+                            }.bind(this)
+                        }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                </View>
 
-                        <Button style={[styles.button3, {marginBottom: 250}]} onPress={() => {
-                            // navigate back to goals page
-                            this.props.navigation.goBack();
+                <View sytle={styles.pls}>
+                    <Text style={styles.hr}>_______________________________________________________________________</Text>
+                </View>
+
+                <Text style={styles.headerPadding}>NEW GOAL</Text>
+                <ScrollView>
+                    <Form ref={c => this._form = c} type={User} options={options} />
+                    <Button style={styles.button} title="Create" onPress={
+                        function () {
+                            handleSubmit();
                         }
-                        }>Cancel</Button>
-                    </ScrollView>
-                </KeyboardAvoidingView>
+                    }>Create</Button>
+
+                    <Button style={[styles.button3, { marginBottom: 275 }]} onPress={() => {
+                        // navigate back to goals page
+                        this.props.navigation.goBack();
+                    }
+                    }>Cancel</Button>
+                </ScrollView>
 
                 <View style={[styles.menu]}>
 
