@@ -100,33 +100,33 @@ export default class ShareFeed extends Component {
             var allPosts = [];
             if (allIds) {
                 allIds.forEach((uid) => {
-                    var name = snapshot.val()[uid].name;
-                    var posts = snapshot.val()[uid].trashypics;
-                    if (posts) {
-                        var postKeys = Object.keys(posts);
-                        postKeys.forEach((key, index) => {
-                            var post = posts[key];
-                            var liked = false;
-                            var numLikes = 0;
-                            if (post.likes) {
-                                if (post.likes.split(",").includes(currentUser.uid)) {
-                                    liked = true;
+                    if (snapshot.val()[uid]) {
+                        var name = snapshot.val()[uid].name;
+                        var posts = snapshot.val()[uid].trashypics;
+                        if (posts) {
+                            var postKeys = Object.keys(posts);
+                            postKeys.forEach((key, index) => {
+                                var post = posts[key];
+                                var liked = false;
+                                var numLikes = 0;
+                                if (post.likes) {
+                                    if (post.likes.split(",").includes(currentUser.uid)) {
+                                        liked = true;
+                                    }
+                                    numLikes = post.likes.split(",").length;
                                 }
-                                numLikes = post.likes.split(",").length;
-                            }
-                            console.log(post);
-                            // only save published posts
-                            if (post.published) {
-                                post["userId"] = uid;
-                                post["userName"] = name;
-                                post["isLiked"] = liked;
-                                post["numLikes"] = numLikes;
-                                console.log(postKeys[index])
-                                post["i"] = postKeys[index];
-                                allPosts.push(post);
-                            }
-                        });
-                    }
+                                // only save published posts
+                                if (post.published) {
+                                    post["userId"] = uid;
+                                    post["userName"] = name;
+                                    post["isLiked"] = liked;
+                                    post["numLikes"] = numLikes;
+                                    post["i"] = postKeys[index];
+                                    allPosts.push(post);
+                                }
+                            });
+                        }
+                    }                    
                 });
             }
             // TO DO: ORDER POSTS BY TIME CREATED
@@ -200,11 +200,9 @@ export default class ShareFeed extends Component {
             index++;
         }
 
-        console.log(this.state.posts[postIndex]);
         var uids;
         var numLikes = 0;
         var currentUid = firebase.auth().currentUser.uid;
-        console.log(post.isLiked);
         if (post.isLiked == false) {
             numLikes = post.numLikes;
             if (post.likes != "" && post.likes != undefined) {
