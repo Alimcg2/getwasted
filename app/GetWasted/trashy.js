@@ -299,17 +299,17 @@ export default class trashy extends Component {
 
                                                     <Text style={styles.subtitle}>{item.caption}</Text>
 
-                                                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+                                                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                                                         <Text style={styles.trashyDate}>{moment(item.date).format('MMM DD YYYY')}</Text>
 
                                                         {item.published ?
-                                                            <Button style={{ backgroundColor: '#CED0CE', padding: 5, marginTop: -15, color: 'white' }} onPress={(() => {
+                                                            <Button style={{ backgroundColor: '#CED0CE', padding: 5, color: 'white' }} onPress={(() => {
                                                                 this.handlePublish(item, false);
                                                             })}>
                                                                 Unpublish
                                                             </Button>
                                                             :
-                                                            <Button style={{ backgroundColor: '#e2ddd0', padding: 5, marginTop: -15, color: 'white' }} onPress={(() => {
+                                                            <Button style={{ backgroundColor: '#e2ddd0', padding: 5, color: 'white' }} onPress={(() => {
                                                                 this.handlePublish(item, true);
                                                             })}>
                                                                 Publish
