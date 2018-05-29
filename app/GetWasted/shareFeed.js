@@ -94,10 +94,12 @@ export default class ShareFeed extends Component {
                 this.setState({ following: followingIds });
             }
 
-            // get posts of each user followed
+            // get posts of each user followed + current user
+            var allIds = followingIds.slice();
+            allIds.push(currentUser.uid);
             var allPosts = [];
-            if (followingIds) {
-                followingIds.forEach((uid) => {
+            if (allIds) {
+                allIds.forEach((uid) => {
                     var name = snapshot.val()[uid].name;
                     var posts = snapshot.val()[uid].trashypics;
                     if (posts) {
@@ -106,8 +108,8 @@ export default class ShareFeed extends Component {
                             var post = posts[key];
                             var liked = false;
                             var numLikes = 0;
-                            if (post.likes){
-                                if (post.likes.split(",").includes(currentUser.uid)){
+                            if (post.likes) {
+                                if (post.likes.split(",").includes(currentUser.uid)) {
                                     liked = true;
                                 }
                                 numLikes = post.likes.split(",").length;
@@ -186,7 +188,7 @@ export default class ShareFeed extends Component {
         firebase.database().ref().child("Users/" + userToFollow + "/followers")
             .push({ uid: currentUser.uid });
     }
-    
+
     handleLike(post) {
         currentPost = {}
         index = 0;
@@ -197,8 +199,8 @@ export default class ShareFeed extends Component {
             }
             index++;
         }
-         
-        console.log( this.state.posts[postIndex]);
+
+        console.log(this.state.posts[postIndex]);
         var uids;
         var numLikes = 0;
         var currentUid = firebase.auth().currentUser.uid;
@@ -206,7 +208,7 @@ export default class ShareFeed extends Component {
         if (post.isLiked == false) {
             numLikes = post.numLikes;
             if (post.likes != "" && post.likes != undefined) {
-                uids =  post.likes + "," + currentUid;
+                uids = post.likes + "," + currentUid;
             } else {
                 uids = currentUid;
             }
@@ -272,10 +274,6 @@ export default class ShareFeed extends Component {
                 </View >
             );
         });
-
-
-
-        
 
         return (
 
@@ -420,6 +418,7 @@ class PostItem extends Component {
         var url = post.imageURL;
         var date = moment(post.date).fromNow();
         var numLikes = post.numLikes;
+
         return (
             <View style={styles.list_container}>
                 {/* linked image */}
@@ -433,7 +432,11 @@ class PostItem extends Component {
                 <Text style={styles.share_text}>
                     <Text style={{ fontWeight: "bold" }}
                         onPress={(() => {
-                            navigate('otherProfile', { uid: post.userId });
+                            if (post.userId == firebase.auth().currentUser.uid) {
+                                navigate('profile', {});
+                            } else {
+                                navigate('otherProfile', { uid: post.userId });
+                            }
                         })}>
                         {post.userName + "  "}
                     </Text>
@@ -442,23 +445,23 @@ class PostItem extends Component {
                 </Text>
 
                 <View style={styles.flexContainer2}>
-                <Text style={styles.share_likes}>
-                    Likes: {numLikes}
-                </Text>
-                            <Button onPress={
-                    function () {
-                        handleLike(post);
-                    }
-                }>
+                    <Text style={styles.share_likes}>
+                        Likes: {numLikes}
+                    </Text>
+                    <Button onPress={
+                        function () {
+                            handleLike(post);
+                        }
+                    }>
 
-                    {!post.isLiked ?
-                        <Image style={styles.heartImage} source={require("./007-heart.png")} /> :
-                        <Image style={styles.heartImage} source={require("./heartafter.png")} />
-                    }
-            </Button>
-                <Text style={styles.share_date}>
-                {date}
-            </Text>
+                        {!post.isLiked ?
+                            <Image style={styles.heartImage} source={require("./007-heart.png")} /> :
+                            <Image style={styles.heartImage} source={require("./heartafter.png")} />
+                        }
+                    </Button>
+                    <Text style={styles.share_date}>
+                        {date}
+                    </Text>
                 </View>
 
 

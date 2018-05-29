@@ -83,7 +83,7 @@ export default class profile extends Component {
                 }
             });
             this.setState({ posts: pics });
-            this.setState({ containsPosts: hasPosts});
+            this.setState({ containsPosts: hasPosts });
         });
 
 
@@ -201,35 +201,35 @@ export default class profile extends Component {
                 </View>
 
                 <View>
-                <ScrollView>
-                <View style={styles.flexContainer}>
-                        <Image style={styles.profileImage} source={{ url }} />
+                    <ScrollView>
+                        <View style={styles.flexContainer}>
+                            <Image style={styles.profileImage} source={{ url }} />
 
-                        <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
-</View>
+                            <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
+                        </View>
                         <View style={styles.follow_container}>
                             <Text style={styles.subtitle3}>Following: {following.length}</Text>
 
                             <Button style={[styles.subtitle3]}>Followers: {followers.length}</Button>
 
                             <Text style={styles.subtitle3}>Posts: {posts.length}</Text>
-                </View>
+                        </View>
 
-                {this.state.containsPosts ?
-                 <View>
-                 {postItems}
-                 </View>
+                        {this.state.containsPosts ?
+                            <View>
+                                {postItems}
+                            </View>
 
-                  :
-                 <Button style={styles.publishFirst}
-                        onPress={
-                            function () {
-                                navigate('trashy', {});
-                            }.bind(this)
-                        }> Publish your first Trashy Pic!</Button>
-                 
-                 }
-                
+                            :
+                            <Button style={styles.publishFirst}
+                                onPress={
+                                    function () {
+                                        navigate('trashy', {});
+                                    }.bind(this)
+                                }> Publish your first Trashy Pic!</Button>
+
+                        }
+
                         <View style={{ height: 150 }}></View>
                     </ScrollView>
                 </View>
@@ -309,50 +309,40 @@ class PostItem extends Component {
         var caption = post.caption;
         var date = moment(post.date).fromNow();
         return (
-            
+
             <View style={styles.list_container}>
-                {/* linked image */}
-                <Button onPress={(() => {
-                    navigate('otherProfile', { uid: post.userId });
-                })}>
-                    <Image style={styles.trashyPic} source={url} />
-                </Button>
+                <Image style={styles.trashyPic} source={url} />
 
                 {/* linked username */}
                 <Text style={styles.share_text}>
-                    <Text style={{ fontWeight: "bold" }}
-                        onPress={(() => {
-                            navigate('otherProfile', { uid: post.userId });
-                        })}>
+                    <Text style={{ fontWeight: "bold" }}>
                         {post.username + "  "}
                     </Text>
-
                     {caption}
                 </Text>
 
-            
                 <View style={styles.flexContainer2}>
-                <Text style={styles.share_likes}>
-                    Likes: {numLikes}
-                </Text>
+                    <Text style={styles.share_likes}>
+                        Likes: {numLikes}
+                    </Text>
 
-                <Button onPress={
-                    function () {
-                        handleLike(post);
-                    }
-                }>
+                    <Button onPress={
+                        function () {
+                            handleLike(post);
+                        }
+                    }>
 
-                    {!post.isLiked ?
-                        <Image style={styles.heartImage} source={require("./007-heart.png")} /> :
-                        <Image style={styles.heartImage} source={require("./heartafter.png")} />
-                    }
-                </Button>
+                        {!post.isLiked ?
+                            <Image style={styles.heartImage} source={require("./007-heart.png")} /> :
+                            <Image style={styles.heartImage} source={require("./heartafter.png")} />
+                        }
+                    </Button>
 
-                <Text style={styles.share_date}>
-                    {date}
-                </Text>
+                    <Text style={styles.share_date}>
+                        {date}
+                    </Text>
 
-            </View>
+                </View>
             </View>
         );
     }

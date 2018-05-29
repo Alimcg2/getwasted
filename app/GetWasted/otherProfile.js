@@ -87,7 +87,7 @@ export default class otherProfile extends Component {
                 }
             });
             this.setState({ posts: pics });
-            this.setState({ containsPosts: hasPosts});
+            this.setState({ containsPosts: hasPosts });
         });
 
         this.followersRef = firebase.database().ref().child("Users/" + this.state.userID + "/followers");
@@ -196,8 +196,8 @@ export default class otherProfile extends Component {
             }
             index++;
         }
-         
-        console.log( this.state.posts[postIndex]);
+
+        console.log(this.state.posts[postIndex]);
         console.log(" uid" + this.state.userId);
         var uids;
         var currentUid = firebase.auth().currentUser.uid;
@@ -205,7 +205,7 @@ export default class otherProfile extends Component {
         if (post.isLiked == false) {
             numLikes = post.likes + 1;
             if (post.currentLikes != "" && post.currentLikes != undefined) {
-                uids =  post.currentLikes + "," + currentUid;
+                uids = post.currentLikes + "," + currentUid;
             } else {
                 uids = currentUid;
             }
@@ -248,7 +248,7 @@ export default class otherProfile extends Component {
         var buttonText = this.state.buttonText;
 
         var postItems = this.state.posts.map((post, index) => {
-            return <PostItem key={index} post={post} userName={user}  handleLike={handleLike} navigation={this.props.navigation} />;
+            return <PostItem key={index} post={post} userName={user} handleLike={handleLike} navigation={this.props.navigation} />;
         });
 
         return (
@@ -280,11 +280,11 @@ export default class otherProfile extends Component {
 
                 <View>
                     <ScrollView>
-                <View style={styles.flexContainer}>
-                        <Image style={styles.profileImage} source={{ url }} />
+                        <View style={styles.flexContainer}>
+                            <Image style={styles.profileImage} source={{ url }} />
 
-                        <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
-                </View>
+                            <Text style={styles.headerRight}>{user.toUpperCase()}</Text>
+                        </View>
                         <View style={styles.follow_container}>
                             <Text style={styles.subtitle3}>Following: {following.length}</Text>
 
@@ -380,45 +380,35 @@ class PostItem extends Component {
         var username = this.props.userName;
         return (
             <View style={styles.list_container}>
-                {/* linked image */}
-                <Button onPress={(() => {
-                    navigate('otherProfile', { uid: userID });
-                })}>
-                    <Image style={styles.trashyPic} source={url} />
-                </Button>
-
-                {/* linked username */}
+                <Image style={styles.trashyPic} source={url} />
+                
                 <Text style={styles.share_text}>
-                    <Text style={{ fontWeight: "bold" }}
-                        onPress={(() => {
-                            navigate('otherProfile', { uid: post.userId });
-                        })}>
+                    <Text style={{ fontWeight: "bold" }}>
                         {username + "  "}
                     </Text>
-
                     {caption}
                 </Text>
 
                 <View style={styles.flexContainer2}>
-                <Text style={styles.share_likes}>
-                    Likes: {numLikes}
-                </Text>
+                    <Text style={styles.share_likes}>
+                        Likes: {numLikes}
+                    </Text>
 
-                <Button onPress={
-                    function () {
-                        handleLike(post);
-                    }
-                }>
+                    <Button onPress={
+                        function () {
+                            handleLike(post);
+                        }
+                    }>
 
-                    {!post.isLiked ?
-                        <Image style={styles.heartImage} source={require("./007-heart.png")} /> :
-                        <Image style={styles.heartImage} source={require("./heartafter.png")} />
-                    }
-                </Button>
+                        {!post.isLiked ?
+                            <Image style={styles.heartImage} source={require("./007-heart.png")} /> :
+                            <Image style={styles.heartImage} source={require("./heartafter.png")} />
+                        }
+                    </Button>
 
-                <Text style={styles.share_date}>
-                    {date}
-            </Text>
+                    <Text style={styles.share_date}>
+                        {date}
+                    </Text>
                 </View>
 
 
