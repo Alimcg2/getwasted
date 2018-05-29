@@ -30,7 +30,7 @@ export default class tutorialPage6 extends Component {
             <View style={styles.container_main3}>
 
 
-                <Image style={styles.tutorialImage} source={require("./equipTutorial.png")} />
+                <Image style={styles.tutorialImage} source={require("./exploreTutorial.png")} />
 
             
                 <View style={styles.buttonBottom}>
@@ -43,7 +43,7 @@ export default class tutorialPage6 extends Component {
                 <Button style={styles.next2}
             onPress={
                 function() {
-                    navigate('tutorialPage5', {});
+                    navigate('tutorialPage7', {});
                 }
             }>Next</Button>
                 </View>

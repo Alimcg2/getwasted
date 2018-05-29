@@ -14,7 +14,7 @@ import {
 } from 'react-navigation';
 const styles = require('./styles.js');
 
-export default class tutorialPage4 extends Component {
+export default class tutorialPage8 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +30,7 @@ export default class tutorialPage4 extends Component {
             <View style={styles.container_main3}>
 
 
-                <Image style={styles.tutorialImage} source={require("./profileTutorial.png")} />
+                <Image style={styles.tutorialImage} source={require("./connectTutorial.png")} />
 
             
                 <View style={styles.buttonBottom}>
@@ -43,7 +43,7 @@ export default class tutorialPage4 extends Component {
                 <Button style={styles.next2}
             onPress={
                 function() {
-                    navigate('tutorialPage5', {});
+                    navigate('profile', {});
                 }
             }>Next</Button>
                 </View>
@@ -55,4 +55,4 @@ export default class tutorialPage4 extends Component {
     }
 }
 
-module.exports = tutorialPage4;
+module.exports = tutorialPage8;
