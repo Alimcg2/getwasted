@@ -174,7 +174,7 @@ export default class shop extends Component {
         return (
                 <View style={styles.container_main}>
                 <View style={styles.topContainer}>
-                <Text style={styles.title}>Wasteless</Text>
+                <Text style={styles.title}>WasteLess</Text>
                 <Button style={[styles.menu_item]}
                     onPress={
                         function () {
