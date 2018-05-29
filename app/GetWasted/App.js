@@ -39,6 +39,8 @@ import tutorialPage3 from './tutorialPage3';
 import tutorialPage4 from './tutorialPage4';
 import tutorialPage5 from './tutorialPage5';
 import tutorialPage6 from './tutorialPage6';
+import tutorialPage7 from './tutorialPage7';
+import tutorialPage8 from './tutorialPage8';
 
 const styles = require('./styles.js');
 
@@ -111,7 +113,9 @@ const Stacks = StackNavigator({
     tutorialPage3: { screen: tutorialPage3},
     tutorialPage4: { screen: tutorialPage4},
     tutorialPage5: { screen: tutorialPage5},
-    tutorialPage6: { screen: tutorialPage6}
+    tutorialPage6: { screen: tutorialPage6},
+    tutorialPage7: { screen: tutorialPage7},
+    tutorialPage8: { screen: tutorialPage8}
 },
 { 
     headerMode: 'none',
