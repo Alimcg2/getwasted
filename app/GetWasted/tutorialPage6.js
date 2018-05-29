@@ -14,7 +14,7 @@ import {
 } from 'react-navigation';
 const styles = require('./styles.js');
 
-export default class tutorialPage4 extends Component {
+export default class tutorialPage6 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +30,7 @@ export default class tutorialPage4 extends Component {
             <View style={styles.container_main3}>
 
 
-                <Image style={styles.tutorialImage} source={require("./exploreTutorial.png")} />
+                <Image style={styles.tutorialImage} source={require("./equipTutorial.png")} />
 
             
                 <View style={styles.buttonBottom}>
@@ -55,4 +55,4 @@ export default class tutorialPage4 extends Component {
     }
 }
 
-module.exports = tutorialPage4;
+module.exports = tutorialPage6;

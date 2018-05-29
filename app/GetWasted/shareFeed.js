@@ -75,6 +75,7 @@ export default class ShareFeed extends Component {
             filteredUsers: []
         };
         this.handleSignOut = this.handleSignOut.bind(this);
+        this.handleLike = this.handleLike.bind(this);
     }
 
     componentWillMount() {
@@ -101,12 +102,25 @@ export default class ShareFeed extends Component {
                     var posts = snapshot.val()[uid].trashypics;
                     if (posts) {
                         var postKeys = Object.keys(posts);
-                        postKeys.forEach((key) => {
+                        postKeys.forEach((key, index) => {
                             var post = posts[key];
+                            var liked = false;
+                            var numLikes = 0;
+                            if (post.likes){
+                                if (post.likes.split(",").includes(currentUser.uid)){
+                                    liked = true;
+                                }
+                                numLikes = post.likes.split(",").length;
+                            }
+                            console.log(post);
                             // only save published posts
                             if (post.published) {
                                 post["userId"] = uid;
                                 post["userName"] = name;
+                                post["isLiked"] = liked;
+                                post["numLikes"] = numLikes;
+                                console.log(postKeys[index])
+                                post["i"] = postKeys[index];
                                 allPosts.push(post);
                             }
                         });
@@ -172,12 +186,64 @@ export default class ShareFeed extends Component {
         firebase.database().ref().child("Users/" + userToFollow + "/followers")
             .push({ uid: currentUser.uid });
     }
+    
+    handleLike(post) {
+        currentPost = {}
+        index = 0;
+        postIndex = 0;
+        for (var postState in this.state.posts) {
+            if (postState.i == post.i) {
+                postIndex = index;
+            }
+            index++;
+        }
+         
+        console.log( this.state.posts[postIndex]);
+        var uids;
+        var numLikes = 0;
+        var currentUid = firebase.auth().currentUser.uid;
+        console.log(post.isLiked);
+        if (post.isLiked == false) {
+            numLikes = post.numLikes;
+            if (post.likes != "" && post.likes != undefined) {
+                uids =  post.likes + "," + currentUid;
+            } else {
+                uids = currentUid;
+            }
+        } else {
+            numLikes = post.numLikes - 1;
+            if (post.likes != "" && post.likes != undefined) {
+                if (post.likes.includes("," + currentUid)) {
+                    uids = post.likes.replace("," + currentUid, "");
+                } else if (post.likes.includes(currentUid)) {
+                    uids = post.likes.replace(currentUid, "");
+                }
+            } else {
+                uids = "";
+            }
+
+        }
+        //this.setState({ this.state.posts[post.i].currentLikes: uids });
+        //this.setState({ this.state.posts[post.i].numLikes: numLikes });
+        var updates = {};
+        updates["Users/" + post.userId + "/trashypics/" + post.i + "/"] = {
+            likes: uids,
+            imageCaption: post.imageCaption,
+            imageURL: post.imageURL,
+            date: post.date,
+            published: true
+        };
+        firebase.database().ref().update(updates);
+        //this.setState({this.state.posts[post.i] : numLikes})
+
+    }
 
     render() {
         const { navigate } = this.props.navigation;
 
+        const handleLike = this.handleLike;
         var postItems = this.state.posts.map((post, index) => {
-            return <PostItem key={index} post={post} navigation={this.props.navigation} />;
+            return <PostItem key={index} post={post} handleLike={handleLike} navigation={this.props.navigation} />;
         });
 
         var userItems = this.state.filteredUsers.map((user, index) => {
@@ -206,6 +272,10 @@ export default class ShareFeed extends Component {
                 </View >
             );
         });
+
+
+
+        
 
         return (
 
@@ -345,9 +415,11 @@ class PostItem extends Component {
     render() {
         const { navigate } = this.props.navigation;
 
+        const handleLike = this.props.handleLike;
         var post = this.props.post;
         var url = post.imageURL;
         var date = moment(post.date).fromNow();
+        var numLikes = post.numLikes;
         return (
             <View style={styles.list_container}>
                 {/* linked image */}
@@ -369,9 +441,25 @@ class PostItem extends Component {
                     {post.imageCaption}
                 </Text>
 
-                <Text style={styles.share_date}>
-                    {date}
+                <View style={styles.flexContainer2}>
+                <Text style={styles.share_likes}>
+                    Likes: {numLikes}
                 </Text>
+                            <Button onPress={
+                    function () {
+                        handleLike(post);
+                    }
+                }>
+
+                    {!post.isLiked ?
+                        <Image style={styles.heartImage} source={require("./007-heart.png")} /> :
+                        <Image style={styles.heartImage} source={require("./heartafter.png")} />
+                    }
+            </Button>
+                <Text style={styles.share_date}>
+                {date}
+            </Text>
+                </View>
 
 
             </View>

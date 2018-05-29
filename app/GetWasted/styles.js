@@ -44,6 +44,13 @@ var styles = StyleSheet.create({
         alignContent: "flex-start",
         marginTop: 40
     },
+    flexContainer2: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignContent: "flex-start",
+        flexWrap: "wrap"
+    },
     headerPadding: {
         fontSize: 40,
         fontWeight: "900",
@@ -98,6 +105,13 @@ var styles = StyleSheet.create({
         margin: 5
     },
     share_date: {
+        fontSize: 15,
+        marginLeft: 5,
+        color: 'grey',
+        width: 350,
+        marginTop: -10,
+    },
+    share_likes: {
         fontSize: 15,
         marginLeft: 5,
         color: 'grey'
@@ -415,6 +429,20 @@ var styles = StyleSheet.create({
         marginTop: -40,
 
     },
+    next2: {
+        marginLeft: "30%",
+        color: "black",
+        fontSize: 25,
+        padding: 10,
+        paddingLeft: 20,
+        right: 0,
+        width: 400,
+        backgroundColor: "white",
+        fontWeight: "300",
+        textAlign: "left",
+        marginTop: -40,
+
+    },
     buttonBottom: {
         position: "absolute",
         paddingLeft: 60,
@@ -440,13 +468,20 @@ var styles = StyleSheet.create({
         fontWeight: "800",
     },
     tutorialImage: {
-        height: 400,
-        width: 300,
+        height: 420,
+        width: 360,
+        alignSelf: "center",
     },
     container_main2: {
         backgroundColor: '#f0f0f0',
         paddingLeft: 60,
         flex: 1,
+    },
+    container_main3: {
+        backgroundColor: '#dcdcdc',
+        flex: 1,
+        justifyContent: "center",
+        
     },
     settingsImage: {
         width: 20,
@@ -503,8 +538,7 @@ var styles = StyleSheet.create({
         width: 30,
         height: 30,
         opacity: 0.6,
-        marginLeft: 220,
-        marginTop: -45,
+        
     },
     userContainer: {
         flex: 1,

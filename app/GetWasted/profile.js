@@ -56,7 +56,7 @@ export default class profile extends Component {
                     hasPosts = true;
                     var numLikes;
                     var likeString;
-                    var liked = false;;
+                    var liked = false;
                     if (pic.likes) {
                         numLikes = pic.likes.split(",").length;
                         likeString = pic.likes;
@@ -330,7 +330,9 @@ class PostItem extends Component {
                     {caption}
                 </Text>
 
-                <Text style={styles.share_date}>
+            
+                <View style={styles.flexContainer2}>
+                <Text style={styles.share_likes}>
                     Likes: {numLikes}
                 </Text>
 
@@ -350,7 +352,7 @@ class PostItem extends Component {
                     {date}
                 </Text>
 
-
+            </View>
             </View>
         );
     }
