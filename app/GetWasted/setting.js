@@ -7,7 +7,7 @@ import Button from 'react-native-button';
 import PhotoUpload from 'react-native-photo-upload';
 import app from './app';
 import cameraTest from './cameraTest';
-import  StackNavigator from 'react-navigation';
+import StackNavigator from 'react-navigation';
 import RNFetchBlob from 'react-native-fetch-blob';
 var ImagePicker = require('react-native-image-picker');
 
@@ -115,7 +115,7 @@ export default class trashy extends Component {
 
     componentWillMount() {
         var user = firebase.auth().currentUser;
-        this.setState({user: user});
+        this.setState({ user: user });
         this.imageRef = firebase.database().ref().child("Users/" + user.uid + "/image"); /* gets the image-parent class*/
         this.setState({ userName: user.displayName });
         this.imageRef.on("value", function (snapshot) {
@@ -127,9 +127,9 @@ export default class trashy extends Component {
         if (this.imageRef) {
             this.imageRef.off();
         }
-        
+
     }
-    
+
     handleSignOut() {
         if (firebase.auth().currentUser) {
             firebase.auth().signOut();
@@ -145,12 +145,15 @@ export default class trashy extends Component {
 
             if (response.didCancel) {
                 console.log('User cancelled image picker');
+                this.setState({ loading: false });
             }
             else if (response.error) {
                 console.log('ImagePicker Error: ', response.error);
+                this.setState({ loading: false });
             }
             else if (response.customButton) {
                 console.log('User tapped custom button: ', response.customButton);
+                this.setState({ loading: false });
             }
             else {
                 this.pushImage(response).then(function (response) {
@@ -166,7 +169,7 @@ export default class trashy extends Component {
             }
         });
         console.log(url);
-        this.setState({urlImage: url});
+        this.setState({ urlImage: url });
     }
 
 
@@ -202,7 +205,7 @@ export default class trashy extends Component {
                     resolve(url);
                     console.log(url);
                     // save download url and upload time to state
-                    this.setState({ urlImage: url, loading: false });
+                    this.setState({ urlImage: url, profileImg: url, loading: false });
                 })
                 .catch((error) => {
                     console.log(error);
@@ -212,12 +215,12 @@ export default class trashy extends Component {
         })
     }
 
-    
+
     handleUpload() {
         const value = this._form.getValue();
         console.log(value);
 
-        
+
         var user = this.state.user;
         // var followersRef = firebase.database().ref().child("Users/" + user.uid + "/followers");
         // var followingRef = firebase.database().ref().child("Users/" + user.uid + "/following");
@@ -230,12 +233,13 @@ export default class trashy extends Component {
         }
         if (value.changeUserName != null) {
             user.updateProfile({
-                displayName: value.changeUserName})
+                displayName: value.changeUserName
+            })
             nameRef = value.changeUserName;
             this.trashyRef = firebase.database().ref("Users/" + this.state.user.uid + "/");
             var data = {
                 name: value.changeUserName
-                
+
             }
             this.trashyRef.update(data);
         }
@@ -243,14 +247,14 @@ export default class trashy extends Component {
             user.updatePassword(value.changePassword);
         }
         console.log(this.state.urlImage);
-        if (this.state.urlImage != "" && this.state.urlImage != undefined){
+        if (this.state.urlImage != "" && this.state.urlImage != undefined) {
             this.trashyRef = firebase.database().ref("Users/" + this.state.user.uid + "/");
             var data = {
                 image: this.state.urlImage
             }
             this.trashyRef.update(data);
         }
-        
+
         Alert.alert(
             "Success!", // title
             "You have updated your settings.", // message
@@ -262,47 +266,53 @@ export default class trashy extends Component {
     }
 
     render() {
-        
-        const { navigate }  = this.props.navigation;
+
+        const { navigate } = this.props.navigation;
 
         var url = this.state.profileImg.toString();
         return (
-                <View style={styles.container_main}>
+            <View style={styles.container_main}>
 
                 <View style={styles.topContainer}>
-                <Text style={styles.title}>WasteLess</Text>
-                <Button style={[styles.menu_item]}
-                    onPress={
-                        function () {
-                            navigate('setting', {});
-                        }.bind(this)
-                    }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
+                    <Text style={styles.title}>WasteLess</Text>
+                    <Button style={[styles.menu_item]}
+                        onPress={
+                            function () {
+                                navigate('setting', {});
+                            }.bind(this)
+                        }><Image style={styles.settingsImage} source={require("./003-settings.png")} /></Button>
                 </View>
 
                 <View sytle={styles.pls}>
-                <Text style={styles.hr}>_______________________________________________________________________</Text>
+                    <Text style={styles.hr}>_______________________________________________________________________</Text>
                 </View>
 
-            <ScrollView>
-                <Button onPress={this.uploadImage}>
-                <Image style={styles.profileImage2} source={{url}} />
-                </Button>
-                <Button style={styles.smallButton} onPress={this.uploadImage}>
-                Change Image
+                {this.state.loading ?
+                    <View style={styles.center}>
+                        <Text>LOADING...</Text>
+                    </View>
+                    :
+
+                    <ScrollView>
+                        <Button onPress={this.uploadImage}>
+                            <Image style={styles.profileImage2} source={{ url }} />
+                        </Button>
+                        <Button style={styles.smallButton} onPress={this.uploadImage}>
+                            Change Image
                 </Button>
 
-            
-                 <Form ref={c => this._form = c} type={User} options={options} />
 
-                <Button  style={styles.button} onPress={this.handleUpload}>
-                Save Changes
+                        <Form ref={c => this._form = c} type={User} options={options} />
+
+                        <Button style={styles.button} onPress={this.handleUpload}>
+                            Save Changes
                 </Button>
-            
-            
-                    <Button style={styles.button_bottom}
-                        onPress={this.handleSignOut }>Sign Out</Button>
 
-            </ScrollView>
+                        <Button style={styles.button_bottom}
+                            onPress={this.handleSignOut}>Sign Out</Button>
+
+                    </ScrollView>
+                }
 
                 <View style={[styles.menu]}>
 
@@ -360,7 +370,7 @@ export default class trashy extends Component {
 
                 </View>
 
-                    </View>
+            </View>
         );
     }
 }

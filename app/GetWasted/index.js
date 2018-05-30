@@ -1,5 +1,5 @@
 import { AppRegistry } from 'react-native';
 import App from './App';
 
-AppRegistry.registerComponent('GetWasted', () => App);
+AppRegistry.registerComponent('WasteLess', () => App);
 
