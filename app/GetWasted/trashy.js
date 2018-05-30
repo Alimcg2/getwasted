@@ -137,12 +137,15 @@ export default class trashy extends Component {
 
             if (response.didCancel) {
                 console.log('User cancelled image picker');
+                this.setState({ loading: false });
             }
             else if (response.error) {
                 console.log('ImagePicker Error: ', response.error);
+                this.setState({ loading: false });
             }
             else if (response.customButton) {
                 console.log('User tapped custom button: ', response.customButton);
+                this.setState({ loading: false });
             }
             else {
                 this.pushImage(response).then(function (response) {
