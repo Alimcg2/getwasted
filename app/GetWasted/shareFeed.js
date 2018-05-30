@@ -84,10 +84,10 @@ export default class ShareFeed extends Component {
         this.usersRef = firebase.database().ref().child("Users");
         this.usersRef.on("value", (snapshot) => {
             // get list of users current user is following
+            var followingIds = [];
             var following = snapshot.val()[currentUser.uid].following;
             if (following) {
                 var followingKeys = Object.keys(following);
-                var followingIds = [];
                 followingKeys.forEach((key) => {
                     followingIds.push(following[key].uid);
                 });
@@ -126,9 +126,17 @@ export default class ShareFeed extends Component {
                                 }
                             });
                         }
-                    }                    
+                    }
                 });
             }
+
+            console.log(allPosts);
+            // sort by time
+            allPosts.sort((a,b) => {
+                return new Date(b.date).getTime() - new Date(a.date).getTime();
+            });
+            
+
             // TO DO: ORDER POSTS BY TIME CREATED
             this.setState({ posts: allPosts });
 
