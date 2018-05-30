@@ -29,7 +29,6 @@ export default class tutorialPage4 extends Component {
             
             <View style={styles.container_main3}>
 
-
                 <Image style={styles.tutorialImage} source={require("./profileTutorial.png")} />
 
             
