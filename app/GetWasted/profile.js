@@ -82,6 +82,10 @@ export default class profile extends Component {
                     pics.push(format);
                 }
             });
+            // sort by time
+            pics.sort((a, b) => {
+                return new Date(b.date).getTime() - new Date(a.date).getTime();
+            });
             this.setState({ posts: pics });
             this.setState({ containsPosts: hasPosts });
         });

@@ -130,14 +130,11 @@ export default class ShareFeed extends Component {
                 });
             }
 
-            console.log(allPosts);
             // sort by time
-            allPosts.sort((a,b) => {
+            allPosts.sort((a, b) => {
                 return new Date(b.date).getTime() - new Date(a.date).getTime();
             });
-            
 
-            // TO DO: ORDER POSTS BY TIME CREATED
             this.setState({ posts: allPosts });
 
             // get list of all users for search
@@ -429,7 +426,11 @@ class PostItem extends Component {
             <View style={styles.list_container}>
                 {/* linked image */}
                 <Button onPress={(() => {
-                    navigate('otherProfile', { uid: post.userId });
+                    if (post.userId == firebase.auth().currentUser.uid) {
+                        navigate('profile', {});
+                    } else {
+                        navigate('otherProfile', { uid: post.userId });
+                    }
                 })}>
                     <Image style={styles.trashyPic} source={{ url }} />
                 </Button>

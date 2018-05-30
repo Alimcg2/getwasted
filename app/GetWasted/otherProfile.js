@@ -86,6 +86,10 @@ export default class otherProfile extends Component {
                     pics.push(format);
                 }
             });
+            // sort by time
+            pics.sort((a, b) => {
+                return new Date(b.date).getTime() - new Date(a.date).getTime();
+            });
             this.setState({ posts: pics });
             this.setState({ containsPosts: hasPosts });
         });
@@ -381,7 +385,7 @@ class PostItem extends Component {
         return (
             <View style={styles.list_container}>
                 <Image style={styles.trashyPic} source={url} />
-                
+
                 <Text style={styles.share_text}>
                     <Text style={{ fontWeight: "bold" }}>
                         {username + "  "}
