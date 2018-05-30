@@ -113,6 +113,10 @@ export default class trashy extends Component {
                 }
                 pics.push(format);
             });
+            // sort by time
+            pics.sort((a, b) => {
+                return new Date(b.date).getTime() - new Date(a.date).getTime();
+            });
             this.setState({ images: pics });
         });
     }
@@ -219,7 +223,7 @@ export default class trashy extends Component {
         var ikes = "";
         if (post.likes != null) {
             ikes = post.likes
-        } 
+        }
         updates["Users/" + this.state.user.uid + "/trashypics/" + post.key + "/"] = {
             imageCaption: post.caption,
             likes: ikes,

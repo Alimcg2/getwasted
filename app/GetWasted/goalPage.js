@@ -44,6 +44,15 @@ export default class goalPage extends Component {
                     pastGoals.push({ goalKey: key, goalData: goal });
                 }
             });
+            // sort by time
+            currentGoals.sort((a, b) => {
+                return new Date(b.goalData.beginDate).getTime() - new Date(a.goalData.beginDate).getTime();
+            });
+            // sort by time
+            pastGoals.sort((a, b) => {
+                return new Date(b.goalData.beginDate).getTime() - new Date(a.goalData.beginDate).getTime();
+            });
+
             this.setState({ currentGoals: currentGoals });
             this.setState({ pastGoals: pastGoals });
         });
@@ -92,7 +101,7 @@ export default class goalPage extends Component {
             }}>
                 {item}
             </Button>
-        });        
+        });
 
         return (
 
