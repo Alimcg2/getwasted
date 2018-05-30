@@ -491,6 +491,7 @@ var styles = StyleSheet.create({
         position: "absolute",
         top: -25,
         opacity: 0.6,
+        padding: 10,
     },
     topContainer: {
         height: 65,
