@@ -78,7 +78,7 @@ export default class otherProfile extends Component {
                         img: { uri: pic.imageURL },
                         date: pic.date,
                         username: userName,
-                        userId: this.state.userID,
+                        userId: this.state.userId,
                         i: child.key,
                         currentLikes: likeString,
                         isLiked: liked
@@ -90,7 +90,7 @@ export default class otherProfile extends Component {
             this.setState({ containsPosts: hasPosts });
         });
 
-        this.followersRef = firebase.database().ref().child("Users/" + this.state.userID + "/followers");
+        this.followersRef = firebase.database().ref().child("Users/" + this.props.navigation.state.params.uid  + "/followers");
         this.followersRef.on("value", (snapshot) => {
             var followers = [];
             snapshot.forEach((child) => {
@@ -105,16 +105,20 @@ export default class otherProfile extends Component {
             this.setState({ followers: followers });
         });
 
-        this.followingRef = firebase.database().ref().child("Users/" + this.state.userID + "/following");
+        this.followingRef = firebase.database().ref().child("Users/" +  this.props.navigation.state.params.uid + "/following");
         this.followingRef.on("value", (snapshot) => {
             var following = [];
             snapshot.forEach((child) => {
+                console.log("im in the child of following");
                 var user = child.val();
                 var format = { uid: user.uid }
                 following.push(user);
             });
             this.setState({ following: following });
         });
+        console.log(this.state.buttonText);
+        console.log(this.state.following);
+        console.log(this.state.followers);
 
     }
     componentWillUnmount() {
@@ -158,7 +162,7 @@ export default class otherProfile extends Component {
 
             // add this user to the current user's list of following
             var addData = {
-                uid: this.state.userID
+                uid: this.state.userId
             };
             this.currentUserFollowingRef.push(addData);
 
@@ -174,7 +178,7 @@ export default class otherProfile extends Component {
                     });
                 });
 
-            this.currentUserFollowingRef.orderByChild('uid').equalTo(this.state.userID)
+            this.currentUserFollowingRef.orderByChild('uid').equalTo(this.state.userId)
                 .once('value').then((snapshot) => {
                     snapshot.forEach((child) => {
                         // remove child
