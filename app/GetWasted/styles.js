@@ -470,6 +470,7 @@ var styles = StyleSheet.create({
     tutorialImage: {
         height: 420,
         width: 360,
+        marginTop: -50,
         alignSelf: "center",
     },
     container_main2: {
