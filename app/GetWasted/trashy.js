@@ -223,13 +223,17 @@ export default class trashy extends Component {
 
     handlePublish(post, published) {
         var updates = {};
-        var ikes = "";
+        var likes = "";
+        var caption = "";
         if (post.likes != null) {
-            ikes = post.likes
+            likes = post.likes
+        }
+        if (post.caption != null) {
+            caption = post.caption;
         }
         updates["Users/" + this.state.user.uid + "/trashypics/" + post.key + "/"] = {
-            imageCaption: post.caption,
-            likes: ikes,
+            imageCaption: caption,
+            likes: likes,
             imageURL: post.url.uri,
             date: post.date,
             published: published
