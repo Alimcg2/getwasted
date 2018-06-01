@@ -10,7 +10,7 @@ We started our journey with extensive user research. Interviews were conducted w
 
 * Equip - links to Zero Waste shops that would send low-packing specialty items
 * Connect - social media aspect where you could see pictures and tricks posted by your Zero Waste friends
-* Reduce - habit forming aspect that would allow you to set goals and reminders (i.e. "stop using plastic straws")
+* Reduce - habit forming aspect that would allow you to set goals and reminders (e.g. "stop using plastic straws")
 * Explore - links to Zero Waste blogs from professional bloggers. 
 
 In order to provide information for Equip and Explore, we had to hand collect serveral blogs and online stores and scrape them  to form our own database! We of course reached out to the blogs and stores first to get their permission. Additionally everything is directly linked so we are serving basically as free advertising. 
@@ -32,6 +32,6 @@ Fair warning: you may see a bit of entropy in action here when trying to navigat
 
 ## Contact Information
 * *PM* MacKenzie Olson - mackenzieolson15@gmail.com
-* *Dev* Alyssa Holzer - aholz@uw.edu
+* *Dev* Alyssa Holzer - holzealy@uw.edu
 * *Dev* Alison McGuire - alimcguire2@gmail.com
 * *Design* Michelle Ho - michho@uw.edu
